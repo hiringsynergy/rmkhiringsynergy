@@ -1372,7 +1372,7 @@ if(isset($_POST['update_submit'])) {
 
                     //,
                     //"sScrollY": "200px",
-                    //"bPaginate": false,
+                   "bPaginate": false,
 
                     //"sScrollX": "100%",
                     //"sScrollXInner": "120%",
@@ -1380,7 +1380,7 @@ if(isset($_POST['update_submit'])) {
                     //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
                     //you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-                   "iDisplayLength": 10
+                   "iDisplayLength": 100
 
 
 //                    select: {

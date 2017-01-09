@@ -247,7 +247,8 @@ if(isset($_GET['delete']))
     ?>
 
 
-		<div id="navbar" class="navbar navbar-default          ace-save-state">
+
+		<div id="navbar" class="navbar navbar-default       ace-save-state" >
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 					<span class="sr-only">Toggle sidebar</span>
@@ -259,7 +260,7 @@ if(isset($_GET['delete']))
 					<span class="icon-bar"></span>
 				</button>
 
-				<div class="navbar-header pull-left">
+				<div class="navbar-header pull-left" ">
 					<a href="index.php" class="navbar-brand">
 						<small>
 							<i class=""></i>
@@ -271,10 +272,10 @@ if(isset($_GET['delete']))
 
 				<div class="navbar-buttons navbar-header  pull-right"  role="navigation">
 					<ul class="nav ace-nav" style="">
-						<li class="grey dropdown-modal" >
+						<li class="orange dropdown-modal" >
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-tasks"></i>
-								<span class="badge badge-grey">4</span>
+								<span class="badge badge-important">4</span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu  dropdown-caret dropdown-close" >
@@ -526,7 +527,7 @@ if(isset($_GET['delete']))
 							</ul>
 						</li>
 
-						<li class="light-blue dropdown-modal">
+						<li class="light-blue dropdown-modal" style="width:140px;">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php

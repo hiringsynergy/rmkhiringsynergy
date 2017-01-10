@@ -10,7 +10,7 @@ if(isset($_GET['create'])){
 $tablename=$_GET['tablename'];
 
 
-$connect=mysqli_connect("localhost","root","","rmd_database");
+    include "connect.php";
 
 
 
@@ -128,7 +128,7 @@ if(isset($_GET['delete']))
     $tab_name=$_GET['tablename'];
 
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "connect.php";
 
     $query="DROP TABLE students_".$tab_name."";
     $result=mysqli_query($connect, $query);
@@ -533,7 +533,7 @@ if(isset($_GET['delete']))
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php
-                                $connect=mysqli_connect("localhost","root","","rmd_database");
+                                include "connect.php";
                                 $name=$_SESSION['user'];
 
                                 $query="select * from login_admin where username='{$name}'";
@@ -974,7 +974,7 @@ if(isset($_GET['delete']))
 												<select class="col-xs-7 chosen-select form-control"  id="form-field-select-3" data-placeholder="Select a Year...">
                                                     <?php
 
-                                                    $connect=mysqli_connect("localhost","root","","rmd_database");
+                                                    include "connect.php";
                                                     $query_insert="SELECT * FROM table_map";
                                                     $result_insert=mysqli_query($connect, $query_insert);
                                                     while ($row=mysqli_fetch_assoc($result_insert)){
@@ -1032,7 +1032,7 @@ if(isset($_GET['delete']))
 
                                                     <?php
 
-                                                    $connect=mysqli_connect("localhost","root","","rmd_database");
+                                                    include "connect.php";
                                                     $query_insert="SELECT * FROM table_map";
                                                     $result_insert=mysqli_query($connect, $query_insert);
                                                     while ($row=mysqli_fetch_assoc($result_insert)){
@@ -1086,7 +1086,7 @@ if(isset($_GET['delete']))
 												<select class="col-xs-7 chosen-select form-control" name="tablename" id="form-field-select-3" data-placeholder="Select a Year...">
                                                     <?php
 
-                                                    $connect=mysqli_connect("localhost","root","","rmd_database");
+                                                    include "connect.php";
                                                     $query_insert="SELECT * FROM table_map";
                                                     $result_insert=mysqli_query($connect, $query_insert);
                                                     while ($row=mysqli_fetch_assoc($result_insert)){

@@ -1067,7 +1067,7 @@ if(isset($_POST['update_submit'])) {
 
                                                             <li>
                                                                 <a href="#modal-form" class="tooltip-success" data-toggle="modal"
-                                                                   data-rel="tooltip" title="Edit"  onclick="showUser(<?php  echo $roll   ?>)">
+                                                                   data-rel="tooltip" title="Edit"  onclick="showStudent(<?php  echo $roll   ?>)">
 
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>

@@ -117,63 +117,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <?php
 
 
-if(isset($_GET['submit'])){
-
-
-
-    $connect=mysqli_connect("localhost","root","","rmd_database");
-    $id=time();
-    $job_title=$_GET['job_title'];
-    $company_id=$_GET['company_id'];
-    $venue=$_GET['venue'];
-    $salary=$_GET['salary'];
-    $campus_date=$_GET['campus_date'];
-    $apply_before=$_GET['apply_before'];
-    $year_of_graduation=$_GET['year_of_graduation'];
-    $joining_location=$_GET['joining_location'];
-    $job_description=$_GET['job_description'];
-    $job_type=$_GET['job_type'];
-    $skill_set=$_GET['skill_set'];
-    $sort=strtotime($apply_before);
-
-
-
-
-
-
-
-    $query2="SELECT company_name FROM company_list where company_id=$company_id";
-    $get_company_name=mysqli_query($connect, $query2);
-    $company_name=mysqli_fetch_assoc($get_company_name);
-
-
-    $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set',$sort)";
-
-
-
-    $result=mysqli_query($connect, $query);
-
-
-    if(!$connect){
-
-        die("".mysqli_error($connect));
-    }
-    if(!$result){
-
-        die("".mysqli_error($connect));
-
-
-    }
-
-
-    header("Location: post_jobs.php");
-
-
-
-
-
-
-}
 
 
 
@@ -829,7 +772,7 @@ if(isset($_GET['submit'])){
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
-				<form class="form-horizontal" action="post_jobs.php" method="get" role="form">
+				<form class="form-horizontal" action="job_filter.php" method="get" role="form">
 		<div class="row">
 <!--                    	<div class="col-xs-8 col-sm-5">-->
 <!---->

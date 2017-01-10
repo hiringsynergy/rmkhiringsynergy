@@ -49,12 +49,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             location.href = "../reports.php";
 
         }
-        function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
+        function myfuncprofile() {
+            location.href = "../profile/profile.php";
 
         }
         function myfuncjobs() {
-            location.href = "jobs_panel.php";
+            location.href = "view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -114,93 +114,18 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <span class="icon-bar"></span>
         </button>
 
-        <div class="navbar-header pull-left">
-            <a href="../index.php" class="navbar-brand">
-                <small>
-                    <i class="fa fa-leaf"></i>
-                    RMK Group of Institutions
-                </small>
-            </a>
+        <div class="navbar-header pull-left" ">
+        <a href="view_jobs.php" class="navbar-brand">
+            <small>
+                <i class=""></i>
+                <img src="../images/rmklogo.JPG" style="height: 25px;">
+                RMK Group of Institutions
+            </small>
+        </a>
         </div>
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -411,7 +336,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
-									Admin
+									Student
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -464,12 +389,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <button class="btn btn-success"  onclick="myfuncreport()" id="myButton1" >
 
                     <i class="ace-icon fa fa-signal" ></i>
-
-
                 </button>
 
-
-                <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
+                <button class="btn btn-info"  onclick="myfuncprofile()" id="myButton2">
                     <i class="ace-icon fa fa-pencil"></i>
                 </button>
 
@@ -501,7 +423,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Student Interaction </span>
+                    <span class="menu-text">Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -586,15 +508,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
                     <li class="active">Jobs</li>
                 </ul><!-- /.breadcrumb -->
-
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-                    </form>
-                </div><!-- /.nav-search -->
+                <!-- /.nav-search -->
             </div>
 
             <div class="page-content">
@@ -667,10 +581,10 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <div class="page-header">
                     <h1>
-                        Student Interaction
+                        Jobs
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            overview &amp; stats
+                            overview
                         </small>
                     </h1>
                 </div><!-- /.page-header -->

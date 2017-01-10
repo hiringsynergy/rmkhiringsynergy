@@ -313,6 +313,10 @@ ob_start();
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php
+
+
+
+
                                 $connect=mysqli_connect("localhost","root","","rmd_database");
                                 $name=$_SESSION['user'];
 

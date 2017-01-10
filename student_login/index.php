@@ -15,7 +15,7 @@ ob_start();
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Student Interaction </title>
+		<title>RMK Hiring Synergy</title>
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -581,10 +581,6 @@ ob_start();
 						<div class="page-header">
 							<h1>
 								Dashboard
-								<small>
-									<i class="ace-icon fa fa-angle-double-right"></i>
-									overview &amp; stats
-								</small>
 							</h1>
 						</div><!-- /.page-header -->
 
@@ -600,11 +596,9 @@ ob_start();
 
 									Welcome to
 									<strong class="green">
-										Student Interaction
-
-									</strong>,
-
-									RMK group of Institutions
+										RMK Hiring Synergy
+                                    </strong>,
+                                    RMK Group of Institutions
 								</div>
                                 <!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

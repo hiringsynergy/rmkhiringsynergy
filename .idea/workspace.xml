@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80f69b0d-72fe-47cd-98bd-623e87b6d128" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin_login/jobs/job_filter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin_login/jobs/post_jobs.php" afterPath="$PROJECT_DIR$/admin_login/jobs/post_jobs.php" />
-    </list>
+    <list default="true" id="80f69b0d-72fe-47cd-98bd-623e87b6d128" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,8 +134,8 @@
       <file leaf-file-name="job_filter.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin_login/jobs/job_filter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-297">
-              <caret line="854" column="0" lean-forward="true" selection-start-line="854" selection-start-column="0" selection-end-line="854" selection-end-column="0" />
+            <state relative-caret-position="486">
+              <caret line="851" column="81" lean-forward="false" selection-start-line="851" selection-start-column="81" selection-end-line="851" selection-end-column="81" />
               <folding>
                 <marker date="1484039531389" expanded="true" signature="5588:5643" ph="SELECT compa... company_list" />
                 <marker date="1484039531389" expanded="true" signature="5783:6002" ph="INSERT INTO jobs... " />
@@ -678,17 +674,25 @@
       <workItem from="1484025202140" duration="8473000" />
 =======
       <workItem from="1483975212024" duration="6672000" />
+<<<<<<< HEAD
+      <workItem from="1484020563385" duration="10025000" />
+=======
       <workItem from="1484020563385" duration="8667000" />
 >>>>>>> origin/master
+>>>>>>> b97762577670f2712a4ab33938e05ce81c94527d
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+    <option name="totallyTimeSpent" value="374183000" />
+=======
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="372468000" />
 =======
     <option name="totallyTimeSpent" value="372825000" />
 >>>>>>> origin/master
+>>>>>>> b97762577670f2712a4ab33938e05ce81c94527d
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1232,8 +1236,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin_login/jobs/job_filter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-297">
-          <caret line="854" column="0" lean-forward="true" selection-start-line="854" selection-start-column="0" selection-end-line="854" selection-end-column="0" />
+        <state relative-caret-position="486">
+          <caret line="851" column="81" lean-forward="false" selection-start-line="851" selection-start-column="81" selection-end-line="851" selection-end-column="81" />
           <folding>
             <marker date="1484039531389" expanded="true" signature="5588:5643" ph="SELECT compa... company_list" />
             <marker date="1484039531389" expanded="true" signature="5783:6002" ph="INSERT INTO jobs... " />

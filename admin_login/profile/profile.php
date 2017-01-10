@@ -3,6 +3,8 @@
 session_start();
 
 
+$_SESSION['roll']=null;
+
 
 if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
@@ -239,6 +241,14 @@ if(isset($_FILES['image'])){
 
 }
 
+if(isset($_GET['roll']))
+{
+
+
+    $_SESSION['roll']=$_GET['roll'];
+
+
+}
 
 ?>
 
@@ -899,13 +909,16 @@ if(isset($_FILES['image'])){
                 <div class=" col-xs-12 center" >
 
 
-                    <label class="red bolder"> Search Profile  -</label>
+                    <form action="profile.php" method="get">
+                        <label class="red bolder"> Search Profile  -</label>
 
 
 
 
-                    <input type="text" name="roll">
-                    <a href="profile.php" class="btn btn-primary ">search</a>
+                        <input type="text" name="roll">
+                        <button type="submit"  class="btn btn-success ">search</button>
+                    </form>
+
 
                 </div><!-- /.page-header -->
 
@@ -920,7 +933,8 @@ if(isset($_FILES['image'])){
 
 
                                         $connect=mysqli_connect("localhost","root","","rmd_database");
-                                        $name=$_SESSION['user'];
+                                        $name=$_SESSION['roll'];
+
                                         $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 
                                         $result=mysqli_query($connect, $query);
@@ -948,31 +962,11 @@ if(isset($_FILES['image'])){
 
 
                                                     <li>
-                                                        <a href="../images/<?php echo $row['st_pic'] ?>" data-rel="colorbox">
-                                                            <img style="max-height: 220px; max-width:300px ;"   src="../images/<?php echo $row['st_pic'] ?>" />
-                                                            <div class="text">
-                                                                <div class="inner">Click here to View</div>
-                                                            </div>
-                                                        </a>
 
-                                                        <div class="tools tools-bottom">
-
-                                                            <a href="#modal-form" role="button" data-toggle="modal">
-                                                                <i class="ace-icon fa fa-pencil"></i>
-                                                            </a>
+                                                            <img style="max-height: 220px; max-width:300px ;"   src="../../student_login/images/<?php echo $row['st_pic'] ?>" />
 
 
-                                                        </div>
                                                     </li>
-
-
-
-
-
-
-
-
-
 
                                                 </ul>
                                             </div>
@@ -1005,7 +999,7 @@ if(isset($_FILES['image'])){
 
 
                                 $connect=mysqli_connect("localhost","root","","rmd_database");
-                                $name=$_SESSION['user'];
+                                $name=$_SESSION['roll'];
                                 $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 
                                 $result=mysqli_query($connect, $query);

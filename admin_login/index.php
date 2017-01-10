@@ -237,7 +237,9 @@ if(isset($_GET['delete']))
 
 
 
-    if(! isset($_SESSION['user']) && $_SESSION['user']==null){
+    if(! isset($_SESSION['user']) && $_SESSION['user']==null)
+
+    {
 
         header("Location: ../login.html");
 

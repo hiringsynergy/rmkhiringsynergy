@@ -455,7 +455,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         </li>
 
                         <li>
-                            <a href="profile/profile.php">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -464,7 +464,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>

@@ -141,7 +141,7 @@ function updateSlider(){
 
 
 
-if(isset($_GET['submit'])){
+if(isset($_GET['filter_job'])){
 
 
 
@@ -159,40 +159,57 @@ if(isset($_GET['submit'])){
     $job_type=$_GET['job_type'];
     $skill_set=$_GET['skill_set'];
     $sort=strtotime($apply_before);
+    $cgpa=$_GET['ugcgpa'];
+    $_10percentage=$_GET['10percentage'];
+    $_12percentage=$_GET['12percentage'];
+    $standingarrears=$_GET['standingarrears'];
+    $historyofarrears=$_GET['historyofarrears'];
+    $get_branch= $_GET['ugbranch'];
 
-
-
-
-
-/*
-
-    $query2="SELECT company_name FROM company_list where company_id=$company_id";
-    $get_company_name=mysqli_query($connect, $query2);
-    $company_name=mysqli_fetch_assoc($get_company_name);
-
-
-    $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set',$sort)";
-
-
-
-    $result=mysqli_query($connect, $query);
-
-
-    if(!$connect){
-
-        die("".mysqli_error($connect));
+    if(current($get_branch)=="all"){
+        $temp_branch="cse-it-eee-ece-eie";
     }
-    if(!$result){
 
-        die("".mysqli_error($connect));
-
+    else {
+        $temp_branch=implode("_",$get_branch);
 
     }
 
 
-    header("Location: post_jobs.php");
 
-*/
+echo "sort time:".$apply_before;
+
+
+
+
+
+        $query2="SELECT * FROM company_list where company_id='$company_id'";
+        $get_company_name=mysqli_query($connect, $query2);
+        $company_name=mysqli_fetch_assoc($get_company_name);
+
+
+        $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , 'cse-it-eie' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears')";
+
+
+
+        $result=mysqli_query($connect, $query);
+
+
+        if(!$connect){
+
+            die("".mysqli_error($connect));
+        }
+        if(!$result){
+
+            die("".mysqli_error($connect));
+
+
+        }
+
+
+        header("Location: post_jobs.php");
+
+
 
 
 
@@ -840,16 +857,46 @@ if(isset($_GET['submit'])){
                         <!-- PAGE CONTENT BEGINS -->
                         <form action="job_filter.php" method="get" >
 
-                            <input type="hidden" name="job_title" value="<?php echo $job_title ?>">
-                            <input type="hidden" value="<?php echo $year_of_graduation ?>">
-                            <input type="hidden" value="<?php echo $company_id ?>">
-                            <input type="hidden" value="<?php echo $venue ?>">
-                            <input type="hidden" value="<?php echo $joining_location ?>">
-                            <input type="hidden" value="<?php echo $job_description?>">
-                            <input type="hidden" value="<?php echo $campus_date ?>">
-                            <input type="hidden" value="<?php echo $apply_before ?>">
-                            <input type="hidden" value="<?php echo $salary ?>">
-                            <input type="hidden" value="<?php echo $job_type ?>">
+                            <?php
+
+
+
+
+
+
+
+                            $job_title=$_GET['job_title'];
+                            $company_id=$_GET['company_id'];
+                            $venue=$_GET['venue'];
+                            $salary=$_GET['salary'];
+                            $campus_date=$_GET['campus_date'];
+                            $apply_before=$_GET['apply_before'];
+                            $year_of_graduation=$_GET['year_of_graduation'];
+                            $joining_location=$_GET['joining_location'];
+                            $job_description=$_GET['job_description'];
+                            $job_type=$_GET['job_type'];
+                            $skill_set=$_GET['skill_set'];
+                            $sort=strtotime($apply_before);
+
+
+
+
+                            ?>
+
+
+
+                            <input type="hidden" name="job_title"  value="<?php echo $job_title ?>">
+                            <input type="hidden" name="year_of_graduation" value="<?php echo $year_of_graduation ?>">
+                            <input type="hidden" name="company_id" value="<?php echo $company_id ?>">
+                            <input type="hidden" name="venue" value="<?php echo $venue ?>">
+                            <input type="hidden" name="joining_location" value="<?php echo $joining_location ?>">
+                            <input type="hidden" name="job_description" value="<?php echo $job_description?>">
+                            <input type="hidden" name="campus_date" value="<?php echo $campus_date ?>">
+                            <input type="hidden" name="apply_before" value="<?php echo $apply_before ?>">
+                            <input type="hidden" name="salary" value="<?php echo $salary ?>">
+                            <input type="hidden" name="job_type" value="<?php echo $job_type ?>">
+                            <input type="hidden" name="skill_set" value="<?php echo $skill_set ?>">
+
 
 
 
@@ -858,30 +905,7 @@ if(isset($_GET['submit'])){
 
                             <div class="row">
 
-                                <div class="col-xs-6">
-                                    <h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
-                                    <div class="col-xs-12 col-md-7">
-                                        <select class="col-xs-7 chosen-select form-control" name="year" id="form-field-select-3" data-placeholder="Select a Year...">
-                                            <option value=""></option>
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                        </select>
-                                    </div>
 
-
-
-
-                                    <div class="space-32"></div>
-                                    <div class="space-32"></div>
-
-
-
-
-                                </div>
 
 
 
@@ -989,11 +1013,20 @@ if(isset($_GET['submit'])){
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xs-8 col-sm-5">
-                                                                <h5><label class="control-label bolder blue" for="form-field-select-3">Lateral Entry(Optional)</label></h5>
-                                                                <input type="text" name="lateral"  value="0" id="slide-text4" class="col-xs-1">
-                                                                <div id="slider-eq4" class="col-xs-12 col-md-10 col-sm-8">
-                                                                    <span class="ui-slider-blue">0</span>
-                                                                </div>
+                                                                <h5><label class="control-label bolder blue" for="form-field-select-3">Standing Arrears</label></h5>
+
+                                                                <select class="chosen-select form-control" name="standingarrears" id="form-field-select-3" data-placeholder="Please Select...">
+                                                                    <option value="0">Nil</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                    <option value="7">7</option>
+                                                                    <option value="8">8</option>
+                                                                    <option value="9">9</option>
+                                                                </select>
                                                             </div>
                                                             <div class="col-xs-8 col-sm-5">
                                                                 <h5><label class="control-label bolder blue" for="form-field-select-3">History of Arrears</label></h5>
@@ -1004,34 +1037,7 @@ if(isset($_GET['submit'])){
                                                             </div>
 
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-8 col-sm-5">
-                                                                <h5><label class="control-label bolder blue" for="form-field-select-3">Standing Arrears</label></h5>
 
-                                                                <select class="chosen-select form-control" name="standingarrears" id="form-field-select-3" data-placeholder="Please Select...">
-                                                                    <option value="">Nil</option>
-                                                                    <option value="">1</option>
-                                                                    <option value="">2</option>
-                                                                    <option value="">3</option>
-                                                                    <option value="">4</option>
-                                                                    <option value="">5</option>
-                                                                    <option value="">6</option>
-                                                                    <option value="">7</option>
-                                                                    <option value="">8</option>
-                                                                    <option value="">9</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-xs-8 col-sm-5">
-                                                                <h5><label class="control-label bolder blue" for="form-field-select-3">Gender</label></h5>
-
-                                                                <select class="chosen-select form-control" name="gender" id="form-field-select-3" data-placeholder="Please Select...">
-                                                                    <option value="">All</option>
-                                                                    <option value="m">Male</option>
-                                                                    <option value="n">Female</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </div>
 
 
 
@@ -1051,7 +1057,7 @@ if(isset($_GET['submit'])){
                             </div>
                             <div class="space-16"></div>
                             <div class="center ">
-                                <button class="btn btn-lg btn-success">
+                                <button name="filter_job" type="submit" class="btn btn-lg btn-success">
                                     <i class="ace-icon fa fa-check"></i>
                                     Filter
                                 </button>

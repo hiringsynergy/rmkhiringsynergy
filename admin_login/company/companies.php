@@ -147,7 +147,7 @@ $get_website= $_POST['company_website'];
 $get_description= $_POST['company_description'];
 
 
-$connect = mysqli_connect("localhost", "root", "", "rmd_database");
+include "../connect.php";
 
 $query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
 

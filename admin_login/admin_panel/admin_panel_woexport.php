@@ -199,7 +199,7 @@ if(isset($_POST['update_submit'])) {
     $get_pass= $_POST['st_pass'];
 
 
-    $connect = mysqli_connect("localhost", "root", "", "rmd_database");
+   include "../connect.php";
 
     $query = "UPDATE students_list SET st_roll={$get_roll},st_name='{$get_name}',st_email='{$get_email}',st_phone={$get_phone},st_cgpa={$get_cgpa},st_pass='{$get_pass}' where st_roll={$get_roll}";
 

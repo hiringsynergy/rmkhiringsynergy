@@ -501,7 +501,7 @@ if(isset($_GET['filter'])) {
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -983,7 +983,7 @@ if(isset($_GET['filter'])) {
 
                                         <?php
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
 
                                         $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
                                             

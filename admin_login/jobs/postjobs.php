@@ -793,7 +793,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                     <?php
 
-                    $connect = mysqli_connect("localhost","root","","rmd_database");
+                    include "../connect.php";
                     $query="SELECT * FROM company_list ";
                     $result=mysqli_query($connect, $query);
 

@@ -419,7 +419,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                       include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -827,7 +827,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                            $connect = mysqli_connect("localhost", "root", "", "rmd_database");
+                            include "../connect.php";
                             include ("PHPExcel/IOFactory.php");
 
                             $objPHPExcel = PHPExcel_IOFactory::load("files/$newfilename");

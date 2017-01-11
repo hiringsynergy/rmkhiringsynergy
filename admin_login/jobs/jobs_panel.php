@@ -157,8 +157,8 @@ if(isset($_POST['update_submit'])) {
     $get_salary= $_POST['submit_salary'];
     $get_venue= $_POST['submit_venue'];
     $get_apply_before= $_POST['submit_apply_before'];
-    $get_company=$_POST['submit_company'];
-    $connect = mysqli_connect("localhost", "root", "", "rmd_database");
+    $get_company=$_POST['submit_company'];
+     include "../connect.php";
 
 
     if($get_company!=""){

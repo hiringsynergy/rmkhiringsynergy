@@ -106,7 +106,7 @@
 //    $ttt = $_GET['submit_title'];
 //    $iii = $_GET['idfromget'];
 //
-//    $connect = mysqli_connect("localhost", "root", "", "rmd_database");
+//    include "../connect.php";
 //    $query = "UPDATE jobs SET job_title='{$ttt}' where job_id={$iii}";
 //
 //    $result = mysqli_query($connect, $query);

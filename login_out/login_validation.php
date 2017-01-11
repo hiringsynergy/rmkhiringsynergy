@@ -101,6 +101,7 @@ if(isset($_POST['login'])){
         $_SESSION['pass'] = $password;
         $_SESSION['student_name']=$username;
         $_SESSION['student_branch']=$student_branch;
+        $_SESSION['table_name']=$student_table;
         header("Location: ../student_login/index.php");
 
     }

@@ -201,8 +201,9 @@ if(isset($_FILES['image'])){
 
     include "../connect.php";
     //$connect=mysqli_connect("localhost","root","","rmd_database");
+    $student_table=$_SESSION['table_name'];
 
-    $select="SELECT st_pic from students_list where st_roll='{$name}'";
+    $select="SELECT st_pic from $student_table where st_roll='{$name}'";
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
     $old_file=$row['st_pic'];
@@ -212,9 +213,9 @@ if(isset($_FILES['image'])){
      unlink("../images/".$old_file);
 
         move_uploaded_file($file_tmp,"../images/".$newfilename);
+    $student_table=$_SESSION['table_name'];
 
-
-    $query="UPDATE students_list SET  st_pic='{$newfilename}' WHERE st_roll='{$name}'";
+    $query="UPDATE $student_table SET  st_pic='{$newfilename}' WHERE st_roll='{$name}'";
 
     $result=mysqli_query($connect, $query);
     if(!$connect){
@@ -458,7 +459,8 @@ if(isset($_FILES['image'])){
                         //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
-                        $query="select * from students_list where st_roll='{$name}'";
+                        $student_table=$_SESSION['table_name'];
+                        $query="select * from $student_table where st_roll='{$name}'";
 
 
 
@@ -662,7 +664,8 @@ if(isset($_FILES['image'])){
                                         include "../connect.php";
                                         //$connect=mysqli_connect("localhost","root","","rmd_database");
                                         $name=$_SESSION['user'];
-                                        $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
+                                        $student_table=$_SESSION['table_name'];
+                                        $query="SELECT * FROM $student_table WHERE st_roll='{$name}'";
 
                                         $result=mysqli_query($connect, $query);
                                         if(!$connect){
@@ -747,7 +750,8 @@ if(isset($_FILES['image'])){
                                 include "../connect.php";
                                 //$connect=mysqli_connect("localhost","root","","rmd_database");
                                 $name=$_SESSION['user'];
-                                $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
+                                $student_table=$_SESSION['table_name'];
+                                $query="SELECT * FROM $student_table WHERE st_roll='{$name}'";
 
                                 $result=mysqli_query($connect, $query);
                                 if(!$connect){

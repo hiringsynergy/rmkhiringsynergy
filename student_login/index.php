@@ -315,8 +315,9 @@
                                 include "connect.php";
                                 //$connect=mysqli_connect("localhost","root","","rmd_database");
                                 $name=$_SESSION['user'];
+                                $student_table=$_SESSION['table_name'];
 
-                                $query="select * from students_list where st_roll='{$name}'";
+                                $query="select * from $student_table where st_roll='{$name}'";
 
 
 

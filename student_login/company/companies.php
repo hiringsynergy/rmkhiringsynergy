@@ -1,19 +1,14 @@
 
-<?php session_start();
-ob_start();
+<?php
 
+    session_start();
+    ob_start();
 
+    if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
+        header("Location: ../login.html");
 
-
-if(! isset($_SESSION['user']) && $_SESSION['user']==null){
-
-    header("Location: ../login.html");
-
-
-}
-
-
+    }
 
 ?>
 
@@ -310,7 +305,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
+                        //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
                         $query="select * from students_list where st_roll='{$name}'";

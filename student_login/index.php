@@ -1,11 +1,7 @@
-
 <?php
-session_start();
-ob_start();
 
-
-
-
+    session_start();
+    ob_start();
 
 ?>
 
@@ -316,8 +312,8 @@ ob_start();
 
 
 
-
-                                $connect=mysqli_connect("localhost","root","","rmd_database");
+                                include "connect.php";
+                                //$connect=mysqli_connect("localhost","root","","rmd_database");
                                 $name=$_SESSION['user'];
 
                                 $query="select * from students_list where st_roll='{$name}'";

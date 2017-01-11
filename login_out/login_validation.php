@@ -6,7 +6,7 @@ session_start();
 
 if(isset($_POST['login'])){
 
-    $flag=0;
+
 
     $username=$_POST['username'];
     $password=$_POST['password'];
@@ -21,20 +21,6 @@ if(isset($_POST['login'])){
     $admin_name=$row_admin['username'];
     $admin_password=$row_admin['password'];
 
-
-
-
-    //admin validation
-    if($admin_name==$username && $admin_password==$password){
-
-        $flag=1;
-
-
-        $_SESSION['user']=$username;
-        $_SESSION['pass']=$password;
-        header("Location: ../admin_login/index.php");
-    }
-
     //coordinator login
 
     $query_coordinator="SELECT * FROM login_coordinator WHERE username='{$username}'";
@@ -45,21 +31,7 @@ if(isset($_POST['login'])){
 
 
 
-    //coordinator validation
-
-   if($coordinator_name == $username && $coordinator_password == $password){
-
-
-
-       $flag=1;
-        $_SESSION['user']=$username;
-        $_SESSION['pass']=$password;
-        header("Location: ../coordinator_login/index.php");
-    }
-
-
     //student login
-
 
     $isstudent=$username[4].$username[5];
     $isstudent+=4;
@@ -72,7 +44,7 @@ if(isset($_POST['login'])){
 
 
 
-    $flag=1;
+
 
     $query_student="SELECT * FROM $student_table WHERE st_roll='$username'";
     $result_student=mysqli_query($connect, $query_student);
@@ -83,10 +55,42 @@ if(isset($_POST['login'])){
     $student_branch=$row_student['st_ugspecialization'];
 
 
+
+
+
+    //admin validation
+    if($admin_name==$username && $admin_password==$password){
+
+
+
+
+        $_SESSION['user']=$username;
+        $_SESSION['pass']=$password;
+        header("Location: ../admin_login/index.php");
+    }
+
+
+
+
+    //coordinator validation
+
+   else if($coordinator_name == $username && $coordinator_password == $password){
+
+
+
+
+        $_SESSION['user']=$username;
+        $_SESSION['pass']=$password;
+        header("Location: ../coordinator_login/index.php");
+    }
+
+
+
+
     //student validation
 
 
-    if($student_name == $username && $student_password==$password){
+    else if($student_name == $username && $student_password==$password){
 
 
 
@@ -102,11 +106,11 @@ if(isset($_POST['login'])){
     }
 
 
-    if($flag==0){
+    else{
         header("Location: ../login.html");
     }
 
-       //
+
 
 
 

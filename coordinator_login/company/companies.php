@@ -143,7 +143,7 @@ $get_website= $_POST['company_website'];
 $get_description= $_POST['company_description'];
 
 
-$connect = mysqli_connect("localhost", "root", "", "rmd_database");
+    include "../connect.php";
 
 $query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
 
@@ -448,7 +448,7 @@ die(" " . mysqli_error($connect));
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
@@ -749,7 +749,7 @@ die(" " . mysqli_error($connect));
 
                             $company_id=$_GET['delete'];
 
-                            $connect=mysqli_connect("localhost","root","","rmd_database");
+                            include "../connect.php";
                             $query="DELETE FROM company_list where company_id={$company_id}";
 
                             $result=mysqli_query($connect, $query);
@@ -811,7 +811,7 @@ die(" " . mysqli_error($connect));
                                         <?php
 
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
                                         $query="SELECT * FROM company_list";
                                         $result=mysqli_query($connect, $query);
                                         if(!$connect){

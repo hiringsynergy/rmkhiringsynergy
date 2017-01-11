@@ -499,7 +499,7 @@ if(isset($_GET['filter'])) {
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -981,7 +981,7 @@ if(isset($_GET['filter'])) {
 
                                         <?php
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
 
                                         $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch')";
                                         $result=mysqli_query($connect,$query);

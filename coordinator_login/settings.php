@@ -21,7 +21,7 @@
 
 if(isset($_GET['id'])){
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "connect.php";
     $user=$_GET['id'];
     $pass=$_GET['value'];
 
@@ -422,7 +422,7 @@ if(isset($_GET['id'])){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
@@ -804,7 +804,7 @@ if(isset($_GET['id'])){
                         </div>
                     <?php
 
-                    $connect=mysqli_connect("localhost","root","","rmd_database");
+                    include "connect.php";
                     $username=$_SESSION['user'];
 
                     $query="SELECT * FROM login_coordinator WHERE username='{$username}'";

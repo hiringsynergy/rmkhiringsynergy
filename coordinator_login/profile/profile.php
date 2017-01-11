@@ -202,8 +202,7 @@ if(isset($_FILES['image'])){
 
 
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
-
+    include "../connect.php";
     $select="SELECT * from login_coordinator where username='{$name}'";
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
@@ -532,7 +531,7 @@ if(isset($_FILES['image'])){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
@@ -840,7 +839,7 @@ if(isset($_FILES['image'])){
                                         <?php
 
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
                                         $name=$_SESSION['user'];
                                         $query="SELECT * FROM login_coordinator WHERE username='{$name}'";
 

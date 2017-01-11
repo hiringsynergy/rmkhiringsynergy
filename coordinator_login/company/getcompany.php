@@ -122,7 +122,7 @@
 //}
 
 
-$connect=mysqli_connect("localhost","root","","rmd_database");
+include "../connect.php";
 $id=$_GET['id'];
 
 $query="SELECT * FROM company_list where company_id={$id}";

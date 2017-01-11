@@ -130,7 +130,7 @@ if(isset($_GET['comp'])&&isset($_GET['job'])){
     $job=$_GET['job'];
 
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "../connect.php";
 
     $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
     $result=mysqli_query($connect,$query);
@@ -154,7 +154,7 @@ if(isset($_POST['update_submit'])) {
     $get_venue= $_POST['submit_venue'];
     $get_apply_before= $_POST['submit_apply_before'];
     $get_company=$_POST['submit_company'];
-    $connect = mysqli_connect("localhost", "root", "", "rmd_database");
+    include "../connect.php";
 
 
     if($get_company!=""){
@@ -494,7 +494,7 @@ if(isset($_POST['update_submit'])) {
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
@@ -834,7 +834,7 @@ if(isset($_POST['update_submit'])) {
 
                                         <?php
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
 
                                         $query="select * from jobs ORDER BY sort DESC";
                                         $result=mysqli_query($connect,$query);

@@ -112,9 +112,14 @@ $result=mysqli_query($connect,$query);
 
 
     $table_name="students_".$tablename;
+    $short_name=$tablename[2].$tablename[3];
+    $short_name+=0;
 
-    $query2="INSERT  INTO table_map VALUES ('$table_name','{$tablename}') ";
+
+    $query2="INSERT  INTO table_map VALUES ('$table_name','{$tablename}',$short_name)";
     $result2=mysqli_query($connect, $query2);
+
+
 
 
     header("Location: index.php");

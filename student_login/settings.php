@@ -21,13 +21,14 @@ if(isset($_GET['id'])){
     $user=$_GET['id'];
     $pass=$_GET['value'];
 
+    $student_table=$_SESSION['table_name'];
 
-    $query="UPDATE login_student SET password='{$pass}' WHERE username='{$user}'";
+    $query="UPDATE $student_table SET st_pass='{$pass}' WHERE st_roll='{$user}'";
 
     $result=mysqli_query($connect, $query);
 
     $row=mysqli_fetch_assoc($result);
-    $pass=$row['password'];
+    $pass=$row['st_pass'];
 
     header("Location: settings.php");
 
@@ -351,7 +352,8 @@ if(isset($_GET['id'])){
                         //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
-                        $query="select * from students_list where st_roll='{$name}'";
+                        $student_table=$_SESSION['table_name'];
+                        $query="select * from $student_table where st_roll='{$name}'";
 
                         $result=mysqli_query($connect,$query);
 
@@ -660,12 +662,13 @@ if(isset($_GET['id'])){
                     //$connect=mysqli_connect("localhost","root","","rmd_database");
                     $username=$_SESSION['user'];
 
-                    $query="SELECT * FROM login_student WHERE username='{$username}'";
+                    $student_table=$_SESSION['table_name'];
+                    $query="SELECT * FROM $student_table  WHERE st_roll='{$username}'";
 
                     $result=mysqli_query($connect, $query);
 
                    $row=mysqli_fetch_assoc($result);
-                     $pass=$row['password'];
+                     $pass=$row['st_pass'];
 
 
 

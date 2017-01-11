@@ -1,15 +1,12 @@
 <?php ob_start();
 
-session_start();
+    session_start();
 
+    if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
+        header("Location: ../login.html");
 
-if(! isset($_SESSION['user']) && $_SESSION['user']==null){
-
-    header("Location: ../login.html");
-
-
-}
+    }
 
 ?>
 <!DOCTYPE html>
@@ -202,8 +199,8 @@ if(isset($_FILES['image'])){
     $newfilename = time()."_".$name.'.'.$file_ext;
 
 
-
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "../connect.php";
+    //$connect=mysqli_connect("localhost","root","","rmd_database");
 
     $select="SELECT st_pic from students_list where st_roll='{$name}'";
     $select_result=mysqli_query($connect, $select);
@@ -457,7 +454,8 @@ if(isset($_FILES['image'])){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include"../connect.php";
+                        //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
                         $query="select * from students_list where st_roll='{$name}'";
@@ -661,8 +659,8 @@ if(isset($_FILES['image'])){
                                     <div>
                                         <?php
 
-
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
+                                        //$connect=mysqli_connect("localhost","root","","rmd_database");
                                         $name=$_SESSION['user'];
                                         $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 
@@ -746,8 +744,8 @@ if(isset($_FILES['image'])){
 
                                 <?php
 
-
-                                $connect=mysqli_connect("localhost","root","","rmd_database");
+                                include "../connect.php";
+                                //$connect=mysqli_connect("localhost","root","","rmd_database");
                                 $name=$_SESSION['user'];
                                 $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 

@@ -1,10 +1,7 @@
 
 <?php session_start();
-      ob_start();
 
-
-
-
+    ob_start();
 
     if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
@@ -13,15 +10,14 @@
 
     }
 
-
-
 ?>
 
 <?php
 
 if(isset($_GET['id'])){
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "connect.php";
+    //$connect=mysqli_connect("localhost","root","","rmd_database");
     $user=$_GET['id'];
     $pass=$_GET['value'];
 
@@ -351,7 +347,8 @@ if(isset($_GET['id'])){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "connect.php";
+                        //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
                         $query="select * from students_list where st_roll='{$name}'";
@@ -659,7 +656,8 @@ if(isset($_GET['id'])){
                         </div>
                     <?php
 
-                    $connect=mysqli_connect("localhost","root","","rmd_database");
+                    include "connect.php";
+                    //$connect=mysqli_connect("localhost","root","","rmd_database");
                     $username=$_SESSION['user'];
 
                     $query="SELECT * FROM login_student WHERE username='{$username}'";

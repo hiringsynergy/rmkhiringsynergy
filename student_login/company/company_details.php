@@ -1,6 +1,7 @@
 
-<?php session_start();
+<?php
 
+    session_start();
     ob_start();
 
     if(! isset($_SESSION['user']) && $_SESSION['user']==null){
@@ -17,14 +18,14 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>RMK Hiring Synergy</title>
+    <title>RMK HIRING SYNERGY</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 
     <!-- Latest compiled and minified CSS -->
@@ -40,19 +41,19 @@
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "reports.php";
+            location.href = "../reports.php";
 
         }
         function myfuncprofile() {
-            location.href = "profile/profile.php";
+            location.href = "../profile/profile.php";
 
         }
         function myfuncjobs() {
-            location.href = "jobs/view_jobs.php";
+            location.href = "../jobs/view_jobs.php";
 
         }
         function myfuncsettings() {
-            location.href = "settings.php";
+            location.href = "../settings.php";
 
         }
 
@@ -64,38 +65,106 @@
 
 
 
+
+
+
     <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../assets/css/colorbox.min.css" />
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="../assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-    <script src="assets/js/html5shiv.min.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="../assets/js/html5shiv.min.js"></script>
+    <script src="../assets/js/respond.min.js"></script>
     <![endif]-->
+
+    <script type="application/javascript">
+
+        function showUser(str) {
+            if (str == "") {
+                document.getElementById("modal-form").innerHTML = "";
+                return;
+            } else {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("modal-form").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET","../company/getcompany.php?id="+str,true);
+                xmlhttp.send();
+            }
+        }
+
+
+
+    </script>
 </head>
 
 <body class="no-skin">
+
+
+
+<?php
+
+if(isset($_POST['update_submit'])) {
+
+
+    $get_id= $_POST['company_id'];
+    $get_name= $_POST['company_name'];
+    $get_website= $_POST['company_website'];
+    $get_description= $_POST['company_description'];
+
+    include "../connect.php";
+    //$connect = mysqli_connect("localhost", "root", "", "rmd_database");
+
+    $query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
+
+    $result = mysqli_query($connect, $query);
+
+    if (!$connect) {
+
+        die(" " . mysqli_error($connect));
+
+
+    }
+
+}
+?>
+
+
+
+
+
+
+
 <div id="navbar" class="navbar navbar-default          ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -109,17 +178,16 @@
         </button>
 
         <div class="navbar-header pull-left" ">
-        <a href="reports.php" class="navbar-brand">
+        <a href="company_details.php" class="navbar-brand">
             <small>
                 <i class=""></i>
-                <img src="images/rmklogo.JPG" style="height: 25px;">
+                <img src="../images/rmklogo.JPG" style="height: 25px;">
                 RMK Group of Institutions
             </small>
         </a>
         </div>
 
-
-    <div class="navbar-buttons navbar-header pull-right" role="navigation">
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
 
                 <li class="purple dropdown-modal">
@@ -206,7 +274,7 @@
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -223,7 +291,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -240,7 +308,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -257,7 +325,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -274,7 +342,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -304,7 +372,7 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        include "connect.php";
+                        include "../connect.php";
                         //$connect=mysqli_connect("localhost","root","","rmd_database");
                         $name=$_SESSION['user'];
 
@@ -313,9 +381,11 @@
 
 
 
+
                         $result=mysqli_query($connect,$query);
 
                         if(!$result){
+
 
 
                             mysqli_error($connect);
@@ -328,7 +398,7 @@
                             ?>
 
 
-                            <img class="nav-user-photo" src="images/<?php echo $row['st_pic']; ?>" alt="No Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['st_pic']; ?>" alt="Jason's Photo" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -347,7 +417,7 @@
                         </li>
 
                         <li>
-                            <a href="profile.html">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -356,13 +426,15 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
                         </li>
                     </ul>
                 </li>
+
+
             </ul>
         </div>
     </div><!-- /.navbar-container -->
@@ -385,6 +457,7 @@
                     <i class="ace-icon fa fa-signal" ></i>
                 </button>
 
+
                 <button class="btn btn-info"  onclick="myfuncprofile()" id="myButton2">
                     <i class="ace-icon fa fa-pencil"></i>
                 </button>
@@ -396,6 +469,7 @@
                 <button class="btn btn-danger"  onclick="myfuncsettings()" id="myButton4">
                     <i class="ace-icon fa fa-cogs"></i>
                 </button>
+
             </div>
 
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -409,18 +483,20 @@
             </div>
         </div><!-- /.sidebar-shortcuts -->
 
+
+
         <ul class="nav nav-list">
             <li class="">
-                <a href="index.php">
+                <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <span class="menu-text"> Dashboard </span>
                 </a>
 
                 <b class="arrow"></b>
             </li>
 
             <li class="">
-                <a href="profile/profile.php" >
+                <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text">
 							Your Profile
@@ -435,7 +511,7 @@
             </li>
 
             <li class="">
-                <a href="settings.php" >
+                <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -443,12 +519,10 @@
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li class="">
-                <a href="jobs/view_jobs.php">
+                <a href="../jobs/view_jobs.php">
                     <i class="menu-icon fa fa-briefcase"></i>
                     <span class="menu-text"> Jobs</span>
 
@@ -461,13 +535,8 @@
             </li>
 
 
-
-
-
-
-
-            <li class="active">
-                <a href="reports.php">
+            <li class="">
+                <a href="../reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -476,8 +545,10 @@
 
                 <b class="arrow"></b>
             </li>
-            <li class="">
-                <a href="company/companies.php">
+
+
+            <li class="active">
+                <a href="companies.php">
 
                     <i class="menu-icon fa fa-laptop"></i>
 
@@ -488,13 +559,8 @@
             </li>
 
 
-
-
-
-
-
-
         </ul><!-- /.nav-list -->
+
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -509,35 +575,78 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Home</a>
                     </li>
-                    <li class="active">Reports</li>
+                    <li class="active">Company Details</li>
                 </ul><!-- /.breadcrumb -->
-                <!-- /.nav-search -->
+
+                
             </div>
 
             <div class="page-content">
-                <!-- /.ace-settings-container -->
 
-                <div class="page-header">
+
+  <!--              <div class="page-header">
                     <h1>
-                        Reports
+                        Company Details
+
                     </h1>
                 </div><!-- /.page-header -->
-
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
+           <div class="row">
+                    <div class="col-xs-9 col-sm-9">
+                                 <h1 class="black bolder thinner bigger-180">ZOHO ENTERPRISES LTD</h1>
+                          
+  			<div class="space-10"></div>
+	                       	 <div class="space-10"></div><br/>
+
+
+                                        		<p class="dark bigger-130">At Zoho, software is our craft and passion. We create beautiful software to solve business problems.
+					Over the past decade of our journey, the Zoho suite has emerged to be a leader in the cloud and on your devices.
+					As much as we love software, it is our people and our culture that are our most valuable assets. Our people spend years mastering the craft. 
+					In an industry where technology changes at a relentless and dizzying pace, we value persistence and endurance as highly as adaptability.
+                                        		</p><br/><br/><br/><br/><br/><br/>
+
+				<div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">zoho@gmail.com</a></h5></div>
+		
+             		                           <h5 class=" red bolder">Website : <a href="http://www.zoho.com">www.zoho.com </a></h5>
+	   </div>
+               <div class="col-xs-3 col-sm-3 ">
+         		          <div class="padding-right" ></div>
+				
+			<ul class="ace-thumbnails clearfix">
 
 
 
+                                	    	<li>
+
+                              	  		        <a class="" href="../images/zoho-logo.jpg" data-rel="colorbox">
+                               	         			    <img width="auto" height="150" alt="150x150" src="../images/zoho-logo.jpg" />
+                                 			           <div class="text">
+                                 			               <div class="inner">Click here to View</div>
+                                 			           </div>
+                               			         </a>
+                                		        <div class="tools tools-bottom">
+
+                                       			     <a href="#">
+                                       			         <i class="ace-icon fa fa-pencil"></i>
+                                        			    </a>
 
 
-                        <!-- PAGE CONTENT ENDS -->
+                                     		   </div>
+
+				                            </li>
+			</ui>
+		</div>
+	</div>
+</div>
+
+                             <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-            </div><!-- /.page-content -->
-        </div>
-    </div><!-- /.main-content -->
+
+    <!-- /.main-content -->
 
     <div class="footer">
         <div class="footer-inner">
@@ -547,50 +656,126 @@
 							Group of Institutions
 						</span>
 
-                &nbsp; &nbsp;
-
             </div>
         </div>
     </div>
 
+
+
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
-</div><!-- /.main-container -->
+<!-- /.main-container -->
 
 <!-- basic scripts -->
 
+
+
+
+
+
 <!--[if !IE]> -->
-<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="../assets/js/dataTables.buttons.min.js"></script>
+<script src="../assets/js/buttons.flash.min.js"></script>
+<script src="../assets/js/buttons.html5.min.js"></script>
+<script src="../assets/js/buttons.print.min.js"></script>
+<script src="../assets/js/buttons.colVis.min.js"></script>
+<script src="../assets/js/dataTables.select.min.js"></script>
+<script src="../assets/js/jquery.colorbox.min.js"></script>
 
-<!--[if lte IE 8]>
-<script src="assets/js/excanvas.min.js"></script>
-<![endif]-->
-<script src="assets/js/jquery-ui.custom.min.js"></script>
-<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="assets/js/jquery.easypiechart.min.js"></script>
-<script src="assets/js/jquery.sparkline.index.min.js"></script>
-<script src="assets/js/jquery.flot.min.js"></script>
-<script src="assets/js/jquery.flot.pie.min.js"></script>
-<script src="assets/js/jquery.flot.resize.min.js"></script>
+
+
+<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+<script src="../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ace scripts -->
-<script src="assets/js/ace-elements.min.js"></script>
-<script src="assets/js/ace.min.js"></script>
+<script src="../assets/js/ace-elements.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
+<script type="text/javascript">
+
+    jQuery(function($) {
+        var $overflow = '';
+        var colorbox_params = {
+            rel: 'colorbox',
+            reposition:true,
+            scalePhotos:true,
+            scrolling:false,
+            previous:'<i class="ace-icon fa fa-arrow-left"></i>',
+            next:'<i class="ace-icon fa fa-arrow-right"></i>',
+            close:'&times;',
+            current:'{current} of {total}',
+            maxWidth:'100%',
+            maxHeight:'100%',
+            onOpen:function(){
+                $overflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+            },
+            onClosed:function(){
+                document.body.style.overflow = $overflow;
+            },
+            onComplete:function(){
+                $.colorbox.resize();
+            }
+        };
+
+        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+        $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+
+
+        $(document).one('ajaxloadstart.page', function(e) {
+            $('#colorbox, #cboxOverlay').remove();
+        });
+    });
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

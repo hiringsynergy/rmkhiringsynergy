@@ -931,49 +931,69 @@ if(isset($_GET['roll']))
                                         <?php
 
 
-                                        include "../connect.php";
-                                        $name=$_SESSION['roll'];
+                                        if(isset($_SESSION['roll'])) {
 
-                                        $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 
-                                        $result=mysqli_query($connect, $query);
-                                        if(!$connect){
+                                            include "../connect.php";
+                                            $username = $_SESSION['roll'];
 
-                                            die("".mysqli_error($connect));
-                                        }
-                                        while($row=mysqli_fetch_assoc($result)) {
+
+                                            $isstudent = $username[4] . $username[5];
+                                            $isstudent += 4;
+
+                                            $query_short = "SELECT * FROM table_map WHERE table_short='{$isstudent}'";
+                                            $result_short = mysqli_query($connect, $query_short);
+                                            $row_short = mysqli_fetch_assoc($result_short);
+
+                                            $student_table = $row_short['table_name'];
+
+
+
+
+                                            $query = "SELECT * FROM $student_table WHERE st_roll='$username'";
+
+                                            $result = mysqli_query($connect, $query);
+                                            if (!$connect) {
+
+                                                die("" . mysqli_error($connect));
+                                            }
+                                            while($row = mysqli_fetch_assoc($result))
+
+                                            {
+
+
 
 
                                             ?>
 
 
-                                            <div class="space-4"></div>
+                                        <div class="space-4"></div>
 
 
-                                            <div class="space-16"></div>
+                                        <div class="space-16"></div>
 
 
+                                        <div class="col-xs-12  center middle align-center align-middle">
+                                            <ul class="ace-thumbnails clearfix">
 
 
-                                            <div class="col-xs-12  center middle align-center align-middle">
-                                                <ul class="ace-thumbnails clearfix">
+                                                <li>
+
+                                                    <img style="max-height: 220px; max-width:300px ;"
+                                                         src="../../student_login/images/<?php echo $row['st_pic'] ?>"/>
 
 
+                                                </li>
 
-                                                    <li>
+                                            </ul>
+                                        </div>
+                                        <?php
 
-                                                            <img style="max-height: 220px; max-width:300px ;"   src="../../student_login/images/<?php echo $row['st_pic'] ?>" />
-
-
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-
-                                            <?php
 
                                         }
+                                        }
                                         ?>
+
 
 
 
@@ -996,10 +1016,22 @@ if(isset($_GET['roll']))
 
                                 <?php
 
+                                if(isset($_SESSION['roll'])){
+
 
                                 include "../connect.php";
-                                $name=$_SESSION['roll'];
-                                $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
+                                $username = $_SESSION['roll'];
+
+
+                                $isstudent = $username[4] . $username[5];
+                                $isstudent += 4;
+
+                                $query_short = "SELECT * FROM table_map WHERE table_short='{$isstudent}'";
+                                $result_short = mysqli_query($connect, $query_short);
+                                $row_short = mysqli_fetch_assoc($result_short);
+
+                                $student_table = $row_short['table_name'];
+                                $query="SELECT * FROM $student_table WHERE st_roll='{$username}'";
 
                                 $result=mysqli_query($connect, $query);
                                 if(!$connect){
@@ -1008,6 +1040,8 @@ if(isset($_GET['roll']))
                                 }
 
                                 $row=mysqli_fetch_assoc($result);
+
+                                }
 
 
 

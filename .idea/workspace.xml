@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d90d1411-67a2-4ed9-88c8-ca7e56d43cc1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin_login/profile/profile.php" afterPath="$PROJECT_DIR$/admin_login/profile/profile.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,20 +22,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin_login/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-6496">
+              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+              <folding>
+                <marker date="1484140377334" expanded="true" signature="143:2405" ph="CREATE TABLE... students_" />
+                <marker date="1484140377334" expanded="true" signature="2427:2532" ph="ALTER TABLE students_${$tablename}... " />
+                <marker date="1484140377334" expanded="true" signature="2813:2885" ph="INSERT INTO table_map" />
+                <marker date="1484140377334" expanded="true" signature="3084:3118" ph="DROP TABLE s... " />
+                <marker date="1484140377334" expanded="true" signature="3178:3218" ph="DELETE FROM " />
+                <marker date="1484140377334" expanded="true" signature="15485:15535" ph="select * fro... login_admin" />
+                <marker date="1484140377334" expanded="true" signature="27585:27608" ph="SELECT * FRO... table_map" />
+                <marker date="1484140377334" expanded="true" signature="30587:30610" ph="SELECT * FRO... table_map" />
+                <marker date="1484140377334" expanded="true" signature="33453:33476" ph="SELECT * FRO... table_map" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin_login/profile/profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="1044" column="0" lean-forward="true" selection-start-line="1044" selection-start-column="0" selection-end-line="1044" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1484155800929" expanded="true" signature="4625:4675" ph="SELECT * fro... login_admin" />
+                <marker date="1484155800929" expanded="true" signature="4922:4997" ph="UPDATE login... " />
+                <marker date="1484155800929" expanded="true" signature="18224:18274" ph="select * fro... login_admin" />
+                <marker date="1484155800929" expanded="true" signature="29863:29919" ph="SELECT * FRO... table_map" />
+                <marker date="1484155800929" expanded="true" signature="30258:30312" ph="SELECT * FRO... students_list" />
+                <marker date="1484155800929" expanded="true" signature="32415:32471" ph="SELECT * FRO... table_map" />
+                <marker date="1484155800929" expanded="true" signature="32756:32812" ph="SELECT * FRO... students_list" />
+                <marker date="1484155800929" expanded="true" signature="167837:169377" ph="..." />
+                <marker date="1484155800929" expanded="true" signature="167903:169333" ph="..." />
+                <marker date="1484155800929" expanded="true" signature="167971:169288" ph="..." />
+                <marker date="1484155800929" expanded="true" signature="168039:168287" ph="..." />
+                <marker date="1484155800929" expanded="false" signature="168143:168150" ph="×" />
+                <marker date="1484155800929" expanded="true" signature="168395:169242" ph="..." />
+                <marker date="1484155800929" expanded="true" signature="168462:168715" ph="..." />
+                <marker date="1484155800929" expanded="false" signature="168594:168620" ph="..." />
+                <marker date="1484155800929" expanded="true" signature="168833:169193" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login_validation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login_out/login_validation.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding>
+                <marker date="1484146191623" expanded="true" signature="485:539" ph="SELECT * FRO... login_admin" />
+                <marker date="1484146191623" expanded="true" signature="806:866" ph="SELECT * FRO... login_coordinator" />
+                <marker date="1484146191623" expanded="true" signature="1243:1299" ph="SELECT * FRO... table_map" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>search</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/admin_login/profile/profile.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -87,6 +152,20 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="login_out" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rmkhiringsynergy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rmkhiringsynergy" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="admin_login" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -99,9 +178,57 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.rmk">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="false" name="rmk" type="JavascriptDebugType" factoryName="JavaScript Debug" uri="http://rmkhiringsynergy">
@@ -121,18 +248,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1484154013109</updated>
-      <workItem from="1484154015682" duration="37000" />
+      <workItem from="1484154015682" duration="1784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37000" />
+    <option name="totallyTimeSpent" value="1784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09583333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -164,9 +291,57 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/admin_login/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-6496">
+          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <marker date="1484140377334" expanded="true" signature="143:2405" ph="CREATE TABLE... students_" />
+            <marker date="1484140377334" expanded="true" signature="2427:2532" ph="ALTER TABLE students_${$tablename}... " />
+            <marker date="1484140377334" expanded="true" signature="2813:2885" ph="INSERT INTO table_map" />
+            <marker date="1484140377334" expanded="true" signature="3084:3118" ph="DROP TABLE s... " />
+            <marker date="1484140377334" expanded="true" signature="3178:3218" ph="DELETE FROM " />
+            <marker date="1484140377334" expanded="true" signature="15485:15535" ph="select * fro... login_admin" />
+            <marker date="1484140377334" expanded="true" signature="27585:27608" ph="SELECT * FRO... table_map" />
+            <marker date="1484140377334" expanded="true" signature="30587:30610" ph="SELECT * FRO... table_map" />
+            <marker date="1484140377334" expanded="true" signature="33453:33476" ph="SELECT * FRO... table_map" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_out/login_validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <marker date="1484146191623" expanded="true" signature="485:539" ph="SELECT * FRO... login_admin" />
+            <marker date="1484146191623" expanded="true" signature="806:866" ph="SELECT * FRO... login_coordinator" />
+            <marker date="1484146191623" expanded="true" signature="1243:1299" ph="SELECT * FRO... table_map" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_login/profile/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="1044" column="0" lean-forward="true" selection-start-line="1044" selection-start-column="0" selection-end-line="1044" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1484155800929" expanded="true" signature="4625:4675" ph="SELECT * fro... login_admin" />
+            <marker date="1484155800929" expanded="true" signature="4922:4997" ph="UPDATE login... " />
+            <marker date="1484155800929" expanded="true" signature="18224:18274" ph="select * fro... login_admin" />
+            <marker date="1484155800929" expanded="true" signature="29863:29919" ph="SELECT * FRO... table_map" />
+            <marker date="1484155800929" expanded="true" signature="30258:30312" ph="SELECT * FRO... students_list" />
+            <marker date="1484155800929" expanded="true" signature="32415:32471" ph="SELECT * FRO... table_map" />
+            <marker date="1484155800929" expanded="true" signature="32756:32812" ph="SELECT * FRO... students_list" />
+            <marker date="1484155800929" expanded="true" signature="167837:169377" ph="..." />
+            <marker date="1484155800929" expanded="true" signature="167903:169333" ph="..." />
+            <marker date="1484155800929" expanded="true" signature="167971:169288" ph="..." />
+            <marker date="1484155800929" expanded="true" signature="168039:168287" ph="..." />
+            <marker date="1484155800929" expanded="false" signature="168143:168150" ph="×" />
+            <marker date="1484155800929" expanded="true" signature="168395:169242" ph="..." />
+            <marker date="1484155800929" expanded="true" signature="168462:168715" ph="..." />
+            <marker date="1484155800929" expanded="false" signature="168594:168620" ph="..." />
+            <marker date="1484155800929" expanded="true" signature="168833:169193" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

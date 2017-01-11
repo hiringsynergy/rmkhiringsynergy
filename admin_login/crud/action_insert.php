@@ -833,9 +833,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                             $objPHPExcel = PHPExcel_IOFactory::load("files/$newfilename");
                             foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
                             {
+
                                 $highestRow = $worksheet->getHighestRow();
                                 for ($row=2; $row<=$highestRow; $row++)
                                 {
+
+
 
                                     /* $id = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
                                      $name = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
@@ -924,7 +927,10 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default.jpg')";
                                     mysqli_query($connect, $sql);
 
-                                    $result=mysqli_query($connect, $sql);
+
+
+
+
                                     if(!$result){
 
                                         die("".mysqli_error($connect));

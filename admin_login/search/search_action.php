@@ -986,7 +986,7 @@ if(isset($_GET['filter'])) {
                                         $connect=mysqli_connect("localhost","root","","rmd_database");
 
                                         $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
-                                            
+
                                         $result=mysqli_query($connect,$query);
 
                                         if(!$result){
@@ -1217,7 +1217,7 @@ if(isset($_GET['filter'])) {
 }
 
 
-                                        
+
 
 
 
@@ -1240,10 +1240,10 @@ if(isset($_GET['filter'])) {
 					<div class="col-xs-12 ">
 						<div class="form-actions center">
 						<button  type="submit" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
-								
+
 <a href="#modal-form" role="button" class="white" data-toggle="modal">SEND MAIL </a>
 						<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-						</button> 
+						</button>
                                                  </div>
 		                           </div>
 
@@ -1273,7 +1273,7 @@ if(isset($_GET['filter'])) {
 													<textarea id="form-field-11" rows="6" cols="9"class="autosize-transition form-control"></textarea>
 															</div>
 														</div>
-													
+
 												</div>
 
 												<div class="col-xs-8 col-sm-6 center">
@@ -1446,12 +1446,104 @@ if(isset($_GET['filter'])) {
 //                    }
                 } );
 
-$("#bootbox-regular").on(ace.click_event, function() {
+
+
+        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+
+        new $.fn.dataTable.Buttons( myTable, {
+            buttons: [
+                {
+                    "extend": "colvis",
+                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+                    "className": "btn btn-white btn-primary btn-bold",
+                    columns: ':not(:first):not(:last)'
+                },
+                {
+                    "extend": "copy",
+                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+                    "className": "btn btn-white btn-primary btn-bold"
+                },
+                {
+                    "extend": "csv",
+                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+                    "className": "btn btn-white btn-primary btn-bold"
+
+
+                },
+//                {
+//                    extend: 'excelHtml5',
+//                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+//                   "className": "btn btn-white btn-primary btn-bold"
+//
+//                },
+                {
+                    "extend": "excel",
+                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+                    "className": "btn btn-white btn-primary btn-bold"
+                },
+
+                {
+                    "extend": "print",
+                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+                    "className": "btn btn-white btn-primary btn-bold",
+                    autoPrint: false,
+                    message: 'This print was produced using the Print button for DataTables'
+                }
+            ]
+        } );
+        myTable.buttons().container().appendTo( $('.tableTools-container') );
+
+
+
+        //style the message box
+        var defaultCopyAction = myTable.button(1).action();
+        myTable.button(1).action(function (e, dt, button, config) {
+            defaultCopyAction(e, dt, button, config);
+            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+        });
+
+
+        var defaultColvisAction = myTable.button(0).action();
+        myTable.button(0).action(function (e, dt, button, config) {
+
+            defaultColvisAction(e, dt, button, config);
+
+
+            if($('.dt-button-collection > .dropdown-menu').length == 0) {
+                $('.dt-button-collection')
+                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+                    .find('a').attr('href', '#').wrap("<li />")
+            }
+            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+        });
+
+        ////
+
+        setTimeout(function() {
+            $($('.tableTools-container')).find('a.dt-button').each(function() {
+                var div = $(this).find(' > div').first();
+                if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+                else $(this).tooltip({container: 'body', title: $(this).text()});
+            });
+        }, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+        $("#bootbox-regular").on(ace.click_event, function() {
 					bootbox.prompt("What is your name?", function(result) {
 						if (result === null) {
-							
+
 						} else {
-							
+
 						}
 					});
 				});
@@ -1464,7 +1556,7 @@ $('#modal-form input[type=file]').ace_file_input({
 					droppable:true,
 					thumbnail:'large'
 				})
-				
+
 				//chosen plugin inside a modal will have a zero width because the select element is originally hidden
 				//and its width cannot be determined.
 				//so we set the width after modal is show
@@ -1487,9 +1579,9 @@ $('#modal-form input[type=file]').ace_file_input({
 
 $('[data-rel=tooltip]').tooltip({container:'body'});
 				$('[data-rel=popover]').popover({container:'body'});
-			
+
 				autosize($('textarea[class*=autosize]'));
-				
+
 				$('textarea.limited').inputlimiter({
 					remText: '%n character%s remaining...',
 					limitText: 'max allowed : %n.'

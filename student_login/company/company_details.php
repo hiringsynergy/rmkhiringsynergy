@@ -637,7 +637,7 @@ if(isset($_POST['update_submit'])) {
                                      		   </div>
 
 				                            </li>
-			</ui>
+			</ul>
 		</div>
 	</div>
 </div>

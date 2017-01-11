@@ -208,7 +208,7 @@ if(isset($_FILES['image'])){
 
 
 
-    include "connect.php";
+    ../include "connect.php";
 
     $select="SELECT * from login_admin where username='{$name}'";
     $select_result=mysqli_query($connect, $select);
@@ -546,7 +546,7 @@ if(isset($_GET['roll']))
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        include "connect.php";
+                        ../include "connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -932,7 +932,7 @@ if(isset($_GET['roll']))
                                         <?php
 
 
-                                        include "connect.php";
+                                        ../include "connect.php";
                                         $name=$_SESSION['roll'];
 
                                         $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
@@ -998,7 +998,7 @@ if(isset($_GET['roll']))
                                 <?php
 
 
-                                include "connect.php";
+                                ../include "connect.php";
                                 $name=$_SESSION['roll'];
                                 $query="SELECT * FROM students_list WHERE st_roll='{$name}'";
 

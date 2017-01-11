@@ -1,4 +1,4 @@
-
+﻿
 <?php session_start();
 ob_start();
 
@@ -726,7 +726,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <!-- PAGE CONTENT BEGINS -->
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $query="SELECT * FROM jobs ORDER BY sort DESC";
                         $result= mysqli_query($connect, $query);
                         $i=0;

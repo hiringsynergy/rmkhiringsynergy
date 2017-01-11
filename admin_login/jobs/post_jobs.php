@@ -83,6 +83,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 		<link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/select2.min.css" />
     <!-- text fonts -->
     <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
 
@@ -772,7 +773,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
-				<form class="form-horizontal" action="job_filter.php" method="get" role="form">
+				<form class="form-horizontal" id="validation-form" action="job_filter.php" method="get" role="form">
 		<div class="row">
 <!--                    	<div class="col-xs-8 col-sm-5">-->
 <!---->
@@ -832,7 +833,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 									<h5><label class="control-label bolder orange" for="form-field-1">Job Title</label></h5>
 											<input type="text" id="form-field-1" name="job_title" placeholder="Enter Job Title" class="col-xs-12" />
 					</div>
-					<div class="col-xs-7 col-sm-5">
+					<div class="col-xs-7 col-sm-5 ">
 									<h5><label class="control-label bolder orange" for="form-field-1">Year of Graduation</label></h5>
 											<select class="col-xs-7 chosen-select form-control"  name="year_of_graduation" id="form-field-select-3" placeholder="Select a Year...">
 																<option value="2016">2016</option>
@@ -980,6 +981,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+        <script src="../assets/js/wizard.min.js"></script>
+        <script src="../assets/js/jquery.validate.min.js"></script>
+        <script src="../assets/js/jquery-additional-methods.min.js"></script>
+        <script src="../assets/js/bootbox.js"></script>
+        <script src="../assets/js/jquery.maskedinput.min.js"></script>
+        <script src="../assets/js/select2.min.js"></script>
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -998,7 +1005,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 <!-- inline scripts related to this page -->
 <!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
+		  <script src="../assets/js/excanvas.min.js"></script>
 		<![endif]-->
 		<script src="../assets/js/jquery-ui.custom.min.js"></script>
 		<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
@@ -1023,7 +1030,29 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
-				$('#id-disable-check').on('click', function() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                $('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);
 					if(inp.hasAttribute('disabled')) {
 						inp.setAttribute('readonly' , 'true');

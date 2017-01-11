@@ -1,4 +1,4 @@
-
+﻿
 
 
 <?php session_start();
@@ -169,7 +169,7 @@ if(isset($_GET['delete'])){
 
     $userroll=$_GET['delete'];
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "../connect.php";
 
     $query="delete from students_list where st_roll={$userroll}";
     $result=mysqli_query($connect,$query);
@@ -515,7 +515,7 @@ if(isset($_POST['update_submit'])) {
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -950,7 +950,7 @@ if(isset($_POST['update_submit'])) {
 
                                         <?php
 
-                                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                                        include "../connect.php";
 
                                         $query="select * from students_list";
                                         $result=mysqli_query($connect,$query);

@@ -130,7 +130,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 if(isset($_POST['create'])){
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "../connect.php";
     $id=time();
     $company_name=$_POST['company_name'];
     $company_website=$_POST['company_website'];

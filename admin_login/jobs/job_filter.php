@@ -145,7 +145,7 @@ if(isset($_GET['filter_job'])){
 
 
 
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+    include "../connect.php";
     $id=time();
     $job_title=$_GET['job_title'];
     $company_id=$_GET['company_id'];
@@ -500,7 +500,7 @@ echo "sort time:".$apply_before;
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        $connect=mysqli_connect("localhost","root","","rmd_database");
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";

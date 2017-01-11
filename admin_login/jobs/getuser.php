@@ -121,7 +121,7 @@
 //}
 
 
-$connect=mysqli_connect("localhost","root","","rmd_database");
+include "../connect.php";
 $id=$_GET['id'];
 
 $query="SELECT * FROM jobs where job_id={$id}";

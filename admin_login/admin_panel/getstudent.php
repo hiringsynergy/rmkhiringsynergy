@@ -121,7 +121,7 @@
 //}
 
 
-$connect=mysqli_connect("localhost","root","","rmd_database");
+include "../connect.php";
 $id=$_GET['id'];
 
 $query="SELECT * FROM students_list where st_roll={$id}";

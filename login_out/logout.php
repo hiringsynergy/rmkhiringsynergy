@@ -10,5 +10,6 @@ session_start();
 
 $_SESSION['user']=null;
 $_SESSION['pass']=null;
+$_SESSION['database_name']=null;
 header("Location: ../login.html");
 ?>

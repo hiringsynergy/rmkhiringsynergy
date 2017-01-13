@@ -18,13 +18,26 @@ if(isset($_POST['login'])){
 
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $connect=mysqli_connect("localhost","root","","rmd_database");
+
+    $connect_database=mysqli_connect("localhost","root","","login_database");
+
+
+
+    //selecting admin database........
+    $query_selection="SELECT * FROM admin_login WHERE username='{$username}'";
+    $result_selection=mysqli_query($connect_database, $query_selection);
+    $row_selection=mysqli_fetch_assoc($result_selection);
+    $admin_database=$row_selection['database_name'];
+
+    echo $admin_database;
+    $connect=mysqli_connect("localhost","root","","$admin_database");
 
 
 
         // admin login
 
         $query_admin="SELECT * FROM login_admin WHERE username='{$username}'";
+        echo $query_admin;
         $result_admin=mysqli_query($connect, $query_admin);
         $row_admin=mysqli_fetch_assoc($result_admin);
         $admin_name=$row_admin['username'];
@@ -75,6 +88,7 @@ if(isset($_POST['login'])){
 
 
 
+        $_SESSION['database_name']=$admin_database;
 
         $_SESSION['user']=$username;
         $_SESSION['pass']=$password;
@@ -119,9 +133,9 @@ if(isset($_POST['login'])){
     }
 
 
-    else{
-        header("Location: ../login.html");
-    }
+//    else{
+//        header("Location: ../login.html");
+//    }
 
 
 

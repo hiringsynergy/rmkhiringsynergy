@@ -1,4 +1,9 @@
 <?php
 
+if(isset($_SESSION['database_name'])){
 
-$connect=mysqli_connect("localhost","root","","rmd_database");
+    $database=$_SESSION['database_name'];
+    $connect=mysqli_connect("localhost","root","","$database");
+
+}
+

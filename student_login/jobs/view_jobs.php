@@ -8,6 +8,25 @@
         header("Location: ../login.html");
 
     }
+    if(isset($_GET['apply'])){
+
+
+        $student_table=$_SESSION['table_name'];
+        $st_roll=$_SESSION['user'];
+        $id=$_GET['apply'];
+        include "../connect.php";
+        $query_update="UPDATE $student_table SET _".$id."='accepted' Where st_roll={$st_roll} ";
+        $result_update=mysqli_query($connect, $query_update);
+        if(!$result_update){
+
+            die("".mysqli_error($connect));
+        }
+
+
+        header("Location: view_jobs.php");
+
+
+    }
 
 ?>
 
@@ -56,6 +75,13 @@
 
         }
 
+        function apply(id){
+
+
+            location.href = "view_jobs.php?apply="+id;
+
+
+        }
 
 
     </script>
@@ -64,7 +90,7 @@
 
 
     <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+
 
     <!-- text fonts -->
     <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
@@ -522,10 +548,33 @@
 
                         <?php
                         include "../connect.php";
-                        //$connect=mysqli_connect("localhost","root","","rmd_database");
-                        $query="SELECT * FROM jobs ORDER BY apply_before DESC";
+
+
+                        $roll=$_SESSION['user'];
+                        $branch=$_SESSION['student_branch'];
+
+                        $student_table=$_SESSION['table_name'];
+                        $get_student_query="SELECT * FROM $student_table WHERE st_roll={$roll}";
+                        $get_student_result=mysqli_query($connect, $get_student_query);
+                        $get_student_row=mysqli_fetch_assoc($get_student_result);
+
+                        $get_branch=$get_student_row['st_ugspecialization'];
+                        $get_cgpa=$get_student_row['st_cgpa'];
+                        $get_10percentage=$get_student_row['st_10thpercentage'];
+                        $get_12percentage=$get_student_row['st_12thpercentage'];
+                        $get_standingarrears=$get_student_row['st_standingarrears'];
+                        $get_historyofarrears=$get_student_row['st_historyofarrears'];
+
+
+                        //
+
+                        $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$branch."%' ORDER BY apply_before DESC";
                         $result= mysqli_query($connect, $query);
                         $i=0;
+
+                        if(!$result){
+                            die("".mysqli_error($connect));
+                        }
 
                         while($row=mysqli_fetch_assoc($result))
 
@@ -535,6 +584,7 @@
 
                            $i=$i%sizeof($widget_color);
 
+                           if($get_cgpa>=$row['job_cgpa'] )
 
 
 
@@ -542,345 +592,426 @@
 
 
 
-                        <div class="row">
-                            <div class="col-xs-12 widget-container-col"  id="widget-container-col-2">
-                                <div  class="<?php echo $widget_color[$i] ?>"   id="widget-box-1">
-                                    <div class="widget-header"><h5 class="widget-title bigger" style="color: white">Job</h5>
+                               <div class="row">
+                               <div class="col-xs-12 widget-container-col"  id="widget-container-col-2">
+                               <div  class="<?php echo $widget_color[$i] ?>"   id="widget-box-1">
+                            <div class="widget-header"><h5 class="widget-title bigger" style="color: white">Job</h5>
 
-                                        <div class="widget-toolbar no-border">
+                                <div class="widget-toolbar no-border">
 
-                                            <a href="#" data-action="fullscreen" class="orange2">
-                                                <i class="ace-icon fa fa-expand"></i>
-                                            </a>
+                                    <a href="#" data-action="fullscreen" class="orange2">
+                                        <i class="ace-icon fa fa-expand"></i>
+                                    </a>
 
-                                            <a href="#" data-action="reload">
-                                                <i class="ace-icon fa fa-refresh"></i>
-                                            </a>
+                                    <a href="#" data-action="reload">
+                                        <i class="ace-icon fa fa-refresh"></i>
+                                    </a>
 
-                                            <a href="#" data-action="collapse">
-                                                <i class="ace-icon fa fa-chevron-up"></i>
-                                            </a>
+                                    <a href="#" data-action="collapse">
+                                        <i class="ace-icon fa fa-chevron-up"></i>
+                                    </a>
 
-                                            <div class="widget-menu">
-                                                <a href="#" data-action="settings" data-toggle="dropdown">
-                                                    <i class="ace-icon fa fa-bars"></i>
-                                                </a>
-
-                                                <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
-                                                    <li>
-                                                        <a data-toggle="tab" href="#dropdown1">Closed</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a data-toggle="tab" href="#dropdown2">Available</a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-
-
-                                            <div class="row">
-                                            <div class="table-responsive col-xs-12">
-
-                        <table class="table table-striped table-hover "  id="simple-table" cellpadding="1">
-                            <thead class="thin-border-bottom">
-                            <tr>
-                                <th>
-                                    <font size="3">
-
-                                        <i class="ace-icon fa fa-user"></i>
-                                        Job Detail
-                                    </font>
-                                </th>
-                                <th  class=" left" >
-                                    <font size="3">
-                                        MoreDetails
-
-                                    </font>
-
-                                </th>
-
-                                <th>
-                                    <font size="3">
-                                        Campus Date
-
-                                    </font>
-
-                                </th><th>
-                                    <font size="3">
-
-                                        Salary
-                                    </font>
-                                </th>
-
-                                <th>
-                                    <font size="3">
-
-
-                                        Apply Date
-                                    </font>
-                                </th>
-                                <th class="hidden-480"><font size="3">Status</font></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-
-
-
-
-
-
-
-                                <td   height="80" width="370" class="">
-
-                                        <b>
-                                            <a href="zoho.php" class="job " style="text-decoration:none; font-size: 18px" data-action="reload">
-                                                <?php  echo $row['job_title']  ?>
-                                            </a>
-                                            <br><br>
-
-
-
-                                        </b>
-                                    <div class="row col-md-12" style="font-size: 17px; font-weight: bold;">
-
-                                        <label class="label label-warning center middle" style="size: 40px;"><b> Company:   </b></label>
-
-                                        <div>
-                                            <?php  echo $row['company']  ?>
-
-
-                                        </div>
-
-
-                                    </div>
-
-
-                                </td>
-
-
-                                <td >
-                                    <div class="action-buttons col-lg-offset-3">
-                                        <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                                            <i class="ace-icon fa fa-angle-double-down"></i>
-                                            <span class="sr-only">Details</span>
+                                    <div class="widget-menu">
+                                        <a href="#" data-action="settings" data-toggle="dropdown">
+                                            <i class="ace-icon fa fa-bars"></i>
                                         </a>
-                                    </div>
-                                </td>
 
-                                <td>
-                                    <font size="3">
-                                        <b>  <?php  echo $row['campus_date']  ?></b>
+                                        <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown1">Closed</a>
+                                            </li>
 
-                                    </font>
-                                    <br>
-                                    <br>
-                                    <div class="row col-md-12" style="font-size: large; font-weight: bold;">
-
-                                        <label class="label label-info center middle" style="size: 40px;"><b>Venue:</b></label>
-
-                                        <div>
-                                            <?php  echo $row['venue']  ?>
-
-
-                                        </div>
-
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown2">Available</a>
+                                            </li>
+                                        </ul>
 
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
 
 
+                                    <div class="row">
+                                        <div class="table-responsive col-xs-12">
 
-                                </td>
+                                            <table class="table table-striped table-hover "  id="simple-table" cellpadding="1">
+                                                <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        <font size="3">
 
+                                                            <i class="ace-icon fa fa-user"></i>
+                                                            Job Detail
+                                                        </font>
+                                                    </th>
+                                                    <th  class=" left" >
+                                                        <font size="3">
+                                                            MoreDetails
 
-                                <td>
+                                                        </font>
 
-                                    <font size="3">
-                                        <b>  <?php  echo $row['salary']  ?></b>
+                                                    </th>
 
-                                    </font>
+                                                    <th>
+                                                        <font size="3">
+                                                            Campus Date
 
-                                </td>
-                                <td>
-                                    <font size="3">
-                                        <b>  <?php  echo $row['apply_before']  ?></b>
+                                                        </font>
 
-                                    </font>
+                                                    </th><th>
+                                                        <font size="3">
 
-                                </td>
-                                <?php
+                                                            Salary
+                                                        </font>
+                                                    </th>
 
-                                $date1=date('d-M-y');
-                                $date2=$row['apply_before'];
-                                $res_date=$date2-$date1;
-                                if($res_date>=0){
-
-
-
-
-
-                                ?>
-
-
-
-                                <td class="hidden-480">
-                                    <span class="label label-success">Open</span>
-                                </td>
-                                <td>
-
-                                    <div >
-                                        <button class="btn btn-primary btn-sm  ">Apply</button>
-                                    </div>
-
-                                </td>
-                              <?php
+                                                    <th>
+                                                        <font size="3">
 
 
-                                }
+                                                            Apply Date
+                                                        </font>
+                                                    </th>
+                                                    <th class="hidden-480"><font size="3">Status</font></th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
 
-                                else{
-
-                                    ?>
-
-                                    <td class="hidden-480">
-                                        <span class="label label-danger">Closed</span>
-                                    </td>
-                                    <td>
-
-                                        <div >
-                                            <button class="btn btn-primary btn-sm  disabled">Apply</button>
-                                        </div>
-
-                                    </td>
+                                                <tbody>
+                                                <tr>
 
 
 
 
-                                  <?php
-                                   }
-
-                                  ?>
 
 
-                            </tr>
 
-                            <tr class="detail-row">
-                                <td colspan="8">
-                                    <div class="table-detail">
-                                        <div class="row">
-                                            <div class="col-xs-6 col-sm-2">
-                                                <div class="text-center ">
-                                                    <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../assets/images/avatars/profile-pic.jpg" />
-                                                    <br />
-                                                    <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                                        <div class="inline position-relative">
-                                                            <a class="user-title-label" href="#">
-                                                                <i class="ace-icon fa fa-circle light-green"></i>
-                                                                &nbsp;
-                                                                <span class="white">Alex M. Doe</span>
+                                                    <td   height="80" width="370" class="">
+
+                                                        <b>
+                                                            <a href="zoho.php" class="job " style="text-decoration:none; font-size: 23px" data-action="reload">
+
+                                                                <?php  echo $row['company']  ?>
+
+
+                                                            </a>
+                                                            <br><br>
+
+
+
+                                                        </b>
+                                                        <div class="row col-md-12" style="font-size: 17px; font-weight: bold;">
+
+                                                            <label class="label label-warning center middle" style="size: 40px;"><b> Job:   </b></label>
+
+                                                            <div>
+                                                                <?php  echo $row['job_title']  ?>(Product)
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </td>
+
+
+
+                                                    <td >
+                                                        <div class="action-buttons col-lg-offset-3">
+                                                            <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
+                                                                <i class="ace-icon fa fa-angle-double-down"></i>
+                                                                <span class="sr-only">Details</span>
                                                             </a>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                    </td>
 
-                                            <div class="col-xs-12 col-sm-7">
-                                                <div class="space visible-xs"></div>
+                                                    <td>
+                                                        <font size="3">
+                                                            <b>  <?php  echo $row['campus_date']  ?></b>
 
-                                                <div class="profile-user-info profile-user-info-striped">
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Username </div>
+                                                        </font>
+                                                        <br>
+                                                        <br>
+                                                        <div class="row col-md-12" style="font-size: large; font-weight: bold;">
 
-                                                        <div class="profile-info-value">
-                                                            <span>alexdoe</span>
+                                                            <label class="label label-info center middle" style="size: 40px;"><b>Venue:</b></label>
+
+                                                            <div>
+                                                                <?php  echo $row['venue']  ?>
+
+
+                                                            </div>
+
+
                                                         </div>
-                                                    </div>
 
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Location </div>
 
-                                                        <div class="profile-info-value">
-                                                            <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                            <span>Netherlands, Amsterdam</span>
+
+                                                    </td>
+
+
+                                                    <td>
+
+                                                        <font size="3">
+                                                            <b>  <?php  echo $row['salary']  ?></b>
+
+                                                        </font>
+
+                                                    </td>
+                                                    <td>
+                                                        <font size="3">
+                                                            <b>  <?php  echo $row['apply_before']  ?></b>
+
+                                                        </font>
+
+                                                    </td>
+                                                    <?php
+
+                                                    $dt = new DateTime("now", new DateTimeZone('Asia/Kolkata'));
+                                                    $date1=$dt->format('d-m-Y H:i A');
+                                                    $date2=$row['apply_before'];
+
+
+
+
+                                                    $temp_current=explode(" ", $date1);
+                                                    $temp_before=explode(" ", $date2);
+
+                                                    $calc_date=strtotime($temp_before[0])-strtotime($temp_current[0])."<br>";
+
+
+                                                    if($temp_before[2]=="PM"){
+
+                                                        $tmp=$temp_before[1];
+                                                        $tmp_value=explode(":", $tmp);
+
+                                                        $temp_before[1]=$tmp_value[0]+12 .":".$tmp_value[1];
+
+                                                    }
+
+
+
+                                                    $calc_time=strtotime($temp_before[1])-strtotime($temp_current[1])."<br>";
+
+
+
+                                                    include "../connect.php";
+                                                    $check_query="SELECT  _".$row['job_id']."  FROM $student_table where st_roll={$roll}";
+                                                    $check_result=mysqli_query($connect, $check_query);
+                                                    $check_row=mysqli_fetch_assoc($check_result);
+
+                                                    if($check_row["_".$row['job_id']]=='eligible') {
+
+                                                        if ($calc_date > 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
+
+
+                                                            ?>
+
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-success"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm "
+                                                                            onclick="apply('<?php echo $row['job_id'] ?>')">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+                                                            <?php
+
+
+                                                        } else if ($calc_date == 0 && $calc_time >= 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
+                                                            ?>
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-success"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm  "
+                                                                            onclick="apply('<?php echo $row['job_id'] ?>')">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+
+
+                                                            <?php
+
+
+                                                        } else {
+
+                                                            ?>
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-danger"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm  disabled">
+                                                                        Apply
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+
+
+                                                            <?php
+                                                        }
+                                                    }
+
+
+
+                                                   else {
+
+                                                        if ($calc_date > 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
+
+
+                                                            ?>
+
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-success"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm disabled">
+                                                                        Applied
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+                                                            <?php
+
+
+                                                        } else if ($calc_date == 0 && $calc_time >= 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
+                                                            ?>
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-success"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm disabled ">
+                                                                        Applied
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+
+
+                                                            <?php
+
+
+                                                        } else {
+
+                                                            ?>
+
+                                                            <td class="hidden-480">
+                                                                <span class="label label-danger"
+                                                                      style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
+                                                            </td>
+                                                            <td>
+
+                                                                <div>
+                                                                    <button class="btn btn-primary btn-sm  disabled">
+                                                                        Applied
+                                                                    </button>
+                                                                </div>
+
+                                                            </td>
+
+
+                                                            <?php
+                                                        }
+                                                    }
+
+
+
+
+                                                    ?>
+
+
+                                                </tr>
+
+                                                <tr class="detail-row">
+                                                    <td colspan="8">
+                                                        <div class="table-detail">
+                                                            <div class="row">
+                                                                <div class="col-xs-6 col-sm-2">
+                                                                    <div class="text-center ">
+                                                                        <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../assets/images/avatars/profile-pic.jpg" />
+                                                             
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xs-12 col-sm-10">
+                                                                    <div class="space visible-xs"></div>
+
+                                                                    <div class="profile-user-info  profile-user-info-striped">
+                                                                        <div class="profile-info-row  ">
+                                                                            <div class="profile-info-name " style="min-width: 140px;"> Company Name </div>
+
+                                                                            <div class="profile-info-value">
+                                                                                <span>Zoho Enterprises Ltd(Product)</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="profile-info-row">
+                                                                            <div class="profile-info-name"> Website </div>
+
+                                                                            <div class="profile-info-value">
+                                                                                <span>www.zoho.com</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="profile-info-row">
+                                                                            <div class="profile-info-name"> Mail </div>
+
+                                                                            <div class="profile-info-value">
+                                                                                <span>zoho@gmail.com</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="profile-info-row">
+                                                                            <div class="profile-info-name"> Eligibility </div>
+
+                                                                            <div class="profile-info-value">
+                                                                                <span>above 7 cgpa</span>
+                                                                            </div>
+                                                                        </div>
+                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          
                                                         </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Age </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span>38</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Joined </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span>2010/06/20</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Last Online </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span>3 hours ago</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> About Me </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span>Bio</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-3">
-                                                <div class="space visible-xs"></div>
-                                                <h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-                                                <div class="space-6"></div>
-
-                                                <form>
-                                                    <fieldset>
-                                                        <textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-                                                    </fieldset>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="clearfix">
-                                                        <label class="pull-left">
-                                                            <input type="checkbox" class="ace" />
-                                                            <span class="lbl"> Email me a copy</span>
-                                                        </label>
-
-                                                        <button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-                                                            Submit
-                                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
 
 
-                            </tbody>
-                        </table>
+                                                    </td>
+                                                </tr>
+
+
+                                                </tbody>
+                                            </table>
 
 
                                         </div>
@@ -888,9 +1019,9 @@
                                 </div>
                             </div>
 
-                        </div>
                             </div>
-                        </div>
+                            </div>
+                            </div>
 
                     <?php
 

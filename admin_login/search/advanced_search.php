@@ -19,22 +19,6 @@ ob_start();
     <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.external-png-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.external-png-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.icons-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.icons-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.inline-png-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.inline-png-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.inline-svg-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.inline-svg-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.structure-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.theme-1.4.4.css" />
-    <link rel="stylesheet" href="assets/jquery.mobile.theme-1.4.4.min.css" />
-    <link rel="stylesheet" href="assets/jquery-ui.css" />
 
 
     <!-- Latest compiled and minified CSS -->

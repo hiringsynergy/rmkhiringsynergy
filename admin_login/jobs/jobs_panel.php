@@ -127,26 +127,26 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 <?php
 
-
-if(isset($_GET['comp'])&&isset($_GET['job'])){
-
-    $company=$_GET['comp'];
-    $job=$_GET['job'];
-
-
-    include "../connect.php";
-
-    $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
-    $result=mysqli_query($connect,$query);
-
-    if(!$connect){
-
-        die(" ".mysqli_error($connect));
-    }
-
-
-
-}
+//
+//if(isset($_GET['comp']) && isset($_GET['job'])){
+//
+//    $company=$_GET['comp'];
+//    $job=$_GET['job'];
+//
+//
+//    include "../connect.php";
+//
+//    $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
+//    $result=mysqli_query($connect,$query);
+//
+//    if(!$connect){
+//
+//        die(" ".mysqli_error($connect));
+//    }
+//
+//
+//
+//}
 
 if(isset($_POST['update_submit'])) {
 

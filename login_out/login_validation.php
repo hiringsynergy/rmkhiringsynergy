@@ -180,6 +180,7 @@ if(isset($_POST['login'])){
         $_SESSION['user'] = $username;
         $_SESSION['pass'] = $password;
         $_SESSION['student_name']=$username;
+        $_SESSION['student_roll']=$username;
         $_SESSION['student_branch']=$student_branch;
         $_SESSION['table_name']=$student_table;
         $_SESSION['database_name']=$database_session_set;

@@ -12,6 +12,7 @@ $_SESSION['user']=null;
 $_SESSION['pass']=null;
 $_SESSION['database_name']=null;
 $_SESSION['student_name']=null;
+$_SESSION['student_roll']=null;
 $_SESSION['student_branch']=null;
 $_SESSION['table_name']=null;
 $_SESSION['database_name']=null;

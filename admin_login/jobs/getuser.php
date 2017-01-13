@@ -1,4 +1,10 @@
+<?php
 
+session_start();
+ob_start();
+
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -121,7 +127,14 @@
 //}
 
 
-include "../connect.php";
+
+
+    $database=$_SESSION['database_name'];
+    $connect=mysqli_connect("localhost","root","","$database");
+
+
+
+
 $id=$_GET['id'];
 
 $query="SELECT * FROM jobs where job_id={$id}";
@@ -130,7 +143,11 @@ $query1="SELECT * FROM company_list";
 $result=mysqli_query($connect, $query);
 $result1=mysqli_query($connect, $query1);
 
-if(!$connect){
+if(!$result){
+
+    die(" ".mysqli_error($connect));
+}
+if(!$result1){
 
     die(" ".mysqli_error($connect));
 }

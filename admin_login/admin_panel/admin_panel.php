@@ -68,7 +68,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         function showStudent(str) {
             if (str == "") {
                 document.getElementById("modal-form").innerHTML = "";
-                return;
+
             } else {
                 if (window.XMLHttpRequest) {
                     // code for IE7+, Firefox, Chrome, Opera, Safari

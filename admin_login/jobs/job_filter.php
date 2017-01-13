@@ -128,9 +128,7 @@ function updateSlider(){
     <script src="../assets/js/respond.min.js"></script>
     <script src="../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../assets/js/jquery.mobile.custom.min.js"></script>
-    <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="../assets/jquery.mobile-1.4.4.js"></script>
-    <script src="../assets/jquery.mobile-1.4.4.min.js"></script>
+
     <![endif]-->
 </head>
 
@@ -146,8 +144,12 @@ if(isset($_GET['filter_job'])){
 
 
     include "../connect.php";
+
+
+
     $id=time();
     $job_title=$_GET['job_title'];
+
     $company_id=$_GET['company_id'];
     $venue=$_GET['venue'];
     $salary=$_GET['salary'];
@@ -167,12 +169,13 @@ if(isset($_GET['filter_job'])){
     $get_branch= $_GET['ugbranch'];
 
     if(current($get_branch)=="all"){
-        $temp_branch="cse-it-eee-ece-eie";
+        $temp_branch_insert="cse'',''it'',''eee'',''ece'',''eie";
+        $temp_branch_update="cse','it','eee','ece','eie";
     }
 
     else {
-        $temp_branch=implode("_",$get_branch);
-
+        $temp_branch_insert=implode("'',''",$get_branch);
+        $temp_branch_update=implode("','",$get_branch);
     }
 
 
@@ -183,12 +186,14 @@ if(isset($_GET['filter_job'])){
 
 
 
-        $query2="SELECT * FROM company_list where company_id='$company_id'";
+
+
+    $query2="SELECT * FROM company_list where company_id='$company_id'";
         $get_company_name=mysqli_query($connect, $query2);
         $company_name=mysqli_fetch_assoc($get_company_name);
 
 
-        $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , 'cse-it-eie' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears')";
+        $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , '$temp_branch_insert' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears')";
 
 
 
@@ -205,6 +210,55 @@ if(isset($_GET['filter_job'])){
 
 
         }
+
+
+        //Alter students table
+
+    $query_for_tablemap="SELECT * FROM table_map WHERE table_value={$year_of_graduation}";
+        $result_for_tablemap=mysqli_query($connect,$query_for_tablemap);
+        $row_for_tablemap=mysqli_fetch_assoc($result_for_tablemap);
+
+        $students_table_name=$row_for_tablemap['table_name'];
+
+        echo $students_table_name."<br>";
+
+
+    $query_for_alter='ALTER TABLE '.$students_table_name.' ADD _'.$id.'  VARCHAR(255) NOT NULL DEFAULT \'not eligible\'';
+        $result_for_alter=mysqli_query($connect, $query_for_alter);
+
+
+        //update table
+
+
+
+        $query_for_update="UPDATE $students_table_name SET _".$id."='eligible' WHERE st_ugspecialization IN ('$temp_branch_update') and st_cgpa>=$cgpa and st_10thpercentage>= $_10percentage and st_12thpercentage>=$_12percentage and st_standingarrears<=$standingarrears and st_historyofarrears<=$historyofarrears";
+        $result_for_update=mysqli_query($connect, $query_for_update);
+
+
+
+
+    if(!$result_for_tablemap){
+
+        die("".mysqli_error($connect));
+
+
+    }
+    if(!$result_for_alter){
+
+        die("".mysqli_error($connect));
+
+
+    }
+    if(!$result_for_update){
+
+
+        die("".mysqli_error($connect));
+
+
+    }
+
+
+
 
 
         header("Location: post_jobs.php");

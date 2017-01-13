@@ -920,11 +920,27 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
+                                    $database_name=$_SESSION['database_name'];
+                                    if($database_name=='rmd_database'){
+
+                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmd.jpg')";
+                                    }
+                                    else if($database_name=='rmk_database'){
+
+                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmk.jpg')";
+
+                                    }
+                                    else if($database_name='rmkcet_database'){
+
+                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmkcet.jpg')";
+                                    }
 
 
 
 
-                                    $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default.jpg')";
+
+
+
                                     mysqli_query($connect, $sql);
 
 

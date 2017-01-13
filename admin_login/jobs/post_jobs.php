@@ -835,14 +835,24 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 					</div>
 					<div class="col-xs-7 col-sm-5 ">
 									<h5><label class="control-label bolder orange" for="form-field-1">Year of Graduation</label></h5>
-											<select class="col-xs-7 chosen-select form-control"  name="year_of_graduation" id="form-field-select-3" placeholder="Select a Year...">
-																<option value="2016">2016</option>
-																<option value="2017">2017</option>
-																<option value="2018">2018</option>
-																<option value="2019">2019</option>
-																<option value="2020">2020</option>
-																<option value="2021">2021</option>
-															</select>
+                        <select class="col-xs-7 chosen-select form-control" name="year_of_graduation" id="form-field-select-3" data-placeholder="Select a Year...">
+                            <?php
+
+                            include "../connect.php";
+                            $query_insert="SELECT * FROM table_map";
+                            $result_insert=mysqli_query($connect, $query_insert);
+                            while ($row=mysqli_fetch_assoc($result_insert)){
+
+
+
+
+                                ?>
+
+
+
+                                <option value="<?php echo $row['table_value']  ?>"><?php echo $row['table_value'] ?></option>
+                            <?php } ?>
+                        </select>
 
 
 

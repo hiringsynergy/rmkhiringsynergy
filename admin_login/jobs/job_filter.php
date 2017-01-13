@@ -177,7 +177,7 @@ if(isset($_GET['filter_job'])){
 
 
 
-echo "sort time:".$apply_before;
+
 
 
 

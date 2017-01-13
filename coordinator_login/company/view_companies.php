@@ -494,7 +494,7 @@ ob_start();
 
             <li class="">
                 <a href="../profile/profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>

@@ -579,7 +579,7 @@ if(isset($_POST['update_submit'])) {
 
             <li class="">
                 <a href="../profile/profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>
@@ -836,7 +836,8 @@ if(isset($_POST['update_submit'])) {
 
 
 
-                                	    	<li>
+                                	    	<li>
+
                               	  		        <a class="" href="../images/logos/1482066285_asdfgasdfg.jpg" data-rel="colorbox">
                                	         			    <img width="auto" height="150" alt="150x150" src="../images/logos/1482380421_IBM_logo.gif" />
                                  			           <div class="text">
@@ -850,9 +851,10 @@ if(isset($_POST['update_submit'])) {
                                         			    </a>
 
 
-                                     		   </div>
+                                     		   </div>
+
 				</li>
-			</ui>
+			</ul>
 		</div>
 	</div>
 </div>

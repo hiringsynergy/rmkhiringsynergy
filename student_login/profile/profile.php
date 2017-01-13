@@ -574,7 +574,7 @@ if(isset($_FILES['image'])){
 
             <li class="active">
                 <a href="../profile/profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>

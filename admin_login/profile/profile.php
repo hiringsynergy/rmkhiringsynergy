@@ -673,7 +673,7 @@ if(isset($_GET['roll']))
 
             <li class="active">
                 <a href="profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>

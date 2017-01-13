@@ -62,7 +62,8 @@
 		<link rel="stylesheet" href="assets/js/date-time/bootstrap-datetimepicker.min.js" />
 		<link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
-		<link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+		<link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+
 
     <!-- text fonts -->
     <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -476,7 +477,7 @@
 
             <li class="">
                 <a href="profile/profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>
@@ -721,7 +722,8 @@
 													<i class="ace-icon fa fa-pencil"></i>
 												</a>
 											</div>
-									</li></ul>
+									</li></ul>
+
 								</div>
 									<div><h4 class="green bolder smaller">Zoho Enterprises Ltd</h4>
 														<h4 class="bolder green smaller">Company Description:</h4>
@@ -750,7 +752,8 @@
 
 
 
-</div></div></div></div>
+</div></div></div></div>
+
                  
 
 
@@ -799,7 +802,8 @@
 <script src="assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
-<script src="assets/js/jquery.colorbox.min.js"></script>
+<script src="assets/js/jquery.colorbox.min.js"></script>
+
 
 <!--[if lte IE 8]>
 <script src="assets/js/excanvas.min.js"></script>
@@ -818,7 +822,8 @@
 
 <!-- inline scripts related to this page -->
 
-		<script src="assets/js/autosize.min.js"></script>
+		<script src="assets/js/autosize.min.js"></script>
+
 
 <script type="text/javascript">
 			jQuery(function($) {
@@ -829,7 +834,8 @@
 				$('textarea.limited').inputlimiter({
 					remText: '%n character%s remaining...',
 					limitText: 'max allowed : %n.'
-				});
+				});
+
 	var $overflow = '';
 	var colorbox_params = {
 		rel: 'colorbox',
@@ -862,7 +868,8 @@
 		$('#colorbox, #cboxOverlay').remove();
    });
 })
-		</script>
+		</script>
+
 
 </body>
 </html>

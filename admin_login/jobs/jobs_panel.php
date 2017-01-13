@@ -157,7 +157,8 @@ if(isset($_POST['update_submit'])) {
     $get_salary= $_POST['submit_salary'];
     $get_venue= $_POST['submit_venue'];
     $get_apply_before= $_POST['submit_apply_before'];
-    $get_company=$_POST['submit_company'];
+    $get_company=$_POST['submit_company'];
+
      include "../connect.php";
 
 
@@ -625,7 +626,7 @@ if(isset($_POST['update_submit'])) {
 
             <li class="">
                 <a href="../profile/profile.php" >
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
 							</span>

@@ -907,7 +907,7 @@ if(isset($_GET['filter'])) {
                                             <th>Father Name</th>
                                             <th>Father Occupation</th>
                                             <th>Mother Name</th>
-                                            <th>Mother Name</th>
+                                            <th>Mother Occupation</th>
                                             <th>Email ID</th>
                                             <th>Mobile Number (10 digits)</th>
                                             <th>Date of Birth (DD-MM-YYYY)</th>

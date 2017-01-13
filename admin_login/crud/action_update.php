@@ -826,7 +826,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                         	<option value="rollno">Roll No</option>
                                             <option value="first_name">First Name</option>
                                             <option value="mid_name">Middle Name</option>
-                                            <option value="last_name">Last Name (Mandatory)</option>
+                                            <option value="last_name">Last Name</option>
                                             <option value="full_name">Full Name</option>
                                             <option value="gender">Gender (Male/Female)</option>
                                             <option value="father_name">Father Name</option>
@@ -834,7 +834,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                             <option value="mother_name">Mother Name</option>
                                             <option value="mother_occupation">Mother Occupation</option>
                                             <option value="email_id">Email ID</option>
-                                            <option value="mobile_no">Mobile Number (10 digits)</option>
+                                            <option value="mobile_no">Mobile Number</option>
                                             <option value="dob">Date of Birth (DD-MM-YYYY)</option>
                                             <option value="nationality">Nationality</option>
                                             <option value="caste">Caste</option>
@@ -861,7 +861,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                             <option value="6_sem">6th Sem</option>
                                             <option value="7_sem">7th Sem</option>
                                             <option value="8_sem">8th Sem</option>
-                                            <option value="ug_cgpa">UG Degree % or CGPA (uptolast semester for which results announced)</option>
+                                            <option value="ug_cgpa">UG Degree % or CGPA</option>
                                             <option value="ug_yearofpassing">UG - Year of Passing</option>
                                             <option value="pg_deg">PG Degree</option>
                                             <option value="pg_dept">PG Department</option>
@@ -869,7 +869,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                             <option value="pg_2_sem">2nd Sem</option>
                                             <option value="pg_3_sem">3rd Sem</option>
                                             <option value="pg_4_sem">4th Sem</option>
-                                            <option value="pg_cgpa">PG Degree % or CGPA (upto last semester for which results announced)</option>
+                                            <option value="pg_cgpa">PG Degree % or CGPA</option>
                                             <option value="pg_yearofpassing">PG - Year of Passing</option>
                                             <option value="dayscholar_hosteler">Day Scholar/ Hosteler</option>
                                             <option value="history_of_arreas">No History of Arreas</option>

@@ -534,8 +534,8 @@ if(isset($_GET['delete']))
 							</ul>
 						</li>
 
-						<li class="light-blue dropdown-modal" style="width:140px;">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+						<li class="light-blue dropdown-modal" >
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php
                                 include "connect.php";
@@ -563,13 +563,14 @@ if(isset($_GET['delete']))
 
                                     <img class="nav-user-photo" src="images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
                                 <?php } ?>
-								<span class="user-info">
+                                <span class="user-info">
 									<small>Welcome,</small>
 									Admin
 								</span>
 
-								<i class="ace-icon fa fa-caret-down"></i>
-							</a>
+                                <i class="ace-icon fa fa-caret-down"></i>
+                            </a>
+
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>

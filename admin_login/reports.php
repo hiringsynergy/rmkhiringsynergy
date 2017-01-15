@@ -23,7 +23,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Student Interaction</title>
+    <title>RMK Hiring Synergy</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -73,25 +73,40 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         // draws it.
         function drawChart() {
 
+            <?php
+
+            include  "connect.php";
+            $query_jobs="SELECT * FROM jobs";
+            $result_jobs=mysqli_query($connect, $query);
+
+            while ($row=mysqli_fetch_assoc($result_jobs)){
+
+            ?>
+
+
             // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Students_type');
             data.addColumn('number', 'Students_nos');
+
             data.addRows([
-                ['IT', 240],
-                ['Non-IT', 120]
+
+                ['Accepted', 240],
+                ['Not Accepted', 160]
             ]);
 
             // Set chart options
-            var options = {'title':'INFOSYS',
-                'width':1000,
+            var options = {'title':'COMPANY - INFOSYS \n JOB  \t \b   - Executive Manager',
+                'width':1500,
                 is3D: true,
-                'height':500
+                'height':700
             };
 
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+            var chart<?php echo $row['job_id'] ?> = new google.visualization.PieChart(document.getElementById('chart_div<?php echo $row['job_id'] ?>'));
+            chart<?php echo $row['job_id'] ?>.draw(data, options);
+
+            <?php } ?>
         }
 
 
@@ -150,7 +165,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <a href="index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>
@@ -778,7 +793,35 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
-                        <div id="chart_div"></div>
+                        <?php
+
+                        include  "connect.php";
+                        $query_jobs="SELECT * FROM jobs";
+                        $result_jobs=mysqli_query($connect, $query);
+
+                        while ($row=mysqli_fetch_assoc($result_jobs)){
+
+                            ?>
+                            <div class="row col-xs-6">
+                                <div id="chart_div<?php echo $row['job_id'] ?>"><?php echo $row['job_id'] ?></div>
+
+
+                            </div>
+
+
+
+                            <?php
+
+                        }
+
+
+
+
+                        ?>
+
+
+
+
 
 
                         <!-- PAGE CONTENT ENDS -->

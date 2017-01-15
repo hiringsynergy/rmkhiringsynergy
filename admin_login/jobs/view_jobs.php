@@ -63,7 +63,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         }
 
 
-
     </script>
 
 
@@ -118,7 +117,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>
@@ -383,7 +382,33 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/images/avatars/user.jpg" alt="Jason's Photo" />
+
+                        <?php
+                        include "../connect.php";
+                        $name=$_SESSION['user'];
+
+                        $query="select * from login_admin where username='{$name}'";
+
+
+
+
+                        $result=mysqli_query($connect,$query);
+
+                        if(!$result){
+
+
+                            mysqli_error($connect);
+                        }
+
+                        while($row=mysqli_fetch_assoc($result)){
+
+
+
+                            ?>
+
+
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                        <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
 									Admin
@@ -734,6 +759,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         while($row=mysqli_fetch_assoc($result))
 
                         {
+                            $company_id=$row['company_id'];
 
                            $widget_color=array(' widget-color-blue','widget-color-green','widget-color-orange','widget-color-red','widget-color-pink','widget-color-green','widget-color-purple','widget-color-blue2','widget-color-red3','widget-color-blue3');
 
@@ -789,7 +815,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
                                             <div class="row">
-                                            <div class="table-responsive col-xs-12">
+                                            <div class="table-responsive ">
 
                         <table class="table table-striped table-hover "  id="simple-table" cellpadding="1">
                             <thead class="thin-border-bottom">
@@ -830,7 +856,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     </font>
                                 </th>
                                 <th class="hidden-480"><font size="3">Status</font></th>
-                                <th></th>
+
                             </tr>
                             </thead>
 
@@ -976,13 +1002,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 <td class="hidden-480">
                                     <span class="label label-success" style="height: 30px; width: 80px; font-size: 18px;">Open</span>
                                 </td>
-                                <td>
 
-                                    <div >
-                                        <button class="btn btn-primary btn-sm  ">Apply</button>
-                                    </div>
-
-                                </td>
                               <?php
 
 
@@ -992,13 +1012,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                     <td class="hidden-480">
                                     <span class="label label-success" style="height: 30px; width: 80px; font-size: 18px;">Open</span>
-                                </td>
-                                <td>
-
-                                    <div >
-                                        <button class="btn btn-primary btn-sm  ">Apply</button>
-                                    </div>
-
                                 </td>
 
 
@@ -1014,13 +1027,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     <td class="hidden-480">
                                         <span class="label label-danger" style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
                                     </td>
-                                    <td>
-
-                                        <div >
-                                            <button class="btn btn-primary btn-sm  disabled">Apply</button>
-                                        </div>
-
-                                    </td>
 
 
 
@@ -1034,24 +1040,24 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                             </tr>
 
                             <tr class="detail-row">
+                                <?php
+
+                                $query_company="SELECT * FROM company_list where company_id='$company_id'";
+                                $result_company= mysqli_query($connect, $query_company);
+                                $row_company=mysqli_fetch_assoc($result_company);
+
+
+                                ?>
                                 <td colspan="8">
                                     <div class="table-detail">
                                         <div class="row">
-                                            <div class="col-xs-6 col-sm-2">
+                                            <div class="col-xs-7 col-sm-2">
                                                 <div class="text-center ">
-                                                    <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../assets/images/avatars/profile-pic.jpg" />
-                                                    <!--                                                    <br />-->
-                                                    <!--                                                    <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">-->
-                                                    <!--                                                        <div class="inline position-relative">-->
-                                                    <!--                                                            <a class="user-title-label" href="#">-->
-                                                    <!--                                                                <i class="ace-icon fa fa-circle light-green"></i>-->
-                                                    <!--                                                                &nbsp;-->
-                                                    <!--                                                                <span class="white">Alex M. Doe</span>-->
-                                                    <!--                                                            </a>-->
-                                                    <!--                                                        </div>-->
-                                                    <!--                                                    </div>-->
+                                                    <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../../logos/<?php echo $row_company['company_logo']; ?>" />
+
                                                 </div>
                                             </div>
+
 
                                             <div class="col-xs-12 col-sm-10">
                                                 <div class="space visible-xs"></div>
@@ -1061,7 +1067,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                         <div class="profile-info-name " style="min-width: 140px;"> Company Name </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>Zoho Enterprises Ltd(Product)</span>
+                                                            <span><?php echo $row_company['company_name']; ?></span>
                                                         </div>
                                                     </div>
 
@@ -1069,7 +1075,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                         <div class="profile-info-name"> Website </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>www.zoho.com</span>
+                                                            <span><?php echo $row_company['company_website']; ?></span>
                                                         </div>
                                                     </div>
 
@@ -1077,62 +1083,36 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                         <div class="profile-info-name"> Mail </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>zoho@gmail.com</span>
+                                                            <span><?php echo $row_company['company_website']; ?></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Eligibility </div>
+                                                        <div class="profile-info-name" > Eligibility </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>above 7 cgpa</span>
+                                                            <span>above <?php echo $row['job_cgpa']; ?> cgpa</span>
                                                         </div>
                                                     </div>
-                                                    <!---->
-                                                    <!--                                                    <div class="profile-info-row">-->
-                                                    <!--                                                        <div class="profile-info-name"> Last Online </div>-->
-                                                    <!---->
-                                                    <!--                                                        <div class="profile-info-value">-->
-                                                    <!--                                                            <span>3 hours ago</span>-->
-                                                    <!--                                                        </div>-->
-                                                    <!--                                                    </div>-->
-                                                    <!---->
-                                                    <!--                                                    <div class="profile-info-row">-->
-                                                    <!--                                                        <div class="profile-info-name"> About Me </div>-->
-                                                    <!---->
-                                                    <!--                                                        <div class="profile-info-value">-->
-                                                    <!--                                                            <span>Bio</span>-->
-                                                    <!--                                                        </div>-->
+
+                                                    <div class="profile-info-row ">
+                                                        <div class="profile-info-name "  >Company's Presentation </div>
+
+                                                        <div class="profile-info-value col-xs-6">
+                                                            <a href="download.php?file=<?php echo $row['company_id'] ?>" name="presentation" class="btn btn-yellow bold" >Download Presentation</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="download">
+
+
+                                                    </div>
+
                                                 </div>
+
                                             </div>
-                                        </div>
-                                        <!---->
-                                        <!--                                            <div class="col-xs-12 col-sm-3">-->
-                                        <!--                                                <div class="space visible-xs"></div>-->
-                                        <!--                                                <h4 class="header blue lighter less-margin">Send a message to Alex</h4>-->
-                                        <!---->
-                                        <!--                                                <div class="space-6"></div>-->
-                                        <!---->
-                                        <!--                                                <form>-->
-                                        <!--                                                    <fieldset>-->
-                                        <!--                                                        <textarea class="width-100" resize="none" placeholder="Type something…"></textarea>-->
-                                        <!--                                                    </fieldset>-->
-                                        <!---->
-                                        <!--                                                    <div class="hr hr-dotted"></div>-->
-                                        <!---->
-                                        <!--                                                    <div class="clearfix">-->
-                                        <!--                                                        <label class="pull-left">-->
-                                        <!--                                                            <input type="checkbox" class="ace" />-->
-                                        <!--                                                            <span class="lbl"> Email me a copy</span>-->
-                                        <!--                                                        </label>-->
-                                        <!---->
-                                        <!--                                                        <button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">-->
-                                        <!--                                                            Submit-->
-                                        <!--                                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>-->
-                                        <!--                                                        </button>-->
-                                        <!--                                                    </div>-->
-                                        <!--                                                </form>-->
-                                        <!--                                            </div>-->
+
+
+
                                     </div>
 
 

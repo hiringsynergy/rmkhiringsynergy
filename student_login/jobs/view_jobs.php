@@ -635,9 +635,9 @@
 
 
                                     <div class="row">
-                                        <div class="table-responsive col-xs-12">
+                                        <div class="table-responsive ">
 
-                                            <table class="table table-striped table-hover "  id="simple-table" cellpadding="1">
+                                            <table class="table table-striped table-hover "  id="simple-table" >
                                                 <thead class="thin-border-bottom">
                                                 <tr>
                                                     <th>
@@ -953,15 +953,25 @@
                                                 </tr>
 
                                                 <tr class="detail-row">
+                                                    <?php
+                                                    $company_id=$row['company_id'];
+
+                                                    $query_company="SELECT * FROM company_list where company_id='$company_id'";
+                                                    $result_company= mysqli_query($connect, $query_company);
+                                                    $row_company=mysqli_fetch_assoc($result_company);
+
+
+                                                    ?>
                                                     <td colspan="8">
                                                         <div class="table-detail">
                                                             <div class="row">
                                                                 <div class="col-xs-6 col-sm-2">
                                                                     <div class="text-center ">
-                                                                        <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../assets/images/avatars/profile-pic.jpg" />
-                                                             
+                                                                        <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../../logos/<?php echo $row_company['company_logo']; ?>" />
+
                                                                     </div>
                                                                 </div>
+
 
                                                                 <div class="col-xs-12 col-sm-10">
                                                                     <div class="space visible-xs"></div>
@@ -971,7 +981,7 @@
                                                                             <div class="profile-info-name " style="min-width: 140px;"> Company Name </div>
 
                                                                             <div class="profile-info-value">
-                                                                                <span>Zoho Enterprises Ltd(Product)</span>
+                                                                                <span><?php echo $row_company['company_name']; ?></span>
                                                                             </div>
                                                                         </div>
 
@@ -979,7 +989,7 @@
                                                                             <div class="profile-info-name"> Website </div>
 
                                                                             <div class="profile-info-value">
-                                                                                <span>www.zoho.com</span>
+                                                                                <span><?php echo $row_company['company_website']; ?></span>
                                                                             </div>
                                                                         </div>
 
@@ -987,7 +997,7 @@
                                                                             <div class="profile-info-name"> Mail </div>
 
                                                                             <div class="profile-info-value">
-                                                                                <span>zoho@gmail.com</span>
+                                                                                <span><?php echo $row_company['company_website']; ?></span>
                                                                             </div>
                                                                         </div>
 
@@ -995,14 +1005,14 @@
                                                                             <div class="profile-info-name"> Eligibility </div>
 
                                                                             <div class="profile-info-value">
-                                                                                <span>above 7 cgpa</span>
+                                                                                <span>above <?php echo $row['job_cgpa']; ?> cgpa</span>
                                                                             </div>
                                                                         </div>
-                                                                       
+
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                          
+
                                                         </div>
 
 

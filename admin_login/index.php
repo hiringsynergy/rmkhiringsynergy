@@ -159,7 +159,7 @@ if(isset($_GET['delete']))
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
         <title>RMK HIRING SYNERGY </title>
-        <link rel="icon" href="images/logos/rmklogo.JPG"  />
+        <link rel="icon" href="../logos/rmklogo.JPG"  />
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -271,7 +271,7 @@ if(isset($_GET['delete']))
 					<a href="index.php" class="navbar-brand">
 						<small>
 							<i class=""></i>
-                            <img src="images/logos/rmklogo.JPG" style="height: 25px;">
+                            <img src="../logos/rmklogo.JPG" style="height: 25px;">
 							RMK Group of Institutions
 						</small>
 					</a>
@@ -918,49 +918,51 @@ if(isset($_GET['delete']))
                                 <div class="row">
 
 
-                                    <form action="index.php" method="get">
+
+
 
 
                                     <div class="col-xs-6 pricing-box">
-                                        <div class="widget-box widget-color-orange">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger white">Create New Student Table</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li class="red bigger-120">
-                                                            <div class="form-group">
-										<label class="col-sm-6  bolder" for="form-field-1"> Table Name</label>
-
-										<div class="col-sm-8">
-											<input type="text" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
-										</div>
-									</div>
-
-                                                        </li>
-
-                                                    </ul>
+                                        <form action="index.php" method="get">
 
 
+                                            <div class="widget-box widget-color-orange">
+                                                <div class="widget-header">
+                                                    <h5 class="widget-title bigger white">Create New Student Table</h5>
                                                 </div>
 
-                                                <div class="space-16"> </div>
-                                                <div class="space-6"> </div>
+                                                <div class="widget-body">
+                                                    <div class="widget-main">
+                                                        <ul class="list-unstyled spaced2">
+                                                            <li class="red bigger-120">
+                                                                <div class="form-group">
+                                                                    <h5><label class="col-xs-12 control-label orange bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                        <input type="text" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
 
-                                                <div class="space-16"> </div>
-                                                <div class="space-16"></div>
+                                                                    </div>
+                                                                </div>
 
-                                                <div>
-                                                    <button type="submit" name="create" class="btn btn-block btn-warning">
-                                                        <span>Create</span>
-                                                    </button>
+                                                            </li>
+
+                                                        </ul><hr/>
+                                                    </div>
+
+
+                                                    <div class="space-16"> </div>
+                                                    <div class="space-16"></div>
+
+
+                                                    <div>
+                                                        <button type="submit" name="create" class="btn btn-block btn-warning">
+                                                            <span>Create</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
-                                    </form>
+
                                     <div class="col-xs-6 pricing-box">
                                         <form action="crud/action_update.php">
 
@@ -1003,9 +1005,11 @@ if(isset($_GET['delete']))
 
                                                     </ul><hr/>
                                                 </div>
+
+
                                                 <div class="space-16"> </div>
                                                 <div class="space-16"></div>
-                                                <div class="space-8"></div>
+
 
                                                 <div>
                                                     <button type="submit" name="update" class="btn btn-block btn-primary">

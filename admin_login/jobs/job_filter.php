@@ -193,7 +193,7 @@ if(isset($_GET['filter_job'])){
         $company_name=mysqli_fetch_assoc($get_company_name);
 
 
-        $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , '$temp_branch_insert' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears')";
+        $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , '$temp_branch_insert' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears','$company_id')";
 
 
 
@@ -288,7 +288,7 @@ if(isset($_GET['filter_job'])){
             <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>

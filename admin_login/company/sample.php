@@ -802,8 +802,8 @@ if(isset($_POST['update_submit'])) {
 
 
                                     <li>
-                                        <a href="../images/logos/1482066285_asdfgasdfg.jpg" data-rel="colorbox">
-                                            <img width="auto" height="150" alt="150x150" src="../images/logos/1482066285_asdfgasdfg.jpg" />
+                                        <a href="../../logos/1482066285_asdfgasdfg.jpg" data-rel="colorbox">
+                                            <img width="auto" height="150" alt="150x150" src="../../logos/1482066285_asdfgasdfg.jpg" />
                                             <div class="text">
                                                 <div class="inner">Click here to View</div>
                                             </div>

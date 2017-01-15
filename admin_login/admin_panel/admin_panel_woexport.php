@@ -248,7 +248,7 @@ if(isset($_POST['update_submit'])) {
             <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>
@@ -503,7 +503,7 @@ if(isset($_POST['update_submit'])) {
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
+                            <a href="../inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -557,7 +557,7 @@ if(isset($_POST['update_submit'])) {
                         </li>
 
                         <li>
-                            <a href="profile/profile.php">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -566,7 +566,7 @@ if(isset($_POST['update_submit'])) {
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/login_validation.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>

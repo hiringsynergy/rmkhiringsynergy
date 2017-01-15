@@ -21,7 +21,7 @@ if(isset($_GET['create'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
     <title>RMK HIRING SYNERGY </title>
-    <link rel="icon" href="../images/logos/rmklogo.JPG"  />
+    <link rel="icon" href="../../logos/rmklogo.JPG"  />
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -142,7 +142,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>

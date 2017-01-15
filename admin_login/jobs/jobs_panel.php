@@ -127,26 +127,49 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 <?php
 
-//
-//if(isset($_GET['comp']) && isset($_GET['job'])){
-//
-//    $company=$_GET['comp'];
-//    $job=$_GET['job'];
-//
-//
-//    include "../connect.php";
-//
-//    $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
-//    $result=mysqli_query($connect,$query);
-//
-//    if(!$connect){
-//
-//        die(" ".mysqli_error($connect));
-//    }
-//
-//
-//
-//}
+
+if(isset($_GET['job_id'])){
+
+    $job_id=$_GET['job_id'];
+
+
+
+    include "../connect.php";
+
+    $query="DELETE FROM jobs WHERE job_id='{$job_id}'";
+    $result=mysqli_query($connect,$query);
+
+    if(!$connect){
+
+        die(" ".mysqli_error($connect));
+    }
+
+
+
+    $query_map="SELECT * FROM table_map  ";
+    $result_map=mysqli_query($connect,$query_map);
+    while ($row_map=mysqli_fetch_assoc($result_map)){
+
+        $students_table_name=$row_map['table_name'];
+
+
+
+
+        $query_update="ALTER TABLE $students_table_name DROP COLUMN _".$job_id." ";
+        $result_update=mysqli_query($connect,$query_update);
+
+
+    }
+
+
+
+
+
+
+
+
+
+}
 
 if(isset($_POST['update_submit'])) {
 
@@ -232,7 +255,7 @@ if(isset($_POST['update_submit'])) {
             <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>
@@ -1030,7 +1053,7 @@ if(isset($_POST['update_submit'])) {
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
 
-                                                        <a class="red" href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>">
+                                                        <a class="red" href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>">
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                         </a>
                                                     </div>
@@ -1056,7 +1079,7 @@ if(isset($_POST['update_submit'])) {
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>" class="tooltip-error" data-rel="tooltip"
+                                                                    <a href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>" class="tooltip-error" data-rel="tooltip"
                                                                        title="Delete">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>

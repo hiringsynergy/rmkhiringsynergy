@@ -66,40 +66,6 @@ ob_start();
         <script src="../assets/js/html5shiv.min.js"></script>
         <script src="../assets/js/respond.min.js"></script>
         <![endif]-->
-<!--
-        <style type="text/css">
-
-
-            .btn-file{
-
-                position: relative;
-                overflow: hidden;
-
-
-            }
-            .btn-file input[type=image]{
-
-                position: absolute;
-                top:0;
-                right:0;
-                min-width:100%;
-                min-height:100%;
-                font-size: 100px;
-                text-align:right;
-                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-                filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-                opacity:0;
-                outline: none;
-                background: white;
-                cursor: inherit;
-                display: block;
-
-
-
-            }
-
-        </style>
--->
 
     </head>
 <body>
@@ -129,10 +95,9 @@ ob_start();
 
 
 
-    $database=$_SESSION['database_name'];
-    $connect=mysqli_connect("localhost","root","","$database");
-
-
+//    $database=$_SESSION['database_name'];
+//    $connect=mysqli_connect("localhost","root","","$database");
+    include "../connect.php";
 
 
 $id=$_GET['id'];

@@ -566,9 +566,11 @@
                         $get_historyofarrears=$get_student_row['st_historyofarrears'];
 
 
+                        $year_of_graduation=$_SESSION['year_of_graduation'];
                         //
 
-                        $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$branch."%' ORDER BY apply_before DESC";
+
+                        $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$branch."%' and year_of_graduation='$year_of_graduation'  ORDER BY apply_before DESC";
                         $result= mysqli_query($connect, $query);
                         $i=0;
 

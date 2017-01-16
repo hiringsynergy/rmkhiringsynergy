@@ -185,6 +185,11 @@ if(isset($_POST['login'])){
         $_SESSION['table_name']=$student_table;
         $_SESSION['database_name']=$database_session_set;
 
+        $graduation=explode('_',$student_table);
+
+        $_SESSION['year_of_graduation']= end($graduation);
+
+
         header("Location: ../student_login/index.php");
 
     }

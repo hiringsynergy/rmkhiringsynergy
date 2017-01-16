@@ -748,7 +748,7 @@ if(isset($_POST['update_submit'])) {
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -917,7 +917,7 @@ if(isset($_POST['update_submit'])) {
 
                                 <!-- div.dataTables_borderWrap -->
                                 <div>
-                                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <table id="dynamic-table" class="table table-striped  table-bordered table-hover">
                                         <thead>
                                         <tr>
                                             <th class="center">
@@ -1132,7 +1132,7 @@ if(isset($_POST['update_submit'])) {
 
                                                                         <div class="profile-info-value">
                                                                             <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                                            <span>Netherlands, Amsterdam</span>
+                                                                            <span>Netherlands, Amsterdam <?php echo $pic ?></span>
                                                                         </div>
                                                                     </div>
 <!---->
@@ -1347,7 +1347,7 @@ if(isset($_POST['update_submit'])) {
         //initiate dataTables plugin
         var myTable =
             $('#dynamic-table')
-            //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+            .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
                 .DataTable( {
                     bAutoWidth: false,
                     "aoColumns": [
@@ -1371,10 +1371,10 @@ if(isset($_POST['update_submit'])) {
                     //"sAjaxSource": "http://127.0.0.1/table.php"	,
 
                     //,
-                    //"sScrollY": "200px",
+                    "sScrollY": "400px",
                    "bPaginate": false,
 
-                    //"sScrollX": "100%",
+                    "sScrollX": "100%",
                     //"sScrollXInner": "120%",
                     //"bScrollCollapse": true,
                     //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"

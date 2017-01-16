@@ -1,12 +1,8 @@
-
 <?php session_start();
 ob_start();
 
 
-
-
-
-if(! isset($_SESSION['user']) && $_SESSION['user']==null){
+if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
     header("Location: ../login.html");
 
@@ -21,26 +17,30 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
     <title>RMK HIRING SYNERGY</title>
 
-    <meta name="description" content="overview &amp; stats" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="overview &amp; stats"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
 
     <!--button-navigation-->
@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
+            location.href = "admin_panel.php";
 
         }
         function myfuncjobs() {
@@ -60,66 +60,44 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         function myfuncsettings() {
             location.href = "../settings.php";
 
-        }function btnclick(){
+        }
+        function check1(str) {
 
-            location.href = "../admin_panel/admin_panel.php";
+
+
+            location.href = "show_lists.php?jid="+str+"&flag=0";
 
         }
-        function showStudent(str) {
-            if (str == "") {
-                document.getElementById("modal-form").innerHTML = "";
+        function check2(str) {
 
-            } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("modal-form").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET","../admin_panel/getstudent_export.php?id="+str,true);
-                xmlhttp.send();
-            }
+
+
+            location.href = "show_lists.php?jid="+str+"&flag=1";
         }
+        function check3(str) {
 
 
+
+            location.href = "show_lists.php?jid="+str+"&flag=2";
+        }
 
 
     </script>
 
 
-
     <!-- page specific plugin styles -->
-    <script type="application/javascript" src="../assets/bootstrap-toggle-master/js/bootstrap-toggle.js"></script>
-    <script type="application/javascript" src="../assets/bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
-    <script type="application/javascript" src="../assets/bootstrap-toggle-master/js/bootstrap2-toggle.js"></script>
-    <script type="application/javascript" src="../assets/bootstrap-toggle-master/js/bootstrap2-toggle.min.js"></script>
-
-    <link rel="stylesheet" href="../assets/bootstrap-toggle-master/css/bootstrap-toggle.css">
-    <link rel="stylesheet" href="../assets/bootstrap-toggle-master/css/bootstrap-toggle.min.css">
-    <link rel="stylesheet" href="../assets/bootstrap-toggle-master/css/bootstrap2-toggle.css">
-    <link rel="stylesheet" href="../assets/bootstrap-toggle-master/css/bootstrap2-toggle.min.css">
-
-
-
-
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css"/>
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
@@ -138,11 +116,11 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <![endif]-->
 
     <style type="text/css">
-        .test{
+        .test {
             width: 13px;
             height: 50px;
             padding: 20px;
-            margin:0px 240px;
+            margin: 0px 240px;
 
             position: relative;
             top: -47px;
@@ -150,7 +128,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
 
-        .myfont{
+        .myfont {
 
             font-size: 22px;
         }
@@ -159,84 +137,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     </style>
 
 
-
-
-
 </head>
 
 <body class="no-skin">
-
-
-
-
-<?php
-
-
-if(isset($_GET['delete'])){
-
-    $userroll=$_GET['delete'];
-
-    include "../connect.php";
-
-    $query="delete from students_list where st_roll={$userroll}";
-    $result=mysqli_query($connect,$query);
-
-    if(!$connect){
-
-        die(" ".mysqli_error($connect));
-    }
-
-
-
-}
-
-
-
-
-
-if(isset($_POST['update_submit'])) {
-
-
-    $get_roll= $_POST['stu_roll'];
-    $get_name= $_POST['st_name'];
-    $get_email= $_POST['st_email'];
-    $get_phone= $_POST['st_phone'];
-    $get_cgpa= $_POST['st_cgpa'];
-    $get_pass= $_POST['st_pass'];
-
-
-    include "../connect.php";
-
-    $query = "UPDATE students_list SET st_roll={$get_roll},st_name='{$get_name}',st_email='{$get_email}',st_phone={$get_phone},st_cgpa={$get_cgpa},st_pass='{$get_pass}' where st_roll={$get_roll}";
-
-    $result = mysqli_query($connect, $query);
-
-    if (!$connect) {
-
-        die(" " . mysqli_error($connect));
-
-
-    }
-    if (!$result) {
-
-        die(" " . mysqli_error($connect));
-
-
-    }
-
-}
-
-
-
-
-?>
-
-
-
-
-
-
-
 
 
 <div id="navbar" class="navbar navbar-default          ace-save-state">
@@ -260,6 +163,7 @@ if(isset($_POST['update_submit'])) {
                 </small>
             </a>
         </div>
+
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
                 <li class="grey dropdown-modal">
@@ -423,7 +327,8 @@ if(isset($_POST['update_submit'])) {
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo"
+                                             alt="Alex's Avatar"/>
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -440,7 +345,8 @@ if(isset($_POST['update_submit'])) {
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo"
+                                             alt="Susan's Avatar"/>
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -457,7 +363,8 @@ if(isset($_POST['update_submit'])) {
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo"
+                                             alt="Bob's Avatar"/>
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -474,7 +381,8 @@ if(isset($_POST['update_submit'])) {
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo"
+                                             alt="Kate's Avatar"/>
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -491,7 +399,8 @@ if(isset($_POST['update_submit'])) {
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo"
+                                             alt="Fred's Avatar"/>
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -509,7 +418,7 @@ if(isset($_POST['update_submit'])) {
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
+                            <a href="../inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -522,29 +431,27 @@ if(isset($_POST['update_submit'])) {
 
                         <?php
                         include "../connect.php";
-                        $name=$_SESSION['user'];
+                        $name = $_SESSION['user'];
 
-                        $query="select * from login_admin where username='{$name}'";
-
-
+                        $query = "select * from login_admin where username='{$name}'";
 
 
-                        $result=mysqli_query($connect,$query);
+                        $result = mysqli_query($connect, $query);
 
-                        if(!$result){
+                        if (!$result) {
 
 
                             mysqli_error($connect);
                         }
 
-                        while($row=mysqli_fetch_assoc($result)){
-
+                        while ($row = mysqli_fetch_assoc($result)) {
 
 
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>"
+                                 alt="Jason's Photo"/>
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -563,7 +470,7 @@ if(isset($_POST['update_submit'])) {
                         </li>
 
                         <li>
-                            <a href="profile/profile.php">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -572,13 +479,14 @@ if(isset($_POST['update_submit'])) {
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/login_validation.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
                         </li>
                     </ul>
                 </li>
+
 
             </ul>
         </div>
@@ -587,39 +495,43 @@ if(isset($_POST['update_submit'])) {
 
 <div class="main-container ace-save-state" id="main-container">
     <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {
+        }
     </script>
 
     <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
         <script type="text/javascript">
-            try{ace.settings.loadState('sidebar')}catch(e){}
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {
+            }
         </script>
 
         <div class="sidebar-shortcuts" id="sidebar-shortcuts">
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 
 
-                <button class="btn btn-success"  onclick="myfuncreport()" id="myButton1" >
+                <button class="btn btn-success" onclick="myfuncreport()" id="myButton1">
 
-                    <i class="ace-icon fa fa-signal" ></i>
+                    <i class="ace-icon fa fa-signal"></i>
 
 
                 </button>
 
 
-                <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
+                <button class="btn btn-info" onclick="myfuncadmin()" id="myButton2">
                     <i class="ace-icon fa fa-pencil"></i>
                 </button>
 
-                <button class="btn btn-warning"  onclick="myfuncjobs()" id="myButton3">
+                <button class="btn btn-warning" onclick="myfuncjobs()" id="myButton3">
                     <i class="ace-icon fa fa-users"></i>
                 </button>
 
-                <button class="btn btn-danger"  onclick="myfuncsettings()" id="myButton4">
+                <button class="btn btn-danger" onclick="myfuncsettings()" id="myButton4">
                     <i class="ace-icon fa fa-cogs"></i>
                 </button>
-
-
 
 
             </div>
@@ -640,14 +552,14 @@ if(isset($_POST['update_submit'])) {
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <span class="menu-text"> Dashboard </span>
                 </a>
 
                 <b class="arrow"></b>
             </li>
 
             <li class="">
-                <a href="../profile/profile.php" >
+                <a href="../profile/profile.php">
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
@@ -662,7 +574,7 @@ if(isset($_POST['update_submit'])) {
             </li>
 
             <li class="">
-                <a href="../settings.php" >
+                <a href="../settings.php">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -674,8 +586,8 @@ if(isset($_POST['update_submit'])) {
 
             </li>
 
-            <li class="active">
-                <a href="../admin_panel/admin_panel_woexport.php" >
+            <li class="">
+                <a href="../admin_panel/admin_panel_woexport.php">
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 
@@ -697,8 +609,6 @@ if(isset($_POST['update_submit'])) {
 
 
             </li>
-
-
 
 
             <li>
@@ -744,7 +654,7 @@ if(isset($_POST['update_submit'])) {
             </li>
 
 
-            <li class="">
+            <li class="active">
                 <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
@@ -754,8 +664,6 @@ if(isset($_POST['update_submit'])) {
 
                 <b class="arrow"></b>
             </li>
-
-
 
 
             <li class="">
@@ -837,10 +745,6 @@ if(isset($_POST['update_submit'])) {
                     </li>
 
 
-
-
-
-
                 </ul>
             </li>
 
@@ -849,7 +753,8 @@ if(isset($_POST['update_submit'])) {
 
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
         </div>
     </div>
 
@@ -859,15 +764,16 @@ if(isset($_POST['update_submit'])) {
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
-                    <li class="active">Admin Panel</li>
+                    <li class="active">Reports</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
 								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<input type="text" placeholder="Search ..." class="nav-search-input"
+                                           id="nav-search-input" autocomplete="off"/>
 									<i class="ace-icon fa fa-search nav-search-icon"></i>
 								</span>
                     </form>
@@ -877,254 +783,336 @@ if(isset($_POST['update_submit'])) {
             <div class="page-content">
                 <!-- /.ace-settings-container -->
 
-<!--                <div class="page-header">-->
-<!--                    <h1>-->
-<!--                        Student Interaction-->
-<!--                        <small>-->
-<!--                            <i class="ace-icon fa fa-angle-double-right"></i>-->
-<!--                            overview &amp; stats-->
-<!--                        </small>-->
-<!--                    </h1>-->
-<!--                </div><!-- /.page-header -->
+                <!--                <div class="page-header">-->
+                <!---->
+                <!--                </div><!-- /.page-header -->
 
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
+
                         <div class="row">
                             <div class="col-xs-12">
-                                <h3 class="header smaller lighter blue">Admin Panel</h3>
-                                <div class="myfont">
-                                    Switch to Detailed View
+                                <h3 class="header smaller lighter blue">Reports</h3>
 
-                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="tabbable">
+                                            <?php
+
+                                            if($_GET['flag']==0){
+                                                ?>
+
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                <li class="active" onclick="check1(<?php  echo $_GET['jid'] ?>)">
+                                                    <a data-toggle="tab" href="#home">
+                                                        <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                Eligible
+                                                    </a>
+                                                </li>
+
+                                                <li class="" onclick="check2(<?php  echo $_GET['jid'] ?>)">
+                                                    <a data-toggle="tab" href="#home">
+                                                    Accepted
+                                                        <span class="badge badge-danger">4</span>
+                                                    </a>
+                                                </li>
+                                                <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
+                                                    <a data-toggle="tab" href="#home">
+                                                    Not Accepted
+                                                <span class="badge badge-danger">4</span>
+                                                    </a>
+                                                </li>
 
 
-                                <div class="col-xs-3 test">
-                                    <label>
-                                        <input name="switch-field-1" id="chk1" class="ace ace-switch ace-switch-7" checked data-toggle="toggle" type="checkbox" />
-                                        <span class="lbl"></span>
-                                    </label>
-                                </div>
+                                            </ul>
+                                            <?php
+
+                                            }
+                                            else if($_GET['flag']==1){
+
+                                                ?>
+
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="" onclick="check1(<?php  echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                            Eligible
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="active" onclick="check2(<?php  echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            Accepted
+                                                            <span class="badge badge-danger">4</span>
+                                                        </a>
+                                                    </li>
+                                                    <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            Not Accepted
+                                                            <span class="badge badge-danger">4</span>
+                                                        </a>
+                                                    </li>
 
 
+                                                </ul>
+
+                                                <?php
+                                            }
+
+                                            else if($_GET['flag']==2) {
+
+                                                ?>
+
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="" onclick="check1(<?php echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                            Eligible
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="" onclick="check2(<?php echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            Accepted
+                                                            <span class="badge badge-danger">4</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="active" onclick="check3(<?php echo $_GET['jid'] ?>)">
+                                                        <a data-toggle="tab" href="#home">
+                                                            Not Accepted
+                                                            <span class="badge badge-danger">4</span>
+                                                        </a>
+                                                    </li>
 
 
+                                                </ul>
 
-                                <div class="clearfix">
-                                    <div class="pull-right tableTools-container"></div>
-                                </div>
+                                                <?php
 
-                                <div class="table-header">
-                                    Results for "Students List"
+                                            }
+
+                                            ?>
+
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane fade in active">
+
+
+                                                    <div class="clearfix">
+                                                        <div class="pull-right tableTools-container hello"></div>
+                                                    </div>
+                                                    <div class="table-header">
+                                                        Students List
+                                                    </div>
+
+
+                                                    <div>
+                                                        <table id="dynamic-table"
+                                                               class="dynamic-table table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Roll No
+                                                                </th>
+                                                                <th>Name</th>
+                                                                <th>Email</th>
+
+
+                                                                <th>
+                                                                    <i class="ace-icon fa fa-phone bigger-110 hidden-480"></i>
+                                                                    Phone
+                                                                </th>
+                                                                <th class="hidden-480">CGPA</th>
+
+
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+                                                            <!--                                                            eligible-->
+                                                            <?php
+
+
+                                                            if (isset($_GET['jid']) && $_GET['flag']==0) {
+
+                                                                $jid = $_GET['jid'];
+
+                                                                include "../connect.php";
+                                                                $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                                $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                                $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                                $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                                $query_job = "SELECT * FROM students_" . $year_of_gradudation . " WHERE  _" . $jid . "='eligible' OR _" . $jid . "='accepted'";
+                                                                $result_job = mysqli_query($connect, $query_job);
+
+                                                                while ($row_job = mysqli_fetch_assoc($result_job)) {
+
+                                                                    ?>
+
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <?php echo $row_job['st_roll'] ?>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <?php echo $row_job['st_name'] ?>
+                                                                        </td>
+
+                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td> <?php echo $row_job['st_phone'] ?></td>
+
+                                                                        <td class="hidden-480">
+                                                                            <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+
+                                                                    <?php
+
+                                                                }
+
+                                                            }
+
+
+                                                            ?>
+
+
+                                                            <!--                                                            Accepted-->
+
+
+                                                            <?php
+
+
+                                                            if (isset($_GET['jid']) && $_GET['flag']==1) {
+
+                                                                $jid = $_GET['jid'];
+
+                                                                include "../connect.php";
+                                                                $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                                $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                                $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                                $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                                $query_job = "SELECT * FROM students_" . $year_of_gradudation . " WHERE   _" . $jid . "='accepted'";
+                                                                $result_job = mysqli_query($connect, $query_job);
+
+                                                                while ($row_job = mysqli_fetch_assoc($result_job)) {
+
+                                                                    ?>
+
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <?php echo $row_job['st_roll'] ?>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <?php echo $row_job['st_name'] ?>
+                                                                        </td>
+
+                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td> <?php echo $row_job['st_phone'] ?></td>
+
+                                                                        <td class="hidden-480">
+                                                                            <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+
+                                                                    <?php
+
+                                                                }
+
+                                                            }
+
+
+                                                            ?>
+                                                            <!-- not accepted -->
+
+                                                            <?php
+
+
+                                                            if (isset($_GET['jid']) && $_GET['flag']==2) {
+
+                                                                $jid = $_GET['jid'];
+
+                                                                include "../connect.php";
+                                                                $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                                $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                                $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                                $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                                $query_job = "SELECT * FROM students_" . $year_of_gradudation . " WHERE   _" . $jid . "='eligible'";
+                                                                $result_job = mysqli_query($connect, $query_job);
+
+                                                                while ($row_job = mysqli_fetch_assoc($result_job)) {
+
+                                                                    ?>
+
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <?php echo $row_job['st_roll'] ?>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <?php echo $row_job['st_name'] ?>
+                                                                        </td>
+
+                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td> <?php echo $row_job['st_phone'] ?></td>
+
+                                                                        <td class="hidden-480">
+                                                                            <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+
+                                                                    <?php
+
+                                                                }
+
+                                                            }
+
+
+                                                            ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div><!-- /.col -->
+
+
                                 </div>
 
                                 <!-- div.table-responsive -->
 
                                 <!-- div.dataTables_borderWrap -->
-                                <div>
-                                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </th>
-                                            <th>Roll No</th>
-                                            <th>Name</th>
 
-
-                                            <th>
-                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                Email
-                                            </th>
-                                            <th class="hidden-480">Phone</th>
-
-
-                                            <th>CGPA</th>
-                                            <th>Password</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-
-                                        <?php
-
-                                        include "../connect.php";
-
-                                        $query="select * from students_list";
-                                        $result=mysqli_query($connect,$query);
-
-
-                                        while($row=mysqli_fetch_assoc($result)){
-                                            $roll=$row['st_roll'];
-                                            $name=$row['st_name'];
-                                            $email=$row['st_email'];
-                                            $phone=$row['st_phone'];
-                                            $cgpa=$row['st_cgpa'];
-                                            $pass=$row['st_pass'];
-
-                                        ?>
-
-
-                                        <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-
-                                            <td>
-
-                                                    <?php echo $roll ?>
-
-                                            </td>
-                                            <td>
-                                                <?php echo $name ?>
-                                            </td>
-                                            <td class="hidden-480"><?php echo $email?></td>
-                                            <td><?php echo $phone?></td>
-
-                                            <?php
-
-
-
-
-                                            if($cgpa>8){
-
-
-
-                                            ?>
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-success"><?php echo $cgpa ?></span>
-                                            </td>
-                                            <?php
-
-
-
-                                            }
-
-
-
-
-
-                                            else{
-
-
-
-                                            ?>
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-important"><?php echo $cgpa ?></span>
-                                            </td>
-                                            <?php
-
-
-
-                                            }
-
-                                            ?>
-
-
-
-
-
-
-
-
-
-
-
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-warning"><?php echo $pass ?></span>
-
-
-                                            <td>
-                                                <div class="hidden-sm hidden-xs action-buttons">
-
-
-
-
-                                                    <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showStudent(<?php  echo $roll  ?>)">
-                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                    </a>
-                                                    <a class="red" href="../admin_panel/admin_panel.php?delete=<?php echo $roll ?>">
-                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                    </a>
-                                                </div>
-
-                                                <div class="hidden-md hidden-lg">
-                                                    <div class="inline pos-rel">
-                                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                                        </button>
-
-                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-
-
-                                                            <li>
-                                                                <a href="#modal-form" class="tooltip-success" data-toggle="modal"
-                                                                   data-rel="tooltip" title="Edit"  onclick="showStudent(<?php  echo $roll   ?>)">
-
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <li>
-                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-
-
-
-
-
-
-
-
-
-                                        <?php
-
-
-
-                                        }
-
-
-
-                                        ?>
-
-                                        </tbody>
-
-
-                                    </table>
-
-                                    <div id="modal-form" class="modal" tabindex="-1">
-
-                                    </div>
-
-
-
-                                </div>
                             </div>
                         </div>
 
+                        <div id="modal-form" class="modal" tabindex="-1">
 
-
+                        </div>
 
 
                         <!-- PAGE CONTENT ENDS -->
@@ -1152,7 +1140,6 @@ if(isset($_POST['update_submit'])) {
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
@@ -1164,7 +1151,7 @@ if(isset($_POST['update_submit'])) {
 <script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 <script src="../assets/js/bootstrap.min.js"></script>
 
@@ -1179,7 +1166,6 @@ if(isset($_POST['update_submit'])) {
 <script src="../assets/js/dataTables.select.min.js"></script>
 
 
-
 <script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
 <script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
@@ -1187,25 +1173,9 @@ if(isset($_POST['update_submit'])) {
 <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
 <script src="../../vendors/jszip/dist/jszip.min.js"></script>
 <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- ace scripts -->
@@ -1216,27 +1186,19 @@ if(isset($_POST['update_submit'])) {
 <script type="text/javascript">
 
 
-;
-
-
-
-
-
-
-    jQuery(function($) {
+    jQuery(function ($) {
         //initiate dataTables plugin
         var myTable =
             $('#dynamic-table')
             //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                .DataTable( {
+                .DataTable({
                     bAutoWidth: false,
                     "aoColumns": [
-                        { "bSortable": false },
-                        null, null,null, null, null,null,
-                        { "bSortable": false }
+
+                        null, null, null, null, null
+
                     ],
                     "aaSorting": [],
-
 
 
                     //"bProcessing": true,
@@ -1259,13 +1221,12 @@ if(isset($_POST['update_submit'])) {
 //                    select: {
 //                        style: 'multi'
 //                    }
-                } );
-
+                });
 
 
         $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
-        new $.fn.dataTable.Buttons( myTable, {
+        new $.fn.dataTable.Buttons(myTable, {
             buttons: [
                 {
                     "extend": "colvis",
@@ -1309,15 +1270,9 @@ if(isset($_POST['update_submit'])) {
                     message: 'This print was produced using the Print button for DataTables'
                 }
             ]
-        } );
-        myTable.buttons().container().appendTo( $('.tableTools-container') );
-
-
-        $('#chk1').click(function(){
-            $("button").toggle(200, function(){
-                location.href="../admin_panel/admin_panel_woexport.php"
-            });
         });
+        myTable.buttons().container().appendTo($('.tableTools-container'));
+
 
         //style the message box
         var defaultCopyAction = myTable.button(1).action();
@@ -1333,7 +1288,7 @@ if(isset($_POST['update_submit'])) {
             defaultColvisAction(e, dt, button, config);
 
 
-            if($('.dt-button-collection > .dropdown-menu').length == 0) {
+            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
                 $('.dt-button-collection')
                     .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
                     .find('a').attr('href', '#').wrap("<li />")
@@ -1343,159 +1298,19 @@ if(isset($_POST['update_submit'])) {
 
         ////
 
-        setTimeout(function() {
-            $($('.tableTools-container')).find('a.dt-button').each(function() {
+        setTimeout(function () {
+            $($('.tableTools-container')).find('a.dt-button').each(function () {
                 var div = $(this).find(' > div').first();
-                if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+                if (div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
                 else $(this).tooltip({container: 'body', title: $(this).text()});
             });
         }, 500);
 
 
+        //table 1
 
 
-
-        myTable.on( 'select', function ( e, dt, type, index ) {
-            if ( type === 'row' ) {
-                $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
-            }
-        } );
-        myTable.on( 'deselect', function ( e, dt, type, index ) {
-            if ( type === 'row' ) {
-                $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
-            }
-        } );
-
-
-
-
-        /////////////////////////////////
-        //table checkboxes
-        $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-
-
-
-        //select/deselect all rows according to table header checkbox
-        $('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $('#dynamic-table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) myTable.row(row).select();
-                else  myTable.row(row).deselect();
-            });
-        });
-
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#dynamic-table').on('click', 'tr input[type=checkbox]' , function(){
-            var $row = $(this).closest('tr');
-            if(this.checked) $row.addClass("selected highlight");
-            else $row.removeClass("selected highlight");
-        });
-
-
-
-        $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
-        });
-
-
-
-        //And for the first simple table, which doesn't have TableTools or dataTables
-        //select/deselect all rows according to table header checkbox
-        var active_class = 'active';
-        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $(this).closest('table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
-                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
-            });
-        });
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
-            var $row = $(this).closest('tr');
-            if($row.is('.detail-row ')) return;
-            if(this.checked) $row.addClass(active_class);
-            else $row.removeClass(active_class);
-        });
-
-
-
-        /********************************/
-        //add tooltip for small view action buttons in dropdown menu
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-
-        //tooltip placement on right or left
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('table')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            //var w2 = $source.width();
-
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-
-
-
-
-        /***************/
-        $('.show-details-btn').on('click', function(e) {
-            e.preventDefault();
-            $(this).closest('tr').next().toggleClass('open');
-            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-        });
-        /***************/
-
-
-
-        $('#modal-form input[type=file]').ace_file_input({
-            style:'well',
-            btn_choose:'Drop files here or click to choose',
-            btn_change:null,
-            no_icon:'ace-icon fa fa-cloud-upload',
-            droppable:true,
-            thumbnail:'large'
-        });
-
-        //chosen plugin inside a modal will have a zero width because the select element is originally hidden
-        //and its width cannot be determined.
-        //so we set the width after modal is show
-        $('#modal-form').on('shown.bs.modal', function () {
-            if(!ace.vars['touch']) {
-                $(this).find('.chosen-container').each(function(){
-                    $(this).find('a:first-child').css('width' , '210px');
-                    $(this).find('.chosen-drop').css('width' , '210px');
-                    $(this).find('.chosen-search input').css('width' , '200px');
-                });
-            }
-        });
-
-
-
-        /**
-         //add horizontal scrollbars to a simple table
-         $('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-         {
-           horizontal: true,
-           styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-           size: 2000,
-           mouseWheelLock: true
-         }
-         ).css('padding-top', '12px');
-         */
-
-
-    })
+    });
 </script>
 
 </body>

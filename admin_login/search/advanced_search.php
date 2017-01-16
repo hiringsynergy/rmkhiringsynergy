@@ -637,7 +637,7 @@ function updateSlider(){
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 

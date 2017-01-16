@@ -759,7 +759,7 @@ if(isset($_GET['delete']))
 
 
 					<li class="">
-						<a href="reports.php">
+						<a href="reports/reports.php">
 
 							<i class="menu-icon fa fa-bar-chart"></i>
 

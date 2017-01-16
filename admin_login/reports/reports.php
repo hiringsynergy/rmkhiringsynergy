@@ -29,8 +29,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 
     <!-- Latest compiled and minified CSS -->
@@ -46,19 +46,19 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "reports.php";
+            location.href = "../../reports.php";
 
         }
         function myfuncadmin() {
-            location.href = "admin_panel/admin_panel_woexport.php";
+            location.href = "../admin_panel/admin_panel_woexport.php";
 
         }
         function myfuncjobs() {
-            location.href = "jobs/jobs_panel.php";
+            location.href = "../jobs/jobs_panel.php";
 
         }
         function myfuncsettings() {
-            location.href = "settings.php";
+            location.href = "../settings.php";
 
         }
         function showreports(){
@@ -67,6 +67,13 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             var strUser = e.options[e.selectedIndex].value;
 
             location.href = "reports.php?year="+strUser;
+
+        }
+        function viewlist(str){
+
+
+            location.href="show_lists.php?jid="+str+"&flag=0";
+
 
         }
 
@@ -91,7 +98,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <?php
                     if(isset($_GET['year'])){
 
-                include "connect.php";
+                include "../connect.php";
                 $table = $_GET['year'];
 
                 $query_get_year="SELECT * FROM table_map WHERE table_name='$table'";
@@ -102,7 +109,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                include "connect.php";
+                include "../connect.php";
                 $query_jobs = "SELECT * FROM jobs where year_of_graduation={$year_of_graduation}";
                 $result_jobs = mysqli_query($connect, $query_jobs);
 
@@ -182,40 +189,40 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
     <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-    <link rel="stylesheet" href="assets/css/chosen.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="../assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-    <script src="assets/js/html5shiv.min.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="../assets/js/html5shiv.min.js"></script>
+    <script src="../assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -233,10 +240,10 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="index.php" class="navbar-brand">
+            <a href="../index.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../logos/rmklogo.JPG" style="height: 25px;">
+                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
                     RMK Group of Institutions
                 </small>
             </a>
@@ -405,7 +412,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -422,7 +429,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -439,7 +446,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -456,7 +463,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -473,7 +480,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -491,7 +498,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.php">
+                            <a href="../inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -502,7 +509,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        include "connect.php";
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -525,7 +532,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                             ?>
 
 
-                            <img class="nav-user-photo" src="images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -544,7 +551,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         </li>
 
                         <li>
-                            <a href="profile/profile.php">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -553,7 +560,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
@@ -615,7 +622,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="index.php">
+                <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
@@ -624,7 +631,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </li>
 
             <li class="">
-                <a href="profile/profile.php" >
+                <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
@@ -639,7 +646,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </li>
 
             <li class="">
-                <a href="settings.php" >
+                <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -652,7 +659,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </li>
 
             <li class="">
-                <a href="admin_panel/admin_panel_woexport.php" >
+                <a href="../admin_panel/admin_panel_woexport.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 
@@ -665,7 +672,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </li>
 
             <li class="">
-                <a href="approve.php">
+                <a href="../approve.php">
                     <i class="menu-icon fa fa-list-alt"></i>
                     <span class="menu-text"> Approve </span>
                 </a>
@@ -690,7 +697,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="jobs/view_jobs.php">
+                        <a href="../jobs/view_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View all Jobs
                         </a>
@@ -699,7 +706,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
 
                     <li class="">
-                        <a href="jobs/post_jobs.php">
+                        <a href="../jobs/post_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Post Job
                         </a>
@@ -708,7 +715,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
 
                     <li class="">
-                        <a href="jobs/jobs_panel.php">
+                        <a href="../jobs/jobs_panel.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Jobs Panel
                         </a>
@@ -747,7 +754,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="company/create_company.php">
+                        <a href="../company/create_company.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Create Company
                         </a>
@@ -756,7 +763,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
 
                     <li class="">
-                        <a href="company/view_companies.php">
+                        <a href="../company/view_companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View Companies
                         </a>
@@ -764,7 +771,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="company/companies.php">
+                        <a href="../company/companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Company Panel
                         </a>
@@ -788,7 +795,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="search/advanced_search.php">
+                        <a href="../search/advanced_search.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Advanced Search
                         </a>
@@ -796,7 +803,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="email.php">
+                        <a href="../email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>
@@ -805,7 +812,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
 
                     <li class="">
-                        <a href="inbox.php">
+                        <a href="../inbox.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Inbox
                         </a>
@@ -835,7 +842,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="../index.html">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li class="active">Reports</li>
                 </ul><!-- /.breadcrumb -->
@@ -889,7 +896,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                         }
 
-                        include "connect.php";
+                        include "../connect.php";
                         $query_option="SELECT * FROM table_map";
                         $result_option=mysqli_query($connect, $query_option);
                         while($row_option=mysqli_fetch_assoc($result_option)){
@@ -934,7 +941,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                             $table=$_GET['year'];
 
-                        include  "connect.php";
+                        include "../connect.php";
                         $query_jobs="SELECT * FROM jobs";
                         $result_jobs=mysqli_query($connect, $query_jobs);
 
@@ -950,7 +957,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
                                 <div class="col-md-6 ">
-                                    <button class=" btn btn-warning col-xs-push-9">View List</button>
+                                    <button class=" btn btn-warning col-xs-push-9" onclick="viewlist(<?php echo $row['job_id'] ?>)">View List</button>
 
                                     <div id="chart_div<?php echo $row['job_id'] ?>"
                                          style="width: 100%; min-height: 450px;"></div>
@@ -1006,55 +1013,55 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!--[if lte IE 8]>
-<script src="assets/js/excanvas.min.js"></script>
+<script src="../assets/js/excanvas.min.js"></script>
 <![endif]-->
-<script src="assets/js/jquery-ui.custom.min.js"></script>
-<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="assets/js/jquery.easypiechart.min.js"></script>
-<script src="assets/js/jquery.sparkline.index.min.js"></script>
-<script src="assets/js/jquery.flot.min.js"></script>
-<script src="assets/js/jquery.flot.pie.min.js"></script>
-<script src="assets/js/jquery.flot.resize.min.js"></script>
+<script src="../assets/js/jquery-ui.custom.min.js"></script>
+<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../assets/js/jquery.easypiechart.min.js"></script>
+<script src="../assets/js/jquery.sparkline.index.min.js"></script>
+<script src="../assets/js/jquery.flot.min.js"></script>
+<script src="../assets/js/jquery.flot.pie.min.js"></script>
+<script src="../assets/js/jquery.flot.resize.min.js"></script>
 
 <!-- ace scripts -->
-<script src="assets/js/ace-elements.min.js"></script>
-<script src="assets/js/ace.min.js"></script>
+<script src="../assets/js/ace-elements.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
-    <script src="assets/js/jquery-ui.custom.min.js"></script>
-    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="assets/js/chosen.jquery.min.js"></script>
-    <script src="assets/js/spinbox.min.js"></script>
-    <script src="assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/js/bootstrap-timepicker.min.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/daterangepicker.min.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="assets/js/bootstrap-colorpicker.min.js"></script>
-    <script src="assets/js/jquery.knob.min.js"></script>
-    <script src="assets/js/autosize.min.js"></script>
-    <script src="assets/js/jquery.inputlimiter.min.js"></script>
-    <script src="assets/js/jquery.maskedinput.min.js"></script>
-    <script src="assets/js/bootstrap-tag.min.js"></script>
+    <script src="../assets/js/jquery-ui.custom.min.js"></script>
+    <script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../assets/js/chosen.jquery.min.js"></script>
+    <script src="../assets/js/spinbox.min.js"></script>
+    <script src="../assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/js/bootstrap-timepicker.min.js"></script>
+    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/daterangepicker.min.js"></script>
+    <script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../assets/js/bootstrap-colorpicker.min.js"></script>
+    <script src="../assets/js/jquery.knob.min.js"></script>
+    <script src="../assets/js/autosize.min.js"></script>
+    <script src="../assets/js/jquery.inputlimiter.min.js"></script>
+    <script src="../assets/js/jquery.maskedinput.min.js"></script>
+    <script src="../assets/js/bootstrap-tag.min.js"></script>
 
     <!-- ace scripts -->
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
+    <script src="../assets/js/ace-elements.min.js"></script>
+    <script src="../assets/js/ace.min.js"></script>
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">

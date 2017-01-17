@@ -162,7 +162,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="blue bigger">Please fill the following form fields</h4>
             </div>
-            <form action="admin_panel_woexport.php" method="post">
+            <form action="admin_panel.php" method="post">
 
                 <div class="modal-body">
                     <div class="row">

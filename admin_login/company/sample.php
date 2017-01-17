@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
+            location.href = "../admin_panel/admin_panel.php";
 
         }
         function myfuncjobs() {
@@ -390,7 +390,7 @@ if(isset($_POST['update_submit'])) {
             </li>
 
             <li class="">
-                <a href="../admin_panel/admin_panel_woexport.php" >
+                <a href="../admin_panel/admin_panel.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 

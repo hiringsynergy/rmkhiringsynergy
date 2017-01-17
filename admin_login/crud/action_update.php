@@ -66,6 +66,14 @@ if(isset($_POST['action_update'])){
             location.href = "settings.php";
 
         }
+        function showreports(){
+
+            var e = document.getElementById("form-field-select-3");
+            var strUser = e.options[e.selectedIndex].value;
+
+            location.href = "adminpanel.php?year="+strUser;
+
+        }
 
 
 
@@ -382,7 +390,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </li>
 
             <li class="">
-                <a href="../admin_panel/admin_panel_woexport.php" >
+                <a href="../admin_panel/admin_panel.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 

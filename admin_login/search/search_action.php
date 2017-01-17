@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
+            location.href = "../admin_panel/admin_panel.php";
 
         }
         function myfuncjobs() {
@@ -467,7 +467,7 @@ if(isset($_GET['filter'])) {
             </li>
 
             <li class="">
-                <a href="../admin_panel/admin_panel_woexport.php" >
+                <a href="../admin_panel/admin_panel.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 
@@ -1451,7 +1451,7 @@ $('[data-rel=tooltip]').tooltip({container:'body'});
 
         $('#chk1').click(function(){
             $("button").toggle(200, function(){
-                location.href="../admin_panel/admin_panel_woexport.php"
+                location.href="../admin_panel/admin_panel.php"
             });
         });
 

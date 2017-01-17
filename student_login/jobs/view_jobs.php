@@ -134,7 +134,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <div class="navbar-header pull-left" ">
+        <div class="navbar-header pull-left" >
         <a href="view_jobs.php" class="navbar-brand">
             <small>
                 <i class=""></i>
@@ -570,7 +570,7 @@
                         //
 
 
-                        $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$branch."%' and year_of_graduation='$year_of_graduation'  ORDER BY apply_before DESC";
+                        $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$branch."%' and year_of_graduation='$year_of_graduation' ORDER BY sort  DESC";
                         $result= mysqli_query($connect, $query);
                         $i=0;
 

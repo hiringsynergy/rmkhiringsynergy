@@ -135,7 +135,12 @@ if(isset($_GET['delete']))
 
     include "connect.php";
 
-    $query="DROP TABLE students_".$tab_name."";
+    $query_jobs="DELETE FROM jobs WHERE year_of_graduation={$tab_name}";
+    $result_jobs=mysqli_query($connect, $query_jobs);
+
+
+
+    $query="DROP TABLE students_".$tab_name." ";
     $result=mysqli_query($connect, $query);
 
     $query2="DELETE FROM table_map WHERE table_value=$tab_name";

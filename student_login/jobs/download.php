@@ -9,12 +9,14 @@ if(isset($_GET['file'])) {
     include "../connect.php";
 
 
+    echo "presentation". $_GET['file'];
     $query = "SELECT * FROM company_list WHERE company_id={$id}";
     $result = mysqli_query($connect, $query);
     $row = mysqli_fetch_assoc($result);
     $filename = $row['company_presentation'];
 
 
+    echo "filename".$filename;
 
     if(!empty($filename)){
         // Specify file path.

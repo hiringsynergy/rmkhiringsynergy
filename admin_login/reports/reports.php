@@ -117,6 +117,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 while ($row = mysqli_fetch_assoc($result_jobs)){
 
 
+                    //count eligible
                 $query_count = " SELECT * FROM $table WHERE _" . $row['job_id'] . "='eligible'";
                 $result_count = mysqli_query($connect, $query_count);
                 $eligible = mysqli_num_rows($result_count);
@@ -129,6 +130,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
+                //count accepted
                 $query_count_accepted = " SELECT * FROM $table WHERE _" . $row['job_id'] . "='accepted'";
                 $result_count_accepted = mysqli_query($connect, $query_count_accepted);
                 $accepted = mysqli_num_rows($result_count_accepted);

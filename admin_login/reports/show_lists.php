@@ -617,21 +617,82 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 <ul class="nav nav-tabs" id="myTab">
                                                 <li class="active" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
-                                                        <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                        <i class="green ace-icon fa fa-user bigger-120"></i>
                                                 Eligible
+                                                        <span class="badge badge-success">
+
+                                                    <?php
+                                                    $jid=$_GET['jid'];
+
+                                                    $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                    $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                    $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                    $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible' OR  _" .$jid. "='accepted'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                     </a>
                                                 </li>
 
                                                 <li class="" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
+                                                        <i class="blue ace-icon fa fa-user bigger-120"></i>
                                                     Accepted
-                                                        <span class="badge badge-danger">4</span>
+                                                        <span class="badge badge-primary">
+                                                            <?php
+
+
+                                                            $query_count_accepted = " SELECT * FROM students_".$year_of_gradudation." WHERE _" . $_GET['jid'] . "='accepted'";
+                                                            $result_count_accepted = mysqli_query($connect, $query_count_accepted);
+                                                            $accepted = mysqli_num_rows($result_count_accepted);
+
+
+                                                            echo $accepted;
+
+                                                            ?>
+
+                                                        </span>
                                                     </a>
                                                 </li>
                                                 <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
+                                                        <i class="red ace-icon fa fa-user bigger-120"></i>
                                                     Not Accepted
-                                                <span class="badge badge-danger">4</span>
+                                                <span class="badge badge-danger">
+
+                                                    <?php
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                     </a>
                                                 </li>
 
@@ -647,21 +708,82 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 <ul class="nav nav-tabs" id="myTab">
                                                     <li class="" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                            <i class="green ace-icon fa fa-user bigger-120"></i>
                                                             Eligible
+                                                            <span class="badge badge-success">
+
+                                                    <?php
+                                                    $jid=$_GET['jid'];
+
+                                                    $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                    $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                    $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                    $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible' OR  _" .$jid. "='accepted'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                         </a>
                                                     </li>
 
                                                     <li class="active" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
+                                                            <i class="blue ace-icon fa fa-user bigger-120"></i>
                                                             Accepted
-                                                            <span class="badge badge-danger">4</span>
+                                                            <span class="badge badge-primary">
+                                                            <?php
+
+
+                                                            $query_count_accepted = " SELECT * FROM students_".$year_of_gradudation." WHERE _" . $_GET['jid'] . "='accepted'";
+                                                            $result_count_accepted = mysqli_query($connect, $query_count_accepted);
+                                                            $accepted = mysqli_num_rows($result_count_accepted);
+
+
+                                                            echo $accepted;
+
+                                                            ?>
+
+                                                        </span>
                                                         </a>
                                                     </li>
                                                     <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
+                                                            <i class="red ace-icon fa fa-user bigger-120"></i>
                                                             Not Accepted
-                                                            <span class="badge badge-danger">4</span>
+                                                            <span class="badge badge-danger">
+
+                                                    <?php
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                         </a>
                                                     </li>
 
@@ -676,23 +798,84 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 ?>
 
                                                 <ul class="nav nav-tabs" id="myTab">
-                                                    <li class="" onclick="check1(<?php echo $_GET['jid'] ?>)">
+                                                    <li class="" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                                                            <i class="green ace-icon fa fa-user bigger-120"></i>
                                                             Eligible
+                                                            <span class="badge badge-success">
+
+                                                    <?php
+                                                    $jid=$_GET['jid'];
+
+                                                    $query_eligible_year = "SELECT * FROM jobs WHERE job_id='$jid'";
+                                                    $result_eligible_year = mysqli_query($connect, $query_eligible_year);
+                                                    $row_eligible_year = mysqli_fetch_assoc($result_eligible_year);
+
+                                                    $year_of_gradudation = $row_eligible_year['year_of_graduation'];
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible' OR  _" .$jid. "='accepted'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                         </a>
                                                     </li>
 
-                                                    <li class="" onclick="check2(<?php echo $_GET['jid'] ?>)">
+                                                    <li class="" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
+                                                            <i class="blue ace-icon fa fa-user bigger-120"></i>
                                                             Accepted
-                                                            <span class="badge badge-danger">4</span>
+                                                            <span class="badge badge-primary">
+                                                            <?php
+
+
+                                                            $query_count_accepted = " SELECT * FROM students_".$year_of_gradudation." WHERE _" . $_GET['jid'] . "='accepted'";
+                                                            $result_count_accepted = mysqli_query($connect, $query_count_accepted);
+                                                            $accepted = mysqli_num_rows($result_count_accepted);
+
+
+                                                            echo $accepted;
+
+                                                            ?>
+
+                                                        </span>
                                                         </a>
-                                                    </li>
-                                                    <li class="active" onclick="check3(<?php echo $_GET['jid'] ?>)">
+                                                    </li >
+                                                    <li class="active" onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
+                                                            <i class="red ace-icon fa fa-user bigger-120"></i>
                                                             Not Accepted
-                                                            <span class="badge badge-danger">4</span>
+                                                            <span class="badge badge-danger">
+
+                                                    <?php
+
+                                                    $query_count = " SELECT * FROM students_".$year_of_gradudation." WHERE _" .$jid. "='eligible'";
+                                                    $result_count = mysqli_query($connect, $query_count);
+                                                    $eligible = mysqli_num_rows($result_count);
+
+
+                                                    echo $eligible;
+
+
+
+
+                                                    ?>
+
+
+
+
+                                                </span>
                                                         </a>
                                                     </li>
 

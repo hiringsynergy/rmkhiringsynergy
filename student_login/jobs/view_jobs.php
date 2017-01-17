@@ -1010,6 +1010,18 @@
                                                                                 <span>above <?php echo $row['job_cgpa']; ?> cgpa</span>
                                                                             </div>
                                                                         </div>
+<div class="profile-info-row ">
+                                                        <div class="profile-info-name "  >Company's Presentation </div>
+
+                                                        <div class="profile-info-value col-xs-6">
+                                                            <a href="download.php?file=<?php echo $row['company_id'] ?>" name="presentation" class="btn btn-yellow bold" >Download Presentation</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="download">
+
+
+                                                    </div>
+
 
                                                                     </div>
                                                                 </div>

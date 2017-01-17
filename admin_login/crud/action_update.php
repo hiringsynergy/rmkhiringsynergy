@@ -4,7 +4,15 @@ session_start();
 ob_start();
 
 
-if(isset($_GET['create'])){
+if(isset($_POST['action_update'])){
+
+
+
+
+
+
+
+
 
 
 
@@ -585,157 +593,432 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                        <?php
 
 
-                        <div class="col-xs-8">
-                            <label for="form-field-select-3" style="color: #E75926; font-weight: bolder ; font-size: large;">Year of Graduation</label>
 
-                            <br>
-                            <br>
-
-
-                            <form action="action_update.php" method="get">
-
-
-                                <select class="col-xs-7 chosen-select form-control"  id="form-field-select-3" data-placeholder="Select a Year...">
-                                                    <?php
-
-                                                    include "../connect.php";
-                                                    $query_insert="SELECT * FROM table_map";
-                                                    $result_insert=mysqli_query($connect, $query_insert);
-                                                    while ($row=mysqli_fetch_assoc($result_insert)){
+                        if(isset($_FILES['file'])){
 
 
 
 
-                                                        ?>
+                            $file_name = $_FILES['file']['name'];
+                            $file_size = $_FILES['file']['size'];
+                            $file_tmp = $_FILES['file']['tmp_name'];
+                            $file_type = $_FILES['file']['type'];
+
+                            $year=$_POST['hidden_field'];
+
+                            $value = explode('.',$file_name);
 
 
 
-                                                        <option value="<?php echo $row['table_name']  ?>"><?php echo $row['table_value'] ?></option>
-                                                    <?php } ?>
-															</select>
 
-                                <div class="space-32"></div>
+                            $file_ext=strtolower(end($value));
+                            $temp = explode(".", $file_name);
+                            $newfilename = "file".time() . '.' . end($temp);
 
-
-
-                                <label class="" for="duallist" style="color: #71BA51; font-weight: bolder ; font-size: large;">Select Column </label>
-
-                                <div class="space-6"></div>
-                                <div class="row">
+                            $extensions= array("xls","xlsx");
 
 
-                                <div class="col-sm-12">
-                                    <select multiple="multiple" size="10" name="duallistbox_demo1[]" id="duallist">
+                            if(in_array($file_ext,$extensions)=== false){
+                                $errors="extension not allowed, please choose a JPEG or PNG file.";
+                            }
 
-                                        <?php
+                            if($file_size > 2097152) {
+                                $errors[]='File size must be excately 2 MB';
+                            }
 
+                            if(empty($errors)==true) {
+                                move_uploaded_file($file_tmp,"files/".$newfilename);
 
-                                        include "../connect.php";
-
-
-
-                                        ?>
-
-                                        	<option value="rollno">Roll No</option>
-                                            <option value="first_name">First Name</option>
-                                            <option value="mid_name">Middle Name</option>
-                                            <option value="last_name">Last Name</option>
-                                            <option value="full_name">Full Name</option>
-                                            <option value="gender">Gender (Male/Female)</option>
-                                            <option value="father_name">Father Name</option>
-                                            <option value="father_occupation">Father Occupation</option>
-                                            <option value="mother_name">Mother Name</option>
-                                            <option value="mother_occupation">Mother Occupation</option>
-                                            <option value="email_id">Email ID</option>
-                                            <option value="mobile_no">Mobile Number</option>
-                                            <option value="dob">Date of Birth (DD-MM-YYYY)</option>
-                                            <option value="nationality">Nationality</option>
-                                            <option value="caste">Caste</option>
-                                            <option value="college_name">College Name</option>
-                                            <option value="university">University</option>
-                                            <option value="10thpercent">10th %</option>
-                                            <option value="10thboard_of_study">Board of Study</option>
-                                            <option value="10thmedium">Medium (Tamil/English/Telugu/Others)</option>
-                                            <option value="10th_yearofpassing">10th - Year of Passing</option>
-                                            <option value="12thpercent">12th %</option>
-                                            <option value="12thboard_of_study">Board of Study</option>
-                                            <option value="12thmedium">Medium (Tamil/English/Telugu/Others)</option>
-                                            <option value="12th_yearofpassing">12th - Year of Passing</option>
-                                            <option value="diploma_percent">Diploma  %</option>
-                                            <option value="diploma_yearofpassing">Diploma - Year of Passing</option>
-                                            <option value="ug_pg">Currently Pursuing (UG/PG)</option>
-                                            <option value="ug_deg">UG Degree</option>
-                                            <option value="ug_dept">UG Department</option>
-                                            <option value="1_sem">1st Sem</option>
-                                            <option value="2_sem">2nd Sem</option>
-                                            <option value="3_sem">3rd Sem</option>
-                                            <option value="4_sem">4th Sem</option>
-                                            <option value="5_sem">5th Sem</option>
-                                            <option value="6_sem">6th Sem</option>
-                                            <option value="7_sem">7th Sem</option>
-                                            <option value="8_sem">8th Sem</option>
-                                            <option value="ug_cgpa">UG Degree % or CGPA</option>
-                                            <option value="ug_yearofpassing">UG - Year of Passing</option>
-                                            <option value="pg_deg">PG Degree</option>
-                                            <option value="pg_dept">PG Department</option>
-                                            <option value="pg_1_sem">1st Sem</option>
-                                            <option value="pg_2_sem">2nd Sem</option>
-                                            <option value="pg_3_sem">3rd Sem</option>
-                                            <option value="pg_4_sem">4th Sem</option>
-                                            <option value="pg_cgpa">PG Degree % or CGPA</option>
-                                            <option value="pg_yearofpassing">PG - Year of Passing</option>
-                                            <option value="dayscholar_hosteler">Day Scholar/ Hosteler</option>
-                                            <option value="history_of_arreas">No History of Arreas</option>
-                                            <option value="standing_arrears">Current Degree. No of Standing Arrears</option>
-                                            <option value="home_town">Home Town</option>
-                                            <option value="permanent_address_1">Permanent Address (Line 1)</option>
-                                            <option value="permanent_address_2">Permanent Address (Line 2)</option>
-                                            <option value="permanent_city">Permanent City</option>
-                                            <option value="state">State</option>
-                                            <option value="postal_code">Postal code</option>
-                                            <option value="contact_no">Contact Number ( Landline)</option>
-                                            <option value="skills">If any Skill Certifications Obtained Name the Skill</option>
-                                            <option value="duration_of_course">Duration of the course</option>
-                                            <option value="certification">Certification Vendor/Authority/Agency Name</option>
-                                            <option value="coe_certification">CoE Certification</option>
-                                            <option value="gap_in_studies">Gap in studies</option>
-                                            <option value="gap_in_studies_reason">Gap in studies Reason</option>
-                                            <option value="eng_percent">English Percentage</option>
-                                            <option value="quants_percent">Quantitative  Percentage</option>
-                                            <option value="logical_percent">Logical Percentage</option>
-                                            <option value="overall_average">Overall Average</option>
-                                            <option value="percent">Percentage</option>
-                                            <option value="candidate_id">Candidate ID</option>
-                                            <option value="signature">Signature</option>
-                                            <option value="placement_status">Placement Status</option>
-                                    </select>
-
-                                    <div class="hr hr-16 hr-dotted"></div>
-                                </div>
-
-                                </div>
-
-                                <div class="row col-sm-3">
+                            }
 
 
-                                    <div class="space-8"></div>
 
-                                <button class="btn btn-lg btn-warning ">
-                                    <i class="ace-icon fa fa-upload"></i>
-                                   Update
+
+
+
+                            include "../connect.php";
+                            include ("PHPExcel/IOFactory.php");
+
+                            $objPHPExcel = PHPExcel_IOFactory::load("files/$newfilename");
+                            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+                            {
+
+                                $highestRow = $worksheet->getHighestRow();
+                                for ($row=2; $row<=$highestRow; $row++)
+                                {
+
+
+
+                                    /* $id = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
+                                     $name = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
+                                     $position = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue());*/
+
+
+                                    $roll= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
+                                    $first_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
+                                    $middle_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue());
+                                    $last_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue());
+                                    $name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue());
+                                    $gender= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(5, $row)->getValue());
+                                    $father_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(6, $row)->getValue());
+                                    $father_occupation= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(7, $row)->getValue());
+                                    $mother_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(8, $row)->getValue());
+                                    $mother_occupation= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(9, $row)->getValue());
+                                    $email= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(10, $row)->getValue());
+                                    $phone= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(11, $row)->getValue());
+                                    $dob= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(12, $row)->getValue());
+                                    $nationality= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(13, $row)->getValue());
+                                    $caste= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(14, $row)->getValue());
+                                    $college_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(15, $row)->getValue());
+                                    $university= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(16, $row)->getValue());
+                                    $_10percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(17, $row)->getValue());
+                                    $_10boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(18, $row)->getValue());
+                                    $_10medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(19, $row)->getValue());
+                                    $_10yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(20, $row)->getValue());
+                                    $_12percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(21, $row)->getValue());
+                                    $_12boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(22, $row)->getValue());
+                                    $_12medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(23, $row)->getValue());
+                                    $_12yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(24, $row)->getValue());
+                                    $dippercentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(25, $row)->getValue());
+                                    $dipyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(26, $row)->getValue());
+                                    $current= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(27, $row)->getValue());
+                                    $ugdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(28, $row)->getValue());
+                                    $ugspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(29, $row)->getValue());
+                                    $ug1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(30, $row)->getValue());
+                                    $ug2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(31, $row)->getValue());
+                                    $ug3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(32, $row)->getValue());
+                                    $ug4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(33, $row)->getValue());
+                                    $ug5sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(34, $row)->getValue());
+                                    $ug6sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(35, $row)->getValue());
+                                    $ug7sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(36, $row)->getValue());
+                                    $ug8sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(37, $row)->getValue());
+                                    $cgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(38, $row)->getValue());
+                                    $ugyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(39, $row)->getValue());
+                                    $pgdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(40, $row)->getValue());
+                                    $pgspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(41, $row)->getValue());
+                                    $pg1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(42, $row)->getValue());
+                                    $pg2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(43, $row)->getValue());
+                                    $pg3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(44, $row)->getValue());
+                                    $pg4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(45, $row)->getValue());
+                                    $pgcgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(46, $row)->getValue());
+                                    $pgyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(47, $row)->getValue());
+                                    $dayhostel= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(48, $row)->getValue());
+                                    $historyofarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(49, $row)->getValue());
+                                    $standingarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(50, $row)->getValue());
+                                    $hometown= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(51, $row)->getValue());
+                                    $address1= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(52, $row)->getValue());
+                                    $address2= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(53, $row)->getValue());
+                                    $city= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(54, $row)->getValue());
+                                    $state= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(55, $row)->getValue());
+                                    $postal_code= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(56, $row)->getValue());
+                                    $landline= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(57, $row)->getValue());
+                                    $skill= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(58, $row)->getValue());
+                                    $duration= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(59, $row)->getValue());
+                                    $vendor= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(60, $row)->getValue());
+                                    $coecertification= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(61, $row)->getValue());
+                                    $gap= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(62, $row)->getValue());
+                                    $reason= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(63, $row)->getValue());
+                                    $english= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(64, $row)->getValue());
+                                    $quantitative= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(65, $row)->getValue());
+                                    $logical= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(67, $row)->getValue());
+                                    $overall= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(68, $row)->getValue());
+                                    $percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(69, $row)->getValue());
+                                    $candidate= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(70, $row)->getValue());
+                                    $signature= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(71, $row)->getValue());
+                                    $placement_status= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(72, $row)->getValue());
+
+
+
+                                    $database_name=$_SESSION['database_name'];
+                                    if($database_name=='rmd_database'){
+
+
+
+
+
+
+
+                                        $getupdate=$_POST['duallistbox_demo1'];
+                                        $query_update="UPDATE ".$year." SET ";
+                                         $count= count($getupdate);
+                                        $i=1;
+                                        foreach($_POST['duallistbox_demo1'] as $temp){
+
+
+                                            switch($temp){
+
+                                                case 'rollno': {  $query_update.="st_roll='$roll'";  break;}
+                                                case 'first_name': {  $query_update.="st_firstname='$first_name'";  break;}
+                                                case 'mid_name': {  $query_update.="st_middlename='$middle_name'";  break;}
+                                                //code to be written -- duplicate the cases for different coulumns in database
+
+
+
+
+                                            }
+
+                                            if($i<$count){
+
+                                                $query_update.=", ";
+
+                                            }
+                                            else{
+                                                $query_update.=" ";
+                                            }
+
+
+                                            $i++;
+
+
+                                        }
+
+
+
+
+
+
+
+
+
+
+                                        $sql = $query_update." WHERE st_roll='$roll'";
+                                    }
+                                    else if($database_name=='rmk_database'){
+
+                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmk.jpg')";
+
+                                    }
+                                    else if($database_name='rmkcet_database'){
+
+                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmkcet.jpg')";
+                                    }
+
+
+
+
+
+                                    //echo "sql statement".$sql."<br>";
+
+
+                                   $result= mysqli_query($connect, $sql);
+
+
+
+
+
+                                    if(!$result){
+
+                                        die("".mysqli_error($connect));
+                                    }
+                                }
+                            }
+
+
+
+                            unlink("files/$newfilename");
+                            ?>
+
+                            <div class="alert alert-block alert-success">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
                                 </button>
-                                </div>
+
+                                <i class="ace-icon fa fa-check green"></i>
+
+
+                                <strong class="green">
+                                    Successfully updated
+
+                                </strong>
+
+
+                            </div>
+                            <div class="col-xs-6 bigger-120 ">
+
+                                <a href="../index.php" class="btn btn-primary">
+                                    Go Back
+
+                                </a>
+
+                            </div>
+                            <div class="col-xs-6">
+
+
+
+                            </div>
+
+                            <?php
 
 
 
 
-                            </form>
-                        </div>
+                        }
 
 
 
+
+
+
+
+
+
+
+
+
+                        else {
+
+
+                            ?>
+
+
+                            <div class="col-xs-8">
+                                <label for="form-field-select-3"
+                                       style="color: #E75926; font-weight: bolder ; font-size: large;">Choose
+                                    File</label>
+
+                                <br>
+                                <br>
+
+
+                                <form action="action_update.php" method="post" enctype="multipart/form-data">
+
+
+                                    <input type="hidden" value="<?php echo $_GET['year'] ?>" name="hidden_field" >
+                                    <input type="file" name="file" id="id-input-file-2"/>
+
+                                    <div class="space-32"></div>
+
+
+                                    <label class="" for="duallist"
+                                           style="color: #71BA51; font-weight: bolder ; font-size: large;">Select
+                                        Column </label>
+
+                                    <div class="space-6"></div>
+                                    <div class="row">
+
+
+                                        <div class="col-sm-12">
+                                            <select multiple="multiple" size="10" name="duallistbox_demo1[]"
+                                                    id="duallist">
+
+                                                <?php
+
+
+                                                include "../connect.php";
+
+
+                                                ?>
+
+                                                <option value="rollno">Roll No</option>
+                                                <option value="first_name">First Name</option>
+                                                <option value="mid_name">Middle Name</option>
+                                                <option value="last_name">Last Name</option>
+                                                <option value="full_name">Full Name</option>
+                                                <option value="gender">Gender (Male/Female)</option>
+                                                <option value="father_name">Father Name</option>
+                                                <option value="father_occupation">Father Occupation</option>
+                                                <option value="mother_name">Mother Name</option>
+                                                <option value="mother_occupation">Mother Occupation</option>
+                                                <option value="email_id">Email ID</option>
+                                                <option value="mobile_no">Mobile Number</option>
+                                                <option value="dob">Date of Birth (DD-MM-YYYY)</option>
+                                                <option value="nationality">Nationality</option>
+                                                <option value="caste">Caste</option>
+                                                <option value="college_name">College Name</option>
+                                                <option value="university">University</option>
+                                                <option value="10thpercent">10th %</option>
+                                                <option value="10thboard_of_study">Board of Study</option>
+                                                <option value="10thmedium">Medium (Tamil/English/Telugu/Others)</option>
+                                                <option value="10th_yearofpassing">10th - Year of Passing</option>
+                                                <option value="12thpercent">12th %</option>
+                                                <option value="12thboard_of_study">Board of Study</option>
+                                                <option value="12thmedium">Medium (Tamil/English/Telugu/Others)</option>
+                                                <option value="12th_yearofpassing">12th - Year of Passing</option>
+                                                <option value="diploma_percent">Diploma %</option>
+                                                <option value="diploma_yearofpassing">Diploma - Year of Passing</option>
+                                                <option value="ug_pg">Currently Pursuing (UG/PG)</option>
+                                                <option value="ug_deg">UG Degree</option>
+                                                <option value="ug_dept">UG Department</option>
+                                                <option value="1_sem">1st Sem</option>
+                                                <option value="2_sem">2nd Sem</option>
+                                                <option value="3_sem">3rd Sem</option>
+                                                <option value="4_sem">4th Sem</option>
+                                                <option value="5_sem">5th Sem</option>
+                                                <option value="6_sem">6th Sem</option>
+                                                <option value="7_sem">7th Sem</option>
+                                                <option value="8_sem">8th Sem</option>
+                                                <option value="ug_cgpa">UG Degree % or CGPA</option>
+                                                <option value="ug_yearofpassing">UG - Year of Passing</option>
+                                                <option value="pg_deg">PG Degree</option>
+                                                <option value="pg_dept">PG Department</option>
+                                                <option value="pg_1_sem">1st Sem</option>
+                                                <option value="pg_2_sem">2nd Sem</option>
+                                                <option value="pg_3_sem">3rd Sem</option>
+                                                <option value="pg_4_sem">4th Sem</option>
+                                                <option value="pg_cgpa">PG Degree % or CGPA</option>
+                                                <option value="pg_yearofpassing">PG - Year of Passing</option>
+                                                <option value="dayscholar_hosteler">Day Scholar/ Hosteler</option>
+                                                <option value="history_of_arreas">No History of Arreas</option>
+                                                <option value="standing_arrears">Current Degree. No of Standing
+                                                    Arrears
+                                                </option>
+                                                <option value="home_town">Home Town</option>
+                                                <option value="permanent_address_1">Permanent Address (Line 1)</option>
+                                                <option value="permanent_address_2">Permanent Address (Line 2)</option>
+                                                <option value="permanent_city">Permanent City</option>
+                                                <option value="state">State</option>
+                                                <option value="postal_code">Postal code</option>
+                                                <option value="contact_no">Contact Number ( Landline)</option>
+                                                <option value="skills">If any Skill Certifications Obtained Name the
+                                                    Skill
+                                                </option>
+                                                <option value="duration_of_course">Duration of the course</option>
+                                                <option value="certification">Certification Vendor/Authority/Agency
+                                                    Name
+                                                </option>
+                                                <option value="coe_certification">CoE Certification</option>
+                                                <option value="gap_in_studies">Gap in studies</option>
+                                                <option value="gap_in_studies_reason">Gap in studies Reason</option>
+                                                <option value="eng_percent">English Percentage</option>
+                                                <option value="quants_percent">Quantitative Percentage</option>
+                                                <option value="logical_percent">Logical Percentage</option>
+                                                <option value="overall_average">Overall Average</option>
+                                                <option value="percent">Percentage</option>
+                                                <option value="candidate_id">Candidate ID</option>
+                                                <option value="signature">Signature</option>
+                                                <option value="placement_status">Placement Status</option>
+                                            </select>
+
+                                            <div class="hr hr-16 hr-dotted"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row col-sm-3">
+
+
+                                        <div class="space-8"></div>
+
+                                        <button name="action_update" type="submit" class="btn btn-lg btn-warning ">
+                                            <i class="ace-icon fa fa-upload"></i>
+                                            Update
+                                        </button>
+                                    </div>
+
+
+                                </form>
+                            </div>
+
+
+                            <?php
+
+
+                        }
+
+                        ?>
 
 
 

@@ -272,7 +272,7 @@ if(isset($_GET['delete']))
 					<span class="icon-bar"></span>
 				</button>
 
-				<div class="navbar-header pull-left" ">
+				<div class="navbar-header pull-left">
 					<a href="index.php" class="navbar-brand">
 						<small>
 							<i class=""></i>
@@ -799,7 +799,7 @@ if(isset($_GET['delete']))
                                                             <div class="form-group">
 										<h5><label class="col-xs-12 control-label blue bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control"  id="form-field-select-3" data-placeholder="Select a Year...">
+												<select class="col-xs-7 chosen-select form-control" name="year"  id="form-field-select-3" data-placeholder="Select a Year...">
                                                     <?php
 
                                                     include "connect.php";

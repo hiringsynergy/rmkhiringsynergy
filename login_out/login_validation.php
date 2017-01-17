@@ -158,9 +158,13 @@ if(isset($_POST['login'])){
 
 
 
+       $_SESSION['database_name']=$admin_database;
 
         $_SESSION['user']=$username;
         $_SESSION['pass']=$password;
+
+
+
         header("Location: ../coordinator_login/index.php");
     }
 

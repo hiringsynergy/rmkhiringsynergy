@@ -761,6 +761,75 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                 case 'rollno': {  $query_update.="st_roll='$roll'";  break;}
                                                 case 'first_name': {  $query_update.="st_firstname='$first_name'";  break;}
                                                 case 'mid_name': {  $query_update.="st_middlename='$middle_name'";  break;}
+			     case 'last_name': {  $query_update.="st_lastname='last_name'";  break;}
+                                                case 'full_name': {  $query_update.="full_name'";  break;}
+                                                case 'gender': {  $query_update.="st_gender='gender'";  break;}
+                                                case 'father_name': {  $query_update.="st_fathername='father_name'";  break;}
+                                                case 'father_occupation': {  $query_update.="st_fatheroccupation='father_occupation'";  break;}
+                                                case 'mother_name': {  $query_update.="st_mothername='mother_name'";  break;}
+                                                case 'mother_occupation': {  $query_update.="st_motheroccupation='mother_occupation'";  break;}
+                                                case 'email_id': {  $query_update.="st_email='email'";  break;}
+                                                case 'mobile_no': {  $query_update.="st_phone='phone'";  break;}
+                                                case 'dob': {  $query_update.="st_dob='dob'";  break;}
+                                                case 'nationality': {  $query_update.="st_nationality='nationality'";  break;}
+                                                case 'caste': {  $query_update.="st_caste='caste'";  break;}
+                                                case 'college_name': {  $query_update.="st_collegename='college_name'";  break;}
+                                                case 'university': {  $query_update.="st_university='university'";  break;}
+                                                case '10thpercent': {  $query_update.="st_10thpercentage='_10percentage'";  break;}
+                                                case '10thboard_of_study': {  $query_update.="st_10thboardofstudy='_10boardofstudy'";  break;}
+                                                case '10thmedium': {  $query_update.="st_10thmedium='_10medium'";  break;}
+                                                case '10th_yearofpassing': {  $query_update.="st_10thyearofpassing='_10yearofpassing'";  break;}
+                                                case '12thpercent': {  $query_update.="st_12thpercentage='_12percentage'";  break;}
+                                                case '12thboard_of_study': {  $query_update.="st_12thboardofstudy='_12boardofstudy'";  break;}
+                                                case '12thmedium': {  $query_update.="st_12thmedium='_12medium'";  break;}
+                                                case '12th_yearofpassing': {  $query_update.="st_12thyearofpassing='_12yearofpassing'";  break;}
+                                                case 'diploma_percent': {  $query_update.="st_dippercentage='dippercentage'";  break;}
+                                                case 'diploma_yearofpassing': {  $query_update.="st_dipyearofpassing='dipyearofpassing'";  break;}
+                                                case 'ug_pg': {  $query_update.="st_currentlypursuing='current'";  break;}
+                                                case 'ug_deg': {  $query_update.="st_ugdegree='ugdeg'";  break;}
+                                                case 'ug_dept': {  $query_update.="st_ugspecialization='ugspecial'";  break;}
+                                                case '1_sem': {  $query_update.="st_1stsem='ug1sem'";  break;}
+                                                case '2_sem': {  $query_update.="st_2ndsem='ug2sem'";  break;}
+                                                case '3_sem': {  $query_update.="st_3rdsem='ug3sem'";  break;}
+                                                case '4_sem': {  $query_update.="st_4thsem='ug4sem'";  break;}
+                                                case '5_sem': {  $query_update.="st_5thsem='ug5sem'";  break;}
+                                                case '6_sem': {  $query_update.="st_6thsem='ug6sem'";  break;}
+                                                case '7_sem': {  $query_update.="st_7thsem='ug7sem'";  break;}
+                                                case '8_sem': {  $query_update.="st_8thsem='ug8sem'";  break;}
+                                                case 'ug_cgpa': {  $query_update.="st_cgpa='cgpa'";  break;}
+                                                case 'ug_yearofpassing': {  $query_update.="st_ugyearofpassing='ugyearofpassing'";  break;}
+                                                case 'pg_deg': {  $query_update.="st_pgdegree='pgdeg'";  break;}
+                                                case 'pg_dept': {  $query_update.="st_pgspecialization='pgspecial'";  break;}
+                                                case 'pg_1_sem': {  $query_update.="st_pg1stsem='pg1sem'";  break;}
+                                                case 'pg_2_sem': {  $query_update.="st_pg2ndsem='pg2sem'";  break;}
+                                                case 'pg_3_sem': {  $query_update.="st_pg3rdsem='pg3sem'";  break;}
+                                                case 'pg_4_sem': {  $query_update.=" st_pg4thsem='pg4sem'";  break;}
+                                                case 'pg_cgpa': {  $query_update.="st_pgcgpa='pgcgpa'";  break;}
+                                                case 'pg_yearofpassing': {  $query_update.="st_pgyearofpassing='pgyearofpassing'";  break;}
+                                                case 'dayscholar_hosteler': {  $query_update.="st_dayorhostel='dayhostel'";  break;}
+                                                case 'history_of_arreas': {  $query_update.="st_historyofarrears='historyofarrears'";  break;}
+                                                case 'standing_arrears': {  $query_update.="st_standingarrears='standingarrears'";  break;}
+                                                case 'home_town': {  $query_update.="st_hometown='hometown'";  break;}
+                                                case 'permanent_address_1': {  $query_update.="st_address1='address1'";  break;}
+                                                case 'permanent_address_2': {  $query_update.="st_address2='address2'";  break;}
+                                                case 'permanent_city': {  $query_update.="st_city='city'";  break;}
+                                                case 'state': {  $query_update.="st_state='state'";  break;}
+                                                case 'postal_code': {  $query_update.="st_posatlcode='postal_code'";  break;}
+                                                case 'contact_no': {  $query_update.="st_landline='landline'";  break;}
+                                                case 'skills': {  $query_update.="st_skillcertification='skill'";  break;}
+                                                case 'duration_of_course': {  $query_update.="st_duration='duration'";  break;}
+                                                case 'certification': {  $query_update.="st_vendor='vendor'";  break;}
+                                                case 'coe_certification': {  $query_update.="st_coecertification='coecertification'";  break;}
+                                                case 'gap_in_studies': {  $query_update.="st_gapinstudies='gap'";  break;}
+                                                case 'gap_in_studies_reason': {  $query_update.="st_reason='reason'";  break;}
+                                                case 'eng_percent': {  $query_update.="st_english='english'";  break;}
+                                                case 'quants_percent': {  $query_update.="st_quantitative='quantitative'";  break;}
+                                                case 'logical_percent': {  $query_update.="st_logical='logical'";  break;}
+                                                case 'overall_average': {  $query_update.="st_overall='overall'";  break;}
+                                                case 'percent': {  $query_update.="st_percentage='percentage'";  break;}
+                                                case 'candidate_id': {  $query_update.="st_candidateid='candidate'";  break;}
+                                                case 'signature': {  $query_update.="st_signature='signature'";  break;}
+                                                case 'placement_status': {  $query_update.="st_placementstatus='placement_status'";  break;}
                                                 //code to be written -- duplicate the cases for different coulumns in database
 
 

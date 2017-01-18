@@ -305,8 +305,6 @@ if(isset($_GET['delete']))
 
 
                             ?>
-
-
                         </small>
 					</a>
 				</div>

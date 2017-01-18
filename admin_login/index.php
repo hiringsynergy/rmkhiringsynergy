@@ -185,10 +185,6 @@ if(isset($_GET['delete']))
 
 		<!--button-navigation-->
 		<script type="text/javascript">
-			function myfuncreport() {
-                location.href = "reports.php";
-
-            }
             function myfuncadmin() {
                 location.href = "admin_panel/admin_pane_woexport.php";
 

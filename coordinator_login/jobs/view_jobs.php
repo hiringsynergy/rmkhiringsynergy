@@ -111,11 +111,38 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="../index.php" class="navbar-brand">
+            <a href="view_jobs.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
-                    RMK Group of Institutions
+                    <?php
+
+                    $database=$_SESSION['database_name'];
+                    if(preg_match('/rmd_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMD Engineering College  </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmk_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK Engineering College </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmkcet_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
+
+                        <?php
+                    }
+
+
+                    ?>
                 </small>
             </a>
         </div>

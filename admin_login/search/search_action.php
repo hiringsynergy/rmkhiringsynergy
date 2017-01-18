@@ -800,7 +800,7 @@ if(isset($_GET['filter'])) {
 
                                         include "../connect.php";
 
-                                        $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+                                        $query="select * from students_".$get_year." where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 
                                         $result=mysqli_query($connect,$query);
 
@@ -906,7 +906,7 @@ if(isset($_GET['filter'])) {
                                                 <td>
                                                     <?php echo $first_name ?>
                                                 </td>
-                                                <td class="hidden-480"><?php echo $middle_name ?></td>
+                                                <td><?php echo $middle_name ?></td>
 
                                                 <td><?php echo $last_name  ?></td>
                                                 <td><?php echo $name  ?></td>
@@ -949,7 +949,7 @@ if(isset($_GET['filter'])) {
 
 
                                                     ?>
-                                                    <td class="hidden-480">
+                                                    <td >
                                                         <span class="label label-sm label-success"><?php echo $cgpa ?></span>
                                                     </td>
                                                     <?php
@@ -959,7 +959,7 @@ if(isset($_GET['filter'])) {
                                                 else{
 
                                                     ?>
-                                                    <td class="hidden-480">
+                                                    <td>
                                                         <span class="label label-sm label-important"><?php echo $cgpa ?></span>
                                                     </td>
                                                     <?php

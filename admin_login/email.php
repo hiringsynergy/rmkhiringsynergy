@@ -4,6 +4,30 @@ session_start();
 ob_start();
 
 ?>
+<?php 
+
+if(isset($_POST['send'])){
+    
+    
+
+$to=$_POST['recipient'];
+
+$subject= $_POST['subject'];
+
+$message='<h3>'.$_POST['message'].'<h3>';
+
+$headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+$headers.="Reply-To: karthickakash17@gmail.com\r\n";
+$headers.="Content-type: text/html\r\n";
+
+mail($to,$subject,$message,$headers);
+
+
+}
+
+
+?>
+
 
 
 
@@ -567,22 +591,7 @@ ob_start();
                         <div class="row">
                             <div class="col-xs-12">
 
-                                <?php
-
-                                if(isset($_GET['send'])){
-
-
-
-                                    mail("karthickakash17@gmail.com","Testing","The mail was sent with the following mail","From: akashkarthick400@gmail.com");
-                                    echo "Mail was successfully send";
-
-
-                                }
-
-
-
-                                ?>
-
+                                
 
 
 
@@ -612,7 +621,7 @@ ob_start();
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->
 
-                                <form id="id-message-form" action="email.php"  method="get"  class="active form-horizontal message-form col-xs-12">
+                                <form id="id-message-form" action="email.php"  method="post"  class="active form-horizontal message-form col-xs-12">
                                     <div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
@@ -787,6 +796,17 @@ ob_start();
         }).prev().addClass('wysiwyg-style1');
 
 
+         $('#id-message-form').on('submit', function() {
+            var hidden_input =
+                $('<input type="hidden" name="message" />')
+                    .appendTo('#id-message-form');
+
+            var html_content = $('#editor1').html();
+            hidden_input.val( html_content );
+            //put the editor's HTML into hidden_input and it will be sent to server
+        });
+        
+        
 
         //file input
         $('.message-form input[type=file]').ace_file_input()

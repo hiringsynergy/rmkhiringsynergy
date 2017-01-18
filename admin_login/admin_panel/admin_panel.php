@@ -826,10 +826,10 @@ if(isset($_POST['update_submit'])) {
 
 
                                             <th>
-                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                                <i class="ace-icon fa fa-clock-o bigger-110  "></i>
                                                 Email
                                             </th>
-                                            <th class="hidden-480">Phone</th>
+                                            <th class=" ">Phone</th>
 
 
                                             <th>CGPA</th>
@@ -875,7 +875,7 @@ if(isset($_POST['update_submit'])) {
                                                 <td>
                                                     <?php echo $name ?>
                                                 </td>
-                                                <td class="hidden-480"><?php echo $email?></td>
+                                                <td class=" "><?php echo $email?></td>
                                                 <td><?php echo $phone?></td>
 
                                                 <?php
@@ -888,7 +888,7 @@ if(isset($_POST['update_submit'])) {
 
 
                                                     ?>
-                                                    <td class="hidden-480">
+                                                    <td class=" ">
                                                         <span class="label label-sm label-success"><?php echo $cgpa ?></span>
                                                     </td>
                                                     <?php
@@ -906,7 +906,7 @@ if(isset($_POST['update_submit'])) {
 
 
                                                     ?>
-                                                    <td class="hidden-480">
+                                                    <td class=" ">
                                                         <span class="label label-sm label-important"><?php echo $cgpa ?></span>
                                                     </td>
                                                     <?php
@@ -927,7 +927,7 @@ if(isset($_POST['update_submit'])) {
 
 
 
-                                                <td class="hidden-480">
+                                                <td class=" ">
                                                     <span class="label label-sm label-warning"><?php echo $graduation ?></span>
 
 
@@ -1195,9 +1195,9 @@ if(isset($_POST['update_submit'])) {
 
                     //,
                     //"sScrollY": "200px",
-                    "bPaginate": false
+                    "bPaginate": false,
 
-                    //"sScrollX": "100%",
+                    "sScrollX": "100%"
                     //"sScrollXInner": "120%",
                     //"bScrollCollapse": true,
                     //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"

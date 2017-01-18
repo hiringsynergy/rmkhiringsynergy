@@ -174,7 +174,13 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
+if(isset($_GET['search'])) {
 
+
+
+    $get_roll= $_GET['roll'];
+
+}
 
 
 if(isset($_GET['filter'])) {
@@ -799,6 +805,7 @@ if(isset($_GET['filter'])) {
                                         <?php
 
                                         include "../connect.php";
+
 
                                         $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 

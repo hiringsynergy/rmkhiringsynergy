@@ -34,6 +34,61 @@
         }
 
         .fullscreen-bg__video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            .fullscreen-bg__video {
+                height: 300%;
+                top: -100%;
+            }
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+            .fullscreen-bg__video {
+                width: 300%;
+                left: -100%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .fullscreen-bg {
+                background: url('poster.jpg') center center / cover no-repeat;
+            }
+
+            .fullscreen-bg__video {
+                display: none;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*.fullscreen-bg {*/
+            /*position: fixed;*/
+            /*top: 0;*/
+            /*right: 0;*/
+            /*bottom: 0;*/
+            /*left: 0;*/
+            /*overflow: hidden;*/
+            /*z-index: -100;*/
+        /*}*/
+
+      /*  .fullscreen-bg__video {
             position: fixed;
             top: 50%; left: 50%;
             z-index: 1;
@@ -43,8 +98,34 @@
             height: auto;
             transform: translate(-50%, -50%);
 
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            background: url('images/poster.jpg') no-repeat;
+            background-size: cover;
+            transition: 1s opacity;
+        }*/
+       /* video#videobg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            background: url('poster.jpg') no-repeat;
+            background-size: cover;
+            transition: 1s opacity;
         }
-
+*/
     </style>
   
 </head>
@@ -85,13 +166,18 @@
 <section class="engine"><a rel="external" href="https://mobirise.com">html web page builder</a></section> <section class="mbr-section mbr-section-hero mbr-section-full mbr-after-navbar  " id="header4-10" data-bg-video="kk.mp4">
 
     <div class="fullscreen-bg">
-        <video loop muted autoplay poster="" class="fullscreen-bg__video">
+        <video loop muted autoplay poster="poster.jpg" class="fullscreen-bg__video">
+
             <source src="RMK.mp4" type="video/mp4">
 
-
         </video>
-
     </div>
+
+    <!--<video autoplay  poster="poster.jpg" id="videobg" loop>-->
+
+        <!--<source src="RMK.mp4" type="video/mp4">-->
+        <!--Your browser does not support the video tag. I suggest you upgrade your browser.-->
+    <!--</video>-->
 
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 0, 0);"></div>
 

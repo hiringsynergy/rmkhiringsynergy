@@ -617,7 +617,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 <ul class="nav nav-tabs" id="myTab">
                                                 <li class="active" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
-                                                        <i class="green ace-icon fa fa-user bigger-120"></i>
+                                                        <i class="green ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                 Eligible
                                                         <span class="badge badge-success">
 
@@ -651,7 +651,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                                 <li class="" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
-                                                        <i class="blue ace-icon fa fa-user bigger-120"></i>
+                                                        <i class="blue ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                     Accepted
                                                         <span class="badge badge-primary">
                                                             <?php
@@ -671,7 +671,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 </li>
                                                 <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                     <a data-toggle="tab" href="#home">
-                                                        <i class="red ace-icon fa fa-user bigger-120"></i>
+                                                        <i class="red ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                     Not Accepted
                                                 <span class="badge badge-danger">
 
@@ -708,7 +708,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 <ul class="nav nav-tabs" id="myTab">
                                                     <li class="" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="green ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="green ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Eligible
                                                             <span class="badge badge-success">
 
@@ -742,7 +742,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                                     <li class="active" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="blue ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="blue ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Accepted
                                                             <span class="badge badge-primary">
                                                             <?php
@@ -762,7 +762,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                     </li>
                                                     <li onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="red ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="red ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Not Accepted
                                                             <span class="badge badge-danger">
 
@@ -800,7 +800,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                 <ul class="nav nav-tabs" id="myTab">
                                                     <li class="" onclick="check1(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="green ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="green ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Eligible
                                                             <span class="badge badge-success">
 
@@ -834,7 +834,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                                     <li class="" onclick="check2(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="blue ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="blue ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Accepted
                                                             <span class="badge badge-primary">
                                                             <?php
@@ -854,7 +854,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                     </li >
                                                     <li class="active" onclick="check3(<?php  echo $_GET['jid'] ?>)">
                                                         <a data-toggle="tab" href="#home">
-                                                            <i class="red ace-icon fa fa-user bigger-120"></i>
+                                                            <i class="red ace-icon fa fa-user bigger-120 hidden-480"></i>
                                                             Not Accepted
                                                             <span class="badge badge-danger">
 
@@ -913,10 +913,10 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
 
                                                                 <th>
-                                                                    <i class="ace-icon fa fa-phone bigger-110 hidden-480"></i>
+                                                                    <i class="ace-icon fa fa-phone bigger-110   "></i>
                                                                     Phone
                                                                 </th>
-                                                                <th class="hidden-480">CGPA</th>
+                                                                <th class="  ">CGPA</th>
 
 
                                                             </tr>
@@ -956,10 +956,10 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                                             <?php echo $row_job['st_name'] ?>
                                                                         </td>
 
-                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td class="  "> <?php echo $row_job['st_email'] ?></td>
                                                                         <td> <?php echo $row_job['st_phone'] ?></td>
 
-                                                                        <td class="hidden-480">
+                                                                        <td class="  ">
                                                                             <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
                                                                         </td>
 
@@ -1011,10 +1011,10 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                                             <?php echo $row_job['st_name'] ?>
                                                                         </td>
 
-                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td class="  "> <?php echo $row_job['st_email'] ?></td>
                                                                         <td> <?php echo $row_job['st_phone'] ?></td>
 
-                                                                        <td class="hidden-480">
+                                                                        <td class="  ">
                                                                             <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
                                                                         </td>
 
@@ -1063,10 +1063,10 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                                             <?php echo $row_job['st_name'] ?>
                                                                         </td>
 
-                                                                        <td class="hidden-480"> <?php echo $row_job['st_email'] ?></td>
+                                                                        <td class="  "> <?php echo $row_job['st_email'] ?></td>
                                                                         <td> <?php echo $row_job['st_phone'] ?></td>
 
-                                                                        <td class="hidden-480">
+                                                                        <td class="  ">
                                                                             <span class="label label-sm label-warning"> <?php echo $row_job['st_cgpa'] ?></span>
                                                                         </td>
 
@@ -1200,9 +1200,9 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                     //,
                     //"sScrollY": "200px",
-                    "bPaginate": false
+                    "bPaginate": false,
 
-                    //"sScrollX": "100%",
+                    "sScrollX": "100%"
                     //"sScrollXInner": "120%",
                     //"bScrollCollapse": true,
                     //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"

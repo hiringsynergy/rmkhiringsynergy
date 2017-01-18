@@ -620,15 +620,37 @@ function updateSlider(){
 									<div class="col-xs-6">
 										<h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control" name="year" id="form-field-select-3" data-placeholder="Select a Year...">
-																<option value=""></option>
-																<option value="2016">2016</option>
-																<option value="2017">2017</option>
-																<option value="2018">2018</option>
-																<option value="2019">2019</option>
-																<option value="2020">2020</option>
-																<option value="2021">2021</option>
-															</select>
+                                                <select class="chosen-select form-control" id="form-field-select-3"  name="year" data-placeholder="Select Year of Graduation">
+
+
+                                                    <option value=""></option>
+
+                                                    <?php
+
+
+                                                    include "../connect.php";
+                                                    $query_option="SELECT * FROM table_map";
+                                                    $result_option=mysqli_query($connect, $query_option);
+                                                    while($row_option=mysqli_fetch_assoc($result_option)){
+
+
+
+
+                                                            ?>
+
+                                                            <option value="<?php echo $row_option['table_value'] ?>"><?php echo $row_option['table_value'] ?>  </option>
+
+
+                                                            <?php
+
+                                                    }
+
+                                                    ?>
+
+
+
+                                                </select>
+
 											</div>
 
 
@@ -673,6 +695,14 @@ function updateSlider(){
                                                             <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
 
                                                             <div >
+                                                            <?php
+
+                                                                $database = $_SESSION['database_name'];
+
+
+                                                                if (preg_match('/rmd_database/',$database)) {
+                                                              ?>
+
                                                                 <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
                                                                     <option value="all">All</option>
                                                                     <option value="cse">Computer science and Engineering</option>
@@ -683,6 +713,50 @@ function updateSlider(){
                                                                     <option value="ece">Electrical and Communicaton Engineering</option>
                                                                 </select>
                                                             </div>
+
+
+                                                                <?php
+                                                                }
+                                                              else  if (preg_match('/rmk_database/',$database)) {
+                                                                ?>
+
+                                                            <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                <option value="all">All</option>
+                                                                <option value="cse">Computer science and Engineering</option>
+                                                                <option value="eee">Electrical and Electronic Engineering</option>
+                                                                <option value="eie">Electrical and Intrumentation Engineering</option>
+
+                                                                <option value="it">Information Technology</option>
+                                                                <option value="ece">Electrical and Communicaton Engineering</option>
+                                                                <option value="mech">Mechanical Engineering</option>
+                                                                <option value="civil">Civil Engineering</option>
+                                                            </select>
+                                                        </div>
+
+
+                                                        <?php
+                                                        }
+                                                        else if (preg_match('/rmkcet_database/',$database)) {
+                                                        ?>
+
+                                                        <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                            <option value="all">All</option>
+                                                            <option value="cse">Computer science and Engineering</option>
+                                                            <option value="eee">Electrical and Electronic Engineering</option>
+                                                            <option value="eie">Electrical and Intrumentation Engineering</option>
+
+
+                                                            <option value="ece">Electrical and Communicaton Engineering</option>
+                                                        </select>
+                                                    </div>
+
+
+                                                    <?php
+                                                    }
+                                                        ?>
+
+
+
 
 
 

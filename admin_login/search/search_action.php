@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel.php";
+            location.href = "../admin_panel/admin_panel_woexport.php";
 
         }
         function myfuncjobs() {
@@ -174,13 +174,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-if(isset($_GET['search'])) {
 
-
-
-    $get_roll= $_GET['roll'];
-
-}
 
 
 if(isset($_GET['filter'])) {
@@ -473,7 +467,7 @@ if(isset($_GET['filter'])) {
             </li>
 
             <li class="">
-                <a href="../admin_panel/admin_panel.php" >
+                <a href="../admin_panel/admin_panel_woexport.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 
@@ -805,7 +799,6 @@ if(isset($_GET['filter'])) {
                                         <?php
 
                                         include "../connect.php";
-
 
                                         $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 
@@ -1458,7 +1451,7 @@ $('[data-rel=tooltip]').tooltip({container:'body'});
 
         $('#chk1').click(function(){
             $("button").toggle(200, function(){
-                location.href="../admin_panel/admin_panel.php"
+                location.href="../admin_panel/admin_panel_woexport.php"
             });
         });
 

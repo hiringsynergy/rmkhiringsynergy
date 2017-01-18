@@ -34,7 +34,7 @@ if(isset($_POST['login'])){
         $row_selection=mysqli_fetch_assoc($result_selection);
         $admin_database=$row_selection['database_name'];
 
-        echo $admin_database;
+
         $connect=mysqli_connect("localhost","root","","$admin_database");
 
     }

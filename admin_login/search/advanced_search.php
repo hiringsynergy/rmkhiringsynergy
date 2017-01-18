@@ -990,7 +990,11 @@ function updateSlider(){
                     												<div class="col-xs-8 col-sm-5">
 
 														<h5 class="red bolder smaller">Register No:</h5>
-											<input type="text" id="form-field-1" placeholder="Enter Register No" class="col-xs-12" />
+											<input type="text" id="form-field-1" placeholder="Enter Register No" class="col-xs-6" />
+												<button  type="submit" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
+																Search
+																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+															</button>
 															</div>
 
 													</div>

@@ -2451,7 +2451,7 @@ if(isset($_GET['roll']))
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="control-label bolder b">University</label>
+                                                            <label for="control-label bolder b">Anna University</label>
                                                             <div>
                                                                 <input type="text" disabled id="control-label bolder blu" placeholder="" value="Anna University" />
                                                             </div>

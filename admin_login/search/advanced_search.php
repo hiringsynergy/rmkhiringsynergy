@@ -595,6 +595,7 @@ function updateSlider(){
                         <!-- PAGE CONTENT BEGINS -->
 <div class="row">
 									<div class="col-xs-12 col-sm-12">
+                                        <form action="search_action.php" method="get">
 										<div class="tabbable">
 											<ul class="nav nav-tabs tab-color-blue background-blue" id="myTab4">
 												<li class="active">
@@ -611,7 +612,7 @@ function updateSlider(){
 
 		<div id="home4" class="tab-pane in active">
 
-            <form action="search_action.php" method="get">
+
 
 
 
@@ -1038,6 +1039,7 @@ function updateSlider(){
 
                                     </div>
 
+                                        </form>
 
 
 		</div>
@@ -1059,14 +1061,16 @@ function updateSlider(){
 
 												<div class="step-content pos-rel">
 
-												<form class="form-horizontal" id="sample-form">
+												<form class="form-horizontal" action="search_action.php" method="get" id="sample-form">
 													<div class="row">
                     												<div class="col-xs-8 col-sm-5">
 
 														<h5 class="red bolder smaller">Register No:</h5>
 											<div class="">
-												<input type="text" name="tags" id="form-field-tags" value="Tag Input Control" placeholder="Enter Register No ..." />
+												<input type="text" name="tags" id="form-field-tags"  placeholder="Enter Register No ..." />
 											</div>
+                                                                        <div class="space-16"></div>
+
 												<button  type="submit" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
 																Search
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>

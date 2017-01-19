@@ -608,6 +608,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         if(isset($_FILES['file'])){
 
 
+                            include "../connect.php";
 
 
                             $file_name = $_FILES['file']['name'];
@@ -740,8 +741,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                                    $database_name=$_SESSION['database_name'];
-                                    if($database_name=='rmd_database'){
+
+
 
 
 
@@ -761,7 +762,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                 case 'rollno': {  $query_update.="st_roll='$roll'";  break;}
                                                 case 'first_name': {  $query_update.="st_firstname='$first_name'";  break;}
                                                 case 'mid_name': {  $query_update.="st_middlename='$middle_name'";  break;}
-			     case 'last_name': {  $query_update.="st_lastname='last_name'";  break;}
+			                                    case 'last_name': {  $query_update.="st_lastname='last_name'";  break;}
                                                 case 'full_name': {  $query_update.="full_name'";  break;}
                                                 case 'gender': {  $query_update.="st_gender='gender'";  break;}
                                                 case 'father_name': {  $query_update.="st_fathername='father_name'";  break;}
@@ -862,22 +863,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
                                         $sql = $query_update." WHERE st_roll='$roll'";
-                                    }
-                                    else if($database_name=='rmk_database'){
-
-                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmk.jpg')";
-
-                                    }
-                                    else if($database_name='rmkcet_database'){
-
-                                        $sql = "INSERT INTO students_$year VALUES ('$roll','$first_name','$middle_name','$last_name','$name','$gender','$father_name','$father_occupation','$mother_name','$mother_occupation','$email','$phone','$dob','$nationality','$caste','$college_name','$university','$_10percentage','$_10boardofstudy','$_10medium','$_10yearofpassing','$_12percentage','$_12boardofstudy','$_12medium','$_12yearofpassing','$dippercentage','$dipyearofpassing','$current','$ugdeg','$ugspecial','$ug1sem','$ug2sem','$ug3sem','$ug4sem','$ug5sem','$ug6sem','$ug7sem','$ug8sem','$cgpa','$ugyearofpassing','$pgdeg','$pgspecial','$pg1sem','$pg2sem','$pg3sem','$pg4sem','$pgcgpa','$pgyearofpassing','$dayhostel','$historyofarrears','$standingarrears','$hometown','$address1','$address2','$city','$state','$postal_code','$landline','$skill','$duration','$vendor','$coecertification','$gap','$reason','$english','$quantitative','$logical','$overall','$percentage','$candidate','$signature','$placement_status','student123','default_rmkcet.jpg')";
-                                    }
 
 
 
 
 
-                                    //echo "sql statement".$sql."<br>";
+
 
 
                                    $result= mysqli_query($connect, $sql);

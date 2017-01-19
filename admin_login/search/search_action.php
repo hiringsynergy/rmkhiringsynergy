@@ -665,17 +665,7 @@ if(isset($_GET['filter'])) {
             </div>
 
             <div class="page-content">
-                <!-- /.ace-settings-container -->
 
-                <!--                <div class="page-header">-->
-                <!--                    <h1>-->
-                <!--                        Student Interaction-->
-                <!--                        <small>-->
-                <!--                            <i class="ace-icon fa fa-angle-double-right"></i>-->
-                <!--                            overview &amp; stats-->
-                <!--                        </small>-->
-                <!--                    </h1>-->
-                <!--                </div><!-- /.page-header -->
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -705,12 +695,7 @@ if(isset($_GET['filter'])) {
                                     <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-<!--                                            <th class="center">-->
-<!--                                                <label class="pos-rel">-->
-<!--                                                    <input type="checkbox" class="ace" />-->
-<!--                                                    <span class="lbl"></span>-->
-<!--                                                </label>-->
-<!--                                            </th>-->
+
                                             <th>Roll No</th>
                                             <th>First Name</th>
                                             <th>Middle Name</th>
@@ -907,12 +892,6 @@ if(isset($_GET['filter'])) {
 
 
                                                 <tr>
-                                                    <!--                                                <td class="center">-->
-                                                    <!--                                                    <label class="pos-rel">-->
-                                                    <!--                                                        <input type="checkbox" class="ace" />-->
-                                                    <!--                                                        <span class="lbl"></span>-->
-                                                    <!--                                                    </label>-->
-                                                    <!--                                                </td>-->
 
                                                     <td>
 
@@ -1147,12 +1126,6 @@ if(isset($_GET['filter'])) {
 
 
                                                 <tr>
-                                                    <!--                                                <td class="center">-->
-                                                    <!--                                                    <label class="pos-rel">-->
-                                                    <!--                                                        <input type="checkbox" class="ace" />-->
-                                                    <!--                                                        <span class="lbl"></span>-->
-                                                    <!--                                                    </label>-->
-                                                    <!--                                                </td>-->
 
                                                     <td>
 

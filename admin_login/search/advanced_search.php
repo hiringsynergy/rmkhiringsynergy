@@ -1064,7 +1064,9 @@ function updateSlider(){
                     												<div class="col-xs-8 col-sm-5">
 
 														<h5 class="red bolder smaller">Register No:</h5>
-											<input type="text" name="roll" id="form-field-1" placeholder="Enter Register No" class="col-xs-6" />
+											<div class="">
+												<input type="text" name="tags" id="form-field-tags" value="Tag Input Control" placeholder="Enter Register No ..." />
+											</div>
 												<button  type="submit" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
 																Search
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
@@ -1657,7 +1659,7 @@ function updateSlider(){
 
             //programmatically add/remove a tag
             var $tag_obj = $('#form-field-tags').data('tag');
-            $tag_obj.add('Programmatically Added');
+           <!-- $tag_obj.add('Programmatically Added');-->
 
             var index = $tag_obj.inValues('some tag');
             $tag_obj.remove(index);

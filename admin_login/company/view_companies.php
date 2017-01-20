@@ -55,6 +55,15 @@ ob_start();
 
     </script>
 
+    <style>
+
+        #shadow{
+
+            width: 225px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+
 
 
 
@@ -554,7 +563,7 @@ ob_start();
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-dark">
+                                <div class="widget-box widget-color-dark" id="shadow">
                                     <div class="widget-header">
                                         <h5 class="widget-title bigger lighter">Company 1</h5>
                                     </div>
@@ -591,9 +600,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-orange">
+                                <div class="widget-box widget-color-orange" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 2</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 2</h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -628,9 +637,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-blue">
+                                <div class="widget-box widget-color-blue" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 3</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 3</h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -665,9 +674,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-green">
+                                <div class="widget-box widget-color-green" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 4</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 4</h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -706,7 +715,7 @@ ob_start();
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-red">
+                                <div class="widget-box widget-color-red" id="shadow">
                                     <div class="widget-header">
                                         <h5 class="widget-title bigger lighter">Company 5</h5>
                                     </div>
@@ -743,9 +752,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-purple">
+                                <div class="widget-box widget-color-purple" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 6</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 6</h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -780,9 +789,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-pink">
+                                <div class="widget-box widget-color-pink" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 7</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 7</h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -817,9 +826,9 @@ ob_start();
                             </div>
 
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-grey">
+                                <div class="widget-box widget-color-grey" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 8</h5>
+                                        <h5 class="widget-title bigger lighter" >Company 8</h5>
                                     </div>
 
                                     <div class="widget-body">

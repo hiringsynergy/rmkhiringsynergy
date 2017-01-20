@@ -105,6 +105,12 @@ if(isset($_GET['id'])){
 
         }
 
+        #shadow{
+
+            width: 700px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
 
 
 
@@ -648,7 +654,7 @@ if(isset($_GET['id'])){
 
 
                             <div class="col-xs-10 col-sm-8 widget-container-col blue centertest " id="widget-container-col-1">
-                                <div class="widget-box widget-color-blue" id="widget-box-1">
+                                <div class="widget-box widget-color-blue" id="shadow">
                                     <div class="widget-header">
                                         <h5 class="widget-title " style="text-align: center;">Password Reset Wizard</h5>
 

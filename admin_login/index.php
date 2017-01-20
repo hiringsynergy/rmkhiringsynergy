@@ -185,8 +185,12 @@ if(isset($_GET['delete']))
 
 		<!--button-navigation-->
 		<script type="text/javascript">
+            function myfuncreport() {
+                Location.href = "reports/reports.php";
+            }
+
             function myfuncadmin() {
-                location.href = "admin_panel/admin_pane_woexport.php";
+                location.href = "admin_panel/admin_panel.php";
 
             }
             function myfuncjobs() {
@@ -472,14 +476,10 @@ if(isset($_GET['delete']))
 
 
 						<button class="btn btn-success"  onclick="myfuncreport()" id="myButton1" >
+                            <i class="ace-icon fa fa-signal" ></i>
+                        </button>
 
-							<i class="ace-icon fa fa-signal" ></i>
-
-
-						</button>
-
-
-						<button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
+                        <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
 							<i class="ace-icon fa fa-pencil"></i>
 						</button>
 

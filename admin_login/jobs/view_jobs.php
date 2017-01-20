@@ -20,6 +20,141 @@ if(isset($_FILES['placement_file']))
 
 
 
+
+
+
+
+    include "../connect.php";
+
+
+    $file_name = $_FILES['file']['name'];
+    $file_size = $_FILES['file']['size'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    $file_type = $_FILES['file']['type'];
+
+    $year=$_POST['hidden_field'];
+
+    $value = explode('.',$file_name);
+
+
+
+
+    $file_ext=strtolower(end($value));
+    $temp = explode(".", $file_name);
+    $newfilename = "file".time() . '.' . end($temp);
+
+    $extensions= array("xls","xlsx");
+
+
+    if(in_array($file_ext,$extensions)=== false){
+        $errors="extension not allowed, please choose a JPEG or PNG file.";
+    }
+
+    if($file_size > 2097152) {
+        $errors[]='File size must be excately 2 MB';
+    }
+
+    if(empty($errors)==true) {
+        move_uploaded_file($file_tmp,"files/".$newfilename);
+
+    }
+
+
+
+
+
+
+    include "../connect.php";
+    include ("../crud/PHPExcel/IOFactory.php");
+
+    $objPHPExcel = PHPExcel_IOFactory::load("files/$newfilename");
+    foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+    {
+
+        $highestRow = $worksheet->getHighestRow();
+        for ($row=2; $row<=$highestRow; $row++)
+        {
+
+
+
+
+
+            $roll= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
+
+
+
+
+
+
+
+
+
+
+
+
+            $sql = $query_update." WHERE st_roll='$roll'";
+
+
+
+
+
+
+
+
+            $result= mysqli_query($connect, $sql);
+
+
+
+
+
+            if(!$result){
+
+                die("".mysqli_error($connect));
+            }
+        }
+    }
+
+
+
+    unlink("files/$newfilename");
+    ?>
+
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
+
+        <i class="ace-icon fa fa-check green"></i>
+
+
+        <strong class="green">
+            Successfully updated
+
+        </strong>
+
+
+    </div>
+    <div class="col-xs-6 bigger-120 ">
+
+        <a href="../index.php" class="btn btn-primary">
+            Go Back
+
+        </a>
+
+    </div>
+    <div class="col-xs-6">
+
+
+
+    </div>
+
+    <?php
+
+
+
+
+
+
 }
 
 

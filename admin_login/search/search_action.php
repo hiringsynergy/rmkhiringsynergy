@@ -1008,17 +1008,6 @@ if(isset($_GET['filter'])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
                                                 </tr>
 
 
@@ -1035,7 +1024,7 @@ if(isset($_GET['filter'])) {
                                         else {
 
 
-                                            $query = "select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+                                            $query = "select * from students_".$get_year." where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 
                                             $result = mysqli_query($connect, $query);
 

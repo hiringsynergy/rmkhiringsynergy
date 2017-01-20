@@ -291,7 +291,7 @@ if(isset($_GET['id'])){
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
+                            <a href="inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -465,12 +465,16 @@ if(isset($_GET['id'])){
                 <b class="arrow"></b>
             </li>
 
+            <li class="">
+                <a href="inbox.php">
 
+                    <i class="menu-icon fa fa-inbox"></i>
 
+                    <span class="menu-text">Inbox</span>
+                </a>
 
-
-
-
+                <b class="arrow"></b>
+            </li>
 
         </ul><!-- /.nav-list -->
 

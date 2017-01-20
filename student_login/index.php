@@ -429,6 +429,18 @@
 
 						<b class="arrow"></b>
 					</li>
+
+                    <li class="">
+                        <a href="inbox.php">
+
+                            <i class="menu-icon fa fa-inbox"></i>
+
+                            <span class="menu-text">Inbox</span>
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
                 </ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

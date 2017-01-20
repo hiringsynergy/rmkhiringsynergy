@@ -397,7 +397,7 @@ if(isset($_FILES['image'])){
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.php">
+                            <a href="../inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -556,6 +556,17 @@ if(isset($_FILES['image'])){
                     <i class="menu-icon fa fa-laptop"></i>
 
                     <span class="menu-text">Companies</span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="../inbox.php">
+
+                    <i class="menu-icon fa fa-inbox"></i>
+
+                    <span class="menu-text">Inbox</span>
                 </a>
 
                 <b class="arrow"></b>

@@ -701,11 +701,7 @@ if(isset($_POST['create'])){
 										<h3 class="header green smaller">
 											Company Presentation
 										</h3>
-<!--											<div class="col-xs-12">-->
-<!--														<div class="form-group">-->
-<!--											<input type="file" id="id-input-file-2" />-->
-<!--														</div>-->
-<!--											</div>-->
+
 
                                             <div class="col-xs-12">
                                                 <div class="widget-box">

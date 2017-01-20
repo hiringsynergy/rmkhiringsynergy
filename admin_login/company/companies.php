@@ -678,9 +678,9 @@ die(" " . mysqli_error($connect));
                                             </th>
                                             <th>Company Name</th>
                                             <th>Company Website</th>
-                                            <th class="hidden-480">Description</th>
+                                            <th class="">Description</th>
 
-                                            <th class="hidden-480">Status</th>
+
 
                                             <th></th>
                                         </tr>
@@ -732,12 +732,10 @@ die(" " . mysqli_error($connect));
                                                 <a href="http://<?php echo $row['company_website'] ?>"><?php echo $row['company_website'] ?></a>
                                             </td>
 
-                                            <td class="hidden-480"><?php echo $row['company_description'] ?></td>
+                                            <td ><?php echo $row['company_description'] ?></td>
 
 
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-warning">closed</span>
-                                            </td>
+
 
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons">
@@ -1013,7 +1011,7 @@ die(" " . mysqli_error($connect));
                     bAutoWidth: false,
                     "aoColumns": [
                         { "bSortable": false },
-                        null, null,null, null,
+                        null, null, null,
                         { "bSortable": false }
                     ],
                     "aaSorting": []

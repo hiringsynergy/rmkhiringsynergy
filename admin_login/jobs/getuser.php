@@ -137,34 +137,19 @@ while( $row= mysqli_fetch_assoc($result)) {
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="col-xs-12 col-sm-5">
+                        <div class="col-xs-12 col-sm-3">
                             <div class="space"></div>
 
-<!--
-                            <label class="btn btn-default btn-file">
-                                Browse<input type="file" style="display: none;">
 
-                            </label>
--->
 
-                            <div class="form-group">
-                                <div class="col-xs-12 ">
-                                    <input multiple=""  type="file" id="id-input-file-3" />
-                                </div>
-                            </div>
-
-                            <label>
-                                <input type="checkbox" name="file-format" id="id-file-format" class="ace" />
-                                <span class="lbl"> Allow only images</span>
-                            </label>
                         </div>
 
-                        <div class="col-xs-12 col-sm-7">
+                        <div class="col-xs-12 col-sm-5">
                             <div class="form-group">
                                 <label for="form-field-select-3">Company</label>
 
-                                <div>
-                                    <select name="submit_company" class="chosen-select" data-placeholder="Choose a Country...">
+                                <div >
+                                    <select  name="submit_company" class="chosen-select" data-placeholder="Choose a Country...">
                                         <option value=""><?php echo $row['company'] ?></option>
                                         <?php
 
@@ -195,7 +180,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="job-title">Job Title</label>
 
                                 <div>
-                                    <input type="text" id="job-title" name="submit_title"
+                                    <input size="25" type="text" id="job-title" name="submit_title"
                                            value="<?php echo $row['job_title'] ?>"/>
                                 </div>
                             </div>
@@ -208,7 +193,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="campus-date">CampusDate</label>
 
                                 <div>
-                                    <input type="text" name="submit_campus_date" id="campus-date" value="<?php echo $row['campus_date'] ?>"/>
+                                    <input size="25" type="text" name="submit_campus_date" id="campus-date" value="<?php echo $row['campus_date'] ?>"/>
                                 </div>
                             </div>
                             <div class="space-4"></div>
@@ -217,7 +202,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="salary">Salary</label>
 
                                 <div>
-                                    <input type="text" name="submit_salary" id="salary" value="<?php echo $row['salary'] ?>"/>
+                                    <input size="25" type="text" name="submit_salary" id="salary" value="<?php echo $row['salary'] ?>"/>
                                 </div>
                             </div>
 
@@ -226,7 +211,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="venue">Venue</label>
 
                                 <div>
-                                    <input type="text" name="submit_venue" id="venue" value="<?php echo $row['venue'] ?>"/>
+                                    <input size="25" type="text" name="submit_venue" id="venue" value="<?php echo $row['venue'] ?>"/>
                                 </div>
                             </div>
 
@@ -235,7 +220,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="apply-before">Apply Before</label>
 
                                 <div>
-                                    <input type="text" name="submit_apply_before" id="apply-before" placeholder="Username"
+                                    <input size="25" type="text" name="submit_apply_before" id="apply-before" placeholder="Username"
                                            value="<?php echo $row['apply_before'] ?>"/>
                                 </div>
                             </div>

@@ -616,7 +616,7 @@
                                                             Apply Date
                                                         </font>
                                                     </th>
-                                                    <th class="hidden-480"><font size="3">Status</font></th>
+                                                    <th class=" "><font size="3">Status</font></th>
                                                     <th></th>
                                                 </tr>
                                                 </thead>
@@ -753,7 +753,7 @@
                                                             ?>
 
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-success"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Open</span>
                                                             </td>
@@ -773,7 +773,7 @@
                                                         } else if ($calc_date == 0 && $calc_time >= 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
                                                             ?>
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-success"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Open</span>
                                                             </td>
@@ -796,7 +796,7 @@
 
                                                             ?>
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-danger"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
                                                             </td>
@@ -825,7 +825,7 @@
                                                             ?>
 
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-success"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Open</span>
                                                             </td>
@@ -844,7 +844,7 @@
                                                         } else if ($calc_date == 0 && $calc_time >= 0 && $get_10percentage >= $row['job_10percentage'] && $get_12percentage >= $row['job_12percentage'] && $get_standingarrears <= $row['job_standingarrears'] && $get_historyofarrears <= $row['job_historyofarrears']) {
                                                             ?>
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-success"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Open</span>
                                                             </td>
@@ -866,7 +866,7 @@
 
                                                             ?>
 
-                                                            <td class="hidden-480">
+                                                            <td class=" ">
                                                                 <span class="label label-danger"
                                                                       style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
                                                             </td>

@@ -13,6 +13,14 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 }
 
+if(isset($_FILES['placement_file']))
+{
+
+   $job_id=$_POST['hidden'];
+
+
+
+}
 
 
 ?>
@@ -59,6 +67,14 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         }
         function myfuncsettings() {
             location.href = "../settings.php";
+
+        }
+        function getjobid(str){
+
+
+
+            document.getElementById("companyid").value=str;
+
 
         }
 
@@ -670,7 +686,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                         Apply Date
                                     </font>
                                 </th>
-                                <th class="hidden-480"><font size="3">Status</font></th>
+                                <th class="  "><font size="3">Status</font></th>
+                                <th class="  "><font size="3"></font></th>
 
                             </tr>
                             </thead>
@@ -814,8 +831,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                                <td class="hidden-480">
-                                    <span class="label label-success" style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                <td class="  ">
+                                    <span class="label label-success" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Open</span>
                                 </td>
 
                               <?php
@@ -825,8 +842,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 else if( $calc_date==0 && $calc_time>=0){
                                     ?>
 
-                                    <td class="hidden-480">
-                                    <span class="label label-success" style="height: 30px; width: 80px; font-size: 18px;">Open</span>
+                                    <td class="  ">
+                                    <span class="label label-success" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Open</span>
                                 </td>
 
 
@@ -839,8 +856,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                     ?>
 
-                                    <td class="hidden-480">
-                                        <span class="label label-danger" style="height: 30px; width: 80px; font-size: 18px;">Closed</span>
+                                    <td class="  ">
+                                        <span class="label label-danger" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Closed</span>
                                     </td>
 
 
@@ -850,6 +867,11 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                    }
 
                                   ?>
+                                <td>
+                                    <a href="#modal-form" class="btn btn-primary" data-toggle="modal" onclick="getjobid(<?php echo $row['job_id'] ?>)">Update Details</a>
+
+
+                                </td>
 
 
                             </tr>
@@ -937,6 +959,47 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                             </tbody>
                         </table>
+
+                                                <div id="modal-form" class="modal" tabindex="-1">
+                                                    <form action="view_jobs.php" method="post" enctype="multipart/form-data">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12">
+
+                                                                            <input id="companyid" name="hidden" type="hidden" >
+
+                                                                            <div class="space"></div>
+
+                                                                            <input type="file" name="placement_file" />
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-sm" data-dismiss="modal">
+                                                                        <i class="ace-icon fa fa-times"></i>
+                                                                        Cancel
+                                                                    </button>
+
+                                                                    <button class="btn btn-sm btn-primary">
+                                                                        <i class="ace-icon fa fa-check"></i>
+                                                                        Save
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
 
 
                                         </div>
@@ -1040,6 +1103,27 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         });
         /***************/
 
+        $('#modal-form input[type=file]').ace_file_input({
+            style:'well',
+            btn_choose:'Drop files here or click to choose',
+            btn_change:null,
+            no_icon:'ace-icon fa fa-cloud-upload',
+            droppable:true,
+            thumbnail:'large'
+        });
+
+        //chosen plugin inside a modal will have a zero width because the select element is originally hidden
+        //and its width cannot be determined.
+        //so we set the width after modal is show
+        $('#modal-form').on('shown.bs.modal', function () {
+            if(!ace.vars['touch']) {
+                $(this).find('.chosen-container').each(function(){
+                    $(this).find('a:first-child').css('width' , '210px');
+                    $(this).find('.chosen-drop').css('width' , '210px');
+                    $(this).find('.chosen-search input').css('width' , '200px');
+                });
+            }
+        });
 
 
 

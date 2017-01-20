@@ -202,6 +202,16 @@ if(isset($_GET['delete']))
 
 		</script>
 
+        <style>
+        #shadow{
+
+            width: 500px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        </style>
+
+
 
 
 
@@ -769,7 +779,7 @@ if(isset($_GET['delete']))
                                         <form action="index.php" method="get">
 
 
-                                            <div class="widget-box widget-color-orange">
+                                            <div class="widget-box widget-color-orange" id="shadow">
                                                 <div class="widget-header">
                                                     <h5 class="widget-title bigger white">Create New Student Table</h5>
                                                 </div>
@@ -781,7 +791,7 @@ if(isset($_GET['delete']))
                                                                 <div class="form-group">
                                                                     <h5><label class="col-xs-12 control-label orange bolder" for="form-field-1">Year of Graduation</label></h5>
                                                                     <div class="col-xs-12 col-md-7">
-                                                                        <input type="text" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
+                                                                        <input type="text" align="centre" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
 
                                                                     </div>
                                                                 </div>
@@ -810,7 +820,7 @@ if(isset($_GET['delete']))
                                         <form action="crud/action_update.php">
 
 
-                                        <div class="widget-box widget-color-blue">
+                                        <div class="widget-box widget-color-blue" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title bigger white">Update Student Table</h5>
                                             </div>
@@ -865,11 +875,14 @@ if(isset($_GET['delete']))
                                     </div>
 
                                 </div>
-				<div class="row">
+
+                                <div class="space-16"> </div>
+
+				                <div class="row">
 
                                     <div class="col-xs-6 pricing-box">
                                         <form action="crud/action_insert.php" method="get">
-                                        <div class="widget-box widget-color-green">
+                                        <div class="widget-box widget-color-green" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title bigger white">Insert Into Student Table</h5>
                                             </div>
@@ -921,7 +934,7 @@ if(isset($_GET['delete']))
                                         </form>
                                     </div>
                                     <div class="col-xs-6 pricing-box">
-                                        <div class="widget-box widget-color-red">
+                                        <div class="widget-box widget-color-red" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title bigger white">Delete Student Table</h5>
                                             </div>

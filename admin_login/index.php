@@ -185,6 +185,7 @@ if(isset($_GET['delete']))
 
 		<!--button-navigation-->
 		<script type="text/javascript">
+
             function myfuncreport() {
                 Location.href = "reports/reports.php";
             }
@@ -209,7 +210,7 @@ if(isset($_GET['delete']))
         <style>
         #shadow{
 
-            width: 600px;
+            width: 500px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -299,7 +300,7 @@ if(isset($_GET['delete']))
 
                             if(preg_match('/rmk_database/', $database)){
                                 ?>
-                                <img src="images/rmd.jpg" style="height: 25px;">
+                                <img src="images/rmk.jpg" style="height: 25px;">
                                 <label style="font-size: large;">RMK Engineering College </label>
 
                                 <?php
@@ -307,7 +308,7 @@ if(isset($_GET['delete']))
 
                             if(preg_match('/rmkcet_database/', $database)){
                                 ?>
-                                <img src="images/rmd.jpg" style="height: 25px;">
+                                <img src="images/rmkcet.jpg" style="height: 25px;">
                                 <label style="font-size: large;">RMK College of Engineering and Technology </label>
 
                                 <?php
@@ -729,15 +730,7 @@ if(isset($_GET['delete']))
 							</li>
 							<li class="active">Dashboard</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
+                        <!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">

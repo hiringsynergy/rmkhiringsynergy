@@ -615,7 +615,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 ?>
 
 
-                                <div class="col-xs-4 col-sm-3 hello form-group" style="padding-left: 30px;">
+                                <div class="col-xs-10 col-sm-3 hello form-group" style="padding-left: 30px;">
                                     
                                         <h5><label class="control-label bolder orange" for="form-field-select-3">Select
                                                 Company</label></h5>
@@ -637,10 +637,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                     
                                 </div>
                                 <br/><br/>
-                                <a href="../company/create_company.php" class="btn btn-sm btn-yellow">
+                                
+                                <div class="col-xs-4" style="padding-top:3px;">
+                                <a href="../company/create_company.php" class=" btn btn-sm btn-yellow"   >
                                     <i class="ace-icon "></i>
                                     Create New Company
                                 </a>
+                                </div>
 
                             </div>
                             <div class="row">
@@ -653,12 +656,14 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 <div class="col-xs-10 col-sm-6  hello form-group" style="padding-left: 30px;">
 
 
+                                   <div>
                                     <h5><label class="control-label bolder orange " for="form-field-1">Job Title</label></h5>
 
                                     <input type="text" id="job" name="job_title"  placeholder="Enter Job Title"
                                            class="col-xs-12"/>
 
 
+                               </div>
                                 </div>
 
                                 <div class="col-xs-10  col-sm-6 hello form-group" style="padding-left: 30px;">
@@ -689,15 +694,19 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                             <div class="row">
                                 <div class="col-xs-10  col-sm-6 hello form-group" style="padding-left: 30px;">
+                                   <div>
                                     <h5><label class="control-label bolder orange" for="form-field-1">Venue</label></h5>
                                     <input type="text" id="form-field-1" name="venue" placeholder="Enter Venue"
                                            class="col-xs-12"/>
+                                           </div>
                                 </div>
                                 <div class="col-xs-10 col-sm-6  hello form-group" style="padding-left: 30px;">
+                                   <div>
                                     <h5><label class="control-label bolder orange" for="form-field-1">Joining
                                             Location</label></h5>
                                     <input type="text" id="form-field-1" name="joining_location"
                                            placeholder="Enter Location" class="col-xs-12"/>
+                                </div>
                                 </div>
                             </div>
                             <div class="space-10"></div>
@@ -753,10 +762,12 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             </div>
                             <div class="row">
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
+                                   <div>
                                     <h5><label class="control-label bolder orange" for="form-field-1">Salary(per
                                             Annum)</label></h5>
                                     <input type="text" id="form-field-1" name="salary" placeholder="Enter Salary"
                                            class="col-xs-12"/>
+                                </div>
                                 </div>
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Job Type</label>
@@ -1440,7 +1451,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             required: "Please provide Apply before Date."
                         },
 	          job_description: {
-                            required: "Please provide a Job Deascription."
+                            required: "Please provide a Job Description."
                         },
 	          skill_set: {
                             required: "Please provide a Skill Set."
@@ -1461,22 +1472,18 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                     success: function (e) {
                         $(e).closest('.hello').removeClass('has-error');//.addClass('has-info');
                         $(e).remove();
-                    }
+                    },
 
-//                    errorPlacement: function (error, element) {
-//                        if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-//                            var controls = element.closest('div[class*="col-"]');
-//                            if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-//                            else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-//                        }
-//                        else if(element.is('.select2')) {
-//                            error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-//                        }
-//                        else if(element.is('.chosen-select')) {
+                    
+                    errorPlacement: function (error, element) {
+                        if(element.is('.chosen-select')) {
+                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                        }
+//                        else if(element.is('.hello')) {
 //                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
 //                        }
-//                        else error.insertAfter(element.parent());
-//                    },
+                        else error.insertAfter(element.parent());
+                    },
 
 //                    submitHandler: function (form) {
 //                    },

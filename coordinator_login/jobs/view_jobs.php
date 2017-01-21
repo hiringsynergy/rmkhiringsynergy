@@ -62,7 +62,13 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
     </script>
 
+    <style>
+        #shadow{
 
+            width: 700px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
 
 
     <!-- page specific plugin styles -->
@@ -555,7 +561,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 <div  class="<?php echo $widget_color[$i] ?>"   id="widget-box-1">
                                     <div class="widget-header"><h5 class="widget-title bigger" style="color: white">Job</h5>
 
-                                        <div class="widget-toolbar no-border">
+                                        <div class="widget-toolbar no-border" >
 
                                             <a href="#" data-action="fullscreen" class="orange2">
                                                 <i class="ace-icon fa fa-expand"></i>

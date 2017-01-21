@@ -23,7 +23,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Student Interaction</title>
+    <title>RMK HIRING SYNERGY</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -47,10 +47,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <script type="text/javascript">
         function myfuncreport() {
             location.href = "../reports.php";
-
-        }
-        function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
 
         }
         function myfuncjobs() {
@@ -183,161 +179,44 @@ if(isset($_POST['update_submit'])) {
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="../index.php" class="navbar-brand">
+            <a href="company_details.php" class="navbar-brand">
                 <small>
-                    <i class="fa fa-leaf"></i>
-                    RMK Group of Institutions
+                    <i class=""></i>
+                    <?php
+
+                    $database=$_SESSION['database_name'];
+                    if(preg_match('/rmd_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMD Engineering College  </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmk_database/', $database)){
+                        ?>
+                        <img src="../images/rmk.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK Engineering College </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmkcet_database/', $database)){
+                        ?>
+                        <img src="../images/rmkcet.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
+
+                        <?php
+                    }
+
+
+                    ?>
                 </small>
             </a>
         </div>
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See all notifications
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="green dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
@@ -440,7 +319,7 @@ if(isset($_POST['update_submit'])) {
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
+                            <a href="inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -481,7 +360,7 @@ if(isset($_POST['update_submit'])) {
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
-									Admin
+									Coordinator
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -533,15 +412,7 @@ if(isset($_POST['update_submit'])) {
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 
                 <button class="btn btn-success"  onclick="myfuncreport()" id="myButton1" >
-
                     <i class="ace-icon fa fa-signal" ></i>
-
-
-                </button>
-
-
-                <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
-                    <i class="ace-icon fa fa-pencil"></i>
                 </button>
 
                 <button class="btn btn-warning"  onclick="myfuncjobs()" id="myButton3">
@@ -571,7 +442,7 @@ if(isset($_POST['update_submit'])) {
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Student Interaction </span>
+                    <span class="menu-text">Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -605,33 +476,6 @@ if(isset($_POST['update_submit'])) {
 
             </li>
 
-            <li class="">
-                <a href="../admin_panel/admin_panel_woexport.php" >
-                    <i class="menu-icon fa fa-pencil-square-o"></i>
-                    <span class="menu-text"> Admin Panel </span>
-
-
-                </a>
-
-                <b class="arrow"></b>
-
-
-            </li>
-
-            <li class="">
-                <a href="../approve.php">
-                    <i class="menu-icon fa fa-list-alt"></i>
-                    <span class="menu-text"> Approve </span>
-                </a>
-
-                <b class="arrow"></b>
-
-
-            </li>
-
-
-
-
             <li>
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-briefcase"></i>
@@ -647,15 +491,6 @@ if(isset($_POST['update_submit'])) {
                         <a href="../jobs/view_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View all Jobs
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../jobs/post_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Post Job
                         </a>
 
                         <b class="arrow"></b>
@@ -700,14 +535,6 @@ if(isset($_POST['update_submit'])) {
                 <b class="arrow"></b>
 
                 <ul class="submenu">
-                    <li class="">
-                        <a href="../company/create_company.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Create Company
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
 
                     <li class="active">
                         <a href="../company/view_companies.php">
@@ -758,20 +585,6 @@ if(isset($_POST['update_submit'])) {
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
-                        <a href="../inbox.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Inbox
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-
-
-
-
                 </ul>
             </li>
 
@@ -794,15 +607,7 @@ if(isset($_POST['update_submit'])) {
                     </li>
                     <li class="active">Sample</li>
                 </ul><!-- /.breadcrumb -->
-
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-                    </form>
-                </div><!-- /.nav-search -->
+                <!-- /.nav-search -->
             </div>
 
             <div class="page-content">

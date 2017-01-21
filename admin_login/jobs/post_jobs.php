@@ -45,7 +45,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncadmin() {
@@ -60,10 +60,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
             location.href = "../settings.php";
 
         }
+<<<<<<< HEAD
         function myfuncsettings() {
             location.href = "../Create_company.php";
 
         }
+=======
+>>>>>>> 67b2af4d37943808066768c801cdecde6444e39a
 
 
     </script>
@@ -138,11 +141,38 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="../index.php" class="navbar-brand">
+            <a href="post_jobs.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../../logos/rmklogo.JPG" style="height: 25px;">
-                    RMK Group of Institutions
+                    <?php
+
+                    $database=$_SESSION['database_name'];
+                    if(preg_match('/rmd_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMD Engineering College  </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmk_database/', $database)){
+                        ?>
+                        <img src="../images/rmk.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK Engineering College </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmkcet_database/', $database)){
+                        ?>
+                        <img src="../images/rmkcet.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
+
+                        <?php
+                    }
+
+
+                    ?>
                 </small>
             </a>
         </div>

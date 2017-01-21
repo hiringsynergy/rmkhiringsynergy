@@ -650,30 +650,30 @@ if(isset($_POST['create'])){
                         <!-- PAGE CONTENT BEGINS -->
 
             </div>
-                    <form id="myform" action="create_company.php" method="post" enctype="multipart/form-data">
+                    <form id="validate-form" onsubmit=" return validate()" class="form-horizontal" role="form" action="create_company.php" method="post" enctype="multipart/form-data">
 
 
                         				<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-6 hello form-group" style="padding-left: 30px;">
 										<h3 class="header green smaller">
 											Company Name
 										</h3>
 
-										<div class="row">
+										
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" name="company_name" class="form-control violet" />
+												<input id="tags" type="text" name="company_name" placeholder="Enter company name..." class="form-control violet" />
 												<div class="space-4"></div>
 											</div>
-										</div>
+										
 									</div><!-- ./span -->
-									<div class="col-sm-6">
+									<div class="col-sm-6 hello form-group" style="padding-left: 30px;">
 										<h3 class="header green smaller">
 											Company Website
 										</h3>
 
 										<div class="row">
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" name="company_website" class="form-control" />
+												<input id="tags" type="text" placeholder="Enter company website..." name="company_website" class="form-control" />
 												<div class="space-4"></div>
 											</div>
 										</div>
@@ -902,6 +902,10 @@ if(isset($_POST['create'])){
                 inp.value="This text field is disabled!";
             }
         });
+
+
+
+
 
         $('#myform').on('submit', function() {
             var hidden_input =
@@ -1685,6 +1689,66 @@ if(isset($_POST['create'])){
 		}
              */
         }
+
+
+                $('#validate-form').validate({
+                    errorElement: 'div',
+                    errorClass: 'help-block',
+                    focusInvalid: true,
+                    ignore: "",
+                    rules: {
+
+                        company_name: {
+                            required: true
+                        },
+                        company_website: {
+                            required: true
+                        }
+
+                    },
+
+                    messages: {
+                        company_name: {
+                            required: "Please provide a Company name."
+
+                        },
+                        company_website: {
+                            required: "Please provide Company Website."
+
+                        }
+                    },
+
+
+                    highlight: function (e) {
+                        $(e).closest('.hello').removeClass('has-info').addClass('has-error');
+                    },
+
+                    success: function (e) {
+                        $(e).closest('.hello').removeClass('has-error');//.addClass('has-info');
+                        $(e).remove();
+                    }
+
+//                    errorPlacement: function (error, element) {
+//                        if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+//                            var controls = element.closest('div[class*="col-"]');
+//                            if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+//                            else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+//                        }
+//                        else if(element.is('.select2')) {
+//                            error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+//                        }
+//                        else if(element.is('.chosen-select')) {
+//                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+//                        }
+//                        else error.insertAfter(element.parent());
+//                    },
+
+//                    submitHandler: function (form) {
+//                    },
+//                    invalidHandler: function (form) {
+//                    }
+                });
+
 
     });
 </script>

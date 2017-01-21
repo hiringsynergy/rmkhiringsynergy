@@ -60,13 +60,17 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
             location.href = "../settings.php";
 
         }
-<<<<<<< HEAD
+        <<<<<<<
+        HEAD
         function myfuncsettings() {
             location.href = "../Create_company.php";
 
         }
-=======
->>>>>>> 67b2af4d37943808066768c801cdecde6444e39a
+        ======
+        =
+        >>>>>>>
+        67
+        b2af4d37943808066768c801cdecde6444e39a
 
 
     </script>
@@ -100,9 +104,9 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
     <![endif]-->
 
     <!-- inline styles related to this page -->
-<!--    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css"/>-->
+    <!--    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css"/>-->
     <link rel="stylesheet" href="../assets/css/bootstrapValidator.css"/>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css"/>
 
     <script type="text/javascript" src="../vendor/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -146,16 +150,16 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                     <i class=""></i>
                     <?php
 
-                    $database=$_SESSION['database_name'];
-                    if(preg_match('/rmd_database/', $database)){
+                    $database = $_SESSION['database_name'];
+                    if (preg_match('/rmd_database/', $database)) {
                         ?>
                         <img src="../images/rmd.jpg" style="height: 25px;">
-                        <label style="font-size: large;">RMD Engineering College  </label>
+                        <label style="font-size: large;">RMD Engineering College </label>
 
                         <?php
                     }
 
-                    if(preg_match('/rmk_database/', $database)){
+                    if (preg_match('/rmk_database/', $database)) {
                         ?>
                         <img src="../images/rmk.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK Engineering College </label>
@@ -163,7 +167,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         <?php
                     }
 
-                    if(preg_match('/rmkcet_database/', $database)){
+                    if (preg_match('/rmkcet_database/', $database)) {
                         ?>
                         <img src="../images/rmkcet.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK College of Engineering and Technology </label>
@@ -597,7 +601,8 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
-                        <form onsubmit=" return validate()" class="form-horizontal" id="validation-form" action="job_filter.php" method="get"
+                        <form onsubmit=" return validate()" class="form-horizontal" id="validation-form"
+                              action="job_filter.php" method="get"
                               role="form">
                             <div class="row">
 
@@ -616,38 +621,37 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
 
                                 <div class="col-xs-10 col-sm-3 hello form-group" style="padding-left: 30px;">
-                                    
-                                        <h5><label class="control-label bolder orange" for="form-field-select-3">Select
-                                                Company</label></h5>
 
-                                        <select class="chosen-select form-control" id="form-field-select-3"
-                                                name="company_id" data-placeholder="Choose a Company...">
-                                            <option value=""></option>
+                                    <h5><label class="control-label bolder orange" for="form-field-select-3">Select
+                                            Company</label></h5>
 
-                                            <?php
+                                    <select class="chosen-select form-control" id="form-field-select-3"
+                                            name="company_id" data-placeholder="Choose a Company...">
+                                        <option value=""></option>
 
-                                            while ($row = mysqli_fetch_assoc($result)) {
+                                        <?php
+
+                                        while ($row = mysqli_fetch_assoc($result)) {
 
 
-                                                ?>
-                                                <option value="<?php echo $row['company_id'] ?>"><?php echo $row['company_name'] ?></option>
-                                            <?php } ?>
+                                            ?>
+                                            <option value="<?php echo $row['company_id'] ?>"><?php echo $row['company_name'] ?></option>
+                                        <?php } ?>
 
-                                        </select>
-                                    
+                                    </select>
+
                                 </div>
                                 <br/><br/>
-                                
+
                                 <div class="col-xs-4" style="padding-top:3px;">
-                                <a href="../company/create_company.php" class=" btn btn-sm btn-yellow"   >
-                                    <i class="ace-icon "></i>
-                                    Create New Company
-                                </a>
+                                    <a href="../company/create_company.php" class=" btn btn-sm btn-yellow">
+                                        <i class="ace-icon "></i>
+                                        Create New Company
+                                    </a>
                                 </div>
 
                             </div>
                             <div class="row">
-
 
 
                                 <div class="space-10"></div>
@@ -656,22 +660,29 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 <div class="col-xs-10 col-sm-6  hello form-group" style="padding-left: 30px;">
 
 
-                                   <div>
-                                    <h5><label class="control-label bolder orange " for="form-field-1">Job Title</label></h5>
-
-                                    <input type="text" id="job" name="job_title"  placeholder="Enter Job Title"
-                                           class="col-xs-12"/>
+                                    <div>
+                                        <h5><label class="control-label bolder orange " for="form-field-1">Job
+                                                Title</label></h5>
 
 
-                               </div>
+                                        <span class="block input-icon input-icon-right  ">
+
+                                             <input type="text" id="job" name="job_title"
+                                                    placeholder="Enter Job Title"
+                                                    class="col-xs-12  "/>
+										<i class="find" id="title" ></i>
+																	</span>
+
+
+                                    </div>
                                 </div>
 
                                 <div class="col-xs-10  col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Year of
                                             Graduation</label></h5>
                                     <select class="col-xs-7 chosen-select form-control" name="year_of_graduation"
-                                            id="form-field-select-3" data-placeholder="Select a Year...">
-                                            <option value=""></option>
+                                            id="form-field-select-33" data-placeholder="Select a Year...">
+                                        <option value=""></option>
                                         <?php
 
                                         include "../connect.php";
@@ -694,19 +705,35 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                             <div class="row">
                                 <div class="col-xs-10  col-sm-6 hello form-group" style="padding-left: 30px;">
-                                   <div>
-                                    <h5><label class="control-label bolder orange" for="form-field-1">Venue</label></h5>
-                                    <input type="text" id="form-field-1" name="venue" placeholder="Enter Venue"
-                                           class="col-xs-12"/>
-                                           </div>
+                                    <div>
+                                        <h5><label class="control-label bolder orange" for="form-field-15">Venue</label>
+                                        </h5>
+
+                                        <span class="block input-icon input-icon-right  ">
+
+
+                                        <input type="text" id="form-field-1" name="venue" placeholder="Enter Venue"
+                                               class="col-xs-12"/>
+										<i class="find" id="venue"></i>
+																	</span>
+
+
+                                    </div>
                                 </div>
                                 <div class="col-xs-10 col-sm-6  hello form-group" style="padding-left: 30px;">
-                                   <div>
-                                    <h5><label class="control-label bolder orange" for="form-field-1">Joining
-                                            Location</label></h5>
-                                    <input type="text" id="form-field-1" name="joining_location"
-                                           placeholder="Enter Location" class="col-xs-12"/>
-                                </div>
+                                    <div>
+                                        <h5><label class="control-label bolder orange" for="form-field-1">Joining
+                                                Location</label></h5>
+
+                                        <span class="block input-icon input-icon-right  ">
+
+                                        <input type="text" id="form-field-145" name="joining_location"
+                                             placeholder="Enter Location" class="col-xs-12"/>
+										<i class="find" id="location"></i>
+																	</span>
+
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="space-10"></div>
@@ -719,12 +746,25 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                     <div class="space-6"></div>
                                     <div class="input-group">
+
+
+
+
                                         <input class="form-control" name="campus_date" id="date-timepicker1"
                                                type="text"/>
+                                        <span class="block input-icon input-icon-right  ">
+                                        <i class="find" id="campus"></i>
+
+                                         </span>
+
                                         <span class="input-group-addon">
-                                <i class="fa fa-calendar bigger-110"></i>
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                        </span>
+
+
 
                                     </div>
+
                                 </div>
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
 
@@ -736,45 +776,62 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                     <div class="input-group">
                                         <input class="form-control" name="apply_before" id="date-timepicker2"
                                                type="text"/>
+                                        <span class="block input-icon input-icon-right  ">
+                                        <i class="find" id="apply" ></i>
+                                        </span>
                                         <span class="input-group-addon">
                                 <i class="fa fa-calendar bigger-110"></i>
+                                        </span>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+<!--                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">-->
+<!--                                    <div><h5><label class="control-label bolder orange" for="form-field-16">Job Description</label></h5>-->
+<!---->
+<!--                                        <textarea id="form-field-16" name="job_description" rows="7"-->
+<!--                                                  class="autosize-transition form-control"-->
+<!--                                                  placeholder="Type something about job....."></textarea>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
-                                    <div><h5><label class="control-label bolder orange" for="form-field-11">Job
-                                                Description</label></h5>
-                                        <textarea id="form-field-11" name="job_description" rows="7"
-                                                  class="autosize-transition form-control"
-                                                  placeholder="Type something about job....."></textarea>
+                                    <div><h5><label class="control-label bolder orange" for="form-field-34">Job Description</label></h5>
+                                        <textarea id="form-field-34" rows="7" name="job_description" class="col-xs-12"
+
+                                                  placeholder="Type something about Skill Set....."></textarea>
                                     </div>
                                 </div>
-                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
-                                    <div><h5><label class="control-label bolder orange" for="form-field-11">Skill
+                                <div class="col-xs-10 col-sm-6  form-group hello" style="padding-left: 30px;">
+                                    <div ><h5><label class="control-label bolder orange" for="form-field-16">Skill
                                                 Set</label></h5>
-                                        <textarea id="form-field-11" rows="7" name="skill_set"
-                                                  class="autosize-transition form-control"
+                                        <textarea class="col-xs-12" id="form-field-16" rows="7"  name="skill_set"
+
                                                   placeholder="Type something about Skill Set....."></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
-                                   <div>
-                                    <h5><label class="control-label bolder orange" for="form-field-1">Salary(per
-                                            Annum)</label></h5>
-                                    <input type="text" id="form-field-1" name="salary" placeholder="Enter Salary"
-                                           class="col-xs-12"/>
-                                </div>
+                                    <div>
+                                        <h5><label class="control-label bolder orange" for="form-field-1">Salary(per
+                                                Annum)</label></h5>
+
+                                        <span class="block input-icon input-icon-right  ">
+
+                                       <input type="text" id="form-field-13" name="salary" placeholder="Enter Salary"
+                                              class="col-xs-12"/>
+										<i class="find" id="salary"></i>
+																	</span>
+
+                                    </div>
                                 </div>
                                 <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Job Type</label>
                                     </h5>
-                                    <select class="col-xs-7 chosen-select form-control" name="job_type"
-                                            id="form-field-select-3" placeholder="select job type...">
-                                            <option value=""></option>
+                                    <select class="col-xs-7 chosen-select form-control" name="job_type"  data-placeholder="select job type..."
+                                            id="form-field-select-333">
+                                        <option value=""></option>
                                         <option value="Product">Product</option>
                                         <option value="Service">Service</option>
                                         <option value="Core">Core</option>
@@ -787,8 +844,8 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                     <h5><label class="control-label bolder orange" for="form-field-1">Attach
                                             Files</label></h5>
                                     <br/>
-                                        <input type="file" name="file" class="" id="id-input-file-2"/>
-                                    
+                                    <input type="file" name="file" class="" id="id-input-file-2"/>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -894,11 +951,6 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
         <!-- inline scripts related to this page -->
         <script type="text/javascript">
             jQuery(function ($) {
-
-
-
-
-
 
 
                 $('#id-disable-check').on('click', function () {
@@ -1382,7 +1434,6 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                 });
 
 
-
                 $('#validation-form').validate({
                     errorElement: 'div',
                     errorClass: 'help-block',
@@ -1396,33 +1447,33 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         venue: {
                             required: true
                         },
-	         company_id: {
+                        company_id: {
                             required: true
                         },
-	         year_of_graduation: {
+                        year_of_graduation: {
                             required: true
                         },
-	         joining_location: {
+                        joining_location: {
                             required: true
                         },
-	          campus_date: {
+                        campus_date: {
                             required: true
                         },
-	          apply_before: {
+                        apply_before: {
                             required: true
                         },
-	          job_description: {
+                        job_description: {
                             required: true
                         },
-	          skill_set: {
+                        skill_set: {
                             required: true
                         },
                         salary: {
                             required: true
                         },
-	         job_type: {
+                        job_type: {
                             required: true
-                        },
+                        }
 
                     },
 
@@ -1435,31 +1486,31 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             required: "Please provide a venue."
 
                         },
-	         company_id: {
+                        company_id: {
                             required: "Please provide a Company name."
                         },
-	         year_of_graduation: {
+                        year_of_graduation: {
                             required: "Please provide a year of graduation."
                         },
-	         joining_location: {
+                        joining_location: {
                             required: "Please provide a Joining Location."
                         },
-	          campus_date: {
+                        campus_date: {
                             required: "Please provide Campus Date."
                         },
-	          apply_before: {
+                        apply_before: {
                             required: "Please provide Apply before Date."
                         },
-	          job_description: {
+                        job_description: {
                             required: "Please provide a Job Description."
                         },
-	          skill_set: {
+                        skill_set: {
                             required: "Please provide a Skill Set."
                         },
                         salary: {
                             required: "Please provide a Salary."
                         },
-	         job_type: {
+                        job_type: {
                             required: "Please provide a Job type."
                         }
                     },
@@ -1467,33 +1518,35 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                     highlight: function (e) {
                         $(e).closest('.hello').removeClass('has-info').addClass('has-error');
+
+
+
+
+
                     },
 
                     success: function (e) {
-                        $(e).closest('.hello').removeClass('has-error');//.addClass('has-info');
+                        $(e).closest('.hello').removeClass('has-error ').addClass('has-success');
+
                         $(e).remove();
                     },
 
-                    
+
                     errorPlacement: function (error, element) {
-                        if(element.is('.chosen-select')) {
+                        if (element.is('.chosen-select')) {
                             error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
                         }
 //                        else if(element.is('.hello')) {
 //                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
 //                        }
                         else error.insertAfter(element.parent());
-                    },
+                    }
 
 //                    submitHandler: function (form) {
 //                    },
 //                    invalidHandler: function (form) {
 //                    }
                 });
-
-
-
-
 
 
             })

@@ -826,6 +826,7 @@ if(isset($_GET['delete']))
 										<h5><label class="col-xs-12 control-label blue bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
 												<select class="col-xs-7 chosen-select form-control" name="year"  id="form-field-select-3" data-placeholder="Select a Year...">
+												<option value=""></option>
                                                     <?php
 
                                                     include "connect.php";
@@ -888,6 +889,7 @@ if(isset($_GET['delete']))
 										<h5><label class="col-xs-12 control-label green bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
 												<select class="col-xs-7 chosen-select form-control" name="insert_year" id="form-field-select-3" data-placeholder="Select a Year...">
+												<option value=""></option>
 
                                                     <?php
 
@@ -943,6 +945,7 @@ if(isset($_GET['delete']))
 										<h5><label class="col-xs-12 control-label red bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
 												<select class="col-xs-7 chosen-select form-control" name="tablename" id="form-field-select-3" data-placeholder="Select a Year...">
+												<option value=""></option>
                                                     <?php
 
                                                     include "connect.php";

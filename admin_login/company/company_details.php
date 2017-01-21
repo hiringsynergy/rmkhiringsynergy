@@ -652,23 +652,41 @@ if(isset($_POST['update_submit'])) {
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
+
+                        <?php
+                        if(isset($_GET['cid'])){
+
+                            include "../connect.php";
+
+                            $company_id=$_GET['cid'];
+
+                        $query_company="SELECT * FROM company_list WHERE company_id='$company_id'";
+                        $result_company=mysqli_query($connect, $query_company);
+                        $row_company=mysqli_fetch_assoc($result_company);
+
+
+
+
+
+
+
+
+                        ?>
+
            <div class="row">
                     <div class="col-xs-9 col-sm-9">
-                                 <h1 class="black bolder thinner bigger-180">ZOHO ENTERPRISES LTD</h1>
+                                 <h1 class="black bolder thinner bigger-180"><?php echo $row_company['company_name'] ?></h1>
                           
   			<div class="space-10"></div>
 	                       	 <div class="space-10"></div><br/>
 
 
-                                        		<p class="dark bigger-130">At Zoho, software is our craft and passion. We create beautiful software to solve business problems.
-					Over the past decade of our journey, the Zoho suite has emerged to be a leader in the cloud and on your devices.
-					As much as we love software, it is our people and our culture that are our most valuable assets. Our people spend years mastering the craft. 
-					In an industry where technology changes at a relentless and dizzying pace, we value persistence and endurance as highly as adaptability.
+                                        		<p class="dark bigger-130"><?php echo $row_company['company_description'] ?>
                                         		</p><br/><br/><br/><br/><br/><br/>
 
-				<div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">zoho@gmail.com</a></h5></div>
+				<div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">Not Mentioned</a></h5></div>
 		
-             		                           <h5 class=" red bolder">Website : <a href="http://www.zoho.com">www.zoho.com </a></h5>
+             		                           <h5 class=" red bolder">Website : <a href="http://<?php echo $row_company['company_website'] ?>"><?php echo $row_company['company_website'] ?></a></h5>
 	   </div>
  	 <div class="col-xs-3 col-sm-3 ">
          		          <div class="padding-right" ></div>
@@ -679,8 +697,8 @@ if(isset($_POST['update_submit'])) {
 
                                 	    	<li>
 
-                              	  		        <a class="" href="../../logos/1482066285_asdfgasdfg.jpg" data-rel="colorbox">
-                               	         			    <img width="auto" height="150" alt="150x150" src="../../logos/1482380421_IBM_logo.gif" />
+                              	  		        <a class="" href="../../logos/<?php echo $row_company['company_logo'] ?>" data-rel="colorbox">
+                               	         			    <img width="auto" height="150" alt="150x150" src="../../logos/<?php echo $row_company['company_logo'] ?>" />
                                  			           <div class="text">
                                  			               <div class="inner">Click here to View</div>
                                  			           </div>
@@ -698,6 +716,7 @@ if(isset($_POST['update_submit'])) {
 			</ul>
 		</div>
 	</div>
+                        <?php } ?>
 </div>
 
                              <!-- PAGE CONTENT ENDS -->
@@ -757,18 +776,6 @@ if(isset($_POST['update_submit'])) {
 <script src="../assets/js/jquery.colorbox.min.js"></script>
 
 
-
-<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-<script src="../vendors/jszip/dist/jszip.min.js"></script>
-<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
 
 

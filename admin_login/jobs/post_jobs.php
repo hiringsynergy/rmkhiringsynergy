@@ -615,8 +615,8 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 ?>
 
 
-                                <div class="col-xs-4 col-sm-3">
-                                    <div>
+                                <div class="col-xs-4 col-sm-3 hello form-group" style="padding-left: 30px;">
+                                    
                                         <h5><label class="control-label bolder orange" for="form-field-select-3">Select
                                                 Company</label></h5>
 
@@ -634,7 +634,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                             <?php } ?>
 
                                         </select>
-                                    </div>
+                                    
                                 </div>
                                 <br/><br/>
                                 <a href="../company/create_company.php" class="btn btn-sm btn-yellow">
@@ -701,7 +701,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             </div>
                             <div class="space-10"></div>
                             <div class="row">
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
 
 
                                     <label class="control-label bolder orange" for="date-timepicker1">Campus on
@@ -716,7 +716,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                     </div>
                                 </div>
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
 
 
                                     <label class="control-label bolder orange" for="date-timepicker2">Apply
@@ -733,7 +733,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <div><h5><label class="control-label bolder orange" for="form-field-11">Job
                                                 Description</label></h5>
                                         <textarea id="form-field-11" name="job_description" rows="7"
@@ -741,7 +741,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                   placeholder="Type something about job....."></textarea>
                                     </div>
                                 </div>
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <div><h5><label class="control-label bolder orange" for="form-field-11">Skill
                                                 Set</label></h5>
                                         <textarea id="form-field-11" rows="7" name="skill_set"
@@ -751,13 +751,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Salary(per
                                             Annum)</label></h5>
                                     <input type="text" id="form-field-1" name="salary" placeholder="Enter Salary"
                                            class="col-xs-12"/>
                                 </div>
-                                <div class="col-xs-7 col-sm-5">
+                                <div class="col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Job Type</label>
                                     </h5>
                                     <select class="col-xs-7 chosen-select form-control" name="job_type"
@@ -770,12 +770,12 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class=" col-xs-7 col-sm-5 ">
+                                <div class=" col-xs-10 col-sm-6 hello form-group" style="padding-left: 30px;">
                                     <h5><label class="control-label bolder orange" for="form-field-1">Attach
                                             Files</label></h5>
-                                    <div class="form-group"><br/>
-                                        <input type="file" class="" id="id-input-file-2"/>
-                                    </div>
+                                    <br/>
+                                        <input type="file" name="file" class="" id="id-input-file-2"/>
+                                    
                                 </div>
                             </div>
                             <div class="row">
@@ -1382,7 +1382,34 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         },
                         venue: {
                             required: true
-                        }
+                        },
+	         company_id: {
+                            required: true
+                        },
+	         year_of_graduation: {
+                            required: true
+                        },
+	         joining_location: {
+                            required: true
+                        },
+	          campus_date: {
+                            required: true
+                        },
+	          apply_before: {
+                            required: true
+                        },
+	          job_description: {
+                            required: true
+                        },
+	          skill_set: {
+                            required: true
+                        },
+                        salary: {
+                            required: true
+                        },
+	         job_type: {
+                            required: true
+                        },
 
                     },
 
@@ -1392,8 +1419,35 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                         },
                         venue: {
-                            required: "Please provide a title."
+                            required: "Please provide a venue."
 
+                        },
+	         company_id: {
+                            required: "Please provide a Company name."
+                        },
+	         year_of_graduation: {
+                            required: "Please provide a year of graduation."
+                        },
+	         joining_location: {
+                            required: "Please provide a Joining Location."
+                        },
+	          campus_date: {
+                            required: "Please provide Campus Date."
+                        },
+	          apply_before: {
+                            required: "Please provide Apply before Date."
+                        },
+	          job_description: {
+                            required: "Please provide a Job Deascription."
+                        },
+	          skill_set: {
+                            required: "Please provide a Skill Set."
+                        },
+                        salary: {
+                            required: "Please provide a Salary."
+                        },
+	         job_type: {
+                            required: "Please provide a Job type."
                         }
                     },
 

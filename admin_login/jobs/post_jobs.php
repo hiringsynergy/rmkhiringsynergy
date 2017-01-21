@@ -666,6 +666,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                             Graduation</label></h5>
                                     <select class="col-xs-7 chosen-select form-control" name="year_of_graduation"
                                             id="form-field-select-3" data-placeholder="Select a Year...">
+                                            <option value=""></option>
                                         <?php
 
                                         include "../connect.php";
@@ -762,6 +763,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                     </h5>
                                     <select class="col-xs-7 chosen-select form-control" name="job_type"
                                             id="form-field-select-3" placeholder="select job type...">
+                                            <option value=""></option>
                                         <option value="Product">Product</option>
                                         <option value="Service">Service</option>
                                         <option value="Core">Core</option>

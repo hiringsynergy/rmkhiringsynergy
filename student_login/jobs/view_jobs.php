@@ -759,8 +759,7 @@ if (isset($_GET['apply'])) {
                                                         </font>
                                                         <br>
                                                         <br>
-                                                        <div class="row col-md-12"
-                                                             style="font-size: large; font-weight: bold;">
+                                                        <div class="row col-md-12" style="font-size: large; font-weight: bold;">
 
                                                             <label class="label label-info center middle"
                                                                    style="size: 40px;"><b>Venue:</b></label>
@@ -823,6 +822,8 @@ if (isset($_GET['apply'])) {
                                                     $check_query = "SELECT  _" . $row['job_id'] . "  FROM $student_table where st_roll={$roll}";
                                                     $check_result = mysqli_query($connect, $check_query);
                                                     $check_row = mysqli_fetch_assoc($check_result);
+
+
 
 
                                                     //eligible

@@ -11,7 +11,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     header("Location: ../login.html");
 
 
+
 }
+
 
 
 
@@ -177,9 +179,10 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-if(isset($_GET['filter'])) {
+if(isset($_GET['filter'])){
 
 
+    include "../connect.php";
     $get_year= $_GET['year'];
     $get_cgpa= $_GET['ugcgpa'];
     $get_12thpercentage= $_GET['12percentage'];
@@ -205,6 +208,110 @@ if(isset($_GET['filter'])) {
 
 
 }
+
+if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
+
+
+    include "../connect.php";
+
+
+    $get_year= $_POST['get_year'];
+    $get_cgpa= $_POST['get_cgpa'];
+    $get_12thpercentage= $_POST['get_12thpercentage'];
+    $get_10thpercentage= $_POST['get_10thpercentage'];
+    $get_historyofarrears=$_POST['get_historyofarrears'];
+    $get_standingarrears=$_POST['get_standingarrears'];
+    $temp_branch=$_POST['temp_branch'];
+    $message=$_POST['message'];
+    $subject=$_POST['subject'];
+
+
+
+
+    set_time_limit(0);
+
+    $query_mail = "select * from students_".$get_year." where st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+
+    $result_mail = mysqli_query($connect, $query_mail);
+    while($row_mail=mysqli_fetch_assoc($result_mail)){
+
+
+
+
+        $to=$row_mail['st_email'];
+
+
+        $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+        $headers.="Reply-To: karthickakash17@gmail.com\r\n";
+        $headers.="Content-type: text/html\r\n";
+
+        mail($to,$subject,$message,$headers);
+
+
+
+
+
+    }
+
+    header("Location: advanced_search.php");
+
+}
+
+else if(isset($_POST['send_mail']) && isset($_POST['search'])){
+
+
+    $get_roll= $_POST['get_roll'];
+
+    $message=$_POST['message'];
+    $subject=$_POST['subject'];
+
+    $stud_roll= explode(', ', $get_roll);
+
+    include "../connect.php";
+
+    foreach ($stud_roll as $roll_no){
+
+
+
+
+        $roll_year=$roll_no[4].$roll_no[5];
+        $year=(int)$roll_year+4;
+
+        $query_get_tablename="SELECT * FROM table_map where table_short='$year'";
+        $result_get_tablename=mysqli_query($connect, $query_get_tablename);
+        $row_get_talbename=mysqli_fetch_assoc($result_get_tablename);
+
+        $students_table=$row_get_talbename['table_name'];
+
+
+        $query_fetch_values="SELECT * FROM ".$students_table." where st_roll='$roll_no'";
+        $result_fetch_values=mysqli_query($connect, $query_fetch_values);
+        $row_roll_mail=mysqli_fetch_assoc($result_fetch_values);
+
+
+
+
+        $to=$row_roll_mail['st_email'];
+
+
+        $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+        $headers.="Reply-To: karthickakash17@gmail.com\r\n";
+        $headers.="Content-type: text/html\r\n";
+
+        mail($to,$subject,$message,$headers);
+
+
+
+
+
+
+    }
+    header("Location: advanced_search.php");
+
+
+
+}
+
 
 
 ?>
@@ -819,9 +926,12 @@ if(isset($_GET['filter'])) {
                                             foreach ($values as $temp){
 
                                                 $get_year=$temp[4].$temp[5];
-                                               /// echo $temp." ".$get_year;
+                                                $year=(int)$get_year+4;
 
-                                                $query_get_tablename="SELECT * FROM table_map where table_short";
+
+                                                 //echo $temp." ".$year;
+
+                                                $query_get_tablename="SELECT * FROM table_map where table_short='$year'";
                                                 $result_get_tablename=mysqli_query($connect, $query_get_tablename);
                                                 $row_get_talbename=mysqli_fetch_assoc($result_get_tablename);
 
@@ -1040,10 +1150,14 @@ if(isset($_GET['filter'])) {
                                         }
 
 
-                                        else {
+                                        else if(isset($_GET['filter'])) {
 
 
-                                            $query = "select * from students_".$get_year." where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+                                            $get_year=$_GET['year'];
+
+                                            //st_ugyearofpassing='$get_year' and
+
+                                            $query = "select * from students_".$get_year." where st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 
                                             $result = mysqli_query($connect, $query);
 
@@ -1249,6 +1363,11 @@ if(isset($_GET['filter'])) {
 
 
 
+
+
+
+
+
                                         ?>
 
                                         </tbody>
@@ -1278,17 +1397,67 @@ if(isset($_GET['filter'])) {
 <div id="modal-form" class="modal" tabindex="-1">
 									<div class="modal-dialog">
 										<div class="modal-content">
+                                            <form action="search_action.php" method="post">
+
 										<div class="modal-body">
+
 											<div class="row">
 												<div class="col-xs-12 col-sm-12">
 
 														<div class="space-4"></div>
 
+
+                                                    <?php   if(isset($_GET['filter'])){
+
+                                                      ?>
+
+                                                        <input type="hidden" value="<?php echo $get_year ?>" name="get_year">
+                                                        <input type="hidden" value="<?php echo $get_cgpa ?>" name="get_cgpa">
+                                                        <input type="hidden" value="<?php echo $get_12thpercentage ?>" name="get_12thpercentage">
+                                                        <input type="hidden" value="<?php echo $get_10thpercentage ?>" name="get_10thpercentage">
+                                                        <input type="hidden" value="<?php echo $get_historyofarrears ?>" name="get_historyofarrears">
+                                                        <input type="hidden" value="<?php echo $get_standingarrears ?>" name="get_standingarrears">
+                                                        <input type="hidden" value="<?php echo $temp_branch ?>" name="temp_branch">
+                                                        <input type="hidden" value="filter" name="filter">
+
+
+
+
+
+
+
+                                                        <?php
+
+
+                                                    }
+                                                   else if(isset($_GET['search'])){
+
+                                                       $tags= $_GET['tags'];
+                                                        ?>
+
+                                                        <input type="hidden" value="<?php echo $tags ?>" name="get_roll">
+
+                                                        <input type="hidden" value="search" name="search">
+
+
+
+
+
+
+
+                                                        <?php
+
+
+                                                    }
+
+                                                    ?>
+														
+
 														<div class="form-group">
 															<label for="form-field-username">Subject</label>
 
 															<div>
-																<input type="text" id="form-field-username" class="col-xs-8" placeholder="Enter Subject" value="" />
+																<input type="text" name="subject" id="form-field-username" class="col-xs-8" placeholder="Enter Subject" value="" />
 															</div>
 														</div>
 														<br/>
@@ -1298,7 +1467,7 @@ if(isset($_GET['filter'])) {
 															<label for="form-field-first">Message</label>
 
 															<div>
-													<textarea id="form-field-11" rows="6" cols="9"class="autosize-transition form-control"></textarea>
+													<textarea id="form-field-11" name="message" rows="6" cols="9"class="autosize-transition form-control"></textarea>
 															</div>
 														</div>
 
@@ -1318,11 +1487,12 @@ if(isset($_GET['filter'])) {
 													<i class="ace-icon fa fa-times"></i>
 													Cancel
 												</button>
-												<button class="btn btn-sm btn-primary">
+												<button name="send_mail" type="submit" class="btn btn-sm btn-primary">
 													<i class="ace-icon fa fa-send"></i>
 													SEND
 												</button>
 											</div>
+                                            </form>
 										</div>
 									</div>
 

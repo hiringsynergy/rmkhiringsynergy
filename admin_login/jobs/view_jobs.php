@@ -731,7 +731,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                            unlink("placement_files/$newfilename");
+                              unlink("placement_files/".$newfilename);
                             ?>
 
                             <div class="alert alert-block alert-success">

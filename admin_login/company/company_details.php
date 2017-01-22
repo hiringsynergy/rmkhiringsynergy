@@ -698,7 +698,7 @@ if(isset($_POST['update_submit'])) {
                                 	    	<li>
 
                               	  		        <a class="" href="../../logos/<?php echo $row_company['company_logo'] ?>" data-rel="colorbox">
-                               	         			    <img width="auto" height="150" alt="150x150" src="../../logos/<?php echo $row_company['company_logo'] ?>" />
+                               	         			    <img style="max-height: 150px; max-width: 150px;" alt="150x150" src="../../logos/<?php echo $row_company['company_logo'] ?>" />
                                  			           <div class="text">
                                  			               <div class="inner">Click here to View</div>
                                  			           </div>

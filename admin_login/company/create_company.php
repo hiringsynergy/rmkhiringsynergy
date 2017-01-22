@@ -151,7 +151,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
     $logo_tmp_name=$_FILES['logo']['tmp_name'];
     $value=explode(".",$logo_name);
     $exten=end($value);
-    echo "Exten: ".$exten;
+   
     $new_logo_name=time()."_".$company_name."_"."logo".".".$exten;
     move_uploaded_file($logo_tmp_name,"../../logos/".$new_logo_name);
 
@@ -257,65 +257,166 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
             <ul class="nav ace-nav">
                                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+                        <?php
+
+
+                        include "../connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
+                                   <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                       <li class="dropdown-header">
+                                           <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                           <?php echo $no_notification ?> Notifications
+                                       </li>
 
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
+                                       <li class="dropdown-content">
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                           <ul class="dropdown-menu dropdown-navbar navbar-pink">
 
+                                               <?php
+
+
+
+                                               include "../connect.php";
+                                               $query_table = "SELECT * FROM table_map";
+                                               $result_table = mysqli_query($connect, $query_table);
+
+                                               while ($row = mysqli_fetch_assoc($result_table)) {
+                                                   $tname = $row['table_name'];
+                                                   $query_year = "SELECT * from $tname";
+                                                   $result_year = mysqli_query($connect, $query_year);
+
+                                                   $no_notification=mysqli_num_rows($result_year);
+
+
+                                                   while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                       if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                           ?>
+
+                                                           <li>
+                                                               <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                                   <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+
+
+                         if($row1['st_changephone'] != NULL) {
+
+
+
+                             $content.= " Phone No : ";
+                             $content.= $row1['st_phone'];
+
+                             $content.= "to : ";
+                             $content.= $row1['st_changephone'] ;
+                         }
+
+
+
+
+                         echo substr($content, 0,25)."......";
+
+
+                         ?>
+
+
+                         </p>
+				</span>
+
+
+                                                                   </div>
+                                                               </a>
+                                                           </li>
+
+
+
+
+                                                           <?php
+                                                       }
+
+
+                                                   }
+
+
+                                               }
+
+
+                                               ?>
+
+
+
+
+                                           </ul>
+                                       </li>
                         <li class="dropdown-footer">
-                            <a href="#">
+                            <a href="../approve.php">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -669,7 +770,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
 										
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" name="company_name" placeholder="Enter company name..." class="form-control violet" />
+												<input id="tag1" type="text" name="company_name" placeholder="Enter company name..." class="form-control violet" />
 												<div class="space-4"></div>
 											</div>
 										
@@ -681,7 +782,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
 										<div class="row">
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" placeholder="Enter company website..." name="company_website" class="form-control" />
+												<input id="tag2" type="text" placeholder="Enter company website..." name="company_website" class="form-control" />
 												<div class="space-4"></div>
 											</div>
 										</div>
@@ -796,7 +897,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
                             <div class="space-6"></div>
                             <div class="  align-center ">
-                                <button class="btn btn-success" type="submit" value="create" name="create">
+                                <button class="btn btn-success" id="bootbox-confirm" type="submit" value="create" name="create">
                                     <i class="ace-icon fa fa-check bigger-110"></i>
                                     Create
                                 </button>
@@ -862,6 +963,14 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/wizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery-additional-methods.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+
+
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -1699,63 +1808,88 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
         }
 
 
-                $('#validate-form').validate({
-                    errorElement: 'div',
-                    errorClass: 'help-block',
-                    focusInvalid: true,
-                    ignore: "",
-                    rules: {
+				
+				
+				$('#bootbox-confirm').click(function(event){
+                    var bla = $('#tag1').val();
+					var blb = $('#tag2').val();
+            var hidden_input =
+                $('<input type="hidden" name="description" />')
+                    .appendTo('#validate-form');
 
-                        company_name: {
-                            required: true
-                        },
-                        company_website: {
-                            required: true
+            var blc = $('#editor1').val();
+          // var blc=hidden_input.val( html_content );
+					if(bla==''&&blb=='')
+					{
+					
+		                bootbox.dialog({
+		                    message: "Please fill in the details",
+		                    buttons: {
+		                        "success" : {
+		                            "label" : "OK",
+		                            "className" : "btn-sm btn-primary"
+		                        }
+		                    }
+
+		                } );
+		                event.preventDefault();
+		                event.stopPropagation();
+					}
+					else if(bla==''){
+						
+					
+                bootbox.dialog({
+                    message: "Please enter the company name",
+                    buttons: {
+                        "success" : {
+                            "label" : "OK",
+                            "className" : "btn-sm btn-primary"
                         }
-
-                    },
-
-                    messages: {
-                        company_name: {
-                            required: "Please provide a Company name."
-
-                        },
-                        company_website: {
-                            required: "Please provide Company Website."
-
-                        }
-                    },
-
-
-                    highlight: function (e) {
-                        $(e).closest('.hello').removeClass('has-info').addClass('has-error');
-                    },
-
-                    success: function (e) {
-                        $(e).closest('.hello').removeClass('has-error');//.addClass('has-info');
-                        $(e).remove();
                     }
 
-//                    errorPlacement: function (error, element) {
-//                        if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-//                            var controls = element.closest('div[class*="col-"]');
-//                            if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-//                            else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-//                        }
-//                        else if(element.is('.select2')) {
-//                            error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-//                        }
-//                        else if(element.is('.chosen-select')) {
-//                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-//                        }
-//                        else error.insertAfter(element.parent());
-//                    },
+                } );
+                event.preventDefault();
+                event.stopPropagation();
+			}
+			
+			else if(blb=='')
+			{
+					
+                bootbox.dialog({
+                    message: "please enter the company website",
+                    buttons: {
+                        "success" : {
+                            "label" : "OK",
+                            "className" : "btn-sm btn-primary"
+                        }
+                    }
 
-//                    submitHandler: function (form) {
-//                    },
-//                    invalidHandler: function (form) {
-//                    }
-                });
+                } );
+                event.preventDefault();
+                event.stopPropagation();
+			}
+			else if(blc==''){
+				
+			
+        bootbox.dialog({
+            message: "Please enter the description",
+            buttons: {
+                "success" : {
+                    "label" : "OK",
+                    "className" : "btn-sm btn-primary"
+                }
+            }
+
+        } );
+        event.preventDefault();
+        event.stopPropagation();
+	}
+			else{
+				
+				
+			}
+               
+			});
 
 
     });

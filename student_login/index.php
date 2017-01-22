@@ -398,13 +398,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 </a>
                 <b class="arrow"></b>
             </li>
-            <li class="">
-                <a href="inbox.php">
-                    <i class="menu-icon fa fa-inbox"></i>
-                    <span class="menu-text">Inbox</span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+
         </ul><!-- /.nav-list -->
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

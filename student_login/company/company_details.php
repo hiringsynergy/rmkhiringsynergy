@@ -566,16 +566,6 @@ if(isset($_POST['update_submit'])) {
                 <b class="arrow"></b>
             </li>
 
-            <li class="">
-                <a href="../inbox.php">
-
-                    <i class="menu-icon fa fa-inbox"></i>
-
-                    <span class="menu-text">Inbox</span>
-                </a>
-
-                <b class="arrow"></b>
-            </li>
 
 
         </ul><!-- /.nav-list -->
@@ -613,55 +603,74 @@ if(isset($_POST['update_submit'])) {
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
-           <div class="row">
-                    <div class="col-xs-9 col-sm-9">
-                                 <h1 class="black bolder thinner bigger-180">ZOHO ENTERPRISES LTD</h1>
-                          
-  			<div class="space-10"></div>
-	                       	 <div class="space-10"></div><br/>
+                        <?php
+                        if(isset($_GET['cid'])){
 
+                            include "../connect.php";
 
-                                        		<p class="dark bigger-130">At Zoho, software is our craft and passion. We create beautiful software to solve business problems.
-					Over the past decade of our journey, the Zoho suite has emerged to be a leader in the cloud and on your devices.
-					As much as we love software, it is our people and our culture that are our most valuable assets. Our people spend years mastering the craft. 
-					In an industry where technology changes at a relentless and dizzying pace, we value persistence and endurance as highly as adaptability.
-                                        		</p><br/><br/><br/><br/><br/><br/>
+                            $company_id=$_GET['cid'];
 
-				<div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">zoho@gmail.com</a></h5></div>
-		
-             		                           <h5 class=" red bolder">Website : <a href="http://www.zoho.com">www.zoho.com </a></h5>
-	   </div>
-               <div class="col-xs-3 col-sm-3 ">
-         		          <div class="padding-right" ></div>
-				
-			<ul class="ace-thumbnails clearfix">
+                            $query_company="SELECT * FROM company_list WHERE company_id='$company_id'";
+                            $result_company=mysqli_query($connect, $query_company);
+                            $row_company=mysqli_fetch_assoc($result_company);
 
 
 
-                                	    	<li>
-
-                              	  		        <a class="" href="../images/zoho-logo.jpg" data-rel="colorbox">
-                               	         			    <img width="auto" height="150" alt="150x150" src="../images/zoho-logo.jpg" />
-                                 			           <div class="text">
-                                 			               <div class="inner">Click here to View</div>
-                                 			           </div>
-                               			         </a>
-                                		        <div class="tools tools-bottom">
-
-                                       			     <a href="#">
-                                       			         <i class="ace-icon fa fa-pencil"></i>
-                                        			    </a>
 
 
-                                     		   </div>
 
-				                            </li>
-			</ul>
-		</div>
-	</div>
-</div>
 
-                             <!-- PAGE CONTENT ENDS -->
+
+                            ?>
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-9">
+                                    <h1 class="black bolder thinner bigger-180"><?php echo $row_company['company_name'] ?></h1>
+
+                                    <div class="space-10"></div>
+                                    <div class="space-10"></div><br/>
+
+
+                                    <p class="dark bigger-130"><?php echo $row_company['company_description'] ?>
+                                    </p><br/><br/><br/><br/><br/><br/>
+
+                                    <div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">Not Mentioned</a></h5></div>
+
+                                    <h5 class=" red bolder">Website : <a href="http://<?php echo $row_company['company_website'] ?>"><?php echo $row_company['company_website'] ?></a></h5>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 ">
+                                    <div class="padding-right" ></div>
+
+                                    <ul class="ace-thumbnails clearfix">
+
+
+
+                                        <li>
+
+                                            <a class="" href="../../logos/<?php echo $row_company['company_logo'] ?>" data-rel="colorbox">
+                                                <img style="max-height: 150px; max-width: 150px;" alt="150x150" src="../../logos/<?php echo $row_company['company_logo'] ?>" />
+                                                <div class="text">
+                                                    <div class="inner">Click here to View</div>
+                                                </div>
+                                            </a>
+                                            <div class="tools tools-bottom">
+
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-pencil"></i>
+                                                </a>
+
+
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+
+                    <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
 

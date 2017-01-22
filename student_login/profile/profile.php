@@ -200,7 +200,7 @@ if(isset($_GET['changemailphone'])){
 
 if($emailid!=$old_mail)
 {
-
+$name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
     $query1="UPDATE $student_table SET  st_changemail='{$emailid}' WHERE st_roll='{$name}'";
@@ -218,7 +218,7 @@ if($emailid!=$old_mail)
 
 if($phoneno!=$old_phoneno)
 {
-
+    $name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
     $query2="UPDATE $student_table SET  st_changephone='{$phone}' WHERE st_roll='{$name}'";
@@ -1798,14 +1798,14 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Mobile Number</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_phone'] ?>" />
+                                                                <input type="text" id="control-label bolder bl" name="phoneno" placeholder="" value="<?php echo $row['st_phone'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">Email-Id</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_email'] ?>" />
+                                                                <input type="text" id="control-label bolder b" name="emailid" placeholder="" value="<?php echo $row['st_email'] ?>" />
                                                             </div>
                                                         </div>
                                                     </div>

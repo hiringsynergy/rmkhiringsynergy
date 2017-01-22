@@ -7,6 +7,120 @@ ob_start();
 
 <?php
 
+<<<<<<< HEAD
+=======
+if(isset($_POST['send'])){
+<<<<<<< HEAD:admin_login/email/email.php
+    
+    
+=======
+
+    $to=$_POST['recipient'];
+>>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
+/*
+$to=$_POST['recipient'];
+
+$subject= $_POST['subject'];
+
+$message='<h3>'.$_POST['message'].'<h3>';
+
+$headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+$headers.="Reply-To: karthickakash17@gmail.com\r\n";
+$headers.="Content-type: text/html\r\n";
+
+mail($to,$subject,$message,$headers);
+*/
+
+
+<<<<<<< HEAD:admin_login/email/email.php
+=======
+if(isset($_FILES['attachment'])){
+
+
+    
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//php mailer
+
+/*
+>>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
+
+require "PHPMailer/PHPMailerAutoload.php";
+
+$mail=new PHPMailer();
+
+$mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
+
+<<<<<<< HEAD:admin_login/email/email.php
+    $mail->setFrom('dhoni.singh1703@gmail.com', 'Mailer');
+    $mail->addAddress('akashkarthick400@gmail.com', 'Akash');     // Add a recipient
+    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
+
+
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+=======
+    $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+    $mail->addAddress($to, 'Akash');     // Add a recipient
+
+    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
+    $mail->addAttachment('sample.xlsx', 'rmk.xlsx');
+
+    $mail->isHTML(true);
+
+    $mail->Subject = $_POST['subject'];
+    $mail->Body    = '<h3> '.$_POST['message'].' </h3>';
+
+>>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
+
+
+    if(!$mail->send()) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        echo 'Message has been sent';
+    }
+
+
+<<<<<<< HEAD:admin_login/email/email.php
+
+=======
+*/
+>>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
+
+
+
+}
+>>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
 
 
 ?>
@@ -828,6 +942,15 @@ ob_start();
                                         <!-- /.dropdown -->
                                     </ul>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:admin_login/email/email.php
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
+=======
+<<<<<<< HEAD
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
+=======
+>>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
                                     <!-- /.tab-content -->
                                 </div><!-- /.tabbable -->
                             </div><!-- /.col -->
@@ -837,6 +960,17 @@ ob_start();
                             <div>
                                 <div class="form-group ">
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+<<<<<<< HEAD
+=======
+=======
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
+>>>>>>> d729e0d21da596f398b7250abd7c77788fda46e6
+>>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+>>>>>>> origin/master:admin_login/email/email.php
+>>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
 
                                     <div class="col-sm-9">
 												<span class="input-icon">

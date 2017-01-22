@@ -694,7 +694,7 @@ if(isset($_GET['roll']))
 
 
                     <li class="">
-                        <a href="../email.php">
+                        <a href="../email/email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>

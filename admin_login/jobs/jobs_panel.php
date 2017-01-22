@@ -662,7 +662,7 @@ if(isset($_POST['update_submit'])) {
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="../email.php">
+                        <a href="../email/email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>

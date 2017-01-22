@@ -218,7 +218,7 @@ $name=$_SESSION['user'];
 
 if($phoneno!=$old_phoneno)
 {
-$name=$_SESSION['user'];
+    $name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
     $query2="UPDATE $student_table SET  st_changephone='{$phone}' WHERE st_roll='{$name}'";

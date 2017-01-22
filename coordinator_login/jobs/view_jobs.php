@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncjobs() {
-            location.href = "jobs_panel.php";
+            location.href = "view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -202,7 +202,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
@@ -267,8 +267,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
 
-                <span class="btn btn-info"></span>
-
                 <span class="btn btn-warning"></span>
 
                 <span class="btn btn-danger"></span>
@@ -279,7 +277,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text">Dashboard </span>
+                    <span class="menu-text"> Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -289,60 +287,31 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
-							Your Profile
+							Profile
 							</span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li class="">
                 <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
-            <li class="active open">
-                <a href="#" class="dropdown-toggle">
+            <li class="active">
+                <a href="../jobs/view_jobs.php" >
                     <i class="menu-icon fa fa-briefcase"></i>
                     <span class="menu-text"> Jobs </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
 
-                <ul class="submenu">
-                    <li class="active">
-                        <a href="../jobs/view_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View all Jobs
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                    <li class="">
-                        <a href="../jobs/jobs_panel.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Jobs Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
             </li>
 
 
@@ -361,71 +330,25 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
+                <a href="../company/view_companies.php" >
+
                     <i class="menu-icon fa fa-laptop"></i>
                     <span class="menu-text"> Companies </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-
-                    <li class="">
-                        <a href="../company/view_companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View Companies
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../company/companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Company Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                </ul>
             </li>
+
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-tag"></i>
-                    <span class="menu-text"> More Pages </span>
-
-                    <b class="arrow fa fa-angle-down"></b>
+                <a href="../../coordinator_login/search/advanced_search.php">
+                    <i class="menu-icon fa fa-search"></i>
+                    Advanced Search
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../search/advanced_search.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Advanced Search
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../email.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Email
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-
-        </ul><!-- /.nav-list -->
+            </li><!-- /.nav-list -->
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -440,7 +363,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="../../index.html">Home</a>
                     </li>
-                    <li class="active">view Jobs</li>
+                    <li class="active">Jobs</li>
                 </ul><!-- /.breadcrumb -->
                 <!-- /.nav-search -->
             </div>
@@ -450,7 +373,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <div class="page-header">
                     <h1>
-                       View Jobs
+                       Jobs
 
                     </h1>
                 </div><!-- /.page-header -->
@@ -660,37 +583,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 <div  class="<?php echo $widget_color[$i] ?>"   id="widget-box-1">
                                     <div class="widget-header"><h5 class="widget-title bigger" style="color: white">Job</h5>
 
-                                        <div class="widget-toolbar no-border" >
-
-                                            <a href="#" data-action="fullscreen" class="orange2">
-                                                <i class="ace-icon fa fa-expand"></i>
-                                            </a>
-
-                                            <a href="#" data-action="reload">
-                                                <i class="ace-icon fa fa-refresh"></i>
-                                            </a>
-
-                                            <a href="#" data-action="collapse">
-                                                <i class="ace-icon fa fa-chevron-up"></i>
-                                            </a>
-
-                                            <div class="widget-menu">
-                                                <a href="#" data-action="settings" data-toggle="dropdown">
-                                                    <i class="ace-icon fa fa-bars"></i>
-                                                </a>
-
-                                                <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
-                                                    <li>
-                                                        <a data-toggle="tab" href="#dropdown1">Closed</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a data-toggle="tab" href="#dropdown2">Available</a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="widget-body">
@@ -739,7 +631,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     </font>
                                 </th>
                                 <th class="hidden-480"><font size="3">Status</font></th>
-                                <th></th>
                             </tr>
                             </thead>
 
@@ -918,11 +809,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 }
 
                                 ?>
-                                <td>
-                                    <a href="#modal-form" class="btn btn-primary" data-toggle="modal" onclick="getjobid(<?php echo $row['job_id'] ?>)">Update Details</a>
 
-
-                                </td>
 
 
                             </tr>

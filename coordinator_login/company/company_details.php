@@ -50,7 +50,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function myfuncjobs() {
-            location.href = "../jobs/jobs_panel.php";
+            location.href = "../jobs/view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -253,7 +253,7 @@ if(isset($_POST['update_submit'])) {
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
@@ -325,7 +325,7 @@ if(isset($_POST['update_submit'])) {
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <span class="menu-text"> Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -335,60 +335,30 @@ if(isset($_POST['update_submit'])) {
                 <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
-							Your Profile
+							Profile
 							</span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li class="">
                 <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
-            <li>
-                <a href="#" class="dropdown-toggle">
+            <li class="">
+                <a href="../jobs/view_jobs.php" >
                     <i class="menu-icon fa fa-briefcase"></i>
                     <span class="menu-text"> Jobs </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../jobs/view_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View all Jobs
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../jobs/jobs_panel.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Jobs Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                </ul>
 
             </li>
 
@@ -407,72 +377,26 @@ if(isset($_POST['update_submit'])) {
 
 
 
-            <li class="active open">
-                <a href="#" class="dropdown-toggle">
+            <li class="active">
+                <a href="../company/view_companies.php" >
+
                     <i class="menu-icon fa fa-laptop"></i>
                     <span class="menu-text"> Companies </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-
-                    <li class="active">
-                        <a href="../company/view_companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View Companies
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../company/companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Company Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                </ul>
             </li>
+
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-tag"></i>
-                    <span class="menu-text"> More Pages </span>
-
-                    <b class="arrow fa fa-angle-down"></b>
+                <a href="../../coordinator_login/search/advanced_search.php">
+                    <i class="menu-icon fa fa-search"></i>
+                    Advanced Search
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../search/advanced_search.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Advanced Search
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../email.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Email
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                </ul>
-            </li>
-
-
-        </ul><!-- /.nav-list -->
+            </li><!-- /.nav-list -->
 
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

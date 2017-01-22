@@ -355,7 +355,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             </div>
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
-                <span class="btn btn-info"></span>
+
                 <span class="btn btn-warning"></span>
                 <span class="btn btn-danger"></span>
             </div>
@@ -418,7 +418,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="index.php">Home</a>
                     </li>
-                    <li class="hidden">Student Interaction</li>
+                    <li class="hidden">Dashboard</li>
                 </ul><!-- /.breadcrumb -->
                 <!-- /.nav-search -->
             </div>

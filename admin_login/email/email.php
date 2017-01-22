@@ -7,120 +7,6 @@ ob_start();
 
 <?php
 
-<<<<<<< HEAD
-=======
-if(isset($_POST['send'])){
-<<<<<<< HEAD:admin_login/email/email.php
-    
-    
-=======
-
-    $to=$_POST['recipient'];
->>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
-/*
-$to=$_POST['recipient'];
-
-$subject= $_POST['subject'];
-
-$message='<h3>'.$_POST['message'].'<h3>';
-
-$headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
-$headers.="Reply-To: karthickakash17@gmail.com\r\n";
-$headers.="Content-type: text/html\r\n";
-
-mail($to,$subject,$message,$headers);
-*/
-
-
-<<<<<<< HEAD:admin_login/email/email.php
-=======
-if(isset($_FILES['attachment'])){
-
-
-    
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//php mailer
-
-/*
->>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
-
-require "PHPMailer/PHPMailerAutoload.php";
-
-$mail=new PHPMailer();
-
-$mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
-    $mail->Password = 'akash170397';                           // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;
-
-
-<<<<<<< HEAD:admin_login/email/email.php
-    $mail->setFrom('dhoni.singh1703@gmail.com', 'Mailer');
-    $mail->addAddress('akashkarthick400@gmail.com', 'Akash');     // Add a recipient
-    $mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
-
-
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-=======
-    $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
-    $mail->addAddress($to, 'Akash');     // Add a recipient
-
-    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
-    $mail->addAttachment('sample.xlsx', 'rmk.xlsx');
-
-    $mail->isHTML(true);
-
-    $mail->Subject = $_POST['subject'];
-    $mail->Body    = '<h3> '.$_POST['message'].' </h3>';
-
->>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
-
-
-    if(!$mail->send()) {
-        echo 'Message could not be sent.';
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-    } else {
-        echo 'Message has been sent';
-    }
-
-
-<<<<<<< HEAD:admin_login/email/email.php
-
-=======
-*/
->>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
-
-
-
-}
->>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
 
 
 ?>
@@ -850,7 +736,7 @@ $mail->isSMTP();
                         </div>
 
 
-                <?php
+                        <?php
 
                     } else {
 
@@ -876,7 +762,7 @@ $mail->isSMTP();
 
 
 
-                <?php
+                        <?php
 
                     }
 
@@ -925,10 +811,10 @@ $mail->isSMTP();
 
 
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="tabbable">
-                                    <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tabbable">
+                            <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 
 
 
@@ -937,138 +823,118 @@ $mail->isSMTP();
 															<span class=" white smaller-60 middle align-center " style="padding-right: 10px; " > Write Mail</span>
 														</span>
 
-                                        <!-- /.li-new-mail -->
+                                <!-- /.li-new-mail -->
 
-                                        <!-- /.dropdown -->
-                                    </ul>
+                                <!-- /.dropdown -->
+                            </ul>
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:admin_login/email/email.php
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
-=======
-<<<<<<< HEAD
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
-=======
->>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
-                                    <!-- /.tab-content -->
-                                </div><!-- /.tabbable -->
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
+                            <!-- /.tab-content -->
+                        </div><!-- /.tabbable -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
 
-                        <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
-                            <div>
-                                <div class="form-group ">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
-<<<<<<< HEAD
-=======
-=======
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
->>>>>>> d729e0d21da596f398b7250abd7c77788fda46e6
->>>>>>> 664ea3c9f106597576a80607cbfadaedb99587a4:admin_login/email/email.php
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
->>>>>>> origin/master:admin_login/email/email.php
->>>>>>> 11212fa76cc3e641672713d357194df51d68d7d2
+                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
+                    <div>
+                        <div class="form-group ">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
 
-                                    <div class="col-sm-9">
+                            <div class="col-sm-9">
 												<span class="input-icon">
 													<input type="email"  name="recipient" size="35"  id="form-field-recipient"  placeholder="user@gmail.com" />
 													<i class="ace-icon fa fa-user"></i>
 												</span>
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="hr hr-18 dotted"></div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="input-icon block col-xs-12 no-padding">
+                                    <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
+                                    <i class="ace-icon fa fa-comment-o"></i>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="hr hr-18 dotted"></div>
+                        <div class="hr hr-18 dotted"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">
+                                <span class="inline space-24 hidden-480"></span>
+                                Message:
+                            </label>
 
 
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+                            <div class="col-sm-9">
+                                <div class="wysiwyg-editor" id="editor1"></div>
+                            </div>
+                        </div>
 
-                                    <div class="col-sm-6 col-xs-12">
-                                        <div class="input-icon block col-xs-12 no-padding">
-                                            <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
-                                            <i class="ace-icon fa fa-comment-o"></i>
-                                        </div>
-                                    </div>
+                        <div class="hr hr-18 dotted"></div>
+
+                        <div class="form-group no-margin-bottom">
+                            <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
+
+                            <div class="col-sm-9">
+                                <div id="form-attachments">
+                                    <input type="file" id="id-input-file-2" name="attachment[]" />
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="hr hr-18 dotted"></div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right">
-                                        <span class="inline space-24 hidden-480"></span>
-                                        Message:
-                                    </label>
-
-
-                                    <div class="col-sm-9">
-                                        <div class="wysiwyg-editor" id="editor1"></div>
-                                    </div>
-                                </div>
-
-                                <div class="hr hr-18 dotted"></div>
-
-                                <div class="form-group no-margin-bottom">
-                                    <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
-
-                                    <div class="col-sm-9">
-                                        <div id="form-attachments">
-                                            <input type="file" id="id-input-file-2" name="attachment[]" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space"></div>
+                        <div class="space"></div>
 
 
 
-                                <div class="align-right">
-                                    <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
-                                        <i class="ace-icon fa fa-paperclip bigger-140"></i>
-                                        Add Attachment
-                                    </button>
-                                </div>
+                        <div class="align-right">
+                            <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
+                                <i class="ace-icon fa fa-paperclip bigger-140"></i>
+                                Add Attachment
+                            </button>
+                        </div>
 
-                                <div class="space"></div>
-                                <div class="space"></div>
+                        <div class="space"></div>
+                        <div class="space"></div>
 
-                                <div class="align-center">
+                        <div class="align-center">
                                             <span class="inline btn-send-message">
                                                 <button type="submit" name="send" class="btn btn-sm btn-primary border btn-bold btn-round">
                                                     <span class="bigger-120">Send</span>
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                                                 </button>
                                             </span>
-                                </div>
-                                <div class="space"></div>
-                            </div>
-                        </form>
-                        <!-- /.message-content -->
+                        </div>
+                        <div class="space"></div>
+                    </div>
+                </form>
+                <!-- /.message-content -->
 
-                        <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div><!-- /.page-content -->
+                <!-- PAGE CONTENT ENDS -->
+            </div><!-- /.col -->
         </div>
-    </div><!-- /.main-content -->
+        <!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+</div><!-- /.main-content -->
 
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="footer-content">
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">RMK</span>
 							Group of Institutions
 						</span>
-            </div>
         </div>
     </div>
+</div>
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+</a>
 </div><!-- /.main-container -->
 
 <!-- basic scripts -->

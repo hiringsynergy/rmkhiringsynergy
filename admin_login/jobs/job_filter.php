@@ -188,9 +188,10 @@ if(isset($_GET['filter_job'])){
 
 
 
-    $query2="SELECT * FROM company_list where company_id='$company_id'";
+        $query2="SELECT * FROM company_list where company_id='$company_id'";
         $get_company_name=mysqli_query($connect, $query2);
         $company_name=mysqli_fetch_assoc($get_company_name);
+        $company_name_string=$company_name['company_name'];
 
 
         $query="INSERT INTO jobs VALUES ($id,'$job_title', '{$company_name['company_name']}','$campus_date','$salary','$venue','$apply_before','$year_of_graduation','$joining_location','$job_description','$job_type','$skill_set', $sort , '$temp_branch_insert' , '$_10percentage','$_12percentage','$cgpa','$standingarrears','$historyofarrears','$company_id')";
@@ -214,16 +215,16 @@ if(isset($_GET['filter_job'])){
 
         //Alter students table
 
-    $query_for_tablemap="SELECT * FROM table_map WHERE table_value={$year_of_graduation}";
+        $query_for_tablemap="SELECT * FROM table_map WHERE table_value={$year_of_graduation}";
         $result_for_tablemap=mysqli_query($connect,$query_for_tablemap);
         $row_for_tablemap=mysqli_fetch_assoc($result_for_tablemap);
 
         $students_table_name=$row_for_tablemap['table_name'];
 
-        echo $students_table_name."<br>";
 
 
-    $query_for_alter='ALTER TABLE '.$students_table_name.' ADD _'.$id.'  VARCHAR(255) NOT NULL DEFAULT \'not eligible\'';
+
+        $query_for_alter='ALTER TABLE '.$students_table_name.' ADD _'.$id.'  VARCHAR(255) NOT NULL DEFAULT \'not eligible\'';
         $result_for_alter=mysqli_query($connect, $query_for_alter);
 
 
@@ -233,6 +234,41 @@ if(isset($_GET['filter_job'])){
 
         $query_for_update="UPDATE $students_table_name SET _".$id."='eligible' WHERE st_ugspecialization IN ('$temp_branch_update') and st_cgpa>=$cgpa and st_10thpercentage>= $_10percentage and st_12thpercentage>=$_12percentage and st_standingarrears<=$standingarrears and st_historyofarrears<=$historyofarrears";
         $result_for_update=mysqli_query($connect, $query_for_update);
+
+
+
+
+
+        set_time_limit(0);
+
+        //send mail to recipients
+        $query_mail="SELECT * FROM   $students_table_name WHERE _".$id."='eligible'";
+        $result_mail=mysqli_query($connect,$query_mail);
+        while($row_mail=mysqli_fetch_assoc($result_mail)){
+
+
+             $to=$row_mail['st_email'];
+
+            $subject= "Eligible for ".$company_name_string;
+
+            $message='<h4> You are Eligiblie for '.$company_name_string.' Please check RMKhiringSynergy to apply for the job   </h4>';
+
+            $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+            $headers.="Reply-To: karthickakash17@gmail.com\r\n";
+            $headers.="Content-type: text/html\r\n";
+
+            mail($to,$subject,$message,$headers);
+
+
+
+
+        }
+
+
+
+
+
+
 
 
 
@@ -663,7 +699,7 @@ if(isset($_GET['filter_job'])){
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="../email.php">
+                        <a href="../email/email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>

@@ -10,7 +10,7 @@ ob_start();
 if(isset($_POST['send'])){
     
     
-
+/*
 $to=$_POST['recipient'];
 
 $subject= $_POST['subject'];
@@ -22,6 +22,44 @@ $headers.="Reply-To: karthickakash17@gmail.com\r\n";
 $headers.="Content-type: text/html\r\n";
 
 mail($to,$subject,$message,$headers);
+*/
+
+
+
+require "PHPMailer/PHPMailerAutoload.php";
+
+$mail=new PHPMailer();
+
+$mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
+
+    $mail->setFrom('dhoni.singh1703@gmail.com', 'Mailer');
+    $mail->addAddress('akashkarthick400@gmail.com', 'Akash');     // Add a recipient
+    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
+
+
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+
+    if(!$mail->send()) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        echo 'Message has been sent';
+    }
+
+
+
+
 
 
 }
@@ -43,8 +81,8 @@ mail($to,$subject,$message,$headers);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 
     <!-- Latest compiled and minified CSS -->
@@ -60,19 +98,19 @@ mail($to,$subject,$message,$headers);
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "reports/reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncadmin() {
-            location.href = "admin_panel/admin_panel.php";
+            location.href = "../admin_panel/admin_panel.php";
 
         }
         function myfuncjobs() {
-            location.href = "jobs/jobs_panel.php";
+            location.href = "../jobs/jobs_panel.php";
 
         }
         function myfuncsettings() {
-            location.href = "settings.php";
+            location.href = "../settings.php";
 
         }
 
@@ -87,45 +125,45 @@ mail($to,$subject,$message,$headers);
 
     <!-- page specific plugin styles -->
 
-    <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-    <link rel="stylesheet" href="assets/css/chosen.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+    <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-part2.min.css" />
 
 
 
 
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="../assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-    <script src="assets/js/html5shiv.min.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="../assets/js/html5shiv.min.js"></script>
+    <script src="../assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -148,9 +186,10 @@ mail($to,$subject,$message,$headers);
                     <?php
 
                     $database=$_SESSION['database_name'];
+
                     if(preg_match('/rmd_database/', $database)){
                         ?>
-                        <img src="images/rmd.jpg" style="height: 25px;">
+                        <img src="../images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMD Engineering College  </label>
 
                         <?php
@@ -158,7 +197,7 @@ mail($to,$subject,$message,$headers);
 
                     if(preg_match('/rmk_database/', $database)){
                         ?>
-                        <img src="images/rmk.jpg" style="height: 25px;">
+                        <img src="../images/rmk.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK Engineering College </label>
 
                         <?php
@@ -166,7 +205,7 @@ mail($to,$subject,$message,$headers);
 
                     if(preg_match('/rmkcet_database/', $database)){
                         ?>
-                        <img src="images/rmkcet.jpg" style="height: 25px;">
+                        <img src="../images/rmkcet.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK College of Engineering and Technology </label>
 
                         <?php
@@ -295,7 +334,7 @@ mail($to,$subject,$message,$headers);
                         </li>
 
                         <li>
-                            <a href="profile/profile.php">
+                            <a href="../profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -304,7 +343,7 @@ mail($to,$subject,$message,$headers);
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../login_out/logout.php">
+                            <a href="../../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
@@ -369,7 +408,7 @@ mail($to,$subject,$message,$headers);
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="index.php">
+                <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
@@ -378,7 +417,7 @@ mail($to,$subject,$message,$headers);
             </li>
 
             <li class="">
-                <a href="profile/profile.php" >
+                <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
@@ -393,7 +432,7 @@ mail($to,$subject,$message,$headers);
             </li>
 
             <li class="">
-                <a href="settings.php" >
+                <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -406,7 +445,7 @@ mail($to,$subject,$message,$headers);
             </li>
 
             <li class="">
-                <a href="admin_panel/admin_panel.php" >
+                <a href="../admin_panel/admin_panel.php" >
                     <i class="menu-icon fa fa-pencil-square-o"></i>
                     <span class="menu-text"> Admin Panel </span>
 
@@ -419,7 +458,7 @@ mail($to,$subject,$message,$headers);
             </li>
 
             <li class="">
-                <a href="approve.php">
+                <a href="../approve.php">
                     <i class="menu-icon fa fa-list-alt"></i>
                     <span class="menu-text"> Approve </span>
                 </a>
@@ -444,7 +483,7 @@ mail($to,$subject,$message,$headers);
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="jobs/view_jobs.php">
+                        <a href="../jobs/view_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View all Jobs
                         </a>
@@ -453,7 +492,7 @@ mail($to,$subject,$message,$headers);
                     </li>
 
                     <li class="">
-                        <a href="jobs/post_jobs.php">
+                        <a href="../jobs/post_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Post Job
                         </a>
@@ -462,7 +501,7 @@ mail($to,$subject,$message,$headers);
                     </li>
 
                     <li class="">
-                        <a href="jobs/jobs_panel.php">
+                        <a href="../jobs/jobs_panel.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Jobs Panel
                         </a>
@@ -476,7 +515,7 @@ mail($to,$subject,$message,$headers);
 
 
             <li class="">
-                <a href="reports/reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -501,7 +540,7 @@ mail($to,$subject,$message,$headers);
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="company/create_company.php">
+                        <a href="../company/create_company.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Create Company
                         </a>
@@ -510,7 +549,7 @@ mail($to,$subject,$message,$headers);
                     </li>
 
                     <li class="">
-                        <a href="company/companies.php">
+                        <a href="../company/companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View Companies
                         </a>
@@ -518,7 +557,7 @@ mail($to,$subject,$message,$headers);
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="company/companies.php">
+                        <a href="../company/companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Company Panel
                         </a>
@@ -542,7 +581,7 @@ mail($to,$subject,$message,$headers);
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="search/advanced_search.php">
+                        <a href="../search/advanced_search.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Advanced Search
                         </a>
@@ -559,7 +598,7 @@ mail($to,$subject,$message,$headers);
                     </li>
 
                     <li class="">
-                        <a href="inbox.php">
+                        <a href="../inbox.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Inbox
                         </a>
@@ -589,7 +628,7 @@ mail($to,$subject,$message,$headers);
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="../index.html">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li class="active">Email</li>
                 </ul><!-- /.breadcrumb -->
@@ -635,10 +674,17 @@ mail($to,$subject,$message,$headers);
                             </div><!-- /.col -->
                         </div><!-- /.row -->
 
+<<<<<<< HEAD:admin_login/email.php
                         <form id="id-message-form" action="email.php"  method="post"  class="active form-horizontal message-form col-xs-12">
                             <div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+=======
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+>>>>>>> origin/master:admin_login/email/email.php
 
                                     <div class="col-sm-9">
 												<span class="input-icon">
@@ -741,49 +787,49 @@ mail($to,$subject,$message,$headers);
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="../assets/js/jquery-2.1.4.min.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
-<script src="assets/js/jquery-ui.custom.min.js"></script>
-<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="assets/js/chosen.jquery.min.js"></script>
-<script src="assets/js/spinbox.min.js"></script>
-<script src="assets/js/bootstrap-datepicker.min.js"></script>
-<script src="assets/js/bootstrap-timepicker.min.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<script src="assets/js/daterangepicker.min.js"></script>
-<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-<script src="assets/js/bootstrap-colorpicker.min.js"></script>
-<script src="assets/js/jquery.knob.min.js"></script>
-<script src="assets/js/autosize.min.js"></script>
-<script src="assets/js/jquery.inputlimiter.min.js"></script>
-<script src="assets/js/jquery.maskedinput.min.js"></script>
-<script src="assets/js/bootstrap-tag.min.js"></script>
-<script src="assets/js/jquery-ui.custom.min.js"></script>
-<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="assets/js/markdown.min.js"></script>
-<script src="assets/js/bootstrap-markdown.min.js"></script>
-<script src="assets/js/jquery.hotkeys.index.min.js"></script>
-<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
-<script src="assets/js/bootbox.js"></script>
-<script src="assets/js/bootstrap-tag.min.js"></script>
-<script src="assets/js/jquery.hotkeys.index.min.js"></script>
-<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+<script src="../assets/js/jquery-ui.custom.min.js"></script>
+<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../assets/js/chosen.jquery.min.js"></script>
+<script src="../assets/js/spinbox.min.js"></script>
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/bootstrap-timepicker.min.js"></script>
+<script src="../assets/js/moment.min.js"></script>
+<script src="../assets/js/daterangepicker.min.js"></script>
+<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="../assets/js/jquery.knob.min.js"></script>
+<script src="../assets/js/autosize.min.js"></script>
+<script src="../assets/js/jquery.inputlimiter.min.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/bootstrap-tag.min.js"></script>
+<script src="../assets/js/jquery-ui.custom.min.js"></script>
+<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../assets/js/markdown.min.js"></script>
+<script src="../assets/js/bootstrap-markdown.min.js"></script>
+<script src="../assets/js/jquery.hotkeys.index.min.js"></script>
+<script src="../assets/js/bootstrap-wysiwyg.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/bootstrap-tag.min.js"></script>
+<script src="../assets/js/jquery.hotkeys.index.min.js"></script>
+<script src="../assets/js/bootstrap-wysiwyg.min.js"></script>
 
 
 <!-- ace scripts -->
-<script src="assets/js/ace-elements.min.js"></script>
-<script src="assets/js/ace.min.js"></script>
+<script src="../assets/js/ace-elements.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">

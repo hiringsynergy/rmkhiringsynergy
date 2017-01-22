@@ -128,22 +128,30 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 <?php
 
-if(isset($_POST['create'])){
+if(isset($_POST['create']) && isset($_FILES['logo'])){
 
     include "../connect.php";
     $id=time();
     $company_name=$_POST['company_name'];
     $company_website=$_POST['company_website'];
     $company_description=$_POST['description'];
+
+    $company_description=mysqli_real_escape_string($connect, $company_description);
+
+
     $company_presentation="";
     $company_logo="";
 
 
     //logo
-    $logo_name=$_FILES['logo']['name'];
+
+   $logo_name=$_FILES['logo']['name'];
+
+
     $logo_tmp_name=$_FILES['logo']['tmp_name'];
     $value=explode(".",$logo_name);
     $exten=end($value);
+    echo "Exten: ".$exten;
     $new_logo_name=time()."_".$company_name."_"."logo".".".$exten;
     move_uploaded_file($logo_tmp_name,"../../logos/".$new_logo_name);
 
@@ -167,12 +175,12 @@ if(isset($_POST['create'])){
 
     $query="INSERT INTO company_list VALUES ($id,'$company_name','$company_website','$company_description','$company_logo','$company_presentation')";
     $result=mysqli_query($connect, $query);
-    if(!$connect){
+    if(!$result){
 
         die("".mysqli_error($connect));
     }
 
-    header("Location: create_company.php");
+      //header("Location: create_company.php");
 
 
 
@@ -597,7 +605,7 @@ if(isset($_POST['create'])){
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="../email.php">
+                        <a href="../email/email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>
@@ -650,7 +658,7 @@ if(isset($_POST['create'])){
                         <!-- PAGE CONTENT BEGINS -->
 
             </div>
-                    <form id="validate-form" onsubmit=" return validate()" class="form-horizontal" role="form" action="create_company.php" method="post" enctype="multipart/form-data">
+                    <form id="validate-form" class="form-horizontal" role="form" action="create_company.php" method="post" enctype="multipart/form-data">
 
 
                         				<div class="row">
@@ -907,10 +915,10 @@ if(isset($_POST['create'])){
 
 
 
-        $('#myform').on('submit', function() {
+        $('#validate-form').on('submit', function() {
             var hidden_input =
                 $('<input type="hidden" name="description" />')
-                    .appendTo('#myform');
+                    .appendTo('#validate-form');
 
             var html_content = $('#editor1').html();
             hidden_input.val( html_content );
@@ -1055,9 +1063,9 @@ if(isset($_POST['create'])){
 
         $('#id-input-file-3').ace_file_input({
             style: 'well',
-            btn_choose: 'Drop images here or click to choose',
+            btn_choose: 'Click here to upload logo',
             btn_change: null,
-            no_icon: 'ace-icon fa fa-cloud-upload',
+            no_icon: 'ace-icon fa fa-picture-o',
             droppable: true,
             whitelist:'gif|png|jpg|jpeg',
             blacklist:'exe|php|psd',
@@ -1087,9 +1095,9 @@ if(isset($_POST['create'])){
         });
         $('#id-input-file-4').ace_file_input({
             style: 'well',
-            btn_choose: 'Drop images here or click to choose',
+            btn_choose: 'Click here to upload Presentation',
             btn_change: null,
-            no_icon: 'ace-icon fa fa-cloud-upload',
+            no_icon: 'ace-icon fa fa-picture-o',
             droppable: true,
             whitelist:'gif|png|jpg|jpeg|pdf|ppt|pptx|pptm',
             blacklist:'exe|php|psd',
@@ -1134,7 +1142,7 @@ if(isset($_POST['create'])){
             var btn_choose
             var no_icon
             if(1) {
-                btn_choose = "Drop images here or click to choose";
+                btn_choose = "click here to upload logo";
                 no_icon = "ace-icon fa fa-picture-o";
 
                 whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];

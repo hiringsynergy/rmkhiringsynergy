@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -137,24 +137,24 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 if(isset($_POST['update_submit'])) {
 
 
-$get_id= $_POST['company_id'];
-$get_name= $_POST['company_name'];
-$get_website= $_POST['company_website'];
-$get_description= $_POST['company_description'];
+    $get_id= $_POST['company_id'];
+    $get_name= $_POST['company_name'];
+    $get_website= $_POST['company_website'];
+    $get_description= $_POST['company_description'];
 
 
     include "../connect.php";
 
-$query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
+    $query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
 
-$result = mysqli_query($connect, $query);
+    $result = mysqli_query($connect, $query);
 
-if (!$connect) {
+    if (!$connect) {
 
-die(" " . mysqli_error($connect));
+        die(" " . mysqli_error($connect));
 
 
-}
+    }
 
 }
 ?>
@@ -350,7 +350,7 @@ die(" " . mysqli_error($connect));
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -504,7 +504,7 @@ die(" " . mysqli_error($connect));
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -611,10 +611,10 @@ die(" " . mysqli_error($connect));
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        
-                        <?php 
-                        
-                        
+
+                        <?php
+
+
                         if(isset($_GET['delete'])){
 
 
@@ -633,9 +633,9 @@ die(" " . mysqli_error($connect));
 
 
                         }
-                        
-                        
-                        
+
+
+
                         ?>
 
 
@@ -666,9 +666,9 @@ die(" " . mysqli_error($connect));
                                             </th>
                                             <th>Company Name</th>
                                             <th>Company Website</th>
-                                            <th class="hidden-480">Description</th>
+                                            <th class="">Description</th>
 
-                                            <th class="hidden-480">Status</th>
+
 
                                             <th></th>
                                         </tr>
@@ -695,7 +695,7 @@ die(" " . mysqli_error($connect));
                                         while($row=mysqli_fetch_assoc($result)){
 
 
-                                        ?>
+                                            ?>
 
 
 
@@ -706,70 +706,68 @@ die(" " . mysqli_error($connect));
 
 
 
-                                        <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
+                                            <tr>
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
 
-                                            <td><?php echo $row['company_name'] ?></td>
+                                                <td><?php echo $row['company_name'] ?></td>
 
-                                            <td>
-                                                <a href="http://<?php echo $row['company_website'] ?>"><?php echo $row['company_website'] ?></a>
-                                            </td>
+                                                <td>
+                                                    <a href="http://<?php echo $row['company_website'] ?>"><?php echo $row['company_website'] ?></a>
+                                                </td>
 
-                                            <td class="hidden-480"><?php echo $row['company_description'] ?></td>
+                                                <td ><?php echo $row['company_description'] ?></td>
 
 
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-warning">closed</span>
-                                            </td>
 
-                                            <td>
-                                                <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showUser(<?php  echo $row['company_id']   ?>)">
-                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                    </a>
+                                                <td>
+                                                    <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="red" href="../company/companies.php?delete=<?php echo $row['company_id'] ?>">
-                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                    </a>
-                                                </div>
+                                                        <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showUser(<?php  echo $row['company_id']   ?>)">
+                                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                        </a>
 
-                                                <div class="hidden-md hidden-lg">
-                                                    <div class="inline pos-rel">
-                                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                                        </button>
+                                                        <a class="red" href="../company/companies.php?delete=<?php echo $row['company_id'] ?>">
+                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        </a>
+                                                    </div>
 
-                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <div class="hidden-md hidden-lg">
+                                                        <div class="inline pos-rel">
+                                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                            </button>
 
-                                                            <li>
-                                                                <a href="#modal-form" class="tooltip-success" data-toggle="modal"
-                                                                   data-rel="tooltip" title="Edit"  onclick="showUser(<?php  echo $row['company_id']   ?>)">
+                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+                                                                <li>
+                                                                    <a href="#modal-form" class="tooltip-success" data-toggle="modal"
+                                                                       data-rel="tooltip" title="Edit"  onclick="showUser(<?php  echo $row['company_id']   ?>)">
 
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																				</span>
-                                                                </a>
-                                                            </li>
+                                                                    </a>
+                                                                </li>
 
 
-                                                            <li>
-                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <li>
+                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         <?php } ?>
 
 

@@ -667,32 +667,26 @@ $mail->isSMTP();
             </div>
 
             <div class="page-content">
-                <div class="ace-settings-container" id="ace-settings-container">
-                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                        <i class="ace-icon fa fa-cog bigger-130"></i>
-                    </div>
-
-                    <!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
+                <!-- /.ace-settings-container -->
 
 
 
-                        <!-- PAGE CONTENT BEGINS -->
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="row">
+                    <div class="col-xs-12">
+
+
+
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-xs-12">
-
-                                
-
-
-
-
-
-
-
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="tabbable">
-                                            <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+                                <div class="tabbable">
+                                    <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 
 
 
@@ -701,98 +695,118 @@ $mail->isSMTP();
 															<span class=" white smaller-60 middle align-center " style="padding-right: 10px; " > Write Mail</span>
 														</span>
 
-                                                <!-- /.li-new-mail -->
+                                        <!-- /.li-new-mail -->
 
-                                                <!-- /.dropdown -->
-                                            </ul>
+                                        <!-- /.dropdown -->
+                                    </ul>
 
-                                            <!-- /.tab-content -->
-                                        </div><!-- /.tabbable -->
-                                    </div><!-- /.col -->
-                                </div><!-- /.row -->
-
+<<<<<<< HEAD
                                 <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
+=======
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+<<<<<<< HEAD:admin_login/email.php
+                        <form id="id-message-form" action="email.php"  method="post"  class="active form-horizontal message-form col-xs-12">
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+=======
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
+>>>>>>> d729e0d21da596f398b7250abd7c77788fda46e6
                                     <div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+>>>>>>> origin/master:admin_login/email/email.php
 
-                                            <div class="col-sm-9">
+                                    <div class="col-sm-9">
 												<span class="input-icon">
 													<input type="email" name="recipient" id="form-field-recipient"  placeholder="user@gmail.com" />
 													<i class="ace-icon fa fa-user"></i>
 												</span>
-                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="hr hr-18 dotted"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="input-icon block col-xs-12 no-padding">
+                                            <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
+                                            <i class="ace-icon fa fa-comment-o"></i>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="hr hr-18 dotted"></div>
+                                <div class="hr hr-18 dotted"></div>
 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right">
+                                        <span class="inline space-24 hidden-480"></span>
+                                        Message:
+                                    </label>
 
-                                            <div class="col-sm-6 col-xs-12">
-                                                <div class="input-icon block col-xs-12 no-padding">
-                                                    <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
-                                                    <i class="ace-icon fa fa-comment-o"></i>
-                                                </div>
-                                            </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="wysiwyg-editor" id="editor1"></div>
+                                    </div>
+                                </div>
+
+                                <div class="hr hr-18 dotted"></div>
+
+                                <div class="form-group no-margin-bottom">
+                                    <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
+
+                                    <div class="col-sm-9">
+                                        <div id="form-attachments">
+                                            <input type="file" id="id-input-file-2" name="attachment[]" />
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="hr hr-18 dotted"></div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right">
-                                                <span class="inline space-24 hidden-480"></span>
-                                                Message:
-                                            </label>
-
-
-                                            <div class="col-sm-9">
-                                                <div class="wysiwyg-editor" id="editor1"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="hr hr-18 dotted"></div>
-
-                                        <div class="form-group no-margin-bottom">
-                                            <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
-
-                                            <div class="col-sm-9">
-                                                <div id="form-attachments">
-                                                    <input type="file" id="id-input-file-2" name="attachment[]" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="space"></div>
+                                <div class="space"></div>
 
 
 
+<<<<<<< HEAD
+                                <div class="align-right">
+                                    <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
+                                        <i class="ace-icon fa fa-paperclip bigger-140"></i>
+                                        Add Attachment
+                                    </button>
+                                </div>
+=======
                                         <div class="align-right">
                                             <button id="id-add-attachment"  type="button" class="btn btn-sm btn-danger">
                                                 <i class="ace-icon fa fa-paperclip bigger-140"></i>
                                                 Add Attachment
                                             </button>
                                         </div>
+>>>>>>> 4dd67c80e01265fa314c4ccf37c0cdf89c7cb2f2
 
-                                        <div class="space"></div>
-                                        <div class="space"></div>
+                                <div class="space"></div>
+                                <div class="space"></div>
 
-                                        <div class="align-center">
+                                <div class="align-center">
                                             <span class="inline btn-send-message">
                                                 <button type="submit" name="send" class="btn btn-sm btn-primary border btn-bold btn-round">
                                                     <span class="bigger-120">Send</span>
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                                                 </button>
                                             </span>
-                                        </div>
-                                        <div class="space"></div>
-                                    </div>
-                                </form>
-                                <!-- /.message-content -->
+                                </div>
+                                <div class="space"></div>
+                            </div>
+                        </form>
+                        <!-- /.message-content -->
 
-                                <!-- PAGE CONTENT ENDS -->
-                            </div><!-- /.col -->
-                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div>
                 <!-- /.row -->
             </div><!-- /.page-content -->
         </div>

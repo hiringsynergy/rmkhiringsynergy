@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -55,6 +55,14 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         }
         function myfuncsettings() {
             location.href = "../settings.php";
+
+        }
+        function getjobid(str){
+
+
+
+            document.getElementById("companyid").value=str;
+
 
         }
 
@@ -267,7 +275,33 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/images/avatars/user.jpg" alt="Jason's Photo" />
+
+                        <?php
+                        include "../connect.php";
+                        $name=$_SESSION['user'];
+
+                        $query="select * from login_coordinator where username='{$name}'";
+
+
+
+
+                        $result=mysqli_query($connect,$query);
+
+                        if(!$result){
+
+
+                            mysqli_error($connect);
+                        }
+
+                        while($row=mysqli_fetch_assoc($result)){
+
+
+
+                            ?>
+
+
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Jason's Photo" />
+                        <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
 									Coordinator
@@ -423,7 +457,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -536,6 +570,180 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         <!-- PAGE CONTENT BEGINS -->
 
                         <?php
+
+
+                        if(isset($_FILES['placement_file']))
+                        {
+
+                            include "../connect.php";
+                            $job_id=$_POST['hidden'];
+
+                            $query_get_year="SELECT * FROM jobs WHERE job_id='$job_id'";
+                            $result_get_year=mysqli_query($connect, $query_get_year);
+                            $row_get_year=mysqli_fetch_assoc($result_get_year);
+
+                            $get_year=$row_get_year['year_of_graduation'];
+                            $get_title=$row_get_year['company'];
+
+
+
+
+
+
+
+
+
+                            $file_name = $_FILES['placement_file']['name'];
+                            $file_size = $_FILES['placement_file']['size'];
+                            $file_tmp = $_FILES['placement_file']['tmp_name'];
+                            $file_type = $_FILES['placement_file']['type'];
+
+
+
+                            $value = explode('.',$file_name);
+
+
+
+
+                            $file_ext=strtolower(end($value));
+                            $temp = explode(".", $file_name);
+                            $newfilename = "file".time() . '.' . end($temp);
+
+                            $extensions= array("xls","xlsx");
+
+
+                            if(in_array($file_ext,$extensions)=== false){
+                                $errors="extension not allowed, please choose a JPEG or PNG file.";
+                            }
+
+                            if($file_size > 2097152) {
+                                $errors[]='File size must be excately 2 MB';
+                            }
+
+                            if(empty($errors)==true) {
+                                move_uploaded_file($file_tmp,"placement_files/".$newfilename);
+
+                            }
+
+
+
+
+
+
+                            include "../connect.php";
+                            include ("../crud/PHPExcel/IOFactory.php");
+
+                            $objPHPExcel = PHPExcel_IOFactory::load("placement_files/$newfilename");
+                            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+                            {
+
+                                $highestRow = $worksheet->getHighestRow();
+                                for ($row=2; $row<=$highestRow; $row++)
+                                {
+
+
+
+
+
+                                    $roll= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
+
+
+
+                                    $query_get_status="SELECT * FROM students_".$get_year." WHERE st_roll='$roll'";
+                                    $result_status=mysqli_query($connect, $query_get_status);
+                                    $row_status=mysqli_fetch_assoc($result_status);
+
+                                    $placement_status=$row_status['st_placementstatus'];
+                                    $placement_id=$row_status['st_placementid'];
+
+
+
+//                                    $placement_status=null;
+//                                    $placement_id=null;
+                                    if($placement_status!=null){
+
+
+                                        $placement_status.=', ';
+                                        $placement_status.=$get_title;
+                                        $placement_id.=',';
+                                        $placement_id.=$job_id;
+
+
+
+                                    }
+                                    else{
+                                        $placement_status=$get_title;
+                                        $placement_id=$job_id;
+                                    }
+
+
+
+
+
+
+
+
+
+
+                                    $sql = "UPDATE students_".$get_year." SET st_placementstatus='".$placement_status."' , st_placementid='$placement_id', _".$job_id."='placed'  WHERE st_roll='$roll'";
+
+
+
+
+
+
+
+
+                                    $result= mysqli_query($connect, $sql);
+
+
+
+
+
+                                    if(!$result){
+
+                                        die("".mysqli_error($connect));
+                                    }
+                                }
+                            }
+
+
+
+                            unlink("placement_files/$newfilename");
+                            ?>
+
+                            <div class="alert alert-block alert-success">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+
+                                <i class="ace-icon fa fa-check green"></i>
+
+
+                                <strong class="green">
+                                    Successfully updated
+
+                                </strong>
+
+
+                            </div>
+
+                            <div class="col-xs-6">
+
+
+
+                            </div>
+
+
+                            <?php
+
+
+
+
+
+
+                        }
+
                         include "../connect.php";
                         $query="SELECT * FROM jobs ORDER BY sort DESC";
                         $result= mysqli_query($connect, $query);
@@ -544,10 +752,11 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         while($row=mysqli_fetch_assoc($result))
 
                         {
+                            $company_id=$row['company_id'];
 
-                           $widget_color=array(' widget-color-blue','widget-color-green','widget-color-orange','widget-color-red','widget-color-pink','widget-color-green','widget-color-purple','widget-color-blue2','widget-color-red3','widget-color-blue3');
+                            $widget_color=array(' widget-color-blue','widget-color-green','widget-color-orange','widget-color-red','widget-color-pink','widget-color-green','widget-color-purple','widget-color-blue2','widget-color-red3','widget-color-blue3');
 
-                           $i=$i%sizeof($widget_color);
+                            $i=$i%sizeof($widget_color);
 
 
 
@@ -655,22 +864,24 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                 <td   height="80" width="370" class="">
 
-                                        <b>
-                                            <a href="zoho.php" class="job " style="text-decoration:none; font-size: 18px" data-action="reload">
-                                                <?php  echo $row['job_title']  ?>
-                                            </a>
-                                            <br><br>
+                                    <b>
+                                        <a href="zoho.php" class="job " style="text-decoration:none; font-size: 23px" data-action="reload">
 
-
-
-                                        </b>
-                                    <div class="row col-md-12" style="font-size: 17px; font-weight: bold;">
-
-                                        <label class="label label-warning center middle" style="size: 40px;"><b> Company:   </b></label>
-
-                                        <div>
                                             <?php  echo $row['company']  ?>
 
+
+                                        </a>
+                                        <br><br>
+
+
+
+                                    </b>
+                                    <div class="row col-md-12" style="font-size: 17px; font-weight: bold;">
+
+                                        <label class="label label-warning center middle" style="size: 40px;"><b> Job:   </b></label>
+
+                                        <div>
+                                            <?php  echo $row['job_title']  ?>(Product)
 
                                         </div>
 
@@ -679,6 +890,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
                                 </td>
+
 
 
                                 <td >
@@ -737,34 +949,34 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                 $date2=$row['apply_before'];
 
 
-//                                echo strtotime($date2);
+                                //                                echo strtotime($date2);
 
                                 $temp_current=explode(" ", $date1);
                                 $temp_before=explode(" ", $date2);
 
-                              $calc_date=strtotime($temp_before[0])-strtotime($temp_current[0])."<br>";
+                                $calc_date=strtotime($temp_before[0])-strtotime($temp_current[0])."<br>";
 
 
-                               if($temp_before[2]=="PM"){
+                                if($temp_before[2]=="PM"){
 
-                                   $tmp=$temp_before[1];
-                                   $tmp_value=explode(":", $tmp);
+                                    $tmp=$temp_before[1];
+                                    $tmp_value=explode(":", $tmp);
 
-                                   $temp_before[1]=$tmp_value[0]+12 .":".$tmp_value[1];
+                                    $temp_before[1]=$tmp_value[0]+12 .":".$tmp_value[1];
 
-                               }
+                                }
 
 
-//                               echo $temp_before[1]." ".$temp_current[1]."<br>";
-//
-//
-                               $calc_time=strtotime($temp_before[1])-strtotime($temp_current[1])."<br>";
-//
-//
-//
-//
-//                                print_r($temp_current);
-//                                print_r($temp_before);
+                                //                               echo $temp_before[1]." ".$temp_current[1]."<br>";
+                                //
+                                //
+                                $calc_time=strtotime($temp_before[1])-strtotime($temp_current[1])."<br>";
+                                //
+                                //
+                                //
+                                //
+                                //                                print_r($temp_current);
+                                //                                print_r($temp_before);
 
 
 
@@ -776,40 +988,27 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-                                ?>
+                                    ?>
 
 
 
-                                <td class="hidden-480">
-                                    <span class="label label-success">Open</span>
-                                </td>
-                                <td>
+                                    <td class="  ">
+                                        <span class="label label-success" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Open</span>
+                                    </td>
 
-                                    <div >
-                                        <button class="btn btn-primary btn-sm  ">Apply</button>
-                                    </div>
-
-                                </td>
-                              <?php
+                                    <?php
 
 
                                 }
                                 else if( $calc_date==0 && $calc_time>=0){
                                     ?>
 
-                                    <td class="hidden-480">
-                                    <span class="label label-success">Open</span>
-                                </td>
-                                <td>
-
-                                    <div >
-                                        <button class="btn btn-primary btn-sm  ">Apply</button>
-                                    </div>
-
-                                </td>
+                                    <td class="  ">
+                                        <span class="label label-success" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Open</span>
+                                    </td>
 
 
-                                   <?php
+                                    <?php
 
 
                                 }
@@ -818,137 +1017,140 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                                     ?>
 
-                                    <td class="hidden-480">
-                                        <span class="label label-danger">Closed</span>
-                                    </td>
-                                    <td>
-
-                                        <div >
-                                            <button class="btn btn-primary btn-sm  disabled">Apply</button>
-                                        </div>
-
+                                    <td class="  ">
+                                        <span class="label label-danger" style="height: 40px; width: 80px; font-size: 18px; padding-top: 10px;">Closed</span>
                                     </td>
 
 
 
 
-                                  <?php
-                                   }
+                                    <?php
+                                }
 
-                                  ?>
+                                ?>
+                                <td>
+                                    <a href="#modal-form" class="btn btn-primary" data-toggle="modal" onclick="getjobid(<?php echo $row['job_id'] ?>)">Update Details</a>
+
+
+                                </td>
 
 
                             </tr>
 
                             <tr class="detail-row">
+                                <?php
+
+                                $query_company="SELECT * FROM company_list where company_id='$company_id'";
+                                $result_company= mysqli_query($connect, $query_company);
+                                $row_company=mysqli_fetch_assoc($result_company);
+
+
+                                ?>
+
                                 <td colspan="8">
                                     <div class="table-detail">
                                         <div class="row">
-                                            <div class="col-xs-6 col-sm-2">
+                                            <div class="col-xs-7 col-sm-2">
                                                 <div class="text-center ">
-                                                    <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../assets/images/avatars/profile-pic.jpg" />
-                                                    <br />
-                                                    <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                                        <div class="inline position-relative">
-                                                            <a class="user-title-label" href="#">
-                                                                <i class="ace-icon fa fa-circle light-green"></i>
-                                                                &nbsp;
-                                                                <span class="white">Alex M. Doe</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                    <img height="150" class="thumbnail inline no-margin-bottom " alt="Domain Owner's Avatar" src="../../logos/<?php echo $row_company['company_logo']; ?>" />
+
                                                 </div>
                                             </div>
 
-                                            <div class="col-xs-12 col-sm-7">
+
+                                            <div class="col-xs-12 col-sm-10">
                                                 <div class="space visible-xs"></div>
 
-                                                <div class="profile-user-info profile-user-info-striped">
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Username </div>
+                                                <div class="profile-user-info  profile-user-info-striped">
+                                                    <div class="profile-info-row  ">
+                                                        <div class="profile-info-name " style="min-width: 140px;"> Company Name </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>alexdoe</span>
+                                                            <span><?php echo $row_company['company_name']; ?></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Location </div>
+                                                        <div class="profile-info-name"> Website </div>
 
                                                         <div class="profile-info-value">
-                                                            <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                            <span>Netherlands, Amsterdam</span>
+                                                            <span><?php echo $row_company['company_website']; ?></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Age </div>
+                                                        <div class="profile-info-name"> Mail </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>38</span>
+                                                            <span><?php echo $row_company['company_website']; ?></span>
                                                         </div>
                                                     </div>
 
                                                     <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Joined </div>
+                                                        <div class="profile-info-name" > Eligibility </div>
 
                                                         <div class="profile-info-value">
-                                                            <span>2010/06/20</span>
+                                                            <span>above <?php echo $row['job_cgpa']; ?> cgpa</span>
                                                         </div>
                                                     </div>
 
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> Last Online </div>
+                                                    <div class="profile-info-row ">
+                                                        <div class="profile-info-name "  >Company's Presentation </div>
 
-                                                        <div class="profile-info-value">
-                                                            <span>3 hours ago</span>
+                                                        <div class="profile-info-value col-xs-6">
+                                                            <a href="download.php?file=<?php echo $row['company_id'] ?>" name="presentation" class="btn btn-yellow bold" >Download Presentation</a>
                                                         </div>
                                                     </div>
+                                                    <div id="download">
 
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> About Me </div>
 
-                                                        <div class="profile-info-value">
-                                                            <span>Bio</span>
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-3">
-                                                <div class="space visible-xs"></div>
-                                                <h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-                                                <div class="space-6"></div>
-
-                                                <form>
-                                                    <fieldset>
-                                                        <textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-                                                    </fieldset>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="clearfix">
-                                                        <label class="pull-left">
-                                                            <input type="checkbox" class="ace" />
-                                                            <span class="lbl"> Email me a copy</span>
-                                                        </label>
-
-                                                        <button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-                                                            Submit
-                                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
+                                                <div id="modal-form" class="modal" tabindex="-1">
+                                                    <form action="view_jobs.php" method="post" enctype="multipart/form-data">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12">
+
+                                                                            <input id="companyid" name="hidden" type="hidden" >
+
+                                                                            <div class="space"></div>
+
+                                                                            <input type="file" name="placement_file" />
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-sm" data-dismiss="modal">
+                                                                        <i class="ace-icon fa fa-times"></i>
+                                                                        Cancel
+                                                                    </button>
+
+                                                                    <button class="btn btn-sm btn-primary">
+                                                                        <i class="ace-icon fa fa-check"></i>
+                                                                        Save
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
 
 
                                         </div>

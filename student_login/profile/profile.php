@@ -176,6 +176,74 @@
 </head>
 
 <body class="no-skin">
+
+
+<?php
+
+if(isset($_GET['changemailphone'])){
+
+    include "../connect.php";
+
+
+    $name=$_SESSION['user'];
+    $student_table=$_SESSION['table_name'];
+
+
+    $id=time();
+    $phoneno=$_GET['phoneno'];
+    $emailid=$_GET['emailid'];
+
+    $select="SELECT st_mail,st_phone from $student_table where st_roll='{$name}'";
+    $select_result=mysqli_query($connect, $select);
+    $row=mysqli_fetch_assoc($select_result);
+    $old_mail=$row['st_mail'];
+
+if($emailid!=$old_mail)
+{
+
+    $student_table=$_SESSION['table_name'];
+
+    $query1="UPDATE $student_table SET  st_changemail='{$emailid}' WHERE st_roll='{$name}'";
+
+    $result1=mysqli_query($connect, $query1);
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+
+}
+
+
+    $old_phoneno=$row['st_phone'];
+
+if($phoneno!=$old_phoneno)
+{
+
+    $student_table=$_SESSION['table_name'];
+
+    $query2="UPDATE $student_table SET  st_changephone='{$phone}' WHERE st_roll='{$name}'";
+
+    $result2=mysqli_query($connect, $query2);
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+
+}
+
+
+}
+
+
+
+
+
+?>
+
+
+
+
+
 <?php
 
 if(isset($_FILES['image'])){
@@ -1715,9 +1783,9 @@ if(isset($_FILES['image'])){
 
 
 
-
                                 <div id="modal-form1" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
+                                <form class="modal-content" action="profile.php" method="get" enctype = "multipart/form-data">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1750,17 +1818,16 @@ if(isset($_FILES['image'])){
                                                     Cancel
                                                 </button>
 
-                                                <button class="btn btn-sm btn-primary">
+                                                <button name="changemailphone" class="btn btn-sm btn-primary">
                                                     <i class="ace-icon fa fa-check"></i>
                                                     Save
                                                 </button>
                                             </div>
-                                        </div>
+                                        </div></form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                         <div id="modal-form" class="modal" tabindex="-1">
                             <div class="modal-dialog">

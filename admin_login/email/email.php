@@ -25,9 +25,35 @@ mail($to,$subject,$message,$headers);
 */
 
 
+if(isset($_FILES['attachment'])){
+
+
+    
 
 
 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//php mailer
+
+/*
 
 require "PHPMailer/PHPMailerAutoload.php";
 
@@ -63,7 +89,7 @@ $mail->isSMTP();
     }
 
 
-
+*/
 
 
 
@@ -685,7 +711,7 @@ $mail->isSMTP();
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->
 
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
+                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
                                     <div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>

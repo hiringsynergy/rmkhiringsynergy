@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -217,110 +217,68 @@ if(isset($_POST['update_submit'])) {
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.php">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -334,16 +292,11 @@ if(isset($_POST['update_submit'])) {
                         include "../connect.php";
                         $name=$_SESSION['user'];
 
-                        $query="select * from login_admin where username='{$name}'";
-
-
-
-
+                        $query="select * from login_coordinator where username='{$name}'";
 
                         $result=mysqli_query($connect,$query);
 
                         if(!$result){
-
 
 
                             mysqli_error($connect);
@@ -356,7 +309,7 @@ if(isset($_POST['update_submit'])) {
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -427,8 +380,6 @@ if(isset($_POST['update_submit'])) {
 
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
-
-                <span class="btn btn-info"></span>
 
                 <span class="btn btn-warning"></span>
 
@@ -511,7 +462,7 @@ if(isset($_POST['update_submit'])) {
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -605,225 +556,147 @@ if(isset($_POST['update_submit'])) {
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Home</a>
                     </li>
-                    <li class="active">Sample</li>
+                    <li class="active">Company Details</li>
                 </ul><!-- /.breadcrumb -->
-                <!-- /.nav-search -->
+
+
             </div>
 
             <div class="page-content">
 
 
-                <div class="page-header">
-                    <h1>
-                        Company Details
+                <!--              <div class="page-header">
+                                  <h1>
+                                      Company Details
 
-                    </h1>
-                </div><!-- /.page-header -->
-
+                                  </h1>
+                              </div><!-- /.page-header -->
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
 
+                        <?php
+                        if(isset($_GET['cid'])){
+
+                            include "../connect.php";
+
+                            $company_id=$_GET['cid'];
+
+                            $query_company="SELECT * FROM company_list WHERE company_id='$company_id'";
+                            $result_company=mysqli_query($connect, $query_company);
+                            $row_company=mysqli_fetch_assoc($result_company);
 
 
-                        <div class="row cols-xs-12">
-
-                            <div class="col-xs-12 col-sm-3 ">
-<!--                                <div class="center" ></div>-->
-                                <ul class="ace-thumbnails clearfix">
 
 
 
-                                    <li>
-                                        <a class="" href="../images/logos/1482066285_asdfgasdfg.jpg" data-rel="colorbox">
-                                            <img width="auto" height="150" alt="150x150" src="../images/logos/1482380421_IBM_logo.gif" />
-                                            <div class="text">
-                                                <div class="inner">Click here to View</div>
-                                            </div>
-                                        </a>
-
-                                        <div class="tools tools-bottom">
 
 
-                                            <a href="#">
-                                                <i class="ace-icon fa fa-pencil"></i>
+
+                            ?>
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-9">
+                                    <h1 class="black bolder thinner bigger-180"><?php echo $row_company['company_name'] ?></h1>
+
+                                    <div class="space-10"></div>
+                                    <div class="space-10"></div><br/>
+
+
+                                    <p class="dark bigger-130"><?php echo $row_company['company_description'] ?>
+                                    </p><br/><br/><br/><br/><br/><br/>
+
+                                    <div class="col-xs-8 col-sm-8"> <h5 class="red  bolder"><b>MAIL : </b><a href="#">Not Mentioned</a></h5></div>
+
+                                    <h5 class=" red bolder">Website : <a href="http://<?php echo $row_company['company_website'] ?>"><?php echo $row_company['company_website'] ?></a></h5>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 ">
+                                    <div class="padding-right" ></div>
+
+                                    <ul class="ace-thumbnails clearfix">
+
+
+
+                                        <li>
+
+                                            <a class="" href="../../logos/<?php echo $row_company['company_logo'] ?>" data-rel="colorbox">
+                                                <img width="auto" height="150" alt="150x150" src="../../logos/<?php echo $row_company['company_logo'] ?>" />
+                                                <div class="text">
+                                                    <div class="inner">Click here to View</div>
+                                                </div>
                                             </a>
+                                            <div class="tools tools-bottom">
 
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-pencil"></i>
+                                                </a>
 
-                                        </div>
-                                    </li>
-                               </ul>
-                            </div>
-                        </div>
-
-
-
-                            <div class="space-16"></div>
-
-                        <div class="row">
-
-                            <div class="space-14">
-
-                            <div class="col-xs-12   widget-container-col blue" id="widget-container-col-1">
-
-                                <div class="widget-box widget-color-red" id="widget-box-1">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title">Company Name</h5>
-
-                                        <div class="widget-toolbar">
-
-
-                                            <a href="#"  class="white bigger-170">
-                                                <i class="ace-icon fa fa-pencil-square-o"></i>
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                        <div class="widget-main ">
-                                            <h5 class="red bolder bigger-180">ZOHO ENTERPRISES LTD</h5>
-
-                                            <h5 class="green  bolder bigger-120">zoho@gmail.com</h5>
-
-                                            <br>
-                                            <div>
-                                                <h5 class="red bolder bigger-180">WEBSITE:</h5>
-
-                                                <h5 class=" blue bolder bigger-120">
-                                                    <a href="http://www.zoho.com">www.zoho.com </a></h5>
 
                                             </div>
-                                        </div>
-                                    </div>
+
+                                        </li>
+                                    </ul>
                                 </div>
-                        </div>
-
-
-
-                        <div class="space-10"></div>
-
-
-
-                        <div class="row">
-
-                            <div class="col-xs-12 widget-container-col blue" id="widget-container-col-1" >
-                            <div class="widget-box widget-color-blue" id="widget-box-1">
-                                <div class="widget-header">
-                                    <h5 class="widget-title">Company Description</h5>
-
-                                    <div class="widget-toolbar">
-
-
-                                        <a href="#"  class="white bigger-170">
-                                            <i class="ace-icon fa fa-pencil-square-o"></i>
-                                        </a>
-
-
-
-                                    </div>
-
-                                </div>
-
-                                <div class="widget-body">
-                                    <div class="widget-main">
-                                        <p class="dark bolder bigger-130">At Zoho, software is our craft and passion. We create beautiful software to solve business problems.
-					Over the past decade of our journey, the Zoho suite has emerged to be a leader in the cloud and on your devices.
-					As much as we love software, it is our people and our culture that are our most valuable assets. Our people spend years mastering the craft. 
-					In an industry where technology changes at a relentless and dizzying pace, we value persistence and endurance as highly as adaptability.
-                                        </p>
-                                    </div>
-                                </div>
-
-
                             </div>
-                        </div>
-                        </div>
-                        </div>
+                        <?php } ?>
+                    </div>
 
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
 
+            <!-- /.main-content -->
 
-
-
-
-
-
-
-                </div>
-            </div>
-
-
-
-                             <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-
-    <!-- /.main-content -->
-
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="footer-content">
+            <div class="footer">
+                <div class="footer-inner">
+                    <div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">RMK</span>
 							Group of Institutions
 						</span>
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
-<!-- /.main-container -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+            </a>
+            <!-- /.main-container -->
 
-<!-- basic scripts -->
-
+            <!-- basic scripts -->
 
 
 
 
 
-<!--[if !IE]> -->
-<script src="../assets/js/jquery-2.1.4.min.js"></script>
 
-<!-- <![endif]-->
+            <!--[if !IE]> -->
+            <script src="../assets/js/jquery-2.1.4.min.js"></script>
 
-<!--[if IE]>
-<script src="../assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-<script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
-<script src="../assets/js/bootstrap.min.js"></script>
+            <!-- <![endif]-->
 
-<!-- page specific plugin scripts -->
-<script src="../assets/js/jquery.dataTables.min.js"></script>
-<script src="../assets/js/jquery.dataTables.bootstrap.min.js"></script>
-<script src="../assets/js/dataTables.buttons.min.js"></script>
-<script src="../assets/js/buttons.flash.min.js"></script>
-<script src="../assets/js/buttons.html5.min.js"></script>
-<script src="../assets/js/buttons.print.min.js"></script>
-<script src="../assets/js/buttons.colVis.min.js"></script>
-<script src="../assets/js/dataTables.select.min.js"></script>
-<script src="../assets/js/jquery.colorbox.min.js"></script>
+            <!--[if IE]>
+            <script src="../assets/js/jquery-1.11.3.min.js"></script>
+            <![endif]-->
+            <script type="text/javascript">
+                if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+            </script>
+            <script src="../assets/js/bootstrap.min.js"></script>
 
-
-
-<script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="../../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
-<script src="../../vendors/jszip/dist/jszip.min.js"></script>
-<script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
-<script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
+            <!-- page specific plugin scripts -->
+            <script src="../assets/js/jquery.dataTables.min.js"></script>
+            <script src="../assets/js/jquery.dataTables.bootstrap.min.js"></script>
+            <script src="../assets/js/dataTables.buttons.min.js"></script>
+            <script src="../assets/js/buttons.flash.min.js"></script>
+            <script src="../assets/js/buttons.html5.min.js"></script>
+            <script src="../assets/js/buttons.print.min.js"></script>
+            <script src="../assets/js/buttons.colVis.min.js"></script>
+            <script src="../assets/js/dataTables.select.min.js"></script>
+            <script src="../assets/js/jquery.colorbox.min.js"></script>
 
 
 
@@ -841,54 +714,56 @@ if(isset($_POST['update_submit'])) {
 
 
 
-<!-- ace scripts -->
-<script src="../assets/js/ace-elements.min.js"></script>
-<script src="../assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
-<script type="text/javascript">
-
-    jQuery(function($) {
-        var $overflow = '';
-        var colorbox_params = {
-            rel: 'colorbox',
-            reposition:true,
-            scalePhotos:true,
-            scrolling:false,
-            previous:'<i class="ace-icon fa fa-arrow-left"></i>',
-            next:'<i class="ace-icon fa fa-arrow-right"></i>',
-            close:'&times;',
-            current:'{current} of {total}',
-            maxWidth:'100%',
-            maxHeight:'100%',
-            onOpen:function(){
-                $overflow = document.body.style.overflow;
-                document.body.style.overflow = 'hidden';
-            },
-            onClosed:function(){
-                document.body.style.overflow = $overflow;
-            },
-            onComplete:function(){
-                $.colorbox.resize();
-            }
-        };
-
-        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
-        $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
 
 
-        $(document).one('ajaxloadstart.page', function(e) {
-            $('#colorbox, #cboxOverlay').remove();
-        });
-    });
+            <!-- ace scripts -->
+            <script src="../assets/js/ace-elements.min.js"></script>
+            <script src="../assets/js/ace.min.js"></script>
+
+            <!-- inline scripts related to this page -->
+            <script type="text/javascript">
+
+                jQuery(function($) {
+                    var $overflow = '';
+                    var colorbox_params = {
+                        rel: 'colorbox',
+                        reposition:true,
+                        scalePhotos:true,
+                        scrolling:false,
+                        previous:'<i class="ace-icon fa fa-arrow-left"></i>',
+                        next:'<i class="ace-icon fa fa-arrow-right"></i>',
+                        close:'&times;',
+                        current:'{current} of {total}',
+                        maxWidth:'100%',
+                        maxHeight:'100%',
+                        onOpen:function(){
+                            $overflow = document.body.style.overflow;
+                            document.body.style.overflow = 'hidden';
+                        },
+                        onClosed:function(){
+                            document.body.style.overflow = $overflow;
+                        },
+                        onComplete:function(){
+                            $.colorbox.resize();
+                        }
+                    };
+
+                    $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+                    $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
 
 
-
-
+                    $(document).one('ajaxloadstart.page', function(e) {
+                        $('#colorbox, #cboxOverlay').remove();
+                    });
+                });
 
 
 
-</script>
+
+
+
+
+            </script>
 
 </body>
 </html>

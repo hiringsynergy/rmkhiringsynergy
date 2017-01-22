@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -137,24 +137,24 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 if(isset($_POST['update_submit'])) {
 
 
-$get_id= $_POST['company_id'];
-$get_name= $_POST['company_name'];
-$get_website= $_POST['company_website'];
-$get_description= $_POST['company_description'];
+    $get_id= $_POST['company_id'];
+    $get_name= $_POST['company_name'];
+    $get_website= $_POST['company_website'];
+    $get_description= $_POST['company_description'];
 
 
     include "../connect.php";
 
-$query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
+    $query = "UPDATE company_list SET company_name='{$get_name}', company_website='{$get_website}',company_description='{$get_description}' where company_id={$get_id}";
 
-$result = mysqli_query($connect, $query);
+    $result = mysqli_query($connect, $query);
 
-if (!$connect) {
+    if (!$connect) {
 
-die(" " . mysqli_error($connect));
+        die(" " . mysqli_error($connect));
 
 
-}
+    }
 
 }
 ?>
@@ -216,110 +216,68 @@ die(" " . mysqli_error($connect));
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -350,7 +308,7 @@ die(" " . mysqli_error($connect));
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -504,7 +462,7 @@ die(" " . mysqli_error($connect));
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -611,10 +569,10 @@ die(" " . mysqli_error($connect));
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        
-                        <?php 
-                        
-                        
+
+                        <?php
+
+
                         if(isset($_GET['delete'])){
 
 
@@ -633,9 +591,9 @@ die(" " . mysqli_error($connect));
 
 
                         }
-                        
-                        
-                        
+
+
+
                         ?>
 
 
@@ -666,9 +624,9 @@ die(" " . mysqli_error($connect));
                                             </th>
                                             <th>Company Name</th>
                                             <th>Company Website</th>
-                                            <th class="hidden-480">Description</th>
+                                            <th class="">Description</th>
 
-                                            <th class="hidden-480">Status</th>
+
 
                                             <th></th>
                                         </tr>
@@ -695,7 +653,7 @@ die(" " . mysqli_error($connect));
                                         while($row=mysqli_fetch_assoc($result)){
 
 
-                                        ?>
+                                            ?>
 
 
 
@@ -706,70 +664,68 @@ die(" " . mysqli_error($connect));
 
 
 
-                                        <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
+                                            <tr>
+                                                <td class="center">
+                                                    <label class="pos-rel">
+                                                        <input type="checkbox" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
 
-                                            <td><?php echo $row['company_name'] ?></td>
+                                                <td><?php echo $row['company_name'] ?></td>
 
-                                            <td>
-                                                <a href="http://<?php echo $row['company_website'] ?>"><?php echo $row['company_website'] ?></a>
-                                            </td>
+                                                <td>
+                                                    <a href="http://<?php echo $row['company_website'] ?>"><?php echo $row['company_website'] ?></a>
+                                                </td>
 
-                                            <td class="hidden-480"><?php echo $row['company_description'] ?></td>
+                                                <td ><?php echo $row['company_description'] ?></td>
 
 
-                                            <td class="hidden-480">
-                                                <span class="label label-sm label-warning">closed</span>
-                                            </td>
 
-                                            <td>
-                                                <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showUser(<?php  echo $row['company_id']   ?>)">
-                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                    </a>
+                                                <td>
+                                                    <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="red" href="../company/companies.php?delete=<?php echo $row['company_id'] ?>">
-                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                    </a>
-                                                </div>
+                                                        <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showUser(<?php  echo $row['company_id']   ?>)">
+                                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                        </a>
 
-                                                <div class="hidden-md hidden-lg">
-                                                    <div class="inline pos-rel">
-                                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                                        </button>
+                                                        <a class="red" href="../company/companies.php?delete=<?php echo $row['company_id'] ?>">
+                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        </a>
+                                                    </div>
 
-                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <div class="hidden-md hidden-lg">
+                                                        <div class="inline pos-rel">
+                                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                            </button>
 
-                                                            <li>
-                                                                <a href="#modal-form" class="tooltip-success" data-toggle="modal"
-                                                                   data-rel="tooltip" title="Edit"  onclick="showUser(<?php  echo $row['company_id']   ?>)">
+                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+                                                                <li>
+                                                                    <a href="#modal-form" class="tooltip-success" data-toggle="modal"
+                                                                       data-rel="tooltip" title="Edit"  onclick="showUser(<?php  echo $row['company_id']   ?>)">
 
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																				</span>
-                                                                </a>
-                                                            </li>
+                                                                    </a>
+                                                                </li>
 
 
-                                                            <li>
-                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <li>
+                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         <?php } ?>
 
 

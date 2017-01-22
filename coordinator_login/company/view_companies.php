@@ -35,7 +35,7 @@ ob_start();
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -144,110 +144,68 @@ ob_start();
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="../inbox.php">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -441,7 +399,7 @@ ob_start();
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -533,7 +491,7 @@ ob_start();
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Home</a>
                     </li>
-                    <li class="active">Companies</li>
+                    <li class="active">Student Interaction</li>
                 </ul><!-- /.breadcrumb -->
                 <!-- /.nav-search -->
             </div>
@@ -553,11 +511,39 @@ ob_start();
 
                         <!-- PAGE CONTENT BEGINS -->
 
-                        <div class="row">
+
+
+                        <?php
+                        include "../connect.php";
+                        $query_company="SELECT * FROM company_list";
+                        $result_company=mysqli_query($connect, $query_company);
+                        $i=1;
+                        $p=0;
+                        $b=0;
+                        $pricing_color=array(' widget-color-blue','widget-color-green','widget-color-orange','widget-color-red','widget-color-pink','widget-color-green','widget-color-purple','widget-color-blue2','widget-color-red3','widget-color-blue3','widget-color-dark');
+                        $button_color=array('btn-primary','btn-success','btn-warning','btn-danger','btn-pink','btn-success','btn-purple','btn-info','btn-danger','btn-purple','btn-inverse');
+                        while($row_company=mysqli_fetch_assoc($result_company)){
+
+
+
+                            $i=$i%4;
+                            $p=$p%sizeof($pricing_color);
+                            $b=$b%sizeof($button_color);
+
+                            if($i==0){
+
+                                ?>
+
+
+
+                                <div class="row" >
+                            <?php   } ?>
+
+
                             <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-dark" id="shadow">
+                                <div class="widget-box <?php echo $pricing_color[$p]; ?>" id="shadow">
                                     <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 1</h5>
+                                        <h5 class="widget-title bigger lighter">Company </h5>
                                     </div>
 
                                     <div class="widget-body">
@@ -565,17 +551,17 @@ ob_start();
                                             <ul class="list-unstyled spaced2">
                                                 <li class="red bigger-120">
                                                     <i class="align-center"></i>
-                                                    Zoho Corporation
+                                                    <?php echo $row_company['company_name'] ?>
                                                 </li>
 
                                                 <li>
                                                     <i class="align-center"></i>
-                                                    www.zoho.com
+                                                    <?php echo $row_company['company_website'] ?>
                                                 </li>
 
                                             </ul>
 
-                                            <hr />
+                                            <hr/>
                                             <div class="price">
                                                 35,000
                                                 <small>/month</small>
@@ -583,7 +569,7 @@ ob_start();
                                         </div>
 
                                         <div>
-                                            <a href="company_details.php" class="btn btn-block btn-inverse">
+                                            <a href="company_details.php?cid=<?php echo $row_company['company_id'] ?>" class="btn btn-block <?php echo $button_color[$b]; ?>">
                                                 <span>Details</span>
                                             </a>
                                         </div>
@@ -591,269 +577,31 @@ ob_start();
                                 </div>
                             </div>
 
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-orange" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 2</h5>
-                                    </div>
 
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    Amazon
-                                                </li>
+                            <?php
+                            if($i==0){
 
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.amazon.com
-                                                </li>
+                                ?>
 
-                                            </ul>
 
-                                            <hr />
-                                            <div class="price">
-                                                3 Lakhs
-                                                <small>/year</small>
-                                            </div>
-                                        </div>
 
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-warning">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-blue" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 3</h5>
-                                    </div>
 
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    IBM
-                                                </li>
+                                <div class="space-24"></div>
+                            <?php   } ?>
 
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.ibm.in
-                                                </li>
 
-                                            </ul>
+                            <?php
+                            ++$i;
+                            ++$p;
+                            ++$b;
 
-                                            <hr />
-                                            <div class="price">
-                                                40,000
-                                                <small>/month</small>
-                                            </div>
-                                        </div>
+                        }
 
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-primary">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        ?>
 
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-green" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 4</h5>
-                                    </div>
 
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    Infosys
-                                                </li>
-
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.infosys.com
-                                                </li>
-
-                                            </ul>
-
-                                            <hr />
-                                            <div class="price">
-                                                35,000
-                                                <small>/month</small>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-success">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-24"></div>
-
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-red" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 5</h5>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    TCS
-                                                </li>
-
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.tcs.com
-                                                </li>
-
-                                            </ul>
-
-                                            <hr />
-                                            <div class="price">
-                                                4 Lakhs
-                                                <small>/year</small>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-danger ">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-purple" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 6</h5>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    Wipro
-                                                </li>
-
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.wipro.com
-                                                </li>
-
-                                            </ul>
-
-                                            <hr />
-                                            <div class="price">
-                                                15000
-                                                <small>/month</small>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-purple">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-pink" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 7</h5>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    CGI
-                                                </li>
-
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.cgi.com
-                                                </li>
-
-                                            </ul>
-
-                                            <hr />
-                                            <div class="price">
-                                                25,000
-                                                <small>/month</small>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-pink">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 col-sm-3 pricing-box">
-                                <div class="widget-box widget-color-grey" id="shadow">
-                                    <div class="widget-header">
-                                        <h5 class="widget-title bigger lighter">Company 8</h5>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <ul class="list-unstyled spaced2">
-                                                <li class="red bigger-120">
-                                                    <i class="align-center"></i>
-                                                    Inautix
-                                                </li>
-
-                                                <li>
-                                                    <i class="align-center"></i>
-                                                    www.inautix.in
-                                                </li>
-
-                                            </ul>
-
-                                            <hr />
-                                            <div class="price">
-                                                20,000
-                                                <small>/month</small>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <a href="company_details.php" class="btn btn-block btn-grey">
-                                                <span>Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- PAGE CONTENT ENDS -->
 
                     </div><!-- /.col -->

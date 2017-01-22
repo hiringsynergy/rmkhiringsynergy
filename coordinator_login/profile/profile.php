@@ -2,11 +2,11 @@
 
 session_start();
 
-
+$_SESSION['roll']=null;
 
 if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
-    header("Location: ../login.html");
+    header("Location: ../../login.html");
 
 
 }
@@ -41,7 +41,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -209,6 +209,7 @@ if(isset($_FILES['image'])){
 
 
     include "../connect.php";
+
     $select="SELECT * from login_coordinator where username='{$name}'";
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
@@ -239,6 +240,16 @@ if(isset($_FILES['image'])){
 
 
 }
+
+if(isset($_GET['roll']))
+{
+
+
+    $_SESSION['roll']=$_GET['roll'];
+
+
+}
+
 
 
 ?>
@@ -303,112 +314,68 @@ if(isset($_FILES['image'])){
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-
-
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.php">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -442,7 +409,7 @@ if(isset($_FILES['image'])){
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -454,7 +421,7 @@ if(isset($_FILES['image'])){
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
@@ -603,7 +570,7 @@ if(isset($_FILES['image'])){
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -703,10 +670,20 @@ if(isset($_FILES['image'])){
             <div class="page-content">
                 <!-- /.ace-settings-container -->
 
-                <div class="page-header">
-                    <h1>
-                       Your Profile
-                    </h1>
+                <div class=" col-xs-12 center" >
+
+
+                    <form action="profile.php" method="get">
+                        <label class="red bolder"> Search Profile  -</label>
+
+
+
+
+                        <input type="text" name="roll">
+                        <button type="submit"  class="btn btn-success ">search</button>
+                    </form>
+
+
                 </div><!-- /.page-header -->
 
                 <div class="row">
@@ -719,16 +696,37 @@ if(isset($_FILES['image'])){
                                         <?php
 
 
+                                        if(isset($_SESSION['roll'])) {
+
+
                                         include "../connect.php";
-                                        $name=$_SESSION['user'];
-                                        $query="SELECT * FROM login_coordinator WHERE username='{$name}'";
+                                        $username = $_SESSION['roll'];
 
-                                        $result=mysqli_query($connect, $query);
-                                        if(!$connect){
 
-                                            die("".mysqli_error($connect));
+                                        $isstudent = $username[4] . $username[5];
+                                        $isstudent += 4;
+
+                                        $query_short = "SELECT * FROM table_map WHERE table_short='{$isstudent}'";
+                                        $result_short = mysqli_query($connect, $query_short);
+                                        $row_short = mysqli_fetch_assoc($result_short);
+
+                                        $student_table = $row_short['table_name'];
+
+
+
+
+                                        $query = "SELECT * FROM $student_table WHERE st_roll='$username'";
+
+                                        $result = mysqli_query($connect, $query);
+                                        if (!$connect) {
+
+                                            die("" . mysqli_error($connect));
                                         }
-                                        while($row=mysqli_fetch_assoc($result)) {
+                                        while($row = mysqli_fetch_assoc($result))
+
+                                        {
+
+
 
 
                                             ?>
@@ -744,67 +742,22 @@ if(isset($_FILES['image'])){
 
 
                                                     <li>
-                                                        <a href="../images/<?php echo $row['coordinator_pic'] ?>" data-rel="colorbox">
-                                                            <img style="height: 220px; max-width:280px ; ;"   src="../images/<?php echo $row['admin_pic'] ?>" />
-                                                            <div class="text">
-                                                                <div class="inner">Click here to View</div>
-                                                            </div>
-                                                        </a>
-
-                                                        <div class="tools tools-bottom">
-
-                                                            <a href="#modal-form" role="button" data-toggle="modal">
-                                                                <i class="ace-icon fa fa-pencil"></i>
-                                                            </a>
+                                                        <img style="max-height: 220px; max-width:300px ;"
+                                                             src="../../student_login/images/<?php echo $row['st_pic'] ?>"/>
 
 
-                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-<!--                                            <span class="profile-picture">-->
-<!--                                                    <a href="#modal-form" role="button" data-toggle="modal">-->
-<!--                                                        <img id="avatar" class="editable img-responsive"-->
-<!--                                                             style="height: 220px; width:auto; " alt="No Image"-->
-<!--                                                             src="../images/--><?php //echo $row['admin_pic'] ?><!--"/>-->
-<!--                                                    </a>-->
-<!---->
-<!---->
-<!--												</span>-->
-
                                             <?php
 
+
+                                        }
                                         }
                                         ?>
-
-                                        <div class="space-4"></div>
-
-<!--                                        <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">-->
-<!--                                            <div class="inline position-relative">-->
-<!--                                                <div  class="user-title-label dropdown-toggle" data-toggle="dropdown">-->
-<!--                                                    <i class="ace-icon fa fa-circle light-green"></i>-->
-<!--                                                    &nbsp;-->
-<!--                                                    <span class="white">Student Name</span>-->
-<!--                                                </div>-->
-<!---->
-<!---->
-<!--                                            </div>-->
-<!--                                        </div>-->
                                     </div>
+
 
                                     <div class="space-6"></div>
 
@@ -816,6 +769,41 @@ if(isset($_FILES['image'])){
 
                                     <div class="hr hr16 dotted"></div>
                                 </div>
+
+
+                                <?php
+
+                                if(isset($_SESSION['roll'])){
+
+
+                                    include "../connect.php";
+                                    $username = $_SESSION['roll'];
+
+
+                                    $isstudent = $username[4] . $username[5];
+                                    $isstudent += 4;
+
+                                    $query_short = "SELECT * FROM table_map WHERE table_short='{$isstudent}'";
+                                    $result_short = mysqli_query($connect, $query_short);
+                                    $row_short = mysqli_fetch_assoc($result_short);
+
+                                    $student_table = $row_short['table_name'];
+                                    $query="SELECT * FROM $student_table WHERE st_roll='{$username}'";
+
+                                    $result=mysqli_query($connect, $query);
+                                    if(!$connect){
+
+                                        die("".mysqli_error($connect));
+                                    }
+
+                                    $row=mysqli_fetch_assoc($result);
+
+                                }
+
+
+
+                                ?>
+
 
                                 <div class="col-xs-12 col-sm-9">
 
@@ -856,7 +844,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test" style="background: #C5EFF7; color: #1F3A93;  " > <b>University Register Number</b></div>
 
                                                             <div class="profile-info-value testblue1">
-                                                                <span class="editable" id="fn">111514104005</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_roll']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -865,7 +853,7 @@ if(isset($_FILES['image'])){
 
                                                             <div class="profile-info-value testblue1">
 
-                                                                <span class="editable " id="ln">Akash Karthick</span>
+                                                                <span class="editable " id="ln"><?php  echo $row['st_name']  ?></span>
 
                                                             </div>
                                                         </div>
@@ -874,7 +862,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  "> <b>Mobile Number</b> </div>
 
                                                             <div class="profile-info-value testblue1">
-                                                                <span class="editable" id="fn">9566007442</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_phone']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -882,7 +870,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  " > <b>Email-Id</b> </div>
 
                                                             <div class="profile-info-value testblue1">
-                                                                <div class=" " id="dob">karthickakash17@gmail.com</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_email']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -890,14 +878,14 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  ">  <b>Current Cgpa</b> </div>
 
                                                             <div class="profile-info-value testblue1">
-                                                                <div class=" " id="gen">8.4</div>
+                                                                <div class=" " id="gen"><?php  echo $row['st_cgpa']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  ">  <b>Collge Name</b> </div>
 
                                                             <div class="profile-info-value testblue1">
-                                                                <div class=" " id="gen">R.M.D Engineering College</div>
+                                                                <div class=" " id="gen"><?php  echo $row['st_collegename']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -963,14 +951,14 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " style="background: #FDE3A7; color: #F9690E;  " > <b>First Name</b></div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Vignesh</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_firstname']  ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row  ">
                                                             <div class="profile-info-name align-left test " style="background: #FDE3A7; color: #F9690E;  " > <b>Middle Name</b></div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Vignesh</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_middlename']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -979,7 +967,7 @@ if(isset($_FILES['image'])){
 
                                                             <div class="profile-info-value testorange">
 
-                                                                <span class="editable " id="ln">Kumar</span>
+                                                                <span class="editable " id="ln"><?php  echo $row['st_lastname']  ?></span>
 
                                                             </div>
                                                         </div>
@@ -988,7 +976,7 @@ if(isset($_FILES['image'])){
 
                                                             <div class="profile-info-value testorange">
 
-                                                                <span class="editable " id="ln">Kumar</span>
+                                                                <span class="editable " id="ln"><?php  echo $row['st_gender']  ?></span>
 
                                                             </div>
                                                         </div>
@@ -997,28 +985,28 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Father Name</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Kumar</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_fathername']  ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Father Occupation</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Kumar</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_fatheroccupation']  ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Mother Name</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Kumar</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_mothername']  ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Mother Occupation</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Kumar</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_motheroccupation']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1028,7 +1016,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;" > <b>Date of Birth</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_dob']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -1036,21 +1024,21 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;">  <b>Nationality</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="gen">Indian</div>
+                                                                <div class=" " id="gen"><?php  echo $row['st_nationality']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Caste</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">BC</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_caste']  ?></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Home Town</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">Kumar</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_hometown']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1059,7 +1047,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"><b>Permanent Address</b>  </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="qualif">bdshbsdfobdsfob</span>
+                                                                <span class="editable" id="qualif"><?php  echo $row['st_address1']." ".$row['st_address2']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1067,7 +1055,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;">  <b>City</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="city">Chennai</div>
+                                                                <div class=" " id="city"><?php  echo $row['st_city']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -1075,7 +1063,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;">  <b>State</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="state">Tamil Nadu</div>
+                                                                <div class=" " id="state"><?php  echo $row['st_state']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -1083,7 +1071,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;">  <b>Country</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="country">India</div>
+                                                                <div class=" " id="country">INDIA</div>
                                                             </div>
                                                         </div>
 
@@ -1091,25 +1079,19 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;">  <b>Pin Code</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <div class=" " id="pc">600010</div>
+                                                                <div class=" " id="pc"><?php  echo $row['st_posatlcode']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background: #FDE3A7; color: #F9690E;"> <b>Landline Number</b> </div>
 
                                                             <div class="profile-info-value testorange">
-                                                                <span class="editable" id="fn">044-23467833</span>
+                                                                <span class="editable" id="fn"><?php  echo $row['st_landline']  ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
-
-
-
-                                                    </div>
-
-
-
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1169,7 +1151,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Medium (Eg: English)</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="inst2">Sindhi Model</span>
+                                                                <span class="editable " id="inst2"><?php  echo $row['st_10thmedium']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1177,7 +1159,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Year of passing</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="yop3">2012</span>
+                                                                <span class="editable" id="yop3"><?php  echo $row['st_10thyearofpassing']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1185,7 +1167,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Percentage/CGPA</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class=" " id="cgpa3">9.0</span>
+                                                                <span class=" " id="cgpa3"><?php  echo $row['st_10thpercentage']  ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1212,7 +1194,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Medium (Eg: English)</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="inst2">Sindhi Model</span>
+                                                                <span class="editable " id="inst2"><?php  echo $row['st_12thmedium']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1228,7 +1210,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Percentage/CGPA</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="cgpa1">9.0</span>
+                                                                <span class="editable" id="cgpa1"><?php  echo $row['st_12thpercentage']  ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1249,7 +1231,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Branch</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="branch">Computer Science Engineering</span>
+                                                                <span class="editable " id="branch"><?php  echo $row['st_ugspecialization']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1257,7 +1239,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Institution</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="inst1">RMD Engineering College</span>
+                                                                <span class="editable " id="inst1"><?php  echo $row['st_collegename']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1265,7 +1247,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Year of passing</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="yop1">2018</span>
+                                                                <span class="editable" id="yop1"><?php  echo $row['st_ugyearofpassing']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1273,7 +1255,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Percentage/CGPA</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="cgpa1">9.0</span>
+                                                                <span class="editable" id="cgpa1"><?php  echo $row['st_cgpa']  ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1288,7 +1270,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " style="background:#C8F7C5 ;color:#1E824C;"> <b>First Semester</b></div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="firstsem">8.0</span>
+                                                                <span class="editable" id="firstsem"><?php  echo $row['st_1stsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1296,7 +1278,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Second Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="secondsem">8.0</span>
+                                                                <span class="editable " id="secondsem"><?php  echo $row['st_2ndsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1304,7 +1286,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Third Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="thirdsem">8.0</span>
+                                                                <span class="editable " id="thirdsem"><?php  echo $row['st_3rdsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1312,7 +1294,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Fourth Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="fourthsem">8.0</span>
+                                                                <span class="editable" id="fourthsem"><?php  echo $row['st_4thsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1320,7 +1302,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Fifth Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="fifthsem">8.0</span>
+                                                                <span class="editable" id="fifthsem"><?php  echo $row['st_5thsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1328,7 +1310,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Sixth Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="sixthsem">8.0</span>
+                                                                <span class="editable" id="sixthsem"><?php  echo $row['st_6thsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1336,7 +1318,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Seventh Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="seventhsem">8.0</span>
+                                                                <span class="editable" id="seventhsem"><?php  echo $row['st_7thsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1344,7 +1326,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#C8F7C5 ;color:#1E824C;"> <b>Eighth Semester</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="eigthsem">8.0</span>
+                                                                <span class="editable" id="eigthsem"><?php  echo $row['st_8thsem']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1356,7 +1338,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " style="background:#C8F7C5 ;color:#1E824C;"> <b>Standing Arrear</b></div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="sarr">0</span>
+                                                                <span class="editable" id="sarr"><?php  echo $row['st_standingarrears']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1364,11 +1346,11 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " style="background:#C8F7C5 ;color:#1E824C;"> <b>History of Arrear</b></div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable" id="harr">0</span>
+                                                                <span class="editable" id="harr"><?php  echo $row['st_historyofarrears']  ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                         <div class="space-4"></div>
+                                                    <div class="space-4"></div>
                                                     <h3  style="color: black; font-weight: bold; text-align:inherit ; padding-left: 12px ;font-size: 18px;" >PG</h3>
 
                                                     <div class="profile-user-info profile-user-info-striped bigger-110 bolder">
@@ -1474,11 +1456,11 @@ if(isset($_FILES['image'])){
                                                     </div>
 
 
-                                                    </div>
-
-
-
                                                 </div>
+
+
+
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1522,7 +1504,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " > <b>If any Skill Certification Obtained</b></div>
 
                                                             <div class="profile-info-value testblue">
-                                                                <span class="editable" id="urn">abc</span>
+                                                                <span class="editable" id="urn"><?php  echo $row['st_skillcertification']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1530,9 +1512,9 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " > <b>Duration of Course</b> </div>
 
                                                             <div class="profile-info-value testblue">
-                                                                <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                                <span class="editable " id="country">India</span>
-                                                                <span class="editable " id="city">Chennai</span>
+
+                                                                <span class="editable " id="country"><?php  echo $row['st_duration']  ?></span>
+
                                                             </div>
                                                         </div>
 
@@ -1540,7 +1522,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left"> <b>Certification Vendor/Authority/Agency Name</b> </div>
 
                                                             <div class="profile-info-value testblue">
-                                                                <span class="editable" id="mn">7299004566</span>
+                                                                <span class="editable" id="mn"><?php  echo $row['st_vendor']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1548,7 +1530,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left"> <b>COE Certification</b> </div>
 
                                                             <div class="profile-info-value testblue ">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_coecertification']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -1556,9 +1538,9 @@ if(isset($_FILES['image'])){
 
 
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -1602,7 +1584,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left test " style="background:#DCC6E0; color:#663399" > <b>English Percentage</b></div>
 
                                                             <div class="profile-info-value testpurple">
-                                                                <span class="editable" id="urn">abc</span>
+                                                                <span class="editable" id="urn"><?php  echo $row['st_english']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1610,9 +1592,9 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left " style="background:#DCC6E0; color:#663399" > <b>Quantitative Percentage</b> </div>
 
                                                             <div class="profile-info-value testpurple">
-                                                                <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                                <span class="editable " id="country">India</span>
-                                                                <span class="editable " id="city">Chennai</span>
+
+
+                                                                <span class="editable " id="city"><?php  echo $row['st_quantitative']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1620,7 +1602,7 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#DCC6E0; color:#663399"> <b>Logical Percentage</b> </div>
 
                                                             <div class="profile-info-value testpurple">
-                                                                <span class="editable" id="mn">7299004566</span>
+                                                                <span class="editable" id="mn"><?php  echo $row['st_logical']  ?></span>
                                                             </div>
                                                         </div>
 
@@ -1628,28 +1610,28 @@ if(isset($_FILES['image'])){
                                                             <div class="profile-info-name align-left" style="background:#DCC6E0; color:#663399"> <b>Overall Average</b> </div>
 
                                                             <div class="profile-info-value testpurple ">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_overall']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background:#DCC6E0; color:#663399"> <b>Percentage</b> </div>
 
                                                             <div class="profile-info-value testpurple ">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_percentage']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background:#DCC6E0; color:#663399"> <b>Candidate ID</b> </div>
 
                                                             <div class="profile-info-value testpurple ">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_candidateid']  ?></div>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name align-left" style="background:#DCC6E0; color:#663399"> <b>Signature</b> </div>
 
                                                             <div class="profile-info-value testpurple ">
-                                                                <div class=" " id="dob">2010/06/20</div>
+                                                                <div class=" " id="dob"><?php  echo $row['st_signature']  ?></div>
                                                             </div>
                                                         </div>
 
@@ -1657,9 +1639,9 @@ if(isset($_FILES['image'])){
 
 
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -1680,7 +1662,7 @@ if(isset($_FILES['image'])){
                                 <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                     <div class="widget-box widget-color-red" id="shadow">
                                         <div class="widget-header ">
-                                            <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;">Placement Details</h5>
+                                            <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;"><?php  echo $row['st_placementstatus']  ?></h5>
 
 
                                         </div>
@@ -1727,7 +1709,7 @@ if(isset($_FILES['image'])){
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                <h4 class="blue bigger">Edit the following form fields</h4>
                                             </div>
 
                                             <div class="modal-body">
@@ -1736,28 +1718,28 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="control-label bolder blue">If any skill certification obtained</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blue" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blue" placeholder="" value="<?php echo $row['st_skillcertification']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Duration of Course</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_duration']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Certification Vendor/Authority/Agency Name</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_vendor']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">COE Certification</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_coecertification']?>" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1784,7 +1766,7 @@ if(isset($_FILES['image'])){
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                <h4 class="blue bigger">Edit the following form fields</h4>
                                             </div>
 
                                             <div class="modal-body">
@@ -1810,7 +1792,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-yop3">Medium</label>
-                                                                <select class="form-control" id="form-field-q1">
+                                                                <select disabled class="form-control" id="form-field-q1">
                                                                     <option value="eng">English</option>
                                                                     <option value="tam">Tamil</option>
                                                                 </select>
@@ -1821,7 +1803,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-yop3">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop3" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-yop3" placeholder="" value="<?php echo $row['st_10thyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1830,7 +1812,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p3">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p3" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p3" placeholder="" value="<?php echo $row['st_10thpercentage']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1854,7 +1836,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-yop3">Medium</label>
-                                                                <select class="form-control" id="form-field-q1">
+                                                                <select disabled class="form-control" id="form-field-q1">
                                                                     <option value="eng">English</option>
                                                                     <option value="tam">Tamil</option>
                                                                 </select>
@@ -1865,7 +1847,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-yop2">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-yop2" placeholder="" value="<?php echo $row['st_12thyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1874,7 +1856,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_12thpercentage']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1888,7 +1870,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-q1">Qualification</label>
-                                                                <select class="form-control" id="form-field-q1">
+                                                                <select disabled class="form-control" id="form-field-q1">
                                                                     <option value="be">B.E</option>
                                                                     <option value="bt">B.Tech</option>
                                                                 </select>
@@ -1900,7 +1882,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-b1">Branch</label>
-                                                                <select class="form-control" id="form-field-b1">
+                                                                <select disabled class="form-control" id="form-field-b1">
                                                                     <option value="cse">Computer Science Engineering</option>
                                                                     <option value="it">Information Technology</option>
                                                                     <option value="mech">Mechanical Engineering</option>
@@ -1917,7 +1899,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-c1">Institution</label>
 
-                                                                <select class="form-control" id="form-field-c1">
+                                                                <select disabled class="form-control" id="form-field-c1">
                                                                     <option value="rmk">RMK Engineering College</option>
                                                                     <option value="rmd">RMD Engineering COllege</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
@@ -1929,7 +1911,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-yop1">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop1" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-yop1" placeholder="" value="<?php echo $row['st_ugyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1938,7 +1920,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p1">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p1" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p1" placeholder="" value="<?php echo $row['st_cgpa']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1947,7 +1929,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">First Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_1stsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1956,7 +1938,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Second Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_2ndsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1965,7 +1947,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Third Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_3rdsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1974,7 +1956,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Fourth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_4thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1983,7 +1965,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Fifth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_5thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1992,7 +1974,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Sixth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_6thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2001,7 +1983,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Seventh Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_7thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2010,7 +1992,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Eigth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_8thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2019,7 +2001,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Standing Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_standingarrears']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2028,7 +2010,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">History of Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_historyofarrears']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2042,7 +2024,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-q1">Qualification</label>
-                                                                <select class="form-control" id="form-field-q1">
+                                                                <select disabled class="form-control" id="form-field-q1">
                                                                     <option value="me">M.E</option>
                                                                     <option value="mba">MBA</option>
                                                                 </select>
@@ -2051,8 +2033,8 @@ if(isset($_FILES['image'])){
 
                                                         <div class="form-group">
                                                             <div>
-                                                                <label for="form-field-b1">Branch</label>
-                                                                <select class="form-control" id="form-field-b1">
+                                                                <label  for="form-field-b1">Branch</label>
+                                                                <select disabled class="form-control" id="form-field-b1">
                                                                     <option value="cse">Computer Science Engineering</option>
                                                                     <option value="it">Information Technology</option>
                                                                     <option value="mech">Mechanical Engineering</option>
@@ -2067,9 +2049,9 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-c1">Institution</label>
 
-                                                                <select class="form-control" id="form-field-c1">
-                                                                    <option value="rmk">RMK Engineering College</option>
-                                                                    <option value="rmd">RMD Engineering COllege</option>
+                                                                <select disabled class="form-control" id="form-field-c1">
+                                                                    <option value="rmk">RMD Engineering College</option>
+                                                                    <option value="rmd">RMK Engineering COllege</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
                                                                 </select>
                                                             </div>
@@ -2079,7 +2061,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-yop1">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop1" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-yop1" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2088,7 +2070,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p1">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p1" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p1" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2097,16 +2079,16 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">First Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div>
-                                                                <label for="form-field-p2">Second Semester</label>
+                                                                <label disabled for="form-field-p2">Second Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2115,7 +2097,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Third Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2124,7 +2106,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Fourth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2133,7 +2115,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">Standing Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2142,7 +2124,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-p2">History of Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2175,7 +2157,7 @@ if(isset($_FILES['image'])){
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                <h4 class="blue bigger">Edit the following form fields</h4>
                                             </div>
 
                                             <div class="modal-body">
@@ -2184,14 +2166,15 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="form-field-fn">First Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fn" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fn" placeholder="" value="<?php echo $row['st_firstname'] ?>"/>
+
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fn">Middle Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fn" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fn" placeholder="" value="<?php echo $row['st_middlename']?>" />
                                                             </div>
                                                         </div>
 
@@ -2200,15 +2183,15 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="form-field-ln">Last Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-ln" placeholder="" value="" />
+                                                                <input type="text" id="form-field-ln" placeholder="" value="<?php echo $row['st_lastname']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-gendre">Gender</label>
-                                                                <select class="form-control" id="form-field-gendre">
-                                                                    <option value="m">Male</option>
+                                                                <select disabled class="form-control" id="form-field-gendre">
+                                                                    <option value="m"><?php echo $row['st_gender']?></option>
                                                                     <option value="f">Female</option>
                                                                 </select>
                                                             </div>
@@ -2219,35 +2202,35 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Father Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_fathername']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Father Occupation</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_fatheroccupation']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Mother Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_mothername']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Mother Occupation</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="" />
+                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_motheroccupation']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="id-date-picker-1">Date of birth</label>
                                                             <div>
-                                                                <input class="form-group" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
+                                                                <input class="form-group" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" value="<?php echo $row['st_dob']?>" />
                                                                 <span class="form-group">
                                                     <i class="fa fa-calendar bigger-110"></i>
                                                 </span>
@@ -2258,7 +2241,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-na">Nationality</label>
                                                                 <select class="form-control" id="form-field-na">
-                                                                    <option value="i">Indian</option>
+                                                                    <option value="i"><?php echo $row['st_nationality']?></option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -2266,13 +2249,14 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-caste">Caste</label>
-                                                                <select class="form-control" id="form-field-caste">
+                                                                <select class="form-control" id="form-field-caste" value="<?php echo $row['st_caste']?>">
                                                                     <option value="bc">BC</option>
                                                                     <option value="mbc">MBC</option>
                                                                     <option value="obc">OBC</option>
                                                                     <option value="fc">FC</option>
                                                                     <option value="sc">SC</option>
                                                                     <option value="st">ST</option>
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -2280,14 +2264,14 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="form-field-ht">Home Town</label>
                                                             <div>
-                                                                <input type="text" id="form-field-ht" placeholder="" value="" />
+                                                                <input type="text" id="form-field-ht" placeholder="" value="<?php echo $row['st_hometown']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-addr">Permanent Address</label>
                                                             <div>
-                                                                <input type="text" id="form-field-addr" placeholder="" value="" />
+                                                                <input type="text" id="form-field-addr" placeholder="" value="<?php echo $row['st_address1']?> <?php echo $row['st_address2']?>   " />
                                                             </div>
                                                         </div>
 
@@ -2295,7 +2279,7 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-city">City</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-city" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-city" placeholder="" value="<?php echo $row['st_city']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2314,7 +2298,7 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-country">Country</label>
-                                                                <select class="form-control" id="form-field-country">
+                                                                <select disabled class="form-control" id="form-field-country">
                                                                     <option value="i">India</option>
                                                                 </select>
                                                             </div>
@@ -2324,14 +2308,14 @@ if(isset($_FILES['image'])){
                                                             <label for="form-field-pc">Pin Code</label>
 
                                                             <div>
-                                                                <input type="text" id="form-field-pc" placeholder="" value="" />
+                                                                <input type="text" id="form-field-pc" placeholder="" value="<?php echo $row['st_posatlcode']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-l">Landline Number</label>
                                                             <div>
-                                                                <input type="text" id="form-field-l" placeholder="" value="" />
+                                                                <input type="text" id="form-field-l" placeholder="" value="<?php echo $row['st_landline']?>" />
                                                             </div>
                                                         </div>
 
@@ -2354,12 +2338,13 @@ if(isset($_FILES['image'])){
                                         </div>
                                     </div>
                                 </div>
+
                                 <div id="modal-form1" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                <h4 class="blue bigger">Edit the following form fields</h4>
                                             </div>
 
                                             <div class="modal-body">
@@ -2368,35 +2353,35 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="control-label bolder blue">University Register Number</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blue" placeholder="" value="" />
+                                                                <input type="text" disabled id="control-label bolder blue" placeholder="" value="<?php echo $row['st_roll'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Full Name</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_name'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Mobile Number</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_phone'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">Email-Id</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_email'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Current Cgpa</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_cgpa'] ?>" />
                                                             </div>
                                                         </div>
 
@@ -2404,8 +2389,8 @@ if(isset($_FILES['image'])){
                                                             <div>
                                                                 <label for="form-field-c1">College Name</label>
 
-                                                                <select class="form-control" id="form-field-c1">
-                                                                    <option value="rmk">RMK Engineering College</option>
+                                                                <select disabled class="form-control" id="form-field-c1">
+                                                                    <option value="rmk"><?php echo $row['st_collegename'] ?></option>
                                                                     <option value="rmd">RMD Engineering COllege</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
                                                                 </select>
@@ -2413,10 +2398,10 @@ if(isset($_FILES['image'])){
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="control-label bolder b">University</label>
-                                                            <select class="form-control" id="control-label bolder b">
-                                                                <option value="i">Anna University</option>
-                                                            </select>
+                                                            <label for="control-label bolder b">Anna University</label>
+                                                            <div>
+                                                                <input type="text" disabled id="control-label bolder blu" placeholder="" value="Anna University" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2442,7 +2427,7 @@ if(isset($_FILES['image'])){
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="blue bigger">Please fill the following form fields</h4>
+                                                <h4 class="blue bigger">Edit the following form fields</h4>
                                             </div>
 
                                             <div class="modal-body">
@@ -2451,49 +2436,49 @@ if(isset($_FILES['image'])){
                                                         <div class="form-group">
                                                             <label for="control-label bolder blue">English Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blue" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blue" placeholder="" value="<?php echo $row['st_english']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Quantitaive Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_quantitative']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Logical Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_logical']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">Overall Average</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_overall']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_percentage']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Candidate ID</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_candidateid']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Signature</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="" />
+                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_signature']?>" />
                                                             </div>
                                                         </div>
 

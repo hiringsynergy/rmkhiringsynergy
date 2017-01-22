@@ -50,7 +50,7 @@ ob_start();
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
 
@@ -198,110 +198,68 @@ function updateSlider(){
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="../inbox.php">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -485,7 +443,7 @@ function updateSlider(){
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -587,7 +545,7 @@ function updateSlider(){
 
                 <div class="page-header">
                     <h1>
-                       Advanced Search
+                        Advance Search
 
                     </h1>
                 </div><!-- /.page-header -->
@@ -595,435 +553,520 @@ function updateSlider(){
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-<div class="row">
-									<div class="col-xs-12 col-sm-12">
-										<div class="tabbable">
-											<ul class="nav nav-tabs tab-color-blue background-blue" id="myTab4">
-												<li class="active">
-													<a data-toggle="tab" href="#home4">Search Criteria</a>
-												</li>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <form action="search_action.php" method="get">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs tab-color-blue background-blue" id="myTab4">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home4">Search Criteria</a>
+                                            </li>
 
-												<li>
-													<a data-toggle="tab" href="#profile4">Regiter Number</a>
-												</li>
-											</ul>
-				
-	<div class="tab-content col-xs-12 col-sm-12">
-	<!--/.search-->
+                                            <li>
+                                                <a data-toggle="tab" href="#profile4">Regiter Number</a>
+                                            </li>
+                                        </ul>
 
-		<div id="home4" class="tab-pane in active">
+                                        <div class="tab-content col-xs-12 col-sm-12">
+                                            <!--/.search-->
 
-            <form action="search_action.php" method="get">
+                                            <div id="home4" class="tab-pane in active">
 
 
 
-                        				<div class="row">
 
-									<div class="col-xs-6">
-										<h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
-											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control" name="year" id="form-field-select-3" data-placeholder="Select a Year...">
-																<option value=""></option>
-																<option value="2016">2016</option>
-																<option value="2017">2017</option>
-																<option value="2018">2018</option>
-																<option value="2019">2019</option>
-																<option value="2020">2020</option>
-																<option value="2021">2021</option>
-															</select>
-											</div>
 
+                                                <div class="row">
 
+                                                    <div class="col-xs-6">
+                                                        <h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                        <div class="col-xs-12 col-md-7">
+                                                            <select class="chosen-select form-control" id="form-field-select-3"  name="year" data-placeholder="Select Year of Graduation">
 
 
-                                        <div class="space-32"></div>
-                                        <div class="space-32"></div>
+                                                                <option value=""></option>
 
+                                                                <?php
 
 
-                                        <div class="col-xs-12 col-md-4">
-                                            <a href="#" class="btn btn-sm btn-grey">
-                                                <i class="ace-icon "></i>
-                                                View Candidate
-                                            </a>
-                                        </div>
-									</div>
+                                                                include "../connect.php";
+                                                                $query_option="SELECT * FROM table_map";
+                                                                $result_option=mysqli_query($connect, $query_option);
+                                                                while($row_option=mysqli_fetch_assoc($result_option)){
 
 
-									
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
 
-								<div class="widget-box widget-color-orange" id="widget-box-2">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														UG Candidates
-													</h6>
-												</div>
-									<div class="widget-body">
-										<div class="widget-main">
-											<div id="fuelux-wizard-container">
 
-												<div class="step-content pos-rel">
+                                                                    ?>
 
+                                                                    <option value="<?php echo $row_option['table_value'] ?>"><?php echo $row_option['table_value'] ?>  </option>
 
-													<div class="row">
 
-														<div class="col-xs-8 col-sm-5">
+                                                                    <?php
 
-                                                            <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
+                                                                }
 
-                                                            <div >
-                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
-                                                                    <option value="all">All</option>
-                                                                    <option value="cse">Computer science and Engineering</option>
-                                                                    <option value="eee">Electrical and Electronic Engineering</option>
-                                                                    <option value="eie">Electrical and Intrumentation Engineering</option>
+                                                                ?>
 
-                                                                    <option value="it">Information Technology</option>
-                                                                    <option value="ece">Electrical and Communicaton Engineering</option>
-                                                                </select>
-                                                            </div>
-
-
-
-
-
-
-														</div>
-
-													</div>
-
-
 
-                                                    <div class="space-16"></div>
-
-                                                    <div class="row">
-
-													<div class="col-xs-12 col-sm-6">
-
-
-
-														<h5 class="orange bolder smaller">CGPA</h5>
-                                                        							<input type="text"  name="ugcgpa" value="5" id="slide-text1" class="col-xs-1">
-                                                        							<div id="slider-eq1" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-orange">5</span>
-														</div>
-													</div>
-												</div>
-
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-							<div class="row">
-								<div class="col-xs-12">
-
-								<div class="widget-box widget-color-blue" id="widget-box-2">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														UG Semester wise CGPA
-													</h6>
-												</div>
-									<div class="widget-body">
-										<div class="widget-main">
-											<div id="fuelux-wizard-container">
-
-												<div class="step-content pos-rel">
-
-
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
-															<h5><label class="control-label bolder blue"for="form-field-select-2 slider-fill-mini">Select 12th Percentage</label></h5>
-                                                        							<input type="text" name="12percentage"  value="50" id="slide-text2" class="col-xs-1">
-                                                        							<div id="slider-eq2" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-blue">0</span>
-														</div>
-														</div>
-														<div class="col-xs-8 col-sm-5">
-															<h5><label class="control-label bolder blue"for="form-field-select-2 slider-fill-mini">Select 10th Percentage</label></h5>
-                                                        							<input type="text" name="10percentage"  value="50" id="slide-text3" class="col-xs-1">
-                                                        							<div id="slider-eq3" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-blue">0</span>
-														</div>
-														</div>
-
-													</div>
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">Lateral Entry(Optional)</label></h5>
-                                                        							<input type="text" name="lateral"  value="0" id="slide-text4" class="col-xs-1">
-                                                        							<div id="slider-eq4" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-blue">0</span>
-														</div>
-														</div>
-														<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">History of Arrears</label></h5>
-                                                        							<input type="text"  name="historyofarrears" value="0" id="slide-text5" class="col-xs-1">
-                                                        							<div id="slider-eq5" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-blue">0</span>
-														</div>
-														</div>
-
-													</div>
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">Standing Arrears</label></h5>
-
-														<select class="chosen-select form-control" name="standingarrears" id="form-field-select-3" data-placeholder="Please Select...">
-																<option value="">Nil</option>
-																<option value="">1</option>
-																<option value="">2</option>
-																<option value="">3</option>
-																<option value="">4</option>
-																<option value="">5</option>
-																<option value="">6</option>
-																<option value="">7</option>
-																<option value="">8</option>
-																<option value="">9</option>
-															</select>
-														</div>
-														<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">Gender</label></h5>
-
-														<select class="chosen-select form-control" name="gender" id="form-field-select-3" data-placeholder="Please Select...">
-																<option value="">All</option>
-																<option value="m">Male</option>
-																<option value="n">Female</option>
-															</select>
-														</div>
-
-													</div>
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">Has Job</label></h5>
-
-														<select class="chosen-select form-control"  name="hasjob"  id="form-field-select-3" data-placeholder="Please Select...">
-																<option value="yes">Yes</option>
-																<option value="no">No</option>
-															</select>
-														</div>
-														<div class="col-xs-8 col-sm-5">
-														<h5><label class="control-label bolder blue" for="form-field-select-3">Gap in Study</label></h5>
-
-														<select class="chosen-select form-control" name="gapinstudy" id="form-field-select-3" data-placeholder="Please Select...">
-																<option value="no">No</option>
-																<option value="yes">Yes</option>
-
-															</select>
-														</div>
-
-													</div>
-
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-							<div class="row">
-								<div class="col-xs-12">
-
-								<div class="widget-box widget-color-green" id="widget-box-2">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														PG Candidates
-													</h6>
-												</div>
-									<div class="widget-body">
-										<div class="widget-main">
-											<div id="fuelux-wizard-container">
-
-												<div class="step-content pos-rel">
-
-
-													<div class="row">
-
-                                                        <div class="col-xs-8 col-sm-5">
-
-                                                            <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
-
-                                                            <div >
-                                                                <select multiple="" name="pgbranch" class="chosen-select  form-control" id="form-field-select-5" data-placeholder="Choose a Branch...">
-                                                                    <option value="all">All</option>
-                                                                    <option value="cse">Computer science and Engineering</option>
-                                                                    <option value="eee">Electrical and Electronic Engineering</option>
-                                                                    <option value="eie">Electrical and Intrumentation Engineering</option>
-
-                                                                    <option value="it">Information Technology</option>
-                                                                    <option value="ece">Electrical and Communicaton Engineering</option>
-                                                                </select>
-                                                            </div>
 
-
-
-
-
+                                                            </select>
 
                                                         </div>
 
-													</div>
-                                                    <div class="space-16"></div>
-												<div class="row">
-												<div class="col-xs-12 col-sm-5">
-
-														<h5 class="green bolder smaller">CGPA</h5>
-                                                        							<input type="text" name="pgcgpa" value="5" id="slide-text6" class="col-xs-1">
-                                                        							<div id="slider-eq6" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-green">5</span>
-														</div>
-													</div>
-												</div>
-
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-							<div class="row">
-								<div class="col-xs-12">
-
-								<div class="widget-box widget-color-red" id="widget-box-2">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														PG Semester wise CGPA
-													</h6>
-												</div>
-									<div class="widget-body">
-										<div class="widget-main">
-											<div id="fuelux-wizard-container">
-
-												<div class="step-content pos-rel">
 
 
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
 
-														<h5 class="red bolder smaller">UG Percentage</h5>
-                                                        							<input type="text" name="pgugpercentage"  value="50" id="slide-text7" class="col-xs-1">
-                                                        							<div id="slider-eq7" class="col-xs-12 col-md-10 col-sm-8">
-                                                            								<span class="ui-slider-red">50</span>
-														</div>
-															</div>
-														<div class="col-xs-8 col-sm-5">
-															<h5><label class="control-label bolder red" for="form-field-select-2">Higher Studied Status</label></h5>
+                                                        <div class="space-32"></div>
+                                                        <div class="space-32"></div>
 
-															<div class="col-sm-9">
 
-														<select class="chosen-select form-control" name="higherstudied" id="form-field-select-3" data-placeholder="Please Select...">
-																<option value="">All Candidate</option>
-																<option value="m">1st year</option>
-																<option value="n">2nd year</option>
-															</select>
-															</div>
-														</div>
 
-													</div>
+                                                        <div class="col-xs-12 col-md-4">
+                                                            <a href="#" class="btn btn-sm btn-grey">
+                                                                <i class="ace-icon "></i>
+                                                                View Candidate
+                                                            </a>
+                                                        </div>
+                                                    </div>
 
-                                                    <div class="space-16"></div>
-												<div class="row">
-												<div class="col-xs-12 col-sm-3">
 
-														<h5 class="red bolder smaller">Don't Select Placed Students From</h5>
-<fieldset data-role="controlgroup">
-    <input type="checkbox" name="dontselect-1a" id="checkbox-1a">
-    <label for="checkbox-1a">Core</label>
-    <input type="checkbox" name="dontselect-2a" id="checkbox-2a">
-    <label for="checkbox-2a">Dream</label>
-    <input type="checkbox" name="dontselect-3a" id="checkbox-3a">
-    <label for="checkbox-3a">Soft</label>
-</fieldset>
-													</div>
-												</div>
 
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-		                            <div class="row">
-												<div class="col-xs-12 ">
-													<div class="form-actions center">
-															<button  type="submit" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
-																Filter
-																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-															</button>
-									<button type="reset" class="btn btn-danger btn-default btn-round">
-												<i class="ace-icon fa fa-times red3"></i>
-												Reset
-											</button>
-                                                 </div>
-		                           </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
 
+                                                        <div class="widget-box widget-color-orange" id="widget-box-2">
+                                                            <div class="widget-header widget-header-small">
+                                                                <h6 class="widget-title">
+                                                                    UG Candidates
+                                                                </h6>
+                                                            </div>
+                                                            <div class="widget-body">
+                                                                <div class="widget-main">
+                                                                    <div id="fuelux-wizard-container">
+
+                                                                        <div class="step-content pos-rel">
+
+
+                                                                            <div class="row">
+
+                                                                                <div class="col-xs-8 col-sm-5">
+
+                                                                                    <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
+
+                                                                                    <div >
+                                                                                        <?php
+
+                                                                                        $database = $_SESSION['database_name'];
+
+
+                                                                                        if (preg_match('/rmd_database/',$database)) {
+                                                                                        ?>
+
+                                                                                        <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                                            <option value="all">All</option>
+                                                                                            <option value="cse">Computer science and Engineering</option>
+                                                                                            <option value="eee">Electrical and Electronic Engineering</option>
+                                                                                            <option value="eie">Electrical and Intrumentation Engineering</option>
+
+                                                                                            <option value="it">Information Technology</option>
+                                                                                            <option value="ece">Electrical and Communicaton Engineering</option>
+                                                                                        </select>
+                                                                                    </div>
+
+
+                                                                                    <?php
+                                                                                    }
+                                                                                    else  if (preg_match('/rmk_database/',$database)) {
+                                                                                    ?>
+
+                                                                                    <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                                        <option value="all">All</option>
+                                                                                        <option value="cse">Computer science and Engineering</option>
+                                                                                        <option value="eee">Electrical and Electronic Engineering</option>
+                                                                                        <option value="eie">Electrical and Intrumentation Engineering</option>
+
+                                                                                        <option value="it">Information Technology</option>
+                                                                                        <option value="ece">Electrical and Communicaton Engineering</option>
+                                                                                        <option value="mech">Mechanical Engineering</option>
+                                                                                        <option value="civil">Civil Engineering</option>
+                                                                                    </select>
+                                                                                </div>
+
+
+                                                                                <?php
+                                                                                }
+                                                                                else if (preg_match('/rmkcet_database/',$database)) {
+                                                                                ?>
+
+                                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                                    <option value="all">All</option>
+                                                                                    <option value="cse">Computer science and Engineering</option>
+                                                                                    <option value="eee">Electrical and Electronic Engineering</option>
+                                                                                    <option value="eie">Electrical and Intrumentation Engineering</option>
+
+
+                                                                                    <option value="ece">Electrical and Communicaton Engineering</option>
+                                                                                </select>
+                                                                            </div>
+
+
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+
+
+
+
+
+
+
+
+
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                    <div class="space-16"></div>
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-xs-12 col-sm-6">
+
+
+
+                                                                            <h5 class="orange bolder smaller">CGPA</h5>
+                                                                            <input type="text"  name="ugcgpa" value="0" id="slide-text1" class="col-xs-1">
+                                                                            <div id="slider-eq1" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-orange">0</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                                <div class="widget-box widget-color-blue" id="widget-box-2">
+                                                    <div class="widget-header widget-header-small">
+                                                        <h6 class="widget-title">
+                                                            UG Semester wise CGPA
+                                                        </h6>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-main">
+                                                            <div id="fuelux-wizard-container">
+
+                                                                <div class="step-content pos-rel">
+
+
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue"for="form-field-select-2 slider-fill-mini">Select 12th Percentage</label></h5>
+                                                                            <input type="text" name="12percentage"  value="0" id="slide-text2" class="col-xs-1">
+                                                                            <div id="slider-eq2" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-blue">0</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue"for="form-field-select-2 slider-fill-mini">Select 10th Percentage</label></h5>
+                                                                            <input type="text" name="10percentage"  value="0" id="slide-text3" class="col-xs-1">
+                                                                            <div id="slider-eq3" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-blue">0</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">Lateral Entry(Optional)</label></h5>
+                                                                            <input type="text" name="lateral"  value="0" id="slide-text4" class="col-xs-1">
+                                                                            <div id="slider-eq4" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-blue">0</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">History of Arrears</label></h5>
+                                                                            <input type="text"  name="historyofarrears" value="0" id="slide-text5" class="col-xs-1">
+                                                                            <div id="slider-eq5" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-blue">0</span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">Standing Arrears</label></h5>
+
+                                                                            <select class="chosen-select form-control" name="standingarrears" id="form-field-select-3" data-placeholder="Please Select...">
+                                                                                <option value="">Nil</option>
+                                                                                <option value="">1</option>
+                                                                                <option value="">2</option>
+                                                                                <option value="">3</option>
+                                                                                <option value="">4</option>
+                                                                                <option value="">5</option>
+                                                                                <option value="">6</option>
+                                                                                <option value="">7</option>
+                                                                                <option value="">8</option>
+                                                                                <option value="">9</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">Gender</label></h5>
+
+                                                                            <select class="chosen-select form-control" name="gender" id="form-field-select-3" data-placeholder="Please Select...">
+                                                                                <option value="">All</option>
+                                                                                <option value="m">Male</option>
+                                                                                <option value="n">Female</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">Has Job</label></h5>
+
+                                                                            <select class="chosen-select form-control"  name="hasjob"  id="form-field-select-3" data-placeholder="Please Select...">
+                                                                                <option value="yes">Yes</option>
+                                                                                <option value="no">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder blue" for="form-field-select-3">Gap in Study</label></h5>
+
+                                                                            <select class="chosen-select form-control" name="gapinstudy" id="form-field-select-3" data-placeholder="Please Select...">
+                                                                                <option value="no">No</option>
+                                                                                <option value="yes">Yes</option>
+
+                                                                            </select>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                                <div class="widget-box widget-color-green" id="widget-box-2">
+                                                    <div class="widget-header widget-header-small">
+                                                        <h6 class="widget-title">
+                                                            PG Candidates
+                                                        </h6>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-main">
+                                                            <div id="fuelux-wizard-container">
+
+                                                                <div class="step-content pos-rel">
+
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-xs-8 col-sm-5">
+
+                                                                            <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
+
+                                                                            <div >
+                                                                                <select multiple="" name="pgbranch" class="chosen-select  form-control" id="form-field-select-5" data-placeholder="Choose a Branch...">
+                                                                                    <option value="all">All</option>
+                                                                                    <option value="cse">Computer science and Engineering</option>
+                                                                                    <option value="eee">Electrical and Electronic Engineering</option>
+                                                                                    <option value="eie">Electrical and Intrumentation Engineering</option>
+
+                                                                                    <option value="it">Information Technology</option>
+                                                                                    <option value="ece">Electrical and Communicaton Engineering</option>
+                                                                                </select>
+                                                                            </div>
+
+
+
+
+
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="space-16"></div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-5">
+
+                                                                            <h5 class="green bolder smaller">CGPA</h5>
+                                                                            <input type="text" name="pgcgpa" value="0" id="slide-text6" class="col-xs-1">
+                                                                            <div id="slider-eq6" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-green">0</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                                <div class="widget-box widget-color-red" id="widget-box-2">
+                                                    <div class="widget-header widget-header-small">
+                                                        <h6 class="widget-title">
+                                                            PG Semester wise CGPA
+                                                        </h6>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-main">
+                                                            <div id="fuelux-wizard-container">
+
+                                                                <div class="step-content pos-rel">
+
+
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8 col-sm-5">
+
+                                                                            <h5 class="red bolder smaller">UG Percentage</h5>
+                                                                            <input type="text" name="pgugpercentage"  value="0" id="slide-text7" class="col-xs-1">
+                                                                            <div id="slider-eq7" class="col-xs-12 col-md-10 col-sm-8">
+                                                                                <span class="ui-slider-red">0</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-sm-5">
+                                                                            <h5><label class="control-label bolder red" for="form-field-select-2">Higher Studied Status</label></h5>
+
+                                                                            <div class="col-sm-9">
+
+                                                                                <select class="chosen-select form-control" name="higherstudied" id="form-field-select-3" data-placeholder="Please Select...">
+                                                                                    <option value="">All Candidate</option>
+                                                                                    <option value="m">1st year</option>
+                                                                                    <option value="n">2nd year</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="space-16"></div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-3">
+
+                                                                            <h5 class="red bolder smaller">Don't Select Placed Students From</h5>
+                                                                            <fieldset data-role="controlgroup">
+                                                                                <input type="checkbox" name="dontselect-1a" id="checkbox-1a">
+                                                                                <label for="checkbox-1a">Core</label>
+                                                                                <input type="checkbox" name="dontselect-2a" id="checkbox-2a">
+                                                                                <label for="checkbox-2a">Dream</label>
+                                                                                <input type="checkbox" name="dontselect-3a" id="checkbox-3a">
+                                                                                <label for="checkbox-3a">Soft</label>
+                                                                            </fieldset>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 ">
+                                                <div class="form-actions center">
+                                                    <button  type="submit" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
+                                                        Filter
+                                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                                    </button>
+                                                    <button type="reset" class="btn btn-danger btn-default btn-round">
+                                                        <i class="ace-icon fa fa-times red3"></i>
+                                                        Reset
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                </form>
+
+
+                            </div>
+
+                            <!--/.regno-->
+                            <div id="profile4" class="tab-pane">
+                                <div class="row">
+                                    <div class="col-xs-12">
+
+                                        <div class="widget-box widget-color-blue" id="widget-box-2">
+                                            <div class="widget-header widget-header-small">
+                                                <h6 class="widget-title">
+                                                    Search by Register Number
+                                                </h6>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-main">
+                                                    <div id="fuelux-wizard-container">
+
+                                                        <div class="step-content pos-rel">
+
+                                                            <form class="form-horizontal" action="search_action.php" method="get" id="sample-form">
+                                                                <div class="row">
+                                                                    <div class="col-xs-8 col-sm-5">
+
+                                                                        <h5 class="red bolder smaller">Register No:</h5>
+                                                                        <div class="">
+                                                                            <input type="text" name="tags" id="form-field-tags"  placeholder="Enter Register No ..." />
+                                                                        </div>
+                                                                        <div class="space-16"></div>
+
+                                                                        <button  type="submit" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
+                                                                            Search
+                                                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                                                        </button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
 
-
-		</div>
-
-	<!--/.regno-->	
-			<div id="profile4" class="tab-pane">
-							<div class="row">
-								<div class="col-xs-12">
-
-								<div class="widget-box widget-color-blue" id="widget-box-2">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														Search by Register Number
-													</h6>
-												</div>
-									<div class="widget-body">
-										<div class="widget-main">
-											<div id="fuelux-wizard-container">
-
-												<div class="step-content pos-rel">
-
-												<form class="form-horizontal" id="sample-form">
-													<div class="row">
-                    												<div class="col-xs-8 col-sm-5">
-
-														<h5 class="red bolder smaller">Register No:</h5>
-											<input type="text" id="form-field-1" placeholder="Enter Register No" class="col-xs-12" />
-															</div>
-
-													</div>
-												</form>
-												</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-	</div>
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
 </div>
-
-<!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
+</div><!-- /.main-content -->
 
 
 
 
 
-                        <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.page-content -->
-        </div>
-    </div><!-- /.main-content -->
 
-    <div class="footer">
+<div class="footer">
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">

@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -124,21 +124,44 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <?php
 
 
-if(isset($_GET['comp'])&&isset($_GET['job'])){
+if(isset($_GET['job_id'])){
 
-    $company=$_GET['comp'];
-    $job=$_GET['job'];
+    $job_id=$_GET['job_id'];
+
 
 
     include "../connect.php";
 
-    $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
+    $query="DELETE FROM jobs WHERE job_id='{$job_id}'";
     $result=mysqli_query($connect,$query);
 
     if(!$connect){
 
         die(" ".mysqli_error($connect));
     }
+
+
+
+    $query_map="SELECT * FROM table_map  ";
+    $result_map=mysqli_query($connect,$query_map);
+    while ($row_map=mysqli_fetch_assoc($result_map)){
+
+        $students_table_name=$row_map['table_name'];
+
+
+
+
+        $query_update="ALTER TABLE $students_table_name DROP COLUMN _".$job_id." ";
+        $result_update=mysqli_query($connect,$query_update);
+
+
+    }
+
+
+
+
+
+
 
 
 
@@ -154,6 +177,7 @@ if(isset($_POST['update_submit'])) {
     $get_venue= $_POST['submit_venue'];
     $get_apply_before= $_POST['submit_apply_before'];
     $get_company=$_POST['submit_company'];
+
     include "../connect.php";
 
 
@@ -262,110 +286,68 @@ if(isset($_POST['update_submit'])) {
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            8 Notifications
                         </li>
 
                         <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+12</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
+                                    <a href="#">
+                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                        Bob just signed up as an editor ...
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-success">+8</span>
+                                        </div>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
+                                    <a href="#">
+                                        <div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
 													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
+                                            <span class="pull-right badge badge-info">+11</span>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
+                            <a href="#">
+                                See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </li>
@@ -556,7 +538,7 @@ if(isset($_POST['update_submit'])) {
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -692,7 +674,7 @@ if(isset($_POST['update_submit'])) {
 
                                             <th>
                                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                               Salary
+                                                Salary
                                             </th>
                                             <th class="hidden-480">venue</th>
                                             <th class="hidden-480">Apply Before</th>
@@ -791,9 +773,9 @@ if(isset($_POST['update_submit'])) {
 
 
                                                     ?>
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-success"><?php  echo $apply_before ?></span>
-                                                </td>
+                                                    <td class="hidden-480">
+                                                        <span class="label label-sm label-success"><?php  echo $apply_before ?></span>
+                                                    </td>
                                                     <?php
 
 
@@ -802,16 +784,16 @@ if(isset($_POST['update_submit'])) {
 
 
 
-                                else if( $calc_date==0 && $calc_time>=0) {
+                                                else if( $calc_date==0 && $calc_time>=0) {
 
 
-                                    ?>
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-success"><?php echo $apply_before ?></span>
-                                    </td>
-                                    <?php
+                                                    ?>
+                                                    <td class="hidden-480">
+                                                        <span class="label label-sm label-success"><?php echo $apply_before ?></span>
+                                                    </td>
+                                                    <?php
 
-                                }
+                                                }
                                                 else {
 
                                                     ?>
@@ -821,7 +803,7 @@ if(isset($_POST['update_submit'])) {
                                                     <?php
                                                 }
 
-                                                    ?>
+                                                ?>
 
 
                                                 <td>
@@ -832,7 +814,7 @@ if(isset($_POST['update_submit'])) {
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
 
-                                                        <a class="red" href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>">
+                                                        <a class="red" href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>">
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                         </a>
                                                     </div>
@@ -858,7 +840,7 @@ if(isset($_POST['update_submit'])) {
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>" class="tooltip-error" data-rel="tooltip"
+                                                                    <a href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>" class="tooltip-error" data-rel="tooltip"
                                                                        title="Delete">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>

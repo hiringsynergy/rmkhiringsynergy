@@ -8,8 +8,8 @@ ob_start();
 <?php
 
 if(isset($_POST['send'])){
-    
-    
+
+    $to=$_POST['recipient'];
 /*
 $to=$_POST['recipient'];
 
@@ -26,6 +26,9 @@ mail($to,$subject,$message,$headers);
 
 
 
+
+
+
 require "PHPMailer/PHPMailerAutoload.php";
 
 $mail=new PHPMailer();
@@ -39,15 +42,17 @@ $mail->isSMTP();
     $mail->Port = 465;
 
 
-    $mail->setFrom('dhoni.singh1703@gmail.com', 'Mailer');
-    $mail->addAddress('akashkarthick400@gmail.com', 'Akash');     // Add a recipient
-    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+    $mail->addAddress($to, 'Akash');     // Add a recipient
+
     $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
+    $mail->addAttachment('sample.xlsx', 'rmk.xlsx');
 
+    $mail->isHTML(true);
 
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = $_POST['subject'];
+    $mail->Body    = '<h3> '.$_POST['message'].' </h3>';
+
 
 
     if(!$mail->send()) {
@@ -737,7 +742,7 @@ $mail->isSMTP();
 
 
                                         <div class="align-right">
-                                            <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
+                                            <button id="id-add-attachment"  type="button" class="btn btn-sm btn-danger">
                                                 <i class="ace-icon fa fa-paperclip bigger-140"></i>
                                                 Add Attachment
                                             </button>

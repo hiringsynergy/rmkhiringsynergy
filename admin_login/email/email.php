@@ -7,93 +7,6 @@ ob_start();
 
 <?php
 
-if(isset($_POST['send'])){
-
-    $to=$_POST['recipient'];
-/*
-$to=$_POST['recipient'];
-
-$subject= $_POST['subject'];
-
-$message='<h3>'.$_POST['message'].'<h3>';
-
-$headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
-$headers.="Reply-To: karthickakash17@gmail.com\r\n";
-$headers.="Content-type: text/html\r\n";
-
-mail($to,$subject,$message,$headers);
-*/
-
-
-if(isset($_FILES['attachment'])){
-
-
-    
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//php mailer
-
-/*
-
-require "PHPMailer/PHPMailerAutoload.php";
-
-$mail=new PHPMailer();
-
-$mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
-    $mail->Password = 'akash170397';                           // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;
-
-
-    $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
-    $mail->addAddress($to, 'Akash');     // Add a recipient
-
-    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Information');
-    $mail->addAttachment('sample.xlsx', 'rmk.xlsx');
-
-    $mail->isHTML(true);
-
-    $mail->Subject = $_POST['subject'];
-    $mail->Body    = '<h3> '.$_POST['message'].' </h3>';
-
-
-
-    if(!$mail->send()) {
-        echo 'Message could not be sent.';
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-    } else {
-        echo 'Message has been sent';
-    }
-
-
-*/
-
-
-
-}
 
 
 ?>
@@ -249,7 +162,7 @@ $mail->isSMTP();
         </div>
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                                <li class="purple dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
                         <span class="badge badge-important">8</span>
@@ -323,7 +236,7 @@ $mail->isSMTP();
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                         <?php
-                        include "connect.php";
+                        include "../connect.php";
                         $name=$_SESSION['user'];
 
                         $query="select * from login_admin where username='{$name}'";
@@ -346,7 +259,7 @@ $mail->isSMTP();
                             ?>
 
 
-                            <img class="nav-user-photo" src="images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -667,13 +580,228 @@ $mail->isSMTP();
             </div>
 
             <div class="page-content">
-                <!-- /.ace-settings-container -->
+
 
 
 
                 <!-- PAGE CONTENT BEGINS -->
-                <div class="row">
-                    <div class="col-xs-12">
+
+                <?php
+
+
+
+                if(isset($_POST['send'])){
+
+
+
+
+                    $to=$_POST['recipient'];
+                    /*
+                    $to=$_POST['recipient'];
+
+                    $subject= $_POST['subject'];
+
+                    $message='<h3>'.$_POST['message'].'<h3>';
+
+                    $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+                    $headers.="Reply-To: karthickakash17@gmail.com\r\n";
+                    $headers.="Content-type: text/html\r\n";
+
+                    mail($to,$subject,$message,$headers);
+                    */
+
+                    $send_file=array();
+                    if(isset($_FILES['attachment'])){
+
+
+
+
+
+
+                        $count= count($_FILES['attachment']['name']);
+
+
+                        for ($i=0;$i<$count;$i++) {
+
+                            $file_name = $_FILES['attachment']['name'][$i];
+                            $file_size = $_FILES['attachment']['size'][$i];
+                            $file_tmp = $_FILES['attachment']['tmp_name'][$i];
+                            $file_type = $_FILES['attachment']['type'][$i];
+
+
+
+                            $value = explode('.',$file_name);
+
+
+
+
+                            $file_ext=strtolower(end($value));
+
+                            $newfilename = $file_name.'_'.time() . '.' . $file_ext;
+
+
+                            move_uploaded_file($file_tmp,"files/".$newfilename);
+
+                            $send_file[]=$newfilename;
+
+
+
+
+
+
+
+
+
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                    require "PHPMailer/PHPMailerAutoload.php";
+
+                    $mail=new PHPMailer();
+
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+                    $mail->Password = 'akash170397';                           // SMTP password
+                    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+                    $mail->Port = 465;
+
+
+                    $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+                    $mail->addAddress($to, $to);     // Add a recipient
+
+                    $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Reply');
+
+
+                    if(isset($_FILES['attachment'])){
+
+                        foreach ($send_file as $file_to_send){
+
+
+                            $mail->addAttachment('files/'.$file_to_send, $file_to_send);
+
+                        }
+
+
+
+
+                    }
+
+
+                    $mail->isHTML(true);
+
+                    $mail->Subject = $_POST['subject'];
+                    $mail->Body    = '<h3> '.$_POST['message'].' </h3>';
+
+
+
+                    if(!$mail->send()) {
+
+
+                        ?>
+
+                        <div class="alert alert-block alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+
+                            <i class="ace-icon fa fa-times red"></i>
+
+                            Your mail to
+                            <strong class="red">
+                                <?php echo $to ?>
+
+                            </strong>,
+
+                            has been failed to send, check the Recipient mail address.....
+                        </div>
+
+
+                <?php
+
+                    } else {
+
+                        ?>
+
+
+
+                        <div class="alert alert-block alert-success">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+
+                            <i class="ace-icon fa fa-check green"></i>
+
+                            Your mail to
+                            <strong class="green">
+                                <?php echo $to ?>
+
+                            </strong>,
+
+                            has been sent Successfully
+                        </div>
+
+
+
+                <?php
+
+                    }
+
+
+                    if(isset($_FILES['attachment'])){
+
+                        foreach ($send_file as $file_sent){
+
+                            unlink("files/$file_sent");
+
+
+
+                        }
+
+
+
+                    }
+
+
+
+
+
+
+
+                }
+
+
+
+
+
+
+
+
+                ?>
+
+
+
+
+
 
 
 
@@ -700,36 +828,26 @@ $mail->isSMTP();
                                         <!-- /.dropdown -->
                                     </ul>
 
-<<<<<<< HEAD
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
-=======
                                     <!-- /.tab-content -->
                                 </div><!-- /.tabbable -->
                             </div><!-- /.col -->
                         </div><!-- /.row -->
 
-<<<<<<< HEAD:admin_login/email.php
-                        <form id="id-message-form" action="email.php"  method="post"  class="active form-horizontal message-form col-xs-12">
+                        <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12" enctype="multipart/form-data">
                             <div>
-                                <div class="form-group">
+                                <div class="form-group ">
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
-=======
-                                <form id="id-message-form" action="email.php" method="post" class="active form-horizontal message-form col-xs-12">
->>>>>>> d729e0d21da596f398b7250abd7c77788fda46e6
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
->>>>>>> origin/master:admin_login/email/email.php
 
                                     <div class="col-sm-9">
 												<span class="input-icon">
-													<input type="email" name="recipient" id="form-field-recipient"  placeholder="user@gmail.com" />
+													<input type="email"  name="recipient" size="35"  id="form-field-recipient"  placeholder="user@gmail.com" />
 													<i class="ace-icon fa fa-user"></i>
 												</span>
                                     </div>
                                 </div>
 
                                 <div class="hr hr-18 dotted"></div>
+
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
@@ -772,21 +890,12 @@ $mail->isSMTP();
 
 
 
-<<<<<<< HEAD
                                 <div class="align-right">
                                     <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
                                         <i class="ace-icon fa fa-paperclip bigger-140"></i>
                                         Add Attachment
                                     </button>
                                 </div>
-=======
-                                        <div class="align-right">
-                                            <button id="id-add-attachment"  type="button" class="btn btn-sm btn-danger">
-                                                <i class="ace-icon fa fa-paperclip bigger-140"></i>
-                                                Add Attachment
-                                            </button>
-                                        </div>
->>>>>>> 4dd67c80e01265fa314c4ccf37c0cdf89c7cb2f2
 
                                 <div class="space"></div>
                                 <div class="space"></div>
@@ -900,7 +1009,7 @@ $mail->isSMTP();
         }).prev().addClass('wysiwyg-style1');
 
 
-         $('#id-message-form').on('submit', function() {
+        $('#id-message-form').on('submit', function() {
             var hidden_input =
                 $('<input type="hidden" name="message" />')
                     .appendTo('#id-message-form');
@@ -909,8 +1018,8 @@ $mail->isSMTP();
             hidden_input.val( html_content );
             //put the editor's HTML into hidden_input and it will be sent to server
         });
-        
-        
+
+
 
         //file input
         $('.message-form input[type=file]').ace_file_input()

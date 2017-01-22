@@ -4,6 +4,156 @@
 session_start();
 ob_start();
 
+if(isset($_GET['create'])){
+
+
+    $tablename=$_GET['tablename'];
+
+
+    include "connect.php";
+
+
+
+    $query="CREATE TABLE students_".$tablename."  (
+    st_roll varchar(12) NOT NULL,
+  st_firstname char(255)  ,
+  st_middlename char(255)  ,
+  st_lastname char(255)  ,
+  st_name char(255)  ,
+  st_gender char(255)  ,
+  st_fathername char(255)  ,
+  st_fatheroccupation char(255)  ,
+  st_mothername char(255)  ,
+  st_motheroccupation char(255)  ,
+  st_email char(255) NOT NULL,
+  st_phone char(15) NOT NULL,
+  st_dob date  ,
+  st_nationality char(255)  ,
+  st_caste char(255)  ,
+  st_collegename char(255)  ,
+  st_university char(255)  ,
+  st_10thpercentage varchar(255)  ,
+  st_10thboardofstudy char(255)  ,
+  st_10thmedium char(255)  ,
+  st_10thyearofpassing year(4)  ,
+  st_12thpercentage varchar(255)  ,
+  st_12thboardofstudy char(255)  ,
+  st_12thmedium char(255)  ,
+  st_12thyearofpassing year(4)  ,
+  st_dippercentage varchar(255)  ,
+  st_dipyearofpassing year(4)  ,
+  st_currentlypursuing char(255)  ,
+  st_ugdegree char(255)  ,
+  st_ugspecialization char(255)  ,
+  st_1stsem varchar(255)  ,
+  st_2ndsem varchar(255)  ,
+  st_3rdsem varchar(255)  ,
+  st_4thsem varchar(255)  ,
+  st_5thsem varchar(255)  ,
+  st_6thsem varchar(255)  ,
+  st_7thsem varchar(255)  ,
+  st_8thsem varchar(255)  ,
+  st_cgpa varchar(255)  ,
+  st_ugyearofpassing year(4)  ,
+  st_pgdegree char(255)  ,
+  st_pgspecialization char(255)  ,
+  st_pg1stsem varchar(255)  ,
+  st_pg2ndsem varchar(255)  ,
+  st_pg3rdsem varchar(255)  ,
+  st_pg4thsem varchar(255)  ,
+  st_pgcgpa varchar(255)  ,
+  st_pgyearofpassing year(4)  ,
+  st_dayorhostel char(255)  ,
+  st_historyofarrears char(255)  ,
+  st_standingarrears char(255)  ,
+  st_hometown char(255)  ,
+  st_address1 char(255)  ,
+  st_address2 char(255)  ,
+  st_city char(255)  ,
+  st_state char(255)  ,
+  st_posatlcode char(255)  ,
+  st_landline char(255)  ,
+  st_skillcertification char(255)  ,
+  st_duration char(255)  ,
+  st_vendor char(255)  ,
+  st_coecertification char(255)  ,
+  st_gapinstudies char(255)  ,
+  st_reason char(255)  ,
+  st_english char(255)  ,
+  st_quantitative char(255)  ,
+  st_logical char(255)  ,
+  st_overall char(255)  ,
+  st_percentage varchar(255)  ,
+  st_candidateid char(255)  ,
+  st_signature char(255)  ,
+  st_placementstatus char(255)  ,
+  st_pass char(255)  ,
+  st_pic char(255)
+ 
+ 
+)ENGINE=MyISAM DEFAULT CHARSET=latin1";
+
+    $query_alter="ALTER TABLE students_".$tablename."
+    ENGINE=InnoDB
+    ROW_FORMAT=COMPRESSED 
+    KEY_BLOCK_SIZE=9000s";
+    mysqli_query($connect, $query_alter);
+
+    $result=mysqli_query($connect,$query);
+
+
+    if(!$result) {
+
+        die(" " . mysqli_error($connect));
+
+
+    }
+
+
+
+    $table_name="students_".$tablename;
+    $short_name=$tablename[2].$tablename[3];
+    $short_name+=0;
+
+
+    $query2="INSERT  INTO table_map VALUES ('$table_name','{$tablename}',$short_name)";
+    $result2=mysqli_query($connect, $query2);
+
+
+
+
+    header("Location: index.php");
+
+}
+
+if(isset($_GET['delete']))
+
+{
+
+    $tab_name=$_GET['tablename'];
+
+
+    include "connect.php";
+
+    $query_jobs="DELETE FROM jobs WHERE year_of_graduation={$tab_name}";
+    $result_jobs=mysqli_query($connect, $query_jobs);
+
+
+
+    $query="DROP TABLE students_".$tab_name." ";
+    $result=mysqli_query($connect, $query);
+
+    $query2="DELETE FROM table_map WHERE table_value=$tab_name";
+    $result2=mysqli_query($connect, $query2);
+
+
+
+    header("Location: index.php");
+
+
+}
+
+
 ?>
 
 
@@ -35,7 +185,7 @@ ob_start();
 		<!--button-navigation-->
 		<script type="text/javascript">
 			function myfuncreport() {
-                location.href = "reports.php";
+                location.href = "reports/reports.php";
 
             }
             function myfuncjobs() {
@@ -85,6 +235,16 @@ ob_start();
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+
+        <style>
+            #shadow{
+
+                width: 500px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+        </style>
+
 	</head>
 
 	<body class="no-skin">
@@ -299,7 +459,7 @@ ob_start();
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
+									<a href="settings.php">
 										<i class="ace-icon fa fa-cog"></i>
 										Settings
 									</a>
@@ -359,8 +519,6 @@ ob_start();
 
 					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
 						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
 
 						<span class="btn btn-warning"></span>
 
@@ -433,7 +591,7 @@ ob_start();
 
 
 					<li class="">
-						<a href="reports.php">
+						<a href="reports/reports.php">
 
 							<i class="menu-icon fa fa-bar-chart"></i>
 
@@ -515,54 +673,284 @@ ob_start();
 				</div>
 			</div>
 
-			<div class="main-content">
-				<div class="main-content-inner">
-					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="../index.html">Home</a>
-							</li>
-							<li class="active">Dashboard</li>
-						</ul><!-- /.breadcrumb -->
+            <div class="main-content">
+                <div class="main-content-inner">
+                    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="ace-icon fa fa-home home-icon"></i>
+                                <a href="../index.html">Home</a>
+                            </li>
+                            <li class="active">Dashboard</li>
+                        </ul><!-- /.breadcrumb -->
                         <!-- /.nav-search -->
-					</div>
+                    </div>
 
-					<div class="page-content">
-						<!-- /.ace-settings-container -->
+                    <div class="page-content">
+                        <!-- /.ace-settings-container -->
 
-						<div class="page-header">
-							<h1>
-								Dashboard
+                        <div class="page-header">
+                            <h1>
+                                Dashboard
 
-							</h1>
-						</div><!-- /.page-header -->
+                            </h1>
+                        </div><!-- /.page-header -->
 
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-block alert-success">
-									<button type="button" class="close" data-dismiss="alert">
-										<i class="ace-icon fa fa-times"></i>
-									</button>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- PAGE CONTENT BEGINS -->
+                                <div class="alert alert-block alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <i class="ace-icon fa fa-times"></i>
+                                    </button>
 
-									<i class="ace-icon fa fa-check green"></i>
+                                    <i class="ace-icon fa fa-check green"></i>
 
-									Welcome to
-									<strong class="green">
-										RMK HIRING SYNERGY
+                                    Welcome to
+                                    <strong class="green">
+                                        RMK HIRING SYNERGY
 
-									</strong>,
+                                    </strong>,
 
-									RMK group of Institutions
-								</div>
+                                    RMK group of Institutions
+                                </div>
+                                <div class="row">
 
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div>
-			</div><!-- /.main-content -->
+
+
+
+
+
+                                    <div class="col-xs-6 pricing-box">
+                                        <form action="index.php" method="get">
+
+
+                                            <div class="widget-box widget-color-orange" id="shadow">
+                                                <div class="widget-header">
+                                                    <h5 class="widget-title bigger white">Create New Student Table</h5>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main">
+                                                        <ul class="list-unstyled spaced2">
+                                                            <li class="red bigger-120">
+                                                                <div class="form-group">
+                                                                    <h5><label class="col-xs-12 control-label orange bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                        <input type="text" align="centre" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul><hr/>
+                                                    </div>
+
+
+                                                    <div class="space-16"> </div>
+                                                    <div class="space-16"></div>
+
+
+                                                    <div>
+                                                        <button type="submit" name="create" class="btn btn-block btn-warning">
+                                                            <span>Create</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-xs-6 pricing-box">
+                                        <form action="crud/action_update.php">
+
+
+                                            <div class="widget-box widget-color-blue" id="shadow">
+                                                <div class="widget-header">
+                                                    <h5 class="widget-title bigger white">Update Student Table</h5>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main">
+                                                        <ul class="list-unstyled spaced2">
+                                                            <li class="red bigger-120">
+                                                                <div class="form-group">
+                                                                    <h5><label class="col-xs-12 control-label blue bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                        <select class="col-xs-7 chosen-select form-control" name="year"  id="form-field-select-3" data-placeholder="Select a Year...">
+                                                                            <option value=""></option>
+                                                                            <?php
+
+                                                                            include "connect.php";
+                                                                            $query_insert="SELECT * FROM table_map";
+                                                                            $result_insert=mysqli_query($connect, $query_insert);
+                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
+
+
+
+
+                                                                                ?>
+
+
+
+                                                                                <option value="<?php echo $row['table_name']  ?>"><?php echo $row['table_value'] ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul><hr/>
+                                                    </div>
+
+
+                                                    <div class="space-16"> </div>
+                                                    <div class="space-16"></div>
+
+
+                                                    <div>
+                                                        <button type="submit" name="update" class="btn btn-block btn-primary">
+                                                            <span>Update</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                                <div class="space-16"> </div>
+
+                                <div class="row">
+
+                                    <div class="col-xs-6 pricing-box">
+                                        <form action="crud/action_insert.php" method="get">
+                                            <div class="widget-box widget-color-green" id="shadow">
+                                                <div class="widget-header">
+                                                    <h5 class="widget-title bigger white">Insert Into Student Table</h5>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main">
+                                                        <ul class="list-unstyled spaced2">
+                                                            <li class="red bigger-120">
+                                                                <div class="form-group">
+                                                                    <h5><label class="col-xs-12 control-label green bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                        <select class="col-xs-7 chosen-select form-control" name="insert_year" id="form-field-select-3" data-placeholder="Select a Year...">
+                                                                            <option value=""></option>
+
+                                                                            <?php
+
+                                                                            include "connect.php";
+                                                                            $query_insert="SELECT * FROM table_map";
+                                                                            $result_insert=mysqli_query($connect, $query_insert);
+                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
+
+
+
+
+                                                                                ?>
+
+
+
+                                                                                <option value="<?php echo $row['table_value']  ?>"><?php echo $row['table_value'] ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul><hr/>
+                                                    </div>
+                                                    <div class="space-16"> </div>
+                                                    <div class="space-16"></div>
+
+                                                    <div>
+                                                        <button type="submit" name="insert" value="insert" class="btn btn-block btn-success">
+                                                            <span>Insert</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-xs-6 pricing-box">
+                                        <div class="widget-box widget-color-red" id="shadow">
+                                            <div class="widget-header">
+                                                <h5 class="widget-title bigger white">Delete Student Table</h5>
+                                            </div>
+                                            <form action="index.php" method="get"  >
+
+                                                <div class="widget-body">
+
+                                                    <div class="widget-main">
+
+                                                        <ul class="list-unstyled spaced2">
+                                                            <li class="red bigger-120">
+                                                                <div class="form-group">
+                                                                    <h5><label class="col-xs-12 control-label red bolder" for="form-field-1">Year of Graduation</label></h5>
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                        <select class="col-xs-7 chosen-select form-control" name="tablename" id="form-field-select-3" data-placeholder="Select a Year...">
+                                                                            <option value=""></option>
+                                                                            <?php
+
+                                                                            include "connect.php";
+                                                                            $query_insert="SELECT * FROM table_map";
+                                                                            $result_insert=mysqli_query($connect, $query_insert);
+                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
+
+
+
+
+                                                                                ?>
+
+
+
+                                                                                <option value="<?php echo $row['table_value']  ?>"><?php echo $row['table_value'] ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul><hr/>
+                                                    </div>
+
+
+                                                    <div class="space-16"> </div>
+                                                    <div class="space-16"></div>
+                                                    <div>
+                                                        <button type="submit" href="index.php" name="delete" class="btn btn-block btn-danger">
+                                                            <span>Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                                <!-- PAGE CONTENT ENDS -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.page-content -->
+                </div>
+            </div><!-- /.main-content -->
 
 			<div class="footer">
 				<div class="footer-inner">

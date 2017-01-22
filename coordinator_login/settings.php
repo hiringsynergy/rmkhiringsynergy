@@ -69,7 +69,7 @@ if(isset($_GET['id'])){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "reports.php";
+            location.href = "reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -341,7 +341,7 @@ if(isset($_GET['id'])){
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
@@ -403,8 +403,6 @@ if(isset($_GET['id'])){
 
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
-
-                <span class="btn btn-info"></span>
 
                 <span class="btn btn-warning"></span>
 
@@ -485,7 +483,7 @@ if(isset($_GET['id'])){
 
 
             <li class="">
-                <a href="reports.php">
+                <a href="reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 

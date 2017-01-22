@@ -46,7 +46,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -124,21 +124,44 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <?php
 
 
-if(isset($_GET['comp'])&&isset($_GET['job'])){
+if(isset($_GET['job_id'])){
 
-    $company=$_GET['comp'];
-    $job=$_GET['job'];
+    $job_id=$_GET['job_id'];
+
 
 
     include "../connect.php";
 
-    $query="DELETE FROM jobs WHERE job_title='{$job}' and company='{$company}'";
+    $query="DELETE FROM jobs WHERE job_id='{$job_id}'";
     $result=mysqli_query($connect,$query);
 
     if(!$connect){
 
         die(" ".mysqli_error($connect));
     }
+
+
+
+    $query_map="SELECT * FROM table_map  ";
+    $result_map=mysqli_query($connect,$query_map);
+    while ($row_map=mysqli_fetch_assoc($result_map)){
+
+        $students_table_name=$row_map['table_name'];
+
+
+
+
+        $query_update="ALTER TABLE $students_table_name DROP COLUMN _".$job_id." ";
+        $result_update=mysqli_query($connect,$query_update);
+
+
+    }
+
+
+
+
+
+
 
 
 
@@ -154,6 +177,7 @@ if(isset($_POST['update_submit'])) {
     $get_venue= $_POST['submit_venue'];
     $get_apply_before= $_POST['submit_apply_before'];
     $get_company=$_POST['submit_company'];
+
     include "../connect.php";
 
 
@@ -556,7 +580,7 @@ if(isset($_POST['update_submit'])) {
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -692,7 +716,7 @@ if(isset($_POST['update_submit'])) {
 
                                             <th>
                                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                               Salary
+                                                Salary
                                             </th>
                                             <th class="hidden-480">venue</th>
                                             <th class="hidden-480">Apply Before</th>
@@ -791,9 +815,9 @@ if(isset($_POST['update_submit'])) {
 
 
                                                     ?>
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-success"><?php  echo $apply_before ?></span>
-                                                </td>
+                                                    <td class="hidden-480">
+                                                        <span class="label label-sm label-success"><?php  echo $apply_before ?></span>
+                                                    </td>
                                                     <?php
 
 
@@ -802,16 +826,16 @@ if(isset($_POST['update_submit'])) {
 
 
 
-                                else if( $calc_date==0 && $calc_time>=0) {
+                                                else if( $calc_date==0 && $calc_time>=0) {
 
 
-                                    ?>
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-success"><?php echo $apply_before ?></span>
-                                    </td>
-                                    <?php
+                                                    ?>
+                                                    <td class="hidden-480">
+                                                        <span class="label label-sm label-success"><?php echo $apply_before ?></span>
+                                                    </td>
+                                                    <?php
 
-                                }
+                                                }
                                                 else {
 
                                                     ?>
@@ -821,7 +845,7 @@ if(isset($_POST['update_submit'])) {
                                                     <?php
                                                 }
 
-                                                    ?>
+                                                ?>
 
 
                                                 <td>
@@ -832,7 +856,7 @@ if(isset($_POST['update_submit'])) {
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
 
-                                                        <a class="red" href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>">
+                                                        <a class="red" href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>">
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                         </a>
                                                     </div>
@@ -858,7 +882,7 @@ if(isset($_POST['update_submit'])) {
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="../jobs/jobs_panel.php?comp=<?php echo urlencode($row['company']) ?>&job=<?php echo urlencode($row['job_title']) ?>" class="tooltip-error" data-rel="tooltip"
+                                                                    <a href="../jobs/jobs_panel.php?job_id=<?php echo urlencode($row['job_id']) ?>" class="tooltip-error" data-rel="tooltip"
                                                                        title="Delete">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>

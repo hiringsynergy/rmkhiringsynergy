@@ -5,6 +5,31 @@ ob_start();
 
 ?>
 
+<?php
+
+if(isset($_POST['send'])){
+
+
+
+    $to=$_POST['recipient'];
+
+    $subject= $_POST['subject'];
+
+    $message='<h3>'.$_POST['message'].'<h3>';
+
+    $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
+    $headers.="Reply-To: karthickakash17@gmail.com\r\n";
+    $headers.="Content-type: text/html\r\n";
+
+    mail($to,$subject,$message,$headers);
+
+
+}
+
+
+?>
+
+
 
 
 <!DOCTYPE html>
@@ -35,7 +60,7 @@ ob_start();
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "reports.php";
+            location.href = "reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -252,7 +277,7 @@ ob_start();
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="inbox.html">
+                            <a href="inbox.php">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -435,7 +460,7 @@ ob_start();
 
 
             <li class="">
-                <a href="reports.php">
+                <a href="reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -533,82 +558,26 @@ ob_start();
             </div>
 
             <div class="page-content">
-                <div class="ace-settings-container" id="ace-settings-container">
-                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                        <i class="ace-icon fa fa-cog bigger-130"></i>
-                    </div>
-
-                    <div class="ace-settings-box clearfix" id="ace-settings-box">
-                        <div class="pull-left width-50">
-                            <div class="ace-settings-item">
-                                <div class="pull-left">
-                                    <select id="skin-colorpicker" class="hide">
-                                        <option data-skin="no-skin" value="#438EB9">#438EB9</option>
-                                        <option data-skin="skin-1" value="#222A2D">#222A2D</option>
-                                        <option data-skin="skin-2" value="#C6487E">#C6487E</option>
-                                        <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-                                    </select>
-                                </div>
-                                <span>&nbsp; Choose Skin</span>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-add-container">
-                                    Inside
-                                    <b>.container</b>
-                                </label>
-                            </div>
-                        </div><!-- /.pull-left -->
-
-                        <div class="pull-left width-50">
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
-                                <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-                            </div>
-                        </div><!-- /.pull-left -->
-                    </div><!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
+                <!-- /.ace-settings-container -->
 
 
 
-                        <!-- PAGE CONTENT BEGINS -->
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="row">
+                    <div class="col-xs-12">
+
+
+
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="tabbable">
-                                            <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+                                <div class="tabbable">
+                                    <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 
 
 
@@ -617,98 +586,98 @@ ob_start();
 															<span class=" white smaller-60 middle align-center " style="padding-right: 10px; " > Write Mail</span>
 														</span>
 
-                                                <!-- /.li-new-mail -->
+                                        <!-- /.li-new-mail -->
 
-                                                <!-- /.dropdown -->
-                                            </ul>
+                                        <!-- /.dropdown -->
+                                    </ul>
 
-                                            <!-- /.tab-content -->
-                                        </div><!-- /.tabbable -->
-                                    </div><!-- /.col -->
-                                </div><!-- /.row -->
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
 
-                                <form id="id-message-form" class="active form-horizontal message-form col-xs-12">
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
+                        <form id="id-message-form" action="email.php"  method="post"  class="active form-horizontal message-form col-xs-12">
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">Recipient:</label>
 
-                                            <div class="col-sm-9">
+                                    <div class="col-sm-9">
 												<span class="input-icon">
 													<input type="email" name="recipient" id="form-field-recipient"  placeholder="user@gmail.com" />
 													<i class="ace-icon fa fa-user"></i>
 												</span>
-                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="hr hr-18 dotted"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="input-icon block col-xs-12 no-padding">
+                                            <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
+                                            <i class="ace-icon fa fa-comment-o"></i>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="hr hr-18 dotted"></div>
+                                <div class="hr hr-18 dotted"></div>
 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">Subject:</label>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right">
+                                        <span class="inline space-24 hidden-480"></span>
+                                        Message:
+                                    </label>
 
-                                            <div class="col-sm-6 col-xs-12">
-                                                <div class="input-icon block col-xs-12 no-padding">
-                                                    <input maxlength="100" type="text" class="col-xs-12" name="subject" id="form-field-subject" placeholder="Subject" />
-                                                    <i class="ace-icon fa fa-comment-o"></i>
-                                                </div>
-                                            </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="wysiwyg-editor" id="editor1"></div>
+                                    </div>
+                                </div>
+
+                                <div class="hr hr-18 dotted"></div>
+
+                                <div class="form-group no-margin-bottom">
+                                    <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
+
+                                    <div class="col-sm-9">
+                                        <div id="form-attachments">
+                                            <input type="file" id="id-input-file-2" name="attachment[]" />
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="hr hr-18 dotted"></div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right">
-                                                <span class="inline space-24 hidden-480"></span>
-                                                Message:
-                                            </label>
-
-
-                                            <div class="col-sm-9">
-                                                <div class="wysiwyg-editor" id="editor1"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="hr hr-18 dotted"></div>
-
-                                        <div class="form-group no-margin-bottom">
-                                            <label class="col-sm-3 control-label no-padding-right">Attachments:</label>
-
-                                            <div class="col-sm-9">
-                                                <div id="form-attachments">
-                                                    <input type="file" id="id-input-file-2" name="attachment[]" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="space"></div>
+                                <div class="space"></div>
 
 
 
-                                        <div class="align-right">
-                                            <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
-                                                <i class="ace-icon fa fa-paperclip bigger-140"></i>
-                                                Add Attachment
-                                            </button>
-                                        </div>
+                                <div class="align-right">
+                                    <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
+                                        <i class="ace-icon fa fa-paperclip bigger-140"></i>
+                                        Add Attachment
+                                    </button>
+                                </div>
 
-                                        <div class="space"></div>
-                                        <div class="space"></div>
+                                <div class="space"></div>
+                                <div class="space"></div>
 
-                                        <div class="align-center">
+                                <div class="align-center">
                                             <span class="inline btn-send-message">
-                                                <button type="button" class="btn btn-sm btn-primary border btn-bold btn-round">
+                                                <button type="submit" name="send" class="btn btn-sm btn-primary border btn-bold btn-round">
                                                     <span class="bigger-120">Send</span>
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                                                 </button>
                                             </span>
-                                        </div>
-                                        <div class="space"></div>
-                                    </div>
-                                </form>
-                                <!-- /.message-content -->
+                                </div>
+                                <div class="space"></div>
+                            </div>
+                        </form>
+                        <!-- /.message-content -->
 
-                                <!-- PAGE CONTENT ENDS -->
-                            </div><!-- /.col -->
-                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div>
                 <!-- /.row -->
             </div><!-- /.page-content -->
         </div>
@@ -800,6 +769,17 @@ ob_start();
                     'redo'
                 ]
         }).prev().addClass('wysiwyg-style1');
+
+        $('#id-message-form').on('submit', function() {
+            var hidden_input =
+                $('<input type="hidden" name="message" />')
+                    .appendTo('#id-message-form');
+
+            var html_content = $('#editor1').html();
+            hidden_input.val( html_content );
+            //put the editor's HTML into hidden_input and it will be sent to server
+        });
+
 
 
 

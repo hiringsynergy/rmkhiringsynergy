@@ -514,6 +514,15 @@ if(isset($_GET['delete']))
 						<b class="arrow"></b>
                     </li>
 
+                    <li class="">
+                        <a href="approve/approve.php">
+                            <i class="menu-icon fa fa-list-alt"></i>
+                            <span class="menu-text"> Approve </span>
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
 					<li>
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-briefcase"></i>

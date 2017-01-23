@@ -57,30 +57,84 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             location.href = "../settings.php";
 
         }
-        function approvefunc($rollno,$tname){
-
-alert"hello";
 <?php
-                            include "../connect.php";
 
+if(isset($_GET['approvem'])){
+                            
+	include "../connect.php";
+
+    $rollno=$_GET['rollno'];
+    $tname=$_GET['tname'];
     $select="SELECT * from $tname where st_roll='{$rollno}'";
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
     $new_mail=$row['st_changemail'];
     $query1="UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
 
-           // location.href="show_lists.php?jid="+str+"&flag=0";
-
-
-  $result1=mysqli_query($connect, $query1);
+    $result1=mysqli_query($connect, $query1);
 	header("Location: approve.php");
     if(!$connect){
 
         die("".mysqli_error($connect));
     }
-      
+     } 
+if(isset($_GET['declinem'])){
+                            
+	include "../connect.php";
+
+    $rollno=$_GET['rollno'];
+    $tname=$_GET['tname'];
+    $select="SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result=mysqli_query($connect, $select);
+    $row=mysqli_fetch_assoc($select_result);
+    $query1="UPDATE $tname SET st_changemail=NULL WHERE st_roll='{$rollno}'";
+
+    $result1=mysqli_query($connect, $query1);
+	header("Location: approve.php");
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+     } 
+if(isset($_GET['approvep'])){
+                            
+	include "../connect.php";
+
+    $rollno=$_GET['rollno'];
+    $tname=$_GET['tname'];
+    $select="SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result=mysqli_query($connect, $select);
+    $row=mysqli_fetch_assoc($select_result);
+    $new_phone=$row['st_changephone'];
+    $query1="UPDATE $tname SET  st_phone='{$new_phone}',st_changephone=NULL WHERE st_roll='{$rollno}'";
+
+    $result1=mysqli_query($connect, $query1);
+	header("Location: approve.php");
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+     } 
+if(isset($_GET['declinep'])){
+                            
+	include "../connect.php";
+
+    $rollno=$_GET['rollno'];
+    $tname=$_GET['tname'];
+    $select="SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result=mysqli_query($connect, $select);
+    $row=mysqli_fetch_assoc($select_result);
+    $query1="UPDATE $tname SET st_changephone=NULL WHERE st_roll='{$rollno}'";
+
+    $result1=mysqli_query($connect, $query1);
+	header("Location: approve.php");
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+     } 
 ?>
-}
+
     </script>
 
 
@@ -569,6 +623,7 @@ alert"hello";
                                     ?>
 				<div class="row">
 					<div class="col-xs-12 col-sm-12">
+							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
 								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
 												<div class="widget-header widget-header-small">
 													<h6 class="widget-title">
@@ -599,18 +654,19 @@ alert"hello";
 													<div class="widget-main">
 														<p >
 														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
-														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label>
-														<div class=" ">
-                                        												<button class=" btn btn-warning col-xs-push-9" onclick="approvefunc(<?php echo $row1['st_roll'] ?>,$tname)">Approve</button>
-   															</div>
-														<div class=" ">
-                                        												<button class=" btn btn-warning col-xs-push-9" onclick="declinefunc(<?php echo $row1['st_roll'] ?>,$tname)">Decline</button>
-   															</div>
-														</p>
+														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label></p>
+														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
+														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approve">Approve</button>
+   															
+													
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="decline">Decline</button>
+   															
+														
 													</div>
 												</div>
 											</div>
-										</div>
+										</div></form>
 					</div>
 				</div>
 
@@ -619,6 +675,126 @@ alert"hello";
 
                                     <?php
 			}
+
+if($row1['st_changemail']!=NULL) {
+
+
+                                    ?>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12">
+							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
+								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
+												<div class="widget-header widget-header-small">
+													<h6 class="widget-title">
+														<i class="ace-icon fa fa-sort"></i>
+														Change request
+													</h6>
+
+													<div class="widget-toolbar">
+														<a href="#" data-action="settings">
+															<i class="ace-icon fa fa-cog"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
+														</a>
+
+														<a href="#" data-action="close">
+															<i class="ace-icon fa fa-times"></i>
+														</a>
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p >
+														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
+														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label></p>
+														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
+														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approvem">Approve</button>
+   															
+													
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="declinem">Decline</button>
+   															
+														
+													</div>
+												</div>
+											</div>
+										</div></form>
+					</div>
+				</div>
+
+                                    <!--                            <div class="space-14"></div>-->
+
+
+                                    <?php
+			}
+				if($row1['st_changephone']!=NULL) {
+
+
+                                    ?>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12">
+							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
+								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
+												<div class="widget-header widget-header-small">
+													<h6 class="widget-title">
+														<i class="ace-icon fa fa-sort"></i>
+														Change request
+													</h6>
+
+													<div class="widget-toolbar">
+														<a href="#" data-action="settings">
+															<i class="ace-icon fa fa-cog"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
+														</a>
+
+														<a href="#" data-action="close">
+															<i class="ace-icon fa fa-times"></i>
+														</a>
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p >
+														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changephone']!=NULL){ echo "Phone No : "; echo $row1['st_phone']; } ?></label>
+														to  <label class="orange">Phone No : <?php echo $row1['st_changephone'] ?></label></p>
+														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
+														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approvep">Approve</button>
+   															
+													
+                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="declinep">Decline</button>
+   															
+														
+													</div>
+												</div>
+											</div>
+										</div></form>
+					</div>
+				</div>
+
+                                    <!--                            <div class="space-14"></div>-->
+
+
+                                    <?php
+			}
+
+
+
                                 }
 
                             }

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
 <?php session_start();
 ob_start();
 
@@ -246,19 +250,99 @@ if (isset($_GET['decline'])) {
                             8 Notifications
                         </li>
 
+<<<<<<< HEAD
                         <li class="dropdown-content">
+=======
+<?php
+
+
+                            include "../connect.php";
+                            $query_table = "SELECT * FROM table_map";
+                            $result_table = mysqli_query($connect, $query_table);
+
+                            while ($row = mysqli_fetch_assoc($result_table)) {
+                                $tname = $row['table_name'];
+                                $query_year = "SELECT * from $tname";
+                                $result_year = mysqli_query($connect, $query_year);
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                        ?>
+<li class="dropdown-content">
+>>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
                                     <a href="#">
                                         <div class="clearfix">
+<<<<<<< HEAD
 													<span class="pull-left">
 														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
 														New Comments
 													</span>
+=======
+		<span class="pull-left">
+			<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+				<?php echo $row1['st_roll'] ?>
+                                                                        , <?php echo $row1['st_name'] ?>  has
+                                                                    requested for the change of
+                                                                        <?php if ($row1['st_changemail'] != NULL) {
+                                                                        echo "Email id : ";
+                                                                        echo $row1['st_email'];
+                                                                        ?>
+                                                                    to Mail id
+                                                                        : <?php echo $row1['st_changemail'];
+
+
+
+                                                                           }
+
+                                                                            ?>
+
+
+
+
+
+                                                                        <?php
+
+
+
+                                                                        if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                            echo " and  ";
+
+                                                                        }
+
+
+
+
+
+
+                                                                        if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                        echo " Phone No : ";
+                                                                        echo $row1['st_phone'];
+                                                                        ?>
+                                                                           to  Phone No
+                                                                        : <?php echo $row1['st_changephone'] ?>
+
+
+                                                                    <?php } ?>
+
+
+                                                                    </p>
+				</span>
+>>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
                                             <span class="pull-right badge badge-info">+12</span>
                                         </div>
                                     </a>
                                 </li>
+<<<<<<< HEAD
 
                                 <li>
                                     <a href="#">
@@ -290,6 +374,22 @@ if (isset($_GET['decline'])) {
                                         </div>
                                     </a>
                                 </li>
+=======
+<?php
+                                    }
+
+
+                                }
+
+
+                            }
+
+
+                            ?>
+
+
+                        
+>>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
                             </ul>
                         </li>
 
@@ -1348,3 +1448,9 @@ if (isset($_GET['decline'])) {
 
 </body>
 </html>
+<<<<<<< HEAD
+=======
+=======
+git 
+>>>>>>> bad79a77fe821f6df81b3d7f5cb5a8875dfd4527
+>>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b

@@ -193,20 +193,24 @@ if(isset($_GET['changemailphone'])){
     $phoneno=$_GET['phoneno'];
     $emailid=$_GET['emailid'];
 
-    $select="SELECT st_mail,st_phone from $student_table where st_roll='{$name}'";
+    $select="SELECT * from $student_table where st_roll='{$name}'";
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
-    $old_mail=$row['st_mail'];
+    $old_mail=$row['st_email'];
+
+
+
 
 if($emailid!=$old_mail)
 {
-$name=$_SESSION['user'];
+
+    $name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
     $query1="UPDATE $student_table SET  st_changemail='{$emailid}' WHERE st_roll='{$name}'";
 
     $result1=mysqli_query($connect, $query1);
-    if(!$connect){
+    if(!$result1){
 
         die("".mysqli_error($connect));
     }
@@ -218,18 +222,23 @@ $name=$_SESSION['user'];
 
 if($phoneno!=$old_phoneno)
 {
+
+
+
     $name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
-    $query2="UPDATE $student_table SET  st_changephone='{$phone}' WHERE st_roll='{$name}'";
+    $query2="UPDATE $student_table SET  st_changephone='{$phoneno}' WHERE st_roll='{$name}'";
 
     $result2=mysqli_query($connect, $query2);
-    if(!$connect){
+    if(!$result2){
 
         die("".mysqli_error($connect));
     }
 
 }
+
+header("Location: profile.php");
 
 
 }

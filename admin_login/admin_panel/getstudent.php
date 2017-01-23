@@ -123,8 +123,9 @@
 
 include "../connect.php";
 $id=$_GET['id'];
+$table=$_GET['table'];
 
-$query="SELECT * FROM students_list where st_roll={$id}";
+$query="SELECT * FROM ".$table." where st_roll='$id'";
 
 
 $result=mysqli_query($connect, $query);
@@ -170,23 +171,6 @@ while( $row= mysqli_fetch_assoc($result)) {
                         <div class="col-xs-12 col-sm-5">
                             <div class="space"></div>
 
-                            <!--
-                                                        <label class="btn btn-default btn-file">
-                                                            Browse<input type="file" style="display: none;">
-
-                                                        </label>
-                            -->
-
-                            <!--                            <div class="form-group">-->
-                            <!--                                <div class="col-xs-12 ">-->
-                            <!--                                    <input multiple=""  type="file" id="id-input-file-3" />-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <!---->
-                            <!--                            <label>-->
-                            <!--                                <input type="checkbox" name="file-format" id="id-file-format" class="ace" />-->
-                            <!--                                <span class="lbl"> Allow only images</span>-->
-                            <!--                            </label>-->
                         </div>
 
                         <div class="col-xs-12 col-sm-7">
@@ -201,6 +185,9 @@ while( $row= mysqli_fetch_assoc($result)) {
                                     <input type="text" disabled  id="job-title" name="st_roll"
                                            value="<?php echo $row['st_roll'] ?>"/>
                                 </div>
+
+                                <input type="hidden" name="table" value="<?php echo $_GET['table'] ?>">
+
                             </div><div class="space-4"></div>
 
                             <div class="form-group">
@@ -244,31 +231,15 @@ while( $row= mysqli_fetch_assoc($result)) {
                             </div><div class="space-4"></div>
 
                             <div class="form-group">
-                                <label for="salary">Student Password</label>
+                                <label for="salary">Year of Graduation</label>
 
                                 <div>
-                                    <input type="text" name="st_pass" id="salary" value="<?php echo $row['st_pass'] ?>"/>
+                                    <input type="text" name="st_pass" id="salary" value="<?php echo $row['st_ugspecilization'] ?>"/>
                                 </div>
                             </div>
 
                             <div class="space-4"></div>
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="venue">Venue</label>-->
-                            <!---->
-                            <!--                                <div>-->
-                            <!--                                    <input type="text" name="submit_venue" id="venue" value="--><?php //echo $row['venue'] ?><!--"/>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <!---->
-                            <!--                            <div class="space-4"></div>-->
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="apply-before">Apply Before</label>-->
-                            <!---->
-                            <!--                                <div>-->
-                            <!--                                    <input type="text" name="submit_apply_before" id="apply-before" placeholder="Username"-->
-                            <!--                                           value="--><?php //echo $row['apply_before'] ?><!--"/>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
+
 
                             <div class="space-4"></div>
 

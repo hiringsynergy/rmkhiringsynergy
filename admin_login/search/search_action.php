@@ -144,7 +144,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             width: 13px;
             height: 50px;
             padding: 20px;
-            margin:0px 240px;
+            margin: 0 240px;
 
             position: relative;
             top: -47px;
@@ -212,6 +212,7 @@ if(isset($_GET['filter'])){
 if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
 
 
+    //get value from form
     include "../connect.php";
 
 
@@ -222,13 +223,75 @@ if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
     $get_historyofarrears=$_POST['get_historyofarrears'];
     $get_standingarrears=$_POST['get_standingarrears'];
     $temp_branch=$_POST['temp_branch'];
+
+    $subject= $_POST['subject'];
     $message=$_POST['message'];
-    $subject=$_POST['subject'];
+
+
+
+
+
+    //uploading file if exists
+    if(isset($_FILES['attachment'])){
+
+
+        $file_name = $_FILES['attachment']['name'];
+        $file_size = $_FILES['attachment']['size'];
+        $file_tmp = $_FILES['attachment']['tmp_name'];
+        $file_type = $_FILES['attachment']['type'];
+
+
+
+        $value = explode('.',$file_name);
+
+
+
+
+        $file_ext=strtolower(end($value));
+
+        $newfilename = $file_name.'_'.time() . '.' . $file_ext;
+
+
+        move_uploaded_file($file_tmp,"files/".$newfilename);
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //sending mails
+
+    require "../email/PHPMailer/PHPMailerAutoload.php";
+
+    $mail=new PHPMailer();
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
 
 
 
 
     set_time_limit(0);
+
+    //sending mail to selected students
 
     $query_mail = "select * from students_".$get_year." where st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
 
@@ -241,11 +304,76 @@ if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
         $to=$row_mail['st_email'];
 
 
-        $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
-        $headers.="Reply-To: karthickakash17@gmail.com\r\n";
-        $headers.="Content-type: text/html\r\n";
 
-        mail($to,$subject,$message,$headers);
+
+
+
+
+        $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+        $mail->addAddress($to, $to);     // Add a recipient
+
+        $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Reply');
+
+
+
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            $mail->addAttachment('files/'.$newfilename, $newfilename);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->isHTML(true);
+
+        $mail->Subject = $subject;
+        $mail->Body    = '<h3> '.$message.' </h3>';
+
+
+
+        if(!$mail->send()) {
+
+
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+        } else {
+
+            echo 'Message has been sent';
+
+        }
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+                unlink("files/$newfilename");
+
+
+
+            }
+
+
+
+
+
 
 
 
@@ -267,9 +395,74 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 
     $stud_roll= explode(', ', $get_roll);
 
+
+
+
+
+
+
+
+    //uploading file if exists
+    if(isset($_FILES['attachment'])){
+
+
+        $file_name = $_FILES['attachment']['name'];
+        $file_size = $_FILES['attachment']['size'];
+        $file_tmp = $_FILES['attachment']['tmp_name'];
+        $file_type = $_FILES['attachment']['type'];
+
+
+
+        $value = explode('.',$file_name);
+
+
+
+
+        $file_ext=strtolower(end($value));
+
+        $newfilename = $file_name.'_'.time() . '.' . $file_ext;
+
+
+        move_uploaded_file($file_tmp,"files/".$newfilename);
+
+
+
+    }
+
+
+
+
+
+
+    //sending mails
+
+    require "../email/PHPMailer/PHPMailerAutoload.php";
+
+    $mail=new PHPMailer();
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
+
+
+
+
+
+
+
+
+
+
+
     include "../connect.php";
 
     foreach ($stud_roll as $roll_no){
+
 
 
 
@@ -294,11 +487,88 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
         $to=$row_roll_mail['st_email'];
 
 
-        $headers="From: RMD Placements<karthickakash17@gmail.com>\r\n";
-        $headers.="Reply-To: karthickakash17@gmail.com\r\n";
-        $headers.="Content-type: text/html\r\n";
 
-        mail($to,$subject,$message,$headers);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+        $mail->addAddress($to, $to);     // Add a recipient
+
+        $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Reply');
+
+
+
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            $mail->addAttachment('files/'.$newfilename, $newfilename);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->isHTML(true);
+
+        $mail->Subject = $subject;
+        $mail->Body    = '<h3> '.$message.' </h3>';
+
+
+
+        if(!$mail->send()) {
+
+
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+        } else {
+
+            echo 'Message has been sent';
+
+        }
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            unlink("files/$newfilename");
+
+
+
+        }
+
+
+
+
+
+
+
 
 
 
@@ -1397,7 +1667,7 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 <div id="modal-form" class="modal" tabindex="-1">
 									<div class="modal-dialog">
 										<div class="modal-content">
-                                            <form action="search_action.php" method="post">
+                                            <form action="search_action.php" method="post" enctype="multipart/form-data">
 
 										<div class="modal-body">
 
@@ -1461,7 +1731,8 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 															</div>
 														</div>
 														<br/>
-														<div class="space-4"></div>
+														<div class="space-16"></div>
+
 
 														<div class="form-group">
 															<label for="form-field-first">Message</label>
@@ -1473,15 +1744,22 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 
 												</div>
 
-												<div class="col-xs-8 col-sm-6 center">
+                                                <div class="space-16"></div>
 
-														<div class="space"></div>
 
-														<input type="file" />
+												<div class="col-xs-8 col-sm-12 ">
+
+                                                    <div class="space-16"></div>
+                                                    <label for="id-input-file-2">Attachment</label>
+
+
+
+                                                    <input type="file" id="id-input-file-2" name="attachment" />
 													</div>
 												</div>
 											</div>
 
+                                                <div class="space-16"></div>
 											<div class="modal-footer center">
 												<button class="btn btn-sm" data-dismiss="modal">
 													<i class="ace-icon fa fa-times"></i>
@@ -1727,6 +2005,18 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 
 
 
+        $(' #id-input-file-2').ace_file_input({
+            no_file:'No File ...',
+            btn_choose:'Choose',
+            btn_change:'Change',
+            droppable:false,
+            onchange:null,
+            thumbnail:false //| true | large
+            //whitelist:'gif|png|jpg|jpeg'
+            //blacklist:'exe|php'
+            //onchange:''
+            //
+        });
 
 
 

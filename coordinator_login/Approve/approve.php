@@ -324,6 +324,8 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                             ?>
                         
+                            </ul>
+                        </li>
 
                         <li class="dropdown-footer">
                             <a href="#">

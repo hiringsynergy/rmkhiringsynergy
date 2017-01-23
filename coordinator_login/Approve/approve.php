@@ -131,7 +131,7 @@ if (isset($_GET['decline'])) {
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../../reports.php";
+            location.href = "../reports/reports.php";
 
         }
         function myfuncjobs() {
@@ -549,6 +549,17 @@ if (isset($_GET['decline'])) {
 
             </li>
 
+            <li class="active">
+                <a href="approve.php">
+
+                    <i class="menu-icon fa fa-list-alt"></i>
+
+                    <span class="menu-text">Approve</span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
             <li>
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-briefcase"></i>
@@ -581,19 +592,9 @@ if (isset($_GET['decline'])) {
                 </ul>
 
             </li>
+
             <li class="">
                 <a href="../reports/reports.php">
-
-                    <i class="menu-icon fa fa-bar-chart"></i>
-
-                    <span class="menu-text"> Reports </span>
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="active">
-                <a href="Approve.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 

@@ -381,6 +381,15 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
             </li>
 
+            <li class="">
+                <a href="../approve/approve.php">
+                    <i class="menu-icon fa fa-list-alt"></i>
+                    <span class="menu-text"> Approve </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
             <li class="active open">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-briefcase"></i>

@@ -1,18 +1,13 @@
-
 <?php session_start();
 ob_start();
 
 
-
-
-
-if(! isset($_SESSION['user']) && $_SESSION['user']==null){
+if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
     header("Location: ../login.html");
 
 
 }
-
 
 
 ?>
@@ -21,32 +16,36 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
     <title>RMK Hiring Synergy</title>
 
-    <meta name="description" content="overview &amp; stats" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="overview &amp; stats"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports/reports.php";
+            location.href = "../../reports.php";
 
         }
         function myfuncjobs() {
@@ -57,103 +56,100 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             location.href = "../settings.php";
 
         }
-<?php
+        <?php
 
-if(isset($_GET['approvem'])){
-                            
-	include "../connect.php";
+        if (isset($_GET['approvem'])) {
 
-    $rollno=$_GET['rollno'];
-    $tname=$_GET['tname'];
-    $select="SELECT * from $tname where st_roll='{$rollno}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $new_mail=$row['st_changemail'];
-    $query1="UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
+            include "../connect.php";
 
-    $result1=mysqli_query($connect, $query1);
-	header("Location: approve.php");
-    if(!$connect){
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $new_mail = $row['st_changemail'];
+            $query1 = "UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
 
-        die("".mysqli_error($connect));
-    }
-     } 
-if(isset($_GET['declinem'])){
-                            
-	include "../connect.php";
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
 
-    $rollno=$_GET['rollno'];
-    $tname=$_GET['tname'];
-    $select="SELECT * from $tname where st_roll='{$rollno}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $query1="UPDATE $tname SET st_changemail=NULL WHERE st_roll='{$rollno}'";
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['declinem'])) {
 
-    $result1=mysqli_query($connect, $query1);
-	header("Location: approve.php");
-    if(!$connect){
+            include "../connect.php";
 
-        die("".mysqli_error($connect));
-    }
-     } 
-if(isset($_GET['approvep'])){
-                            
-	include "../connect.php";
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $query1 = "UPDATE $tname SET st_changemail=NULL WHERE st_roll='{$rollno}'";
 
-    $rollno=$_GET['rollno'];
-    $tname=$_GET['tname'];
-    $select="SELECT * from $tname where st_roll='{$rollno}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $new_phone=$row['st_changephone'];
-    $query1="UPDATE $tname SET  st_phone='{$new_phone}',st_changephone=NULL WHERE st_roll='{$rollno}'";
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
 
-    $result1=mysqli_query($connect, $query1);
-	header("Location: approve.php");
-    if(!$connect){
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['approvep'])) {
 
-        die("".mysqli_error($connect));
-    }
-     } 
-if(isset($_GET['declinep'])){
-                            
-	include "../connect.php";
+            include "../connect.php";
 
-    $rollno=$_GET['rollno'];
-    $tname=$_GET['tname'];
-    $select="SELECT * from $tname where st_roll='{$rollno}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $query1="UPDATE $tname SET st_changephone=NULL WHERE st_roll='{$rollno}'";
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $new_phone = $row['st_changephone'];
+            $query1 = "UPDATE $tname SET  st_phone='{$new_phone}',st_changephone=NULL WHERE st_roll='{$rollno}'";
 
-    $result1=mysqli_query($connect, $query1);
-	header("Location: approve.php");
-    if(!$connect){
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
 
-        die("".mysqli_error($connect));
-    }
-     } 
-?>
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['declinep'])) {
+
+            include "../connect.php";
+
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $query1 = "UPDATE $tname SET st_changephone=NULL WHERE st_roll='{$rollno}'";
+
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
+
+                die("" . mysqli_error($connect));
+            }
+        }
+        ?>
 
     </script>
-
-
-
 
 
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css"/>
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
@@ -191,16 +187,16 @@ if(isset($_GET['declinep'])){
                     <i class=""></i>
                     <?php
 
-                    $database=$_SESSION['database_name'];
-                    if(preg_match('/rmd_database/', $database)){
+                    $database = $_SESSION['database_name'];
+                    if (preg_match('/rmd_database/', $database)) {
                         ?>
                         <img src="../images/rmd.jpg" style="height: 25px;">
-                        <label style="font-size: large;">RMD Engineering College  </label>
+                        <label style="font-size: large;">RMD Engineering College </label>
 
                         <?php
                     }
 
-                    if(preg_match('/rmk_database/', $database)){
+                    if (preg_match('/rmk_database/', $database)) {
                         ?>
                         <img src="../images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK Engineering College </label>
@@ -208,7 +204,7 @@ if(isset($_GET['declinep'])){
                         <?php
                     }
 
-                    if(preg_match('/rmkcet_database/', $database)){
+                    if (preg_match('/rmkcet_database/', $database)) {
                         ?>
                         <img src="../images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK College of Engineering and Technology </label>
@@ -296,26 +292,26 @@ if(isset($_GET['declinep'])){
 
                         <?php
                         include "../connect.php";
-                        $name=$_SESSION['user'];
+                        $name = $_SESSION['user'];
 
-                        $query="select * from login_coordinator where username='{$name}'";
+                        $query = "select * from login_coordinator where username='{$name}'";
 
-                        $result=mysqli_query($connect,$query);
+                        $result = mysqli_query($connect, $query);
 
-                        if(!$result){
+                        if (!$result) {
 
 
                             mysqli_error($connect);
                         }
 
-                        while($row=mysqli_fetch_assoc($result)){
-
+                        while ($row = mysqli_fetch_assoc($result)) {
 
 
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>"
+                                 alt="Jason's Photo"/>
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -357,12 +353,18 @@ if(isset($_GET['declinep'])){
 
 <div class="main-container ace-save-state" id="main-container">
     <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {
+        }
     </script>
 
     <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
         <script type="text/javascript">
-            try{ace.settings.loadState('sidebar')}catch(e){}
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {
+            }
         </script>
         <!--side bar begins-->
 
@@ -371,18 +373,18 @@ if(isset($_GET['declinep'])){
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 
 
-                <button class="btn btn-success"  onclick="myfuncreport()" id="myButton1" >
+                <button class="btn btn-success" onclick="myfuncreport()" id="myButton1">
 
-                    <i class="ace-icon fa fa-signal" ></i>
+                    <i class="ace-icon fa fa-signal"></i>
 
 
                 </button>
 
-                <button class="btn btn-warning"  onclick="myfuncjobs()" id="myButton3">
+                <button class="btn btn-warning" onclick="myfuncjobs()" id="myButton3">
                     <i class="ace-icon fa fa-users"></i>
                 </button>
 
-                <button class="btn btn-danger"  onclick="myfuncsettings()" id="myButton4">
+                <button class="btn btn-danger" onclick="myfuncsettings()" id="myButton4">
                     <i class="ace-icon fa fa-cogs"></i>
                 </button>
             </div>
@@ -409,7 +411,7 @@ if(isset($_GET['declinep'])){
             </li>
 
             <li class="">
-                <a href="../profile/profile.php" >
+                <a href="../profile/profile.php">
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
@@ -424,7 +426,7 @@ if(isset($_GET['declinep'])){
             </li>
 
             <li class="">
-                <a href="../settings.php" >
+                <a href="../settings.php">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -489,8 +491,6 @@ if(isset($_GET['declinep'])){
 
                 <b class="arrow"></b>
             </li>
-
-
 
 
             <li class="">
@@ -560,7 +560,8 @@ if(isset($_GET['declinep'])){
         </ul><!-- /.nav-list -->
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
         </div>
     </div>
 
@@ -585,173 +586,167 @@ if(isset($_GET['declinep'])){
                     Approve
 
 
-
                 </div>
 
 
-                <div class="col-xs-6 col-xs-push-2">
+                <div class="col-xs-12">
 
 
+                    <!-- /.page-header -->
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
 
 
-                        
-
-                <!-- /.page-header -->
-
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-
-                        <?php
-
+                            <?php
 
 
                             include "../connect.php";
-                            $query_table="SELECT * FROM table_map";
-                            $result_table=mysqli_query($connect, $query_table);
+                            $query_table = "SELECT * FROM table_map";
+                            $result_table = mysqli_query($connect, $query_table);
 
-                            while ($row=mysqli_fetch_assoc($result_table)) {
-                                $tname=$row['table_name'];
-                                $query_year="SELECT * from $tname";
-                                $result_year=mysqli_query($connect,$query_year);
-		                        while($row1=mysqli_fetch_assoc($result_year)){
-			
-
-
-		if($row1['st_changemail']!=NULL) {
+                            while ($row = mysqli_fetch_assoc($result_table)) {
+                                $tname = $row['table_name'];
+                                $query_year = "SELECT * from $tname";
+                                $result_year = mysqli_query($connect, $query_year);
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
 
 
-                                    ?>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12">
-							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
-								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														<i class="ace-icon fa fa-sort"></i>
-														Change request
-													</h6>
-
-													<div class="widget-toolbar">
-														<a href="#" data-action="settings">
-															<i class="ace-icon fa fa-cog"></i>
-														</a>
-
-														<a href="#" data-action="reload">
-															<i class="ace-icon fa fa-refresh"></i>
-														</a>
-
-														<a href="#" data-action="collapse">
-															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
-														</a>
-
-														<a href="#" data-action="close">
-															<i class="ace-icon fa fa-times"></i>
-														</a>
-													</div>
-												</div>
-
-												<div class="widget-body">
-													<div class="widget-main">
-														<p >
-														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
-														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label></p>
-														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
-														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approvem">Approve</button>
-   															
-													
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="declinem">Decline</button>
-   															
-														
-													</div>
-												</div>
-											</div>
-										</div></form>
-					</div>
-				</div>
-
-                                    <!--                            <div class="space-14"></div>-->
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
 
 
-                                    <?php
-			}
-				if($row1['st_changephone']!=NULL) {
+                                        ?>
+
+                                        <div class="">
+                                            <div class="col-xs-12 ">
+
+                                                <div class="widget-box widget-color-orange collapsed" id="widget-box-3">
+                                                    <div class="widget-header widget-header-small">
+                                                        <h6 class="widget-title">
+                                                            <i class="ace-icon fa fa-sort"></i>
+                                                            Change request
+                                                        </h6>
+
+                                                        <div class="widget-toolbar">
+                                                            <a href="#" data-action="settings">
+                                                                <i class="ace-icon fa fa-cog"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="reload">
+                                                                <i class="ace-icon fa fa-refresh"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="collapse">
+                                                                <i class="ace-icon fa fa-plus" data-icon-show="fa-plus"
+                                                                   data-icon-hide="fa-minus"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="close">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="widget-body">
+                                                        <form class="modal-content" action="approve.php" method="get"
+                                                              enctype="multipart/form-data">
+                                                            <div class="widget-main">
+                                                                <p>
+                                                                    <label class="green"><?php echo $row1['st_roll'] ?>
+                                                                        , <?php echo $row1['st_name'] ?> </label> has
+                                                                    requested for the change of
+                                                                    <label class="orange">
 
 
-                                    ?>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12">
-							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
-								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														<i class="ace-icon fa fa-sort"></i>
-														Change request
-													</h6>
-
-													<div class="widget-toolbar">
-														<a href="#" data-action="settings">
-															<i class="ace-icon fa fa-cog"></i>
-														</a>
-
-														<a href="#" data-action="reload">
-															<i class="ace-icon fa fa-refresh"></i>
-														</a>
-
-														<a href="#" data-action="collapse">
-															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
-														</a>
-
-														<a href="#" data-action="close">
-															<i class="ace-icon fa fa-times"></i>
-														</a>
-													</div>
-												</div>
-
-												<div class="widget-body">
-													<div class="widget-main">
-														<p >
-														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changephone']!=NULL){ echo "Phone No : "; echo $row1['st_phone']; } ?></label>
-														to  <label class="orange">Phone No : <?php echo $row1['st_changephone'] ?></label></p>
-														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
-														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approvep">Approve</button>
-   															
-													
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="declinep">Decline</button>
-   															
-														
-													</div>
-												</div>
-											</div>
-										</div></form>
-					</div>
-				</div>
-
-                                    <!--                            <div class="space-14"></div>-->
+                                                                        <?php if ($row1['st_changemail'] != NULL) {
+                                                                        echo "Email id : ";
+                                                                        echo $row1['st_email'];
+                                                                        ?></label>
+                                                                    to <label class="orange">Mail id
+                                                                        : <?php echo $row1['st_changemail'];
 
 
-                                    <?php
-			}
 
+                                                                           }
+
+                                                                            ?>
+
+
+
+
+
+                                                                        <?php
+
+
+
+                                                                        if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                            echo " <label style='color: black;'> and  </label>";
+
+                                                                        }
+
+
+
+
+
+
+                                                                        if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                        echo " Phone No : ";
+                                                                        echo $row1['st_phone'];
+                                                                        ?></label>
+                                                                           to <label class="orange"> Phone No
+                                                                        : <?php echo $row1['st_changephone'] ?></label>
+
+
+                                                                    <?php } ?>
+
+
+                                                                    </label></p>
+                                                                <input type="hidden" name="rollno"
+                                                                       value="<?php echo $row1['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname"
+                                                                       value="<?php echo $row['table_name'] ?>"/>
+                                                                <button class=" btn btn-warning col-xs-push-9"
+                                                                        type="submit" name="approvem">
+                                                                    Approve
+                                                                </button>
+
+
+                                                                <button class=" btn btn-warning col-xs-push-9"
+                                                                        type="submit" name="declinem">
+                                                                    Decline
+                                                                </button>
+
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <?php
+                                    }
 
 
                                 }
 
+
                             }
-                        
 
 
+                            ?>
+                        </div>
 
-
-
-                        ?>
-
-
-
-
+                        <!--                            <div class="space-14"></div>-->
 
 
                         <!-- PAGE CONTENT ENDS -->
@@ -791,7 +786,7 @@ if(isset($_GET['declinep'])){
 <script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 <script src="../assets/js/bootstrap.min.js"></script>
 
@@ -814,55 +809,55 @@ if(isset($_GET['declinep'])){
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
-    jQuery(function($) {
-        $('#id-disable-check').on('click', function() {
+    jQuery(function ($) {
+        $('#id-disable-check').on('click', function () {
             var inp = $('#form-input-readonly').get(0);
-            if(inp.hasAttribute('disabled')) {
-                inp.setAttribute('readonly' , 'true');
+            if (inp.hasAttribute('disabled')) {
+                inp.setAttribute('readonly', 'true');
                 inp.removeAttribute('disabled');
-                inp.value="This text field is readonly!";
+                inp.value = "This text field is readonly!";
             }
             else {
-                inp.setAttribute('disabled' , 'disabled');
+                inp.setAttribute('disabled', 'disabled');
                 inp.removeAttribute('readonly');
-                inp.value="This text field is disabled!";
+                inp.value = "This text field is disabled!";
             }
         });
 
 
-        if(!ace.vars['touch']) {
-            $('.chosen-select').chosen({allow_single_deselect:true});
+        if (!ace.vars['touch']) {
+            $('.chosen-select').chosen({allow_single_deselect: true});
             //resize the chosen on window resize
 
             $(window)
                 .off('resize.chosen')
-                .on('resize.chosen', function() {
-                    $('.chosen-select').each(function() {
+                .on('resize.chosen', function () {
+                    $('.chosen-select').each(function () {
                         var $this = $(this);
                         $this.next().css({'width': $this.parent().width()});
                     })
                 }).trigger('resize.chosen');
             //resize chosen on sidebar collapse/expand
-            $(document).on('settings.ace.chosen', function(e, event_name, event_val) {
-                if(event_name != 'sidebar_collapsed') return;
-                $('.chosen-select').each(function() {
+            $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+                if (event_name != 'sidebar_collapsed') return;
+                $('.chosen-select').each(function () {
                     var $this = $(this);
                     $this.next().css({'width': $this.parent().width()});
                 })
             });
 
 
-            $('#chosen-multiple-style .btn').on('click', function(e){
+            $('#chosen-multiple-style .btn').on('click', function (e) {
                 var target = $(this).find('input[type=radio]');
                 var which = parseInt(target.val());
-                if(which == 2) $('#form-field-select-4').addClass('tag-input-style').backgroundColor('red');
+                if (which == 2) $('#form-field-select-4').addClass('tag-input-style').backgroundColor('red');
                 else $('#form-field-select-4').removeClass('tag-input-style');
             });
         }
 
 
-        $('[data-rel=tooltip]').tooltip({container:'body'});
-        $('[data-rel=popover]').popover({container:'body'});
+        $('[data-rel=tooltip]').tooltip({container: 'body'});
+        $('[data-rel=popover]').popover({container: 'body'});
 
         autosize($('textarea[class*=autosize]'));
 
@@ -871,74 +866,76 @@ if(isset($_GET['declinep'])){
             limitText: 'max allowed : %n.'
         });
 
-        $.mask.definitions['~']='[+-]';
+        $.mask.definitions['~'] = '[+-]';
         $('.input-mask-date').mask('99/99/9999');
         $('.input-mask-phone').mask('(999) 999-9999');
         $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
-        $(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+        $(".input-mask-product").mask("a*-999-a999", {
+            placeholder: " ", completed: function () {
+                alert("You typed the following: " + this.val());
+            }
+        });
 
 
-
-        $( "#input-size-slider" ).css('width','200px').slider({
-            value:1,
+        $("#input-size-slider").css('width', '200px').slider({
+            value: 1,
             range: "min",
             min: 1,
             max: 8,
             step: 1,
-            slide: function( event, ui ) {
+            slide: function (event, ui) {
                 var sizing = ['', 'input-sm', 'input-lg', 'input-mini', 'input-small', 'input-medium', 'input-large', 'input-xlarge', 'input-xxlarge'];
                 var val = parseInt(ui.value);
-                $('#form-field-4').attr('class', sizing[val]).attr('placeholder', '.'+sizing[val]);
+                $('#form-field-4').attr('class', sizing[val]).attr('placeholder', '.' + sizing[val]);
             }
         });
 
-        $( "#input-span-slider" ).slider({
-            value:1,
+        $("#input-span-slider").slider({
+            value: 1,
             range: "min",
             min: 1,
             max: 12,
             step: 1,
-            slide: function( event, ui ) {
+            slide: function (event, ui) {
                 var val = parseInt(ui.value);
-                $('#form-field-5').attr('class', 'col-xs-'+val).val('.col-xs-'+val);
+                $('#form-field-5').attr('class', 'col-xs-' + val).val('.col-xs-' + val);
             }
         });
 
 
-
         //"jQuery UI Slider"
         //range slider tooltip example
-        $( "#slider-range" ).css('height','200px').slider({
+        $("#slider-range").css('height', '200px').slider({
             orientation: "vertical",
             range: true,
             min: 0,
             max: 100,
-            values: [ 17, 67 ],
-            slide: function( event, ui ) {
-                var val = ui.values[$(ui.handle).index()-1] + "";
+            values: [17, 67],
+            slide: function (event, ui) {
+                var val = ui.values[$(ui.handle).index() - 1] + "";
 
-                if( !ui.handle.firstChild ) {
+                if (!ui.handle.firstChild) {
                     $("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>")
                         .prependTo(ui.handle);
                 }
                 $(ui.handle.firstChild).show().children().eq(1).text(val);
             }
-        }).find('span.ui-slider-handle').on('blur', function(){
+        }).find('span.ui-slider-handle').on('blur', function () {
             $(this.firstChild).hide();
         });
 
 
-        $( "#slider-range-max" ).slider({
+        $("#slider-range-max").slider({
             range: "max",
             min: 1,
             max: 10,
             value: 2
         });
 
-        $( "#slider-eq > span" ).css({width:'90%', 'float':'left', margin:'15px'}).each(function() {
+        $("#slider-eq > span").css({width: '90%', 'float': 'left', margin: '15px'}).each(function () {
             // read initial values from markup and remove that
-            var value = parseInt( $( this ).text(), 10 );
-            $( this ).empty().slider({
+            var value = parseInt($(this).text(), 10);
+            $(this).empty().slider({
                 value: value,
                 range: "min",
                 animate: true
@@ -950,12 +947,12 @@ if(isset($_GET['declinep'])){
 
 
         $('#id-input-file-1 , #id-input-file-2').ace_file_input({
-            no_file:'No File ...',
-            btn_choose:'Choose',
-            btn_change:'Change',
-            droppable:false,
-            onchange:null,
-            thumbnail:false //| true | large
+            no_file: 'No File ...',
+            btn_choose: 'Choose',
+            btn_change: 'Change',
+            droppable: false,
+            onchange: null,
+            thumbnail: false //| true | large
             //whitelist:'gif|png|jpg|jpeg'
             //blacklist:'exe|php'
             //onchange:''
@@ -982,7 +979,7 @@ if(isset($_GET['declinep'])){
 						return true;
 					}*/
             ,
-            preview_error : function(filename, error_code) {
+            preview_error: function (filename, error_code) {
                 //name of the file that failed
                 //error_code values
                 //1 = 'FILE_LOAD_FAILED',
@@ -991,7 +988,7 @@ if(isset($_GET['declinep'])){
                 //alert(error_code);
             }
 
-        }).on('change', function(){
+        }).on('change', function () {
             //console.log($(this).data('ace_input_files'));
             //console.log($(this).data('ace_input_method'));
         });
@@ -1004,18 +1001,16 @@ if(isset($_GET['declinep'])){
         //]);
 
 
-
-
         //dynamically change allowed formats by changing allowExt && allowMime function
-        $('#id-file-format').removeAttr('checked').on('change', function() {
+        $('#id-file-format').removeAttr('checked').on('change', function () {
             var whitelist_ext, whitelist_mime;
             var btn_choose
             var no_icon
-            if(this.checked) {
+            if (this.checked) {
                 btn_choose = "Drop images here or click to choose";
                 no_icon = "ace-icon fa fa-picture-o";
 
-                whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];
+                whitelist_ext = ["jpeg", "jpg", "png", "gif", "bmp"];
                 whitelist_mime = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp"];
             }
             else {
@@ -1038,7 +1033,7 @@ if(isset($_GET['declinep'])){
 
             file_input
                 .off('file.error.ace')
-                .on('file.error.ace', function(e, info) {
+                .on('file.error.ace', function (e, info) {
                     //console.log(info.file_count);//number of selected files
                     //console.log(info.invalid_count);//number of invalid files
                     //console.log(info.error_list);//a list of errors in the following format
@@ -1081,14 +1076,49 @@ if(isset($_GET['declinep'])){
 
         });
 
-        $('#spinner1').ace_spinner({value:0,min:0,max:200,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+        $('#spinner1').ace_spinner({
+            value: 0,
+            min: 0,
+            max: 200,
+            step: 10,
+            btn_up_class: 'btn-info',
+            btn_down_class: 'btn-info'
+        })
             .closest('.ace-spinner')
-            .on('changed.fu.spinbox', function(){
+            .on('changed.fu.spinbox', function () {
                 //console.log($('#spinner1').val())
             });
-        $('#spinner2').ace_spinner({value:0,min:0,max:10000,step:100, touch_spinner: true, icon_up:'ace-icon fa fa-caret-up bigger-110', icon_down:'ace-icon fa fa-caret-down bigger-110'});
-        $('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
-        $('#spinner4').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus', icon_down:'ace-icon fa fa-minus', btn_up_class:'btn-purple' , btn_down_class:'btn-purple'});
+        $('#spinner2').ace_spinner({
+            value: 0,
+            min: 0,
+            max: 10000,
+            step: 100,
+            touch_spinner: true,
+            icon_up: 'ace-icon fa fa-caret-up bigger-110',
+            icon_down: 'ace-icon fa fa-caret-down bigger-110'
+        });
+        $('#spinner3').ace_spinner({
+            value: 0,
+            min: -100,
+            max: 100,
+            step: 10,
+            on_sides: true,
+            icon_up: 'ace-icon fa fa-plus bigger-110',
+            icon_down: 'ace-icon fa fa-minus bigger-110',
+            btn_up_class: 'btn-success',
+            btn_down_class: 'btn-danger'
+        });
+        $('#spinner4').ace_spinner({
+            value: 0,
+            min: -100,
+            max: 100,
+            step: 10,
+            on_sides: true,
+            icon_up: 'ace-icon fa fa-plus',
+            icon_down: 'ace-icon fa fa-minus',
+            btn_up_class: 'btn-purple',
+            btn_down_class: 'btn-purple'
+        });
 
         //$('#spinner1').ace_spinner('disable').ace_spinner('value', 11);
         //or
@@ -1103,24 +1133,24 @@ if(isset($_GET['declinep'])){
             todayHighlight: true
         })
         //show datepicker when clicking on the icon
-            .next().on(ace.click_event, function(){
+            .next().on(ace.click_event, function () {
             $(this).prev().focus();
         });
 
         //or change it into a date range picker
-        $('.input-daterange').datepicker({autoclose:true});
+        $('.input-daterange').datepicker({autoclose: true});
 
 
         //to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
         $('input[name=date-range-picker]').daterangepicker({
-            'applyClass' : 'btn-sm btn-success',
-            'cancelClass' : 'btn-sm btn-default',
+            'applyClass': 'btn-sm btn-success',
+            'cancelClass': 'btn-sm btn-default',
             locale: {
                 applyLabel: 'Apply',
                 cancelLabel: 'Cancel',
             }
         })
-            .prev().on(ace.click_event, function(){
+            .prev().on(ace.click_event, function () {
             $(this).next().focus();
         });
 
@@ -1134,16 +1164,14 @@ if(isset($_GET['declinep'])){
                 up: 'fa fa-chevron-up',
                 down: 'fa fa-chevron-down'
             }
-        }).on('focus', function() {
+        }).on('focus', function () {
             $('#timepicker1').timepicker('showWidget');
-        }).next().on(ace.click_event, function(){
+        }).next().on(ace.click_event, function () {
             $(this).prev().focus();
         });
 
 
-
-
-        if(!ace.vars['old_ie']) $('#date-timepicker1').datetimepicker({
+        if (!ace.vars['old_ie']) $('#date-timepicker1').datetimepicker({
             //format: 'MM/DD/YYYY h:mm:ss A',//use this option to display seconds
             icons: {
                 time: 'fa fa-clock-o',
@@ -1156,7 +1184,7 @@ if(isset($_GET['declinep'])){
                 clear: 'fa fa-trash',
                 close: 'fa fa-times'
             }
-        }).next().on(ace.click_event, function(){
+        }).next().on(ace.click_event, function () {
             $(this).prev().focus();
         });
 
@@ -1175,10 +1203,10 @@ if(isset($_GET['declinep'])){
 
 
         var tag_input = $('#form-field-tags');
-        try{
+        try {
             tag_input.tag(
                 {
-                    placeholder:tag_input.attr('placeholder'),
+                    placeholder: tag_input.attr('placeholder'),
                     //enable typeahead by specifying the source array
                     source: ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
                     /**
@@ -1200,32 +1228,32 @@ if(isset($_GET['declinep'])){
             var index = $tag_obj.inValues('some tag');
             $tag_obj.remove(index);
         }
-        catch(e) {
+        catch (e) {
             //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-            tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+            tag_input.after('<textarea id="' + tag_input.attr('id') + '" name="' + tag_input.attr('name') + '" rows="3">' + tag_input.val() + '</textarea>').remove();
             //autosize($('#form-field-tags'));
         }
 
 
         /////////
         $('#modal-form input[type=file]').ace_file_input({
-            style:'well',
-            btn_choose:'Drop files here or click to choose',
-            btn_change:null,
-            no_icon:'ace-icon fa fa-cloud-upload',
-            droppable:true,
-            thumbnail:'large'
+            style: 'well',
+            btn_choose: 'Drop files here or click to choose',
+            btn_change: null,
+            no_icon: 'ace-icon fa fa-cloud-upload',
+            droppable: true,
+            thumbnail: 'large'
         });
 
         //chosen plugin inside a modal will have a zero width because the select element is originally hidden
         //and its width cannot be determined.
         //so we set the width after modal is show
         $('#modal-form').on('shown.bs.modal', function () {
-            if(!ace.vars['touch']) {
-                $(this).find('.chosen-container').each(function(){
-                    $(this).find('a:first-child').css('width' , '210px');
-                    $(this).find('.chosen-drop').css('width' , '210px');
-                    $(this).find('.chosen-search input').css('width' , '200px');
+            if (!ace.vars['touch']) {
+                $(this).find('.chosen-container').each(function () {
+                    $(this).find('a:first-child').css('width', '210px');
+                    $(this).find('.chosen-drop').css('width', '210px');
+                    $(this).find('.chosen-search input').css('width', '200px');
                 });
             }
         });
@@ -1239,7 +1267,7 @@ if(isset($_GET['declinep'])){
 
 
 
-        $(document).one('ajaxloadstart.page', function(e) {
+        $(document).one('ajaxloadstart.page', function (e) {
             autosize.destroy('textarea[class*=autosize]')
 
             $('.limiterBox,.autosizejs').remove();
@@ -1247,73 +1275,67 @@ if(isset($_GET['declinep'])){
         });
 
 
-
 //when a widget is shown/hidden/closed, we save its state for later retrieval
-				$(document).on('shown.ace.widget hidden.ace.widget closed.ace.widget', '.widget-box', function(event) {
-					var widgets = ace.data.get('demo', 'widget-state', true);
-					if(widgets == null) widgets = {}
-			
-					var id = $(this).attr('id');
-					widgets[id] = event.type;
-					ace.data.set('demo', 'widget-state', widgets, null, true);
-				});
-			
-			
-				(function() {
-					//restore widget order
-					var container_list = ace.data.get('demo', 'widget-order', true);
-					if(container_list) {
-						for(var container_id in container_list) if(container_list.hasOwnProperty(container_id)) {
-			
-							var widgets_inside_container = container_list[container_id];
-							if(widgets_inside_container.length == 0) continue;
-							
-							for(var i = 0; i < widgets_inside_container.length; i++) {
-								var widget = widgets_inside_container[i];
-								$('#'+widget).appendTo('#'+container_id);
-							}
-			
-						}
-					}
-					
-					
-					//restore widget state
-					var widgets = ace.data.get('demo', 'widget-state', true);
-					if(widgets != null) {
-						for(var id in widgets) if(widgets.hasOwnProperty(id)) {
-							var state = widgets[id];
-							var widget = $('#'+id);
-							if
-							(
-								(state == 'shown' && widget.hasClass('collapsed'))
-								||
-								(state == 'hidden' && !widget.hasClass('collapsed'))
-							) 
-							{
-								widget.widget_box('toggleFast');
-							}
-							else if(state == 'closed') {
-								widget.widget_box('closeFast');
-							}
-						}
-					}
-					
-					
-					$('#main-widget-container').removeClass('invisible');
-					
-					
-					//reset saved positions and states
-					$('#reset-widgets').on('click', function() {
-						ace.data.remove('demo', 'widget-state');
-						ace.data.remove('demo', 'widget-order');
-						document.location.reload();
-					});
-				
-				})();
-			
+        $(document).on('shown.ace.widget hidden.ace.widget closed.ace.widget', '.widget-box', function (event) {
+            var widgets = ace.data.get('demo', 'widget-state', true);
+            if (widgets == null) widgets = {}
+
+            var id = $(this).attr('id');
+            widgets[id] = event.type;
+            ace.data.set('demo', 'widget-state', widgets, null, true);
+        });
 
 
+        (function () {
+            //restore widget order
+            var container_list = ace.data.get('demo', 'widget-order', true);
+            if (container_list) {
+                for (var container_id in container_list) if (container_list.hasOwnProperty(container_id)) {
 
+                    var widgets_inside_container = container_list[container_id];
+                    if (widgets_inside_container.length == 0) continue;
+
+                    for (var i = 0; i < widgets_inside_container.length; i++) {
+                        var widget = widgets_inside_container[i];
+                        $('#' + widget).appendTo('#' + container_id);
+                    }
+
+                }
+            }
+
+
+            //restore widget state
+            var widgets = ace.data.get('demo', 'widget-state', true);
+            if (widgets != null) {
+                for (var id in widgets) if (widgets.hasOwnProperty(id)) {
+                    var state = widgets[id];
+                    var widget = $('#' + id);
+                    if
+                    (
+                        (state == 'shown' && widget.hasClass('collapsed'))
+                        ||
+                        (state == 'hidden' && !widget.hasClass('collapsed'))
+                    ) {
+                        widget.widget_box('toggleFast');
+                    }
+                    else if (state == 'closed') {
+                        widget.widget_box('closeFast');
+                    }
+                }
+            }
+
+
+            $('#main-widget-container').removeClass('invisible');
+
+
+            //reset saved positions and states
+            $('#reset-widgets').on('click', function () {
+                ace.data.remove('demo', 'widget-state');
+                ace.data.remove('demo', 'widget-order');
+                document.location.reload();
+            });
+
+        })();
 
 
     });

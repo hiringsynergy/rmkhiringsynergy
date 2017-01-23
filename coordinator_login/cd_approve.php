@@ -1,22 +1,4 @@
 
-<?php session_start();
-ob_start();
-
-
-
-
-
-if(! isset($_SESSION['user']) && $_SESSION['user']==null){
-
-    header("Location: ../login.html");
-
-
-}
-
-
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +11,8 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 
     <!-- Latest compiled and minified CSS -->
@@ -46,41 +28,41 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports/reports.php";
+            location.href = "reports/reports.php";
 
         }
         function myfuncjobs() {
-            location.href = "../jobs/jobs_panel.php";
+            location.href = "jobs/jobs_panel.php";
 
         }
         function myfuncsettings() {
-            location.href = "../settings.php";
+            location.href = "settings.php";
 
         }
         function approvefunc($rollno,$tname){
 
-alert"hello";
-<?php
-                            include "../connect.php";
 
-    $select="SELECT * from $tname where st_roll='{$rollno}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $new_mail=$row['st_changemail'];
-    $query1="UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
+            <?php
+            include "connect.php";
 
-           // location.href="show_lists.php?jid="+str+"&flag=0";
+            $select="SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result=mysqli_query($connect, $select);
+            $row=mysqli_fetch_assoc($select_result);
+            $new_mail=$row['st_changemail'];
+            $query1="UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
+
+            // location.href="show_lists.php?jid="+str+"&flag=0";
 
 
-  $result1=mysqli_query($connect, $query1);
-	header("Location: approve.php");
-    if(!$connect){
+            $result1=mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if(!$connect){
 
-        die("".mysqli_error($connect));
-    }
-      
-?>
-}
+                die("".mysqli_error($connect));
+            }
+
+            ?>
+        }
     </script>
 
 
@@ -90,31 +72,31 @@ alert"hello";
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="../assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
+    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
     <![endif]-->
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="../assets/js/ace-extra.min.js"></script>
+    <script src="assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-    <script src="../assets/js/html5shiv.min.js"></script>
-    <script src="../assets/js/respond.min.js"></script>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -132,7 +114,7 @@ alert"hello";
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="../reports/reports.php" class="navbar-brand">
+            <a href="reports/reports.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
                     <?php
@@ -140,7 +122,7 @@ alert"hello";
                     $database=$_SESSION['database_name'];
                     if(preg_match('/rmd_database/', $database)){
                         ?>
-                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <img src="images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMD Engineering College  </label>
 
                         <?php
@@ -148,7 +130,7 @@ alert"hello";
 
                     if(preg_match('/rmk_database/', $database)){
                         ?>
-                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <img src="images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK Engineering College </label>
 
                         <?php
@@ -156,7 +138,7 @@ alert"hello";
 
                     if(preg_match('/rmkcet_database/', $database)){
                         ?>
-                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <img src="images/rmd.jpg" style="height: 25px;">
                         <label style="font-size: large;">RMK College of Engineering and Technology </label>
 
                         <?php
@@ -273,14 +255,14 @@ alert"hello";
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="../settings.php">
+                            <a href="settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
                         </li>
 
                         <li>
-                            <a href="../profile/profile.php">
+                            <a href="profile/profile.php">
                                 <i class="ace-icon fa fa-user"></i>
                                 Profile
                             </a>
@@ -289,7 +271,7 @@ alert"hello";
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../../login_out/logout.php">
+                            <a href="../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
@@ -346,7 +328,7 @@ alert"hello";
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="../index.php">
+                <a href="index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
@@ -355,7 +337,7 @@ alert"hello";
             </li>
 
             <li class="">
-                <a href="../profile/profile.php" >
+                <a href="profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
 							Your Profile
@@ -370,7 +352,7 @@ alert"hello";
             </li>
 
             <li class="">
-                <a href="../settings.php" >
+                <a href="settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
 
@@ -394,7 +376,7 @@ alert"hello";
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="../jobs/view_jobs.php">
+                        <a href="jobs/view_jobs.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View all Jobs
                         </a>
@@ -403,7 +385,7 @@ alert"hello";
                     </li>
 
                     <li class="">
-                        <a href="../jobs/jobs_panel.php">
+                        <a href="jobs/jobs_panel.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Jobs Panel
                         </a>
@@ -415,7 +397,7 @@ alert"hello";
 
             </li>
             <li class="">
-                <a href="../reports/reports.php">
+                <a href="reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -426,7 +408,7 @@ alert"hello";
             </li>
 
             <li class="active">
-                <a href="Approve.php">
+                <a href="reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -452,7 +434,7 @@ alert"hello";
                 <ul class="submenu">
 
                     <li class="">
-                        <a href="../company/view_companies.php">
+                        <a href="company/view_companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View Companies
                         </a>
@@ -460,7 +442,7 @@ alert"hello";
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="../company/companies.php">
+                        <a href="company/companies.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Company Panel
                         </a>
@@ -484,7 +466,7 @@ alert"hello";
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="../search/advanced_search.php">
+                        <a href="search/advanced_search.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Advanced Search
                         </a>
@@ -492,7 +474,7 @@ alert"hello";
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="../email.php">
+                        <a href="email.php">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Email
                         </a>
@@ -516,7 +498,7 @@ alert"hello";
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="../index.php">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li class="active">Approve</li>
                 </ul><!-- /.breadcrumb -->
@@ -540,89 +522,89 @@ alert"hello";
 
 
 
-                        
-
-                <!-- /.page-header -->
-
-                <div class="row">
-
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-
-                        <?php
 
 
+                    <!-- /.page-header -->
 
-                            include "../connect.php";
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+
+                            <?php
+
+
+
+                            include "connect.php";
                             $query_table="SELECT * FROM table_map";
                             $result_table=mysqli_query($connect, $query_table);
 
                             while ($row=mysqli_fetch_assoc($result_table)) {
-                                $tname=$row['table_name'];
-                                $query_year="SELECT * from $tname";
-                                $result_year=mysqli_query($connect,$query_year);
-		                        while($row1=mysqli_fetch_assoc($result_year)){
-			
-                                	if($row1['st_changemail']!=NULL && $row1['st_changephone']!=NULL) {
+                            $tname=$row['table_name'];
+                            $query_year="SELECT * from $tname";
+                            $result_year=mysqli_query($connect,$query_year);
+                            while($row1=mysqli_fetch_assoc($result_year)){
+
+                            if($row1['st_changemail']!=NULL && $row1['st_changephone']!=NULL) {
 
 
-                                    ?>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12">
-								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														<i class="ace-icon fa fa-sort"></i>
-														Change request
-													</h6>
+                            ?>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="widget-box widget-color-orange collapsed" id="widget-box-3">
+                                        <div class="widget-header widget-header-small">
+                                            <h6 class="widget-title">
+                                                <i class="ace-icon fa fa-sort"></i>
+                                                Change request
+                                            </h6>
 
-													<div class="widget-toolbar">
-														<a href="#" data-action="settings">
-															<i class="ace-icon fa fa-cog"></i>
-														</a>
+                                            <div class="widget-toolbar">
+                                                <a href="#" data-action="settings">
+                                                    <i class="ace-icon fa fa-cog"></i>
+                                                </a>
 
-														<a href="#" data-action="reload">
-															<i class="ace-icon fa fa-refresh"></i>
-														</a>
+                                                <a href="#" data-action="reload">
+                                                    <i class="ace-icon fa fa-refresh"></i>
+                                                </a>
 
-														<a href="#" data-action="collapse">
-															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
-														</a>
+                                                <a href="#" data-action="collapse">
+                                                    <i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
+                                                </a>
 
-														<a href="#" data-action="close">
-															<i class="ace-icon fa fa-times"></i>
-														</a>
-													</div>
-												</div>
+                                                <a href="#" data-action="close">
+                                                    <i class="ace-icon fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
 
-												<div class="widget-body">
-													<div class="widget-main">
-														<p >
-														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
-														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label>
-														<div class=" ">
-                                        												<button class=" btn btn-warning col-xs-push-9" onclick="approvefunc(<?php echo $row1['st_roll'] ?>,$tname)">Approve</button>
-   															</div>
-														<div class=" ">
-                                        												<button class=" btn btn-warning col-xs-push-9" onclick="declinefunc(<?php echo $row1['st_roll'] ?>,$tname)">Decline</button>
-   															</div>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-					</div>
-				</div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <p >
+                                                    <label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
+                                                    to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label>
+                                                <div class=" ">
+                                                    <button class=" btn btn-warning col-xs-push-9" onclick="approvefunc(<?php echo $row1['st_roll'] ?>,$tname)">Approve</button>
+                                                </div>
+                                                <div class=" ">
+                                                    <button class=" btn btn-warning col-xs-push-9" onclick="declinefunc(<?php echo $row1['st_roll'] ?>,$tname)">Decline</button>
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <!--                            <div class="space-14"></div>-->
+                        <!--                            <div class="space-14"></div>-->
 
 
-                                    <?php
-			}
-                                }
+                        <?php
+                        }
+                        }
 
-                            }
-                        
+                        }
+
 
 
 
@@ -664,34 +646,34 @@ alert"hello";
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="../assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/jquery-2.1.4.min.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="../assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
     if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="../assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!--[if lte IE 8]>
-<script src="../assets/js/excanvas.min.js"></script>
+<script src="assets/js/excanvas.min.js"></script>
 <![endif]-->
-<script src="../assets/js/jquery-ui.custom.min.js"></script>
-<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="../assets/js/jquery.easypiechart.min.js"></script>
-<script src="../assets/js/jquery.sparkline.index.min.js"></script>
-<script src="../assets/js/jquery.flot.min.js"></script>
-<script src="../assets/js/jquery.flot.pie.min.js"></script>
-<script src="../assets/js/jquery.flot.resize.min.js"></script>
+<script src="assets/js/jquery-ui.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/jquery.easypiechart.min.js"></script>
+<script src="assets/js/jquery.sparkline.index.min.js"></script>
+<script src="assets/js/jquery.flot.min.js"></script>
+<script src="assets/js/jquery.flot.pie.min.js"></script>
+<script src="assets/js/jquery.flot.resize.min.js"></script>
 
 <!-- ace scripts -->
-<script src="../assets/js/ace-elements.min.js"></script>
-<script src="../assets/js/ace.min.js"></script>
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -1130,68 +1112,68 @@ alert"hello";
 
 
 //when a widget is shown/hidden/closed, we save its state for later retrieval
-				$(document).on('shown.ace.widget hidden.ace.widget closed.ace.widget', '.widget-box', function(event) {
-					var widgets = ace.data.get('demo', 'widget-state', true);
-					if(widgets == null) widgets = {}
-			
-					var id = $(this).attr('id');
-					widgets[id] = event.type;
-					ace.data.set('demo', 'widget-state', widgets, null, true);
-				});
-			
-			
-				(function() {
-					//restore widget order
-					var container_list = ace.data.get('demo', 'widget-order', true);
-					if(container_list) {
-						for(var container_id in container_list) if(container_list.hasOwnProperty(container_id)) {
-			
-							var widgets_inside_container = container_list[container_id];
-							if(widgets_inside_container.length == 0) continue;
-							
-							for(var i = 0; i < widgets_inside_container.length; i++) {
-								var widget = widgets_inside_container[i];
-								$('#'+widget).appendTo('#'+container_id);
-							}
-			
-						}
-					}
-					
-					
-					//restore widget state
-					var widgets = ace.data.get('demo', 'widget-state', true);
-					if(widgets != null) {
-						for(var id in widgets) if(widgets.hasOwnProperty(id)) {
-							var state = widgets[id];
-							var widget = $('#'+id);
-							if
-							(
-								(state == 'shown' && widget.hasClass('collapsed'))
-								||
-								(state == 'hidden' && !widget.hasClass('collapsed'))
-							) 
-							{
-								widget.widget_box('toggleFast');
-							}
-							else if(state == 'closed') {
-								widget.widget_box('closeFast');
-							}
-						}
-					}
-					
-					
-					$('#main-widget-container').removeClass('invisible');
-					
-					
-					//reset saved positions and states
-					$('#reset-widgets').on('click', function() {
-						ace.data.remove('demo', 'widget-state');
-						ace.data.remove('demo', 'widget-order');
-						document.location.reload();
-					});
-				
-				})();
-			
+        $(document).on('shown.ace.widget hidden.ace.widget closed.ace.widget', '.widget-box', function(event) {
+            var widgets = ace.data.get('demo', 'widget-state', true);
+            if(widgets == null) widgets = {}
+
+            var id = $(this).attr('id');
+            widgets[id] = event.type;
+            ace.data.set('demo', 'widget-state', widgets, null, true);
+        });
+
+
+        (function() {
+            //restore widget order
+            var container_list = ace.data.get('demo', 'widget-order', true);
+            if(container_list) {
+                for(var container_id in container_list) if(container_list.hasOwnProperty(container_id)) {
+
+                    var widgets_inside_container = container_list[container_id];
+                    if(widgets_inside_container.length == 0) continue;
+
+                    for(var i = 0; i < widgets_inside_container.length; i++) {
+                        var widget = widgets_inside_container[i];
+                        $('#'+widget).appendTo('#'+container_id);
+                    }
+
+                }
+            }
+
+
+            //restore widget state
+            var widgets = ace.data.get('demo', 'widget-state', true);
+            if(widgets != null) {
+                for(var id in widgets) if(widgets.hasOwnProperty(id)) {
+                    var state = widgets[id];
+                    var widget = $('#'+id);
+                    if
+                    (
+                        (state == 'shown' && widget.hasClass('collapsed'))
+                        ||
+                        (state == 'hidden' && !widget.hasClass('collapsed'))
+                    )
+                    {
+                        widget.widget_box('toggleFast');
+                    }
+                    else if(state == 'closed') {
+                        widget.widget_box('closeFast');
+                    }
+                }
+            }
+
+
+            $('#main-widget-container').removeClass('invisible');
+
+
+            //reset saved positions and states
+            $('#reset-widgets').on('click', function() {
+                ace.data.remove('demo', 'widget-state');
+                ace.data.remove('demo', 'widget-order');
+                document.location.reload();
+            });
+
+        })();
+
 
 
 

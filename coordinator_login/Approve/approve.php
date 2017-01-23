@@ -617,66 +617,9 @@ if(isset($_GET['declinep'])){
                                 $result_year=mysqli_query($connect,$query_year);
 		                        while($row1=mysqli_fetch_assoc($result_year)){
 			
-                                	if($row1['st_changemail']!=NULL && $row1['st_changephone']!=NULL) {
 
 
-                                    ?>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12">
-							<form class="modal-content" action="approve.php" method="get" enctype = "multipart/form-data">
-								<div class="widget-box widget-color-orange collapsed" id="widget-box-3">
-												<div class="widget-header widget-header-small">
-													<h6 class="widget-title">
-														<i class="ace-icon fa fa-sort"></i>
-														Change request
-													</h6>
-
-													<div class="widget-toolbar">
-														<a href="#" data-action="settings">
-															<i class="ace-icon fa fa-cog"></i>
-														</a>
-
-														<a href="#" data-action="reload">
-															<i class="ace-icon fa fa-refresh"></i>
-														</a>
-
-														<a href="#" data-action="collapse">
-															<i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
-														</a>
-
-														<a href="#" data-action="close">
-															<i class="ace-icon fa fa-times"></i>
-														</a>
-													</div>
-												</div>
-
-												<div class="widget-body">
-													<div class="widget-main">
-														<p >
-														<label class="green"><?php echo $row1['st_roll'] ?> , <?php echo $row1['st_name'] ?> </label> has requested for the change of <label class="orange"><?php if($row1['st_changemail']!=NULL){ echo "Email id : "; echo $row1['st_email']; } ?></label>
-														to  <label class="orange">Mail id : <?php echo $row1['st_changemail'] ?></label></p>
-														<input type="hidden"  name="rollno" value="<?php echo $row1['st_roll'] ?>" />
-														<input type="hidden" name="tname" value="<?php echo $row['table_name'] ?>" />
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="approve">Approve</button>
-   															
-													
-                                        												<button class=" btn btn-warning col-xs-push-9" type="submit" name="decline">Decline</button>
-   															
-														
-													</div>
-												</div>
-											</div>
-										</div></form>
-					</div>
-				</div>
-
-                                    <!--                            <div class="space-14"></div>-->
-
-
-                                    <?php
-			}
-
-if($row1['st_changemail']!=NULL) {
+		if($row1['st_changemail']!=NULL) {
 
 
                                     ?>

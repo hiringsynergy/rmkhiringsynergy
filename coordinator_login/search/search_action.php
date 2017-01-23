@@ -663,7 +663,7 @@ if(isset($_GET['filter'])) {
             </li>
 
             <li class="">
-                <a href="../approve.php">
+                <a href="../Approve/approve.php">
                     <i class="menu-icon fa fa-list-alt"></i>
                     <span class="menu-text"> Approve </span>
                 </a>

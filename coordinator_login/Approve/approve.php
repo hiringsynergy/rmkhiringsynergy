@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php session_start();
 ob_start();
 
@@ -1399,3 +1400,6 @@ if (isset($_GET['decline'])) {
 
 </body>
 </html>
+=======
+git 
+>>>>>>> bad79a77fe821f6df81b3d7f5cb5a8875dfd4527

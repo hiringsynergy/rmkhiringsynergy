@@ -178,77 +178,6 @@
 <body class="no-skin">
 
 
-<?php
-
-if(isset($_GET['changemailphone'])){
-
-    include "../connect.php";
-
-
-    $name=$_SESSION['user'];
-    $student_table=$_SESSION['table_name'];
-
-
-    $id=time();
-    $phoneno=$_GET['phoneno'];
-    $emailid=$_GET['emailid'];
-
-    $select="SELECT * from $student_table where st_roll='{$name}'";
-    $select_result=mysqli_query($connect, $select);
-    $row=mysqli_fetch_assoc($select_result);
-    $old_mail=$row['st_email'];
-
-
-
-
-
-
-if($emailid!=$old_mail)
-{
-$name=$_SESSION['user'];
-    $student_table=$_SESSION['table_name'];
-
-    $query1="UPDATE $student_table SET  st_changemail='{$emailid}' WHERE st_roll='{$name}'";
-
-    $result1=mysqli_query($connect, $query1);
-    if(!$connect){
-
-        die("".mysqli_error($connect));
-    }
-
-}
-
-
-    $old_phoneno=$row['st_phone'];
-
-if($phoneno!=$old_phoneno)
-{
-    $name=$_SESSION['user'];
-    $student_table=$_SESSION['table_name'];
-
-    $query2="UPDATE $student_table SET  st_changephone='{$phoneno}' WHERE st_roll='{$name}'";
-
-
-
-
-    $result2=mysqli_query($connect, $query2);
-    if(!$connect){
-
-        die("".mysqli_error($connect));
-    }
-
-}
-
-
-}
-
-
-
-
-
-?>
-
-
 
 
 
@@ -754,6 +683,111 @@ if(isset($_FILES['image'])){
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+<?php
+
+if(isset($_GET['changemailphone'])){
+
+    include "../connect.php";
+
+
+    $name=$_SESSION['user'];
+    $student_table=$_SESSION['table_name'];
+
+
+    $id=time();
+    $phoneno=$_GET['phoneno'];
+    $emailid=$_GET['emailid'];
+
+    $select="SELECT * from $student_table where st_roll='{$name}'";
+    $select_result=mysqli_query($connect, $select);
+    $row=mysqli_fetch_assoc($select_result);
+    $old_mail=$row['st_email'];
+
+
+
+
+
+
+if($emailid!=$old_mail)
+{
+$name=$_SESSION['user'];
+    $student_table=$_SESSION['table_name'];
+
+    $query1="UPDATE $student_table SET  st_changemail='{$emailid}' WHERE st_roll='{$name}'";
+
+    $result1=mysqli_query($connect, $query1);
+?>
+<div class="alert alert-block alert-success">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+
+                                <i class="ace-icon fa fa-check green"></i>
+
+
+                                <strong class="green">
+                                    Your request for change Email id will be processed by the coordinator
+
+                                </strong>
+
+
+                            </div>
+<?php
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+
+}
+
+
+    $old_phoneno=$row['st_phone'];
+
+if($phoneno!=$old_phoneno)
+{
+    $name=$_SESSION['user'];
+    $student_table=$_SESSION['table_name'];
+
+    $query2="UPDATE $student_table SET  st_changephone='{$phoneno}' WHERE st_roll='{$name}'";
+
+
+
+
+    $result2=mysqli_query($connect, $query2);
+    if(!$connect){
+
+        die("".mysqli_error($connect));
+    }
+?>
+<div class="alert alert-block alert-success">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+
+                                <i class="ace-icon fa fa-check green"></i>
+
+
+                                <strong class="green">
+                                    Your request for change Phone no will be processed by the coordinator
+
+                                </strong>
+
+
+                            </div>
+<?php
+
+}
+
+
+}
+
+
+
+
+?>
+
+
+
                         <div>
                             <div id="user-profile-1" class="user-profile row">
                                 <div class="col-xs-12  col-sm-3 center">

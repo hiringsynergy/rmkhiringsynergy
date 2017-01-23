@@ -10,6 +10,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 }
 
 
+<<<<<<< HEAD
 
 
 
@@ -95,6 +96,8 @@ if (isset($_GET['decline'])) {
 
 
 
+=======
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
 ?>
 
 
@@ -141,11 +144,90 @@ if (isset($_GET['decline'])) {
             location.href = "../settings.php";
 
         }
+<<<<<<< HEAD
 
 
         <?php
 
 
+=======
+        <?php
+
+        if (isset($_GET['approvem'])) {
+
+            include "../connect.php";
+
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $new_mail = $row['st_changemail'];
+            $query1 = "UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
+
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
+
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['declinem'])) {
+
+            include "../connect.php";
+
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $query1 = "UPDATE $tname SET st_changemail=NULL WHERE st_roll='{$rollno}'";
+
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
+
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['approvep'])) {
+
+            include "../connect.php";
+
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $new_phone = $row['st_changephone'];
+            $query1 = "UPDATE $tname SET  st_phone='{$new_phone}',st_changephone=NULL WHERE st_roll='{$rollno}'";
+
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
+
+                die("" . mysqli_error($connect));
+            }
+        }
+        if (isset($_GET['declinep'])) {
+
+            include "../connect.php";
+
+            $rollno = $_GET['rollno'];
+            $tname = $_GET['tname'];
+            $select = "SELECT * from $tname where st_roll='{$rollno}'";
+            $select_result = mysqli_query($connect, $select);
+            $row = mysqli_fetch_assoc($select_result);
+            $query1 = "UPDATE $tname SET st_changephone=NULL WHERE st_roll='{$rollno}'";
+
+            $result1 = mysqli_query($connect, $query1);
+            header("Location: approve.php");
+            if (!$connect) {
+
+                die("" . mysqli_error($connect));
+            }
+        }
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
         ?>
 
     </script>
@@ -245,20 +327,100 @@ if (isset($_GET['decline'])) {
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
                             8 Notifications
                         </li>
+<<<<<<< HEAD
 
                         <li class="dropdown-content">
+=======
+<?php
+
+
+                            include "../connect.php";
+                            $query_table = "SELECT * FROM table_map";
+                            $result_table = mysqli_query($connect, $query_table);
+
+                            while ($row = mysqli_fetch_assoc($result_table)) {
+                                $tname = $row['table_name'];
+                                $query_year = "SELECT * from $tname";
+                                $result_year = mysqli_query($connect, $query_year);
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                        ?>
+<li class="dropdown-content">
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
                                     <a href="#">
                                         <div class="clearfix">
+<<<<<<< HEAD
 													<span class="pull-left">
 														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
 														New Comments
 													</span>
+=======
+		<span class="pull-left">
+			<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+				<?php echo $row1['st_roll'] ?>
+                                                                        , <?php echo $row1['st_name'] ?>  has
+                                                                    requested for the change of
+                                                                        <?php if ($row1['st_changemail'] != NULL) {
+                                                                        echo "Email id : ";
+                                                                        echo $row1['st_email'];
+                                                                        ?>
+                                                                    to Mail id
+                                                                        : <?php echo $row1['st_changemail'];
+
+
+
+                                                                           }
+
+                                                                            ?>
+
+
+
+
+
+                                                                        <?php
+
+
+
+                                                                        if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                            echo " and  ";
+
+                                                                        }
+
+
+
+
+
+
+                                                                        if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                        echo " Phone No : ";
+                                                                        echo $row1['st_phone'];
+                                                                        ?>
+                                                                           to  Phone No
+                                                                        : <?php echo $row1['st_changephone'] ?>
+
+
+                                                                    <?php } ?>
+
+
+                                                                    </p>
+				</span>
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                                             <span class="pull-right badge badge-info">+12</span>
                                         </div>
                                     </a>
                                 </li>
+<<<<<<< HEAD
 
                                 <li>
                                     <a href="#">
@@ -292,6 +454,20 @@ if (isset($_GET['decline'])) {
                                 </li>
                             </ul>
                         </li>
+=======
+<?php
+                                    }
+
+
+                                }
+
+
+                            }
+
+
+                            ?>
+                        
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
 
                         <li class="dropdown-footer">
                             <a href="#">
@@ -498,9 +674,15 @@ if (isset($_GET['decline'])) {
             <li class="active">
                 <a href="Approve.php">
 
+<<<<<<< HEAD
                     <i class="menu-icon fa fa-bar-chart"></i>
 
                     <span class="menu-text"> Reports </span>
+=======
+                    <i class="menu-icon fa fa-list-alt"></i>
+
+                    <span class="menu-text"> Approve </span>
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                 </a>
 
                 <b class="arrow"></b>
@@ -644,6 +826,7 @@ if (isset($_GET['decline'])) {
                                                         </h6>
 
                                                         <div class="widget-toolbar">
+<<<<<<< HEAD
 
                                                             <a href="#" data-action="collapse">
                                                                 <i class="ace-icon fa fa-minus active" data-icon-show="fa-minus"
@@ -651,6 +834,24 @@ if (isset($_GET['decline'])) {
                                                             </a>
 
 
+=======
+                                                            <a href="#" data-action="settings">
+                                                                <i class="ace-icon fa fa-cog"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="reload">
+                                                                <i class="ace-icon fa fa-refresh"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="collapse">
+                                                                <i class="ace-icon fa fa-plus" data-icon-show="fa-plus"
+                                                                   data-icon-hide="fa-minus"></i>
+                                                            </a>
+
+                                                            <a href="#" data-action="close">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </a>
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                                                         </div>
                                                     </div>
 
@@ -718,13 +919,21 @@ if (isset($_GET['decline'])) {
                                                                 <input type="hidden" name="tname"
                                                                        value="<?php echo $row['table_name'] ?>"/>
                                                                 <button class=" btn btn-warning col-xs-push-9"
+<<<<<<< HEAD
                                                                         type="submit" name="approve">
+=======
+                                                                        type="submit" name="approvem">
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                                                                     Approve
                                                                 </button>
 
 
                                                                 <button class=" btn btn-warning col-xs-push-9"
+<<<<<<< HEAD
                                                                         type="submit" name="decline">
+=======
+                                                                        type="submit" name="declinem">
+>>>>>>> 8d61a9ab575aa118ed80a1dc9937a2c38dc32348
                                                                     Decline
                                                                 </button>
 

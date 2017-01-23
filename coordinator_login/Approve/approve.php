@@ -10,6 +10,91 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 }
 
 
+
+
+
+if (isset($_GET['approve'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+    if($row['st_changemail']!=''){
+
+        $new_mail = $row['st_changemail'];
+        $query_change_mail = "UPDATE $tname SET  st_email='{$new_mail}',st_changemail='' WHERE st_roll='{$rollno}'";
+        $result_change_mail = mysqli_query($connect, $query_change_mail);
+
+        if (!$result_change_mail) {
+
+            die("" . mysqli_error($connect));
+        }
+    }
+    if($row['st_changephone']!=''){
+
+        $new_phone = $row['st_changephone'];
+        $query_change_phone = "UPDATE $tname SET  st_phone='{$new_phone}',st_changephone='' WHERE st_roll='{$rollno}'";
+        $result_change_phone = mysqli_query($connect, $query_change_phone);
+
+        if ( !$result_change_phone) {
+
+            die("" . mysqli_error($connect));
+        }
+    }
+
+
+
+
+
+
+    header("Location: approve.php");
+
+}
+if (isset($_GET['decline'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+
+    $query_old_mail_phone = "UPDATE $tname SET  st_changephone='',st_changemail='' WHERE st_roll='{$rollno}'";
+    $result_old_mail_phone = mysqli_query($connect, $query_old_mail_phone);
+
+    if (!$result_change_mail) {
+
+        die("" . mysqli_error($connect));
+    }
+
+
+
+
+
+    header("Location: approve.php");
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
@@ -56,82 +141,11 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
             location.href = "../settings.php";
 
         }
+
+
         <?php
 
-        if (isset($_GET['approvem'])) {
 
-            include "../connect.php";
-
-            $rollno = $_GET['rollno'];
-            $tname = $_GET['tname'];
-            $select = "SELECT * from $tname where st_roll='{$rollno}'";
-            $select_result = mysqli_query($connect, $select);
-            $row = mysqli_fetch_assoc($select_result);
-            $new_mail = $row['st_changemail'];
-            $query1 = "UPDATE $tname SET  st_email='{$new_mail}',st_changemail=NULL WHERE st_roll='{$rollno}'";
-
-            $result1 = mysqli_query($connect, $query1);
-            header("Location: approve.php");
-            if (!$connect) {
-
-                die("" . mysqli_error($connect));
-            }
-        }
-        if (isset($_GET['declinem'])) {
-
-            include "../connect.php";
-
-            $rollno = $_GET['rollno'];
-            $tname = $_GET['tname'];
-            $select = "SELECT * from $tname where st_roll='{$rollno}'";
-            $select_result = mysqli_query($connect, $select);
-            $row = mysqli_fetch_assoc($select_result);
-            $query1 = "UPDATE $tname SET st_changemail=NULL WHERE st_roll='{$rollno}'";
-
-            $result1 = mysqli_query($connect, $query1);
-            header("Location: approve.php");
-            if (!$connect) {
-
-                die("" . mysqli_error($connect));
-            }
-        }
-        if (isset($_GET['approvep'])) {
-
-            include "../connect.php";
-
-            $rollno = $_GET['rollno'];
-            $tname = $_GET['tname'];
-            $select = "SELECT * from $tname where st_roll='{$rollno}'";
-            $select_result = mysqli_query($connect, $select);
-            $row = mysqli_fetch_assoc($select_result);
-            $new_phone = $row['st_changephone'];
-            $query1 = "UPDATE $tname SET  st_phone='{$new_phone}',st_changephone=NULL WHERE st_roll='{$rollno}'";
-
-            $result1 = mysqli_query($connect, $query1);
-            header("Location: approve.php");
-            if (!$connect) {
-
-                die("" . mysqli_error($connect));
-            }
-        }
-        if (isset($_GET['declinep'])) {
-
-            include "../connect.php";
-
-            $rollno = $_GET['rollno'];
-            $tname = $_GET['tname'];
-            $select = "SELECT * from $tname where st_roll='{$rollno}'";
-            $select_result = mysqli_query($connect, $select);
-            $row = mysqli_fetch_assoc($select_result);
-            $query1 = "UPDATE $tname SET st_changephone=NULL WHERE st_roll='{$rollno}'";
-
-            $result1 = mysqli_query($connect, $query1);
-            header("Location: approve.php");
-            if (!$connect) {
-
-                die("" . mysqli_error($connect));
-            }
-        }
         ?>
 
     </script>
@@ -231,6 +245,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
                             8 Notifications
                         </li>
+
 <?php
 
 
@@ -323,6 +338,8 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
 
                             ?>
+
+
                         
                             </ul>
                         </li>
@@ -532,9 +549,9 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
             <li class="active">
                 <a href="Approve.php">
 
-                    <i class="menu-icon fa fa-list-alt"></i>
+                    <i class="menu-icon fa fa-bar-chart"></i>
 
-                    <span class="menu-text"> Approve </span>
+                    <span class="menu-text"> Reports </span>
                 </a>
 
                 <b class="arrow"></b>
@@ -678,22 +695,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                         </h6>
 
                                                         <div class="widget-toolbar">
-                                                            <a href="#" data-action="settings">
-                                                                <i class="ace-icon fa fa-cog"></i>
-                                                            </a>
-
-                                                            <a href="#" data-action="reload">
-                                                                <i class="ace-icon fa fa-refresh"></i>
-                                                            </a>
 
                                                             <a href="#" data-action="collapse">
-                                                                <i class="ace-icon fa fa-plus" data-icon-show="fa-plus"
-                                                                   data-icon-hide="fa-minus"></i>
+                                                                <i class="ace-icon fa fa-minus active" data-icon-show="fa-minus"
+                                                                   data-icon-hide="fa-plus"></i>
                                                             </a>
 
-                                                            <a href="#" data-action="close">
-                                                                <i class="ace-icon fa fa-times"></i>
-                                                            </a>
+
                                                         </div>
                                                     </div>
 
@@ -717,9 +725,9 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
 
 
-                                                                           }
+                                                                        }
 
-                                                                            ?>
+                                                                        ?>
 
 
 
@@ -748,7 +756,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                                         echo " Phone No : ";
                                                                         echo $row1['st_phone'];
                                                                         ?></label>
-                                                                           to <label class="orange"> Phone No
+                                                                    to <label class="orange"> Phone No
                                                                         : <?php echo $row1['st_changephone'] ?></label>
 
 
@@ -761,13 +769,13 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                                                                 <input type="hidden" name="tname"
                                                                        value="<?php echo $row['table_name'] ?>"/>
                                                                 <button class=" btn btn-warning col-xs-push-9"
-                                                                        type="submit" name="approvem">
+                                                                        type="submit" name="approve">
                                                                     Approve
                                                                 </button>
 
 
                                                                 <button class=" btn btn-warning col-xs-push-9"
-                                                                        type="submit" name="declinem">
+                                                                        type="submit" name="decline">
                                                                     Decline
                                                                 </button>
 

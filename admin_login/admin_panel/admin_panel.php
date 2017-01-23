@@ -189,10 +189,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 if(isset($_GET['delete'])){
 
     $userroll=$_GET['delete'];
+    $table=$_GET['table'];
+
 
     include "../connect.php";
 
-    $query="delete from students_list where st_roll={$userroll}";
+    $query="delete from ".$table." where st_roll='$userroll'";
     $result=mysqli_query($connect,$query);
 
     if(!$connect){
@@ -200,6 +202,7 @@ if(isset($_GET['delete'])){
         die(" ".mysqli_error($connect));
     }
 
+    header("Location: admin_panel.php?year=".$table);
 
 
 }
@@ -961,7 +964,7 @@ if(isset($_POST['update_submit'])) {
                                                         <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showStudent(<?php  echo $roll  ?>,<?php echo $table ?>)">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
-                                                        <a class="red" href="../admin_panel/admin_panel.php?delete=<?php echo $roll ?>">
+                                                        <a class="red" href="../admin_panel/admin_panel.php?delete=<?php echo $roll ?>&table=<?php echo $table ?>">
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                         </a>
                                                     </div>

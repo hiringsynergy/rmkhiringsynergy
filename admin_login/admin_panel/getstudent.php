@@ -234,7 +234,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="salary">Year of Graduation</label>
 
                                 <div>
-                                    <input type="text" name="st_pass" id="salary" value="<?php echo $row['st_ugspecilization'] ?>"/>
+                                    <input type="text" name="st_pass" id="salary" value="<?php echo $row['st_ugspecialization'] ?>"/>
                                 </div>
                             </div>
 
@@ -309,7 +309,7 @@ while( $row= mysqli_fetch_assoc($result)) {
 <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+<script src="../../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
 <script src="../../vendors/jszip/dist/jszip.min.js"></script>
 <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>

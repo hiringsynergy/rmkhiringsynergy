@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
+
 <?php session_start();
 ob_start();
 
@@ -250,9 +247,9 @@ if (isset($_GET['decline'])) {
                             8 Notifications
                         </li>
 
-<<<<<<< HEAD
+
                         <li class="dropdown-content">
-=======
+
 <?php
 
 
@@ -272,17 +269,17 @@ if (isset($_GET['decline'])) {
 
                                         ?>
 <li class="dropdown-content">
->>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
+
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
                                     <a href="#">
                                         <div class="clearfix">
-<<<<<<< HEAD
+
 													<span class="pull-left">
 														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
 														New Comments
 													</span>
-=======
+
 		<span class="pull-left">
 			<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
 				<?php echo $row1['st_roll'] ?>
@@ -337,12 +334,12 @@ if (isset($_GET['decline'])) {
 
                                                                     </p>
 				</span>
->>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
+
                                             <span class="pull-right badge badge-info">+12</span>
                                         </div>
                                     </a>
                                 </li>
-<<<<<<< HEAD
+
 
                                 <li>
                                     <a href="#">
@@ -374,7 +371,7 @@ if (isset($_GET['decline'])) {
                                         </div>
                                     </a>
                                 </li>
-=======
+
 <?php
                                     }
 
@@ -389,7 +386,7 @@ if (isset($_GET['decline'])) {
 
 
                         
->>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
+
                             </ul>
                         </li>
 
@@ -1448,9 +1445,4 @@ if (isset($_GET['decline'])) {
 
 </body>
 </html>
-<<<<<<< HEAD
-=======
-=======
-git 
->>>>>>> bad79a77fe821f6df81b3d7f5cb5a8875dfd4527
->>>>>>> 8c3e9875c409562e09637cda68c983b67442c83b
+

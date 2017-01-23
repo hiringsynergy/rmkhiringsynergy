@@ -484,9 +484,9 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
             <li class="active">
                 <a href="Approve.php">
 
-                    <i class="menu-icon fa fa-bar-chart"></i>
+                    <i class="menu-icon fa fa-list-alt"></i>
 
-                    <span class="menu-text"> Reports </span>
+                    <span class="menu-text"> Approve </span>
                 </a>
 
                 <b class="arrow"></b>

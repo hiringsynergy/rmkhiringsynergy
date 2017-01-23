@@ -197,14 +197,11 @@ if(isset($_GET['changemailphone'])){
     $select_result=mysqli_query($connect, $select);
     $row=mysqli_fetch_assoc($select_result);
     $old_mail=$row['st_email'];
-<<<<<<< HEAD
 
 
 
 
 
-=======
->>>>>>> 163611c2f52719cf9d75a63301cd6a4d62f75ed8
 
 if($emailid!=$old_mail)
 {
@@ -229,13 +226,10 @@ if($phoneno!=$old_phoneno)
     $name=$_SESSION['user'];
     $student_table=$_SESSION['table_name'];
 
-<<<<<<< HEAD
     $query2="UPDATE $student_table SET  st_changephone='{$phoneno}' WHERE st_roll='{$name}'";
 
 
-=======
-    $query2="UPDATE $student_table SET  st_changephone={$phoneno} WHERE st_roll='{$name}'";
->>>>>>> 163611c2f52719cf9d75a63301cd6a4d62f75ed8
+
 
     $result2=mysqli_query($connect, $query2);
     if(!$connect){

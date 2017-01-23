@@ -60,40 +60,6 @@
         <script src="../assets/js/html5shiv.min.js"></script>
         <script src="../assets/js/respond.min.js"></script>
         <![endif]-->
-        <!--
-                <style type="text/css">
-
-
-                    .btn-file{
-
-                        position: relative;
-                        overflow: hidden;
-
-
-                    }
-                    .btn-file input[type=image]{
-
-                        position: absolute;
-                        top:0;
-                        right:0;
-                        min-width:100%;
-                        min-height:100%;
-                        font-size: 100px;
-                        text-align:right;
-                        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-                        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-                        opacity:0;
-                        outline: none;
-                        background: white;
-                        cursor: inherit;
-                        display: block;
-
-
-
-                    }
-
-                </style>
-        -->
 
     </head>
 <body>
@@ -168,12 +134,12 @@ while( $row= mysqli_fetch_assoc($result)) {
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="col-xs-12 col-sm-5">
+                        <div class="col-xs-7 col-sm-3">
                             <div class="space"></div>
 
                         </div>
 
-                        <div class="col-xs-12 col-sm-7">
+                        <div class="col-xs-9 col-sm-5">
 
 
                             <div class="space-4"></div>
@@ -182,11 +148,11 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="job-title">Student Roll No.</label>
 
                                 <div>
-                                    <input type="text" disabled  id="job-title" name="st_roll"
+                                    <input type="text" disabled  id="job-title" size="35" name="st_roll"
                                            value="<?php echo $row['st_roll'] ?>"/>
                                 </div>
 
-                                <input type="hidden" name="table" value="<?php echo $_GET['table'] ?>">
+
 
                             </div><div class="space-4"></div>
 
@@ -194,8 +160,10 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="job-title">Student Name</label>
 
                                 <div>
-                                    <input type="text" id="job-title" name="st_name"
-                                           value="<?php echo $row['st_name'] ?>"/>
+                                    <input type="hidden" name="table" value="<?php echo $table ?>">
+
+                                    <input type="text" size="35" id="job-title" name="st_name"
+                                           value="<?php echo $row['st_name'] ;?>"/>
                                 </div>
                             </div>
                             <div class="space-4"></div>
@@ -209,7 +177,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="campus-date">Student Mail Id</label>
 
                                 <div>
-                                    <input type="text" name="st_email" id="campus-date" value="<?php echo $row['st_email'] ?>"/>
+                                    <input type="text" size="35" name="st_email" id="campus-date" value="<?php echo $row['st_email'] ?>"/>
                                 </div>
                             </div>
                             <div class="space-4"></div>
@@ -218,7 +186,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="salary">Student Phone No.</label>
 
                                 <div>
-                                    <input type="text" name="st_phone" id="salary" value="<?php echo $row['st_phone'] ?>"/>
+                                    <input type="text" size="35" name="st_phone" id="salary" value="<?php echo $row['st_phone'] ?>"/>
                                 </div>
                             </div><div class="space-4"></div>
 
@@ -226,7 +194,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="salary">Student CGPA</label>
 
                                 <div>
-                                    <input type="text" name="st_cgpa" id="salary" value="<?php echo $row['st_cgpa'] ?>"/>
+                                    <input type="text" name="st_cgpa" size="35" id="salary" value="<?php echo $row['st_cgpa'] ?>"/>
                                 </div>
                             </div><div class="space-4"></div>
 
@@ -234,7 +202,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                                 <label for="salary">Year of Graduation</label>
 
                                 <div>
-                                    <input type="text" name="st_pass" id="salary" value="<?php echo $row['st_ugspecialization'] ?>"/>
+                                    <input type="text" name="st_pass" size="35" id="salary" value="<?php echo $row['st_ugspecialization'] ?>"/>
                                 </div>
                             </div>
 

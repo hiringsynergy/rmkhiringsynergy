@@ -66,6 +66,13 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
         function showStudent(str,table) {
+
+
+
+
+
+
+
             if (str == "") {
                 document.getElementById("modal-form").innerHTML = "";
 
@@ -82,10 +89,15 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                         document.getElementById("modal-form").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET","../admin_panel/getstudent_export.php?id="+str+"&table="+table,true);
+                xmlhttp.open("GET","../admin_panel/getstudent.php?id="+str+"&table="+table,true);
                 xmlhttp.send();
             }
+
+
         }
+
+
+
         function showreports(){
 
             var e = document.getElementById("form-field-select-3");
@@ -223,10 +235,12 @@ if(isset($_POST['update_submit'])) {
 
     $get_table=$_POST['table'];
 
+    echo  "table name: ".$get_table;
+
 
     include "../connect.php";
 
-    $query = "UPDATE ".$get_table." SET st_roll={$get_roll},st_name='{$get_name}',st_email='{$get_email}',st_phone={$get_phone},st_cgpa={$get_cgpa},st_pass='{$get_pass}' where st_roll={$get_roll}";
+    $query = "UPDATE ".$get_table." SET st_roll='$get_roll', st_name='{$get_name}',st_email='{$get_email}',st_phone='$get_phone',st_cgpa='$get_cgpa',st_pass='{$get_pass}' where st_roll='$get_roll'";
 
     $result = mysqli_query($connect, $query);
 
@@ -242,6 +256,10 @@ if(isset($_POST['update_submit'])) {
 
 
     }
+
+    header("Location: admin_panel.php?year=".$get_table);
+
+
 
 }
 
@@ -961,7 +979,7 @@ if(isset($_POST['update_submit'])) {
 
 
 
-                                                        <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showStudent(<?php  echo $roll  ?>,<?php echo $table ?>)">
+                                                        <a class="green" href="#modal-form" role="button"  data-toggle="modal" onclick="showStudent('<?php echo $roll ?>','<?php echo $table ?>')">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                         <a class="red" href="../admin_panel/admin_panel.php?delete=<?php echo $roll ?>&table=<?php echo $table ?>">
@@ -980,7 +998,7 @@ if(isset($_POST['update_submit'])) {
 
                                                                 <li>
                                                                     <a href="#modal-form" class="tooltip-success" data-toggle="modal"
-                                                                       data-rel="tooltip" title="Edit"  onclick="showStudent(<?php  echo $roll   ?>,<?php echo $table ?>)">
+                                                                       data-rel="tooltip" title="Edit"  onclick="showStudent('<?php echo $roll ?>','<?php echo $table ?>')">
 
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>

@@ -252,23 +252,7 @@ while( $row= mysqli_fetch_assoc($result)) {
                             </div>
 
                             <div class="space-4"></div>
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="venue">Venue</label>-->
-                            <!---->
-                            <!--                                <div>-->
-                            <!--                                    <input type="text" name="submit_venue" id="venue" value="--><?php //echo $row['venue'] ?><!--"/>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <!---->
-                            <!--                            <div class="space-4"></div>-->
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="apply-before">Apply Before</label>-->
-                            <!---->
-                            <!--                                <div>-->
-                            <!--                                    <input type="text" name="submit_apply_before" id="apply-before" placeholder="Username"-->
-                            <!--                                           value="--><?php //echo $row['apply_before'] ?><!--"/>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
+
 
                             <div class="space-4"></div>
 

@@ -231,53 +231,99 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
                             8 Notifications
                         </li>
+<?php
 
-                        <li class="dropdown-content">
+
+                            include "../connect.php";
+                            $query_table = "SELECT * FROM table_map";
+                            $result_table = mysqli_query($connect, $query_table);
+
+                            while ($row = mysqli_fetch_assoc($result_table)) {
+                                $tname = $row['table_name'];
+                                $query_year = "SELECT * from $tname";
+                                $result_year = mysqli_query($connect, $query_year);
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                        ?>
+<li class="dropdown-content">
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
                                 <li>
                                     <a href="#">
                                         <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
+		<span class="pull-left">
+			<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+				<?php echo $row1['st_roll'] ?>
+                                                                        , <?php echo $row1['st_name'] ?>  has
+                                                                    requested for the change of
+                                                                        <?php if ($row1['st_changemail'] != NULL) {
+                                                                        echo "Email id : ";
+                                                                        echo $row1['st_email'];
+                                                                        ?>
+                                                                    to Mail id
+                                                                        : <?php echo $row1['st_changemail'];
+
+
+
+                                                                           }
+
+                                                                            ?>
+
+
+
+
+
+                                                                        <?php
+
+
+
+                                                                        if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                            echo " and  ";
+
+                                                                        }
+
+
+
+
+
+
+                                                                        if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                        echo " Phone No : ";
+                                                                        echo $row1['st_phone'];
+                                                                        ?>
+                                                                           to  Phone No
+                                                                        : <?php echo $row1['st_changephone'] ?>
+
+
+                                                                    <?php } ?>
+
+
+                                                                    </p>
+				</span>
                                             <span class="pull-right badge badge-info">+12</span>
                                         </div>
                                     </a>
                                 </li>
+<?php
+                                    }
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
+                                }
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
+                            }
+
+
+                            ?>
+                        
 
                         <li class="dropdown-footer">
                             <a href="#">

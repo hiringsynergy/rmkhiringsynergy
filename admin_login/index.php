@@ -210,7 +210,7 @@ if(isset($_GET['delete']))
         <style>
         #shadow{
 
-            width: 500px;
+            width: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -271,7 +271,7 @@ if(isset($_GET['delete']))
 
 
 
-		<div id="navbar" class="navbar navbar-default       ace-save-state" >
+		<div id="navbar" class="navbar navbar-default    ace-save-state" >
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 					<span class="sr-only">Toggle sidebar</span>
@@ -320,7 +320,7 @@ if(isset($_GET['delete']))
 					</a>
 				</div>
 
-				<div class="navbar-buttons navbar-header  pull-right"  role="navigation">
+				<div class="navbar-buttons navbar-header pull-right  "  role="navigation">
 					<ul class="nav ace-nav" style="">
 						                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -392,7 +392,8 @@ if(isset($_GET['delete']))
 
 
 
-	<li class="light-blue dropdown-modal" >
+	                      <li class="light-blue dropdown-modal " >
+
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php
@@ -455,6 +456,8 @@ if(isset($_GET['delete']))
 								</li>
 							</ul>
 						</li>
+
+
 					</ul>
 				</div>
 			</div><!-- /.navbar-container -->
@@ -768,7 +771,7 @@ if(isset($_GET['delete']))
 
 
 
-                                    <div class="col-xs-6 pricing-box">
+                                    <div class="col-xs-5 pricing-box">
                                         <form action="index.php" method="get">
 
 
@@ -808,8 +811,9 @@ if(isset($_GET['delete']))
                                             </div>
                                         </form>
                                     </div>
+                                    <div class="col-xs-1"></div>
 
-                                    <div class="col-xs-6 pricing-box">
+                                    <div class="col-xs-5 pricing-box">
                                         <form action="crud/action_update.php">
 
 
@@ -874,7 +878,7 @@ if(isset($_GET['delete']))
 
 				                <div class="row">
 
-                                    <div class="col-xs-6 pricing-box">
+                                    <div class="col-xs-5 pricing-box">
                                         <form action="crud/action_insert.php" method="get">
                                         <div class="widget-box widget-color-green" id="shadow">
                                             <div class="widget-header">
@@ -928,7 +932,8 @@ if(isset($_GET['delete']))
                                         </div>
                                         </form>
                                     </div>
-                                    <div class="col-xs-6 pricing-box">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-5 pricing-box">
                                         <div class="widget-box widget-color-red" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title bigger white">Delete Student Table</h5>

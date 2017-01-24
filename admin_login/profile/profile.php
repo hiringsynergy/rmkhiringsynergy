@@ -165,7 +165,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         }
         #shadow{
 
-            width: 700px;
+            width: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -890,7 +890,7 @@ if(isset($_GET['roll']))
                                     <div class="space-10"></div>
 
 
-                                    <div class="col-xs-12 col-sm-12 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-blue" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 20px;" >Profile</h5>
@@ -999,7 +999,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-orange" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 20px;" >Personal Details</h5>
@@ -1192,7 +1192,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-green2" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title " style="color: white; font-weight: bold; font-size: 18px;" >Acadamic Qualification</h5>
@@ -1559,7 +1559,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-blue2" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;">Skill Set</h5>
@@ -1639,7 +1639,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12  col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-purple" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;">AMCAT Score</h5>
@@ -1742,7 +1742,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-red" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;"><?php  echo $row['st_placementstatus']  ?></h5>

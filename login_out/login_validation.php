@@ -111,7 +111,8 @@ if(isset($_POST['login'])){
             if(!$result_student==null){
                 $row_student=mysqli_fetch_assoc($result_student);
 
-                $student_name=$row_student['st_roll'];
+                $student_roll=$row_student['st_roll'];
+                $student_name=$row_student['st_name'];
                 $student_password=$row_student['st_pass'];
                 $student_branch=$row_student['st_ugspecialization'];
 
@@ -174,7 +175,8 @@ if(isset($_POST['login'])){
     //student validation
 
 
-    else if($student_name == $username && $student_password==$password){
+    else if($student_roll == $username && $student_password==$password){
+
 
 
 
@@ -183,8 +185,9 @@ if(isset($_POST['login'])){
 
         $_SESSION['user'] = $username;
         $_SESSION['pass'] = $password;
-        $_SESSION['student_name']=$username;
-        $_SESSION['student_roll']=$username;
+        $_SESSION['student_name']=$student_name;
+
+        $_SESSION['student_roll']=$student_roll;
         $_SESSION['student_branch']=$student_branch;
         $_SESSION['table_name']=$student_table;
         $_SESSION['database_name']=$database_session_set;

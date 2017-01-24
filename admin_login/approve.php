@@ -13,6 +13,82 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 }
 
+if (isset($_GET['approve'])) {
+
+    include "connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+    if($row['st_changemail']!=''){
+
+        $new_mail = $row['st_changemail'];
+        $query_change_mail = "UPDATE $tname SET  st_email='{$new_mail}',st_changemail='' WHERE st_roll='{$rollno}'";
+        $result_change_mail = mysqli_query($connect, $query_change_mail);
+
+        if (!$result_change_mail) {
+
+            die("" . mysqli_error($connect));
+        }
+    }
+    if($row['st_changephone']!=''){
+
+        $new_phone = $row['st_changephone'];
+        $query_change_phone = "UPDATE $tname SET  st_phone='{$new_phone}',st_changephone='' WHERE st_roll='{$rollno}'";
+        $result_change_phone = mysqli_query($connect, $query_change_phone);
+
+        if ( !$result_change_phone) {
+
+            die("" . mysqli_error($connect));
+        }
+    }
+
+
+
+
+
+
+    header("Location: approve.php");
+
+}
+if (isset($_GET['decline'])) {
+
+    include "connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+
+    $query_old_mail_phone = "UPDATE $tname SET  st_changephone='',st_changemail='' WHERE st_roll='{$rollno}'";
+    $result_old_mail_phone = mysqli_query($connect, $query_old_mail_phone);
+
+    if (!$result_old_mail_phone) {
+
+        die("" . mysqli_error($connect));
+    }
+
+
+
+
+
+    header("Location: approve.php");
+
+
+
+}
+
+
+
+
+
+
 
 
 ?>
@@ -154,60 +230,162 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <ul class="nav ace-nav">
                                 <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+	         <?php
+
+
+                        include "connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
                     <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
+                            <?php echo $no_notification ?> Notifications
                         </li>
 
+
                         <li class="dropdown-content">
+
+
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
+
+<?php
+
+
+
+                        include "connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                        $tname = $row['table_name'];
+                        $query_year = "SELECT * from $tname";
+                        $result_year = mysqli_query($connect, $query_year);
+
+                        $no_notification=mysqli_num_rows($result_year);
+
+
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                        ?>
+
                                 <li>
-                                    <a href="#">
+                                    <a href="approve.php?roll=<?php  echo $row1['st_roll']; ?>">
                                         <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+				                                                      <?php  $content= $row1['st_roll'] ;
+                                                                              $content.= "," ;
+                                                                              $content.= $row1['st_name'];
+
+                                                                             $content.= " has  requested for the change of";
+
+                                                                             if ($row1['st_changemail'] != NULL) {
+                                                                                  $content.= " Email id : ";
+                                                                                   $content.=$row1['st_email'];
+
+                                                                                 $content.="to : ";
+                                                                                 $content.=$row1['st_changemail'];
+
+
+
+                                                                           }
+
+                                                                        if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                            $content.= " and  ";
+
+                                                                        }
+
+
+
+
+
+
+                                                                        if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                            $content.= " Phone No : ";
+                                                                           $content.= $row1['st_phone'];
+
+                                                                            $content.= "to : ";
+                                                                            $content.= $row1['st_changephone'] ;
+                                                                        }
+
+
+
+
+                                                                        echo substr($content, 0,25)."......";
+
+
+                                                                        ?>
+
+
+                                                                    </p>
+				</span>
+
+
                                         </div>
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
+
+<?php
+                                    }
+
+
+                                }
+
+
+                            }
+
+
+                            ?>
+
+
+                        
+
                             </ul>
                         </li>
 
@@ -579,6 +757,311 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
 
+
+
+                            <?php
+
+
+
+
+
+                            if(isset($_GET['roll'])){
+
+
+
+
+                                $roll=$_GET['roll'];
+
+
+
+                                include "connect.php";
+                                $query_table = "SELECT * FROM table_map";
+                                $result_table = mysqli_query($connect, $query_table);
+
+                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                    $tname = $row['table_name'];
+                                    $query_year = "SELECT * from $tname WHERE st_roll='$roll'";
+                                    $result_year = mysqli_query($connect, $query_year);
+                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                            ?>
+
+                                            <div class="">
+                                                <div class="col-xs-12 ">
+
+                                                    <div class="widget-box widget-color-orange " id="widget-box-3">
+                                                        <div class="widget-header widget-header-small">
+                                                            <h6 class="widget-title">
+                                                                <i class="ace-icon fa fa-sort"></i>
+                                                                Change request
+                                                            </h6>
+
+                                                            <div class="widget-toolbar">
+
+                                                                <a href="#" data-action="collapse">
+                                                                    <i class="ace-icon fa fa-minus" data-icon-show="fa-plus"
+                                                                       data-icon-hide="fa-minus"></i>
+                                                                </a>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="widget-body">
+                                                            <form class="modal-content" action="approve.php" method="get"
+                                                                  enctype="multipart/form-data">
+                                                                <div class="widget-main">
+                                                                    <p>
+                                                                        <label style="font-size: large" class="green"><?php echo $row1['st_roll'] ?>
+                                                                            , <?php echo $row1['st_name'] ?> </label>
+                                                                        <label style="font-size: large">has
+                                                                            requested for the change of
+                                                                        </label>
+                                                                        <label class="orange">
+
+
+                                                                            <?php if ($row1['st_changemail'] != NULL) {
+                                                                            echo "<label style='font-size: large;'>Email id : ";
+                                                                            echo $row1['st_email'];
+                                                                            ?></label>
+                                                                        to <label style="font-size: large" class="orange">
+                                                                            <?php echo $row1['st_changemail'];
+
+
+
+                                                                            }
+
+                                                                            ?>
+
+
+
+
+
+                                                                            <?php
+
+
+
+                                                                            if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                                                                                echo " <label style='font-size: large; color: black;'> and  </label>";
+
+                                                                            }
+
+
+
+
+
+
+                                                                            if($row1['st_changephone'] != NULL) {
+
+
+
+                                                                            echo "<label style='font-size: large;'> Phone No : ";
+                                                                            echo $row1['st_phone'];
+                                                                            ?></label>
+                                                                        <label style="font-size: large; color: black;">to</label>
+                                                                        <label style="font-size: large"  class="orange">
+                                                                            <?php echo $row1['st_changephone'] ?></label>
+
+
+                                                                        <?php } ?>
+
+
+                                                                        </label></p>
+                                                                    <input type="hidden" name="rollno"
+                                                                           value="<?php echo $row1['st_roll'] ?>"/>
+                                                                    <input type="hidden" name="tname"
+                                                                           value="<?php echo $row['table_name'] ?>"/>
+                                                                    <button class=" btn btn-success col-xs-push-9"
+                                                                            type="submit" name="approve">
+                                                                        Approve
+                                                                    </button>
+
+
+                                                                    <button class=" btn btn-danger col-xs-push-9"
+                                                                            type="submit" name="decline">
+                                                                        Decline
+                                                                    </button>
+
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <?php
+                                        }
+
+
+                                    }
+
+
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            }
+
+                            else {
+
+
+
+
+
+
+
+
+
+                            include "connect.php";
+                            $query_table = "SELECT * FROM table_map";
+                            $result_table = mysqli_query($connect, $query_table);
+
+                            while ($row = mysqli_fetch_assoc($result_table)) {
+                                $tname = $row['table_name'];
+                                $query_year = "SELECT * from $tname";
+                                $result_year = mysqli_query($connect, $query_year);
+                                while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                    if ($row1['st_changemail'] != NULL || $row1['st_changephone'] != NULL) {
+
+
+                                        ?>
+
+                                        <div class="">
+                                            <div class="col-xs-12 ">
+
+                                                <div class="widget-box widget-color-orange " id="widget-box-3">
+                                                    <div class="widget-header widget-header-small">
+                                                        <h6 class="widget-title">
+                                                            <i class="ace-icon fa fa-sort"></i>
+                                                            Change request
+                                                        </h6>
+
+                                                        <div class="widget-toolbar">
+
+                                                            <a href="#" data-action="collapse">
+                                                                <i class="ace-icon fa fa-minus" data-icon-show="fa-plus"
+                                                                   data-icon-hide="fa-minus"></i>
+                                                            </a>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="widget-body">
+                                                        <form class="modal-content" action="approve.php" method="get"
+                                                              enctype="multipart/form-data">
+                                                            <div class="widget-main">
+                                                                <p>
+                                                                    <label style="font-size: large"
+                                                                           class="green"><?php echo $row1['st_roll'] ?>
+                                                                        , <?php echo $row1['st_name'] ?> </label>
+                                                                    <label style="font-size: large">has
+                                                                        requested for the change of
+                                                                    </label>
+                                                                    <label class="orange">
+
+
+                                                                        <?php if ($row1['st_changemail'] != NULL) {
+                                                                        echo "<label style='font-size: large;'>Email id : ";
+                                                                        echo $row1['st_email'];
+                                                                        ?></label>
+                                                                    to <label style="font-size: large" class="orange">
+                                                                        <?php echo $row1['st_changemail'];
+
+
+                                                                        }
+
+                                                                        ?>
+
+
+                                                                        <?php
+
+
+                                                                        if ($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL) {
+
+
+                                                                            echo " <label style='font-size: large; color: black;'> and  </label>";
+
+                                                                        }
+
+
+                                                                        if ($row1['st_changephone'] != NULL) {
+
+
+                                                                        echo "<label style='font-size: large;'> Phone No : ";
+                                                                        echo $row1['st_phone'];
+                                                                        ?></label>
+                                                                    <label style="font-size: large; color: black;">to</label>
+                                                                    <label style="font-size: large" class="orange">
+                                                                        <?php echo $row1['st_changephone'] ?></label>
+
+
+                                                                    <?php } ?>
+
+
+                                                                    </label></p>
+                                                                <input type="hidden" name="rollno"
+                                                                       value="<?php echo $row1['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname"
+                                                                       value="<?php echo $row['table_name'] ?>"/>
+                                                                <button class=" btn btn-success col-xs-push-9"
+                                                                        type="submit" name="approve">
+                                                                    Approve
+                                                                </button>
+
+
+                                                                <button class=" btn btn-danger col-xs-push-9"
+                                                                        type="submit" name="decline">
+                                                                    Decline
+                                                                </button>
+
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <?php
+                                    }
+
+
+                                }
+                            }
+
+
+                            }
+
+
+                            ?>
+                        </div>
+
+                        <!--                            <div class="space-14"></div>-->
 
 
 

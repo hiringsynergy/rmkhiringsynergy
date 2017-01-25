@@ -532,9 +532,27 @@ if(isset($_GET['roll']))
                         <label class="red bolder"> Search Profile  -</label>
 
 
+                        <?php
+
+
+                        if(isset($_GET['roll'])){
+
+                            ?>
+
+                                <input type="text" name="roll" value="<?php echo $_GET['roll'] ?>">
+
+
+                            <?php
+                        }
+
+                        else {
+
+                        ?>
 
 
                         <input type="text" name="roll">
+
+                        <?php  } ?>
                         <button type="submit"  class="btn btn-success ">search</button>
                     </form>
 
@@ -567,10 +585,13 @@ if(isset($_GET['roll']))
 
                                         $student_table = $row_short['table_name'];
 
+                                        $temp_branch=$_SESSION['cood_branch'];
 
 
 
-                                        $query = "SELECT * FROM $student_table WHERE st_roll='$username'";
+
+
+                                        $query = "SELECT * FROM $student_table WHERE st_roll='$username' and st_ugspecialization='$temp_branch'";
 
                                         $result = mysqli_query($connect, $query);
                                         if (!$connect) {
@@ -643,7 +664,7 @@ if(isset($_GET['roll']))
                                     $row_short = mysqli_fetch_assoc($result_short);
 
                                     $student_table = $row_short['table_name'];
-                                    $query="SELECT * FROM $student_table WHERE st_roll='{$username}'";
+                                    $query="SELECT * FROM $student_table WHERE st_roll='{$username}' and st_ugspecialization='$temp_branch'";
 
                                     $result=mysqli_query($connect, $query);
                                     if(!$connect){

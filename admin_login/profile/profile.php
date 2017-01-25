@@ -71,6 +71,14 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
     <!-- page specific plugin styles -->
 
+    <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
     <link rel="stylesheet" href="../assets/css/colorbox.min.css" />
 
     <!-- text fonts -->
@@ -852,8 +860,8 @@ if(isset($_GET['roll']))
 
 
 
-                        <input type="text" name="roll">
-                        <button type="submit"  class="btn btn-success ">search</button>
+                        <input type="text" id="tag1" name="roll">
+                        <button type="submit" id="bootbox-confirm" class="btn btn-success ">search</button>
                     </form>
 
 
@@ -3176,6 +3184,39 @@ if(isset($_GET['roll']))
                                 } catch(e) {}
                                 $('[class*=select2]').remove();
                             });
+
+
+                            $('#bootbox-confirm').click(function(event) {
+                                var bla = $('#tag1').val();
+                                var hidden_input =
+                                    $('<input type="hidden" name="description" />')
+                                        .appendTo('#validate-form');
+
+                               // var blc = $('#editor1').val();
+                                // var blc=hidden_input.val( html_content );
+                                if (bla == '') {
+
+                                    bootbox.dialog({
+                                        message: "Please enter a search value",
+                                        buttons: {
+                                            "success": {
+                                                "label": "OK",
+                                                "className": "btn-sm btn-primary"
+                                            }
+                                        }
+
+                                    });
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                }
+
+                                else
+                                {
+
+                                }
+                            });
+
                         });
                     </script>
 </body>

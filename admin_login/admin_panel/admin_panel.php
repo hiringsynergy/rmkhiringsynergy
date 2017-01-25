@@ -1509,7 +1509,7 @@ if(isset($_POST['update_submit'])) {
                         null, null,null, null, null, null, null, null, null, null,
                         null, null,null, null, null, null, null, null, null, null,
                         null, null,null, null, null, null, null, null, null, null,
-                        null,null
+                        null,null,
 
 
                         { "bSortable": false }

@@ -88,7 +88,9 @@ $tablename=$_GET['tablename'];
   st_signature char(255)  ,
   st_placementstatus char(255)  ,
   st_pass char(255)  ,
-  st_pic char(255)
+  st_pic char(255),
+  st_changemail char(255),
+  st_changephone char(255)
  
  
 )ENGINE=MyISAM DEFAULT CHARSET=latin1";

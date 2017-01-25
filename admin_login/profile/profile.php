@@ -2437,28 +2437,28 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Full Name</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_name'] ?>" />
+                                                                <input type="text" id="control-label bolder blu" name="fullname" placeholder="" value="<?php echo $row['st_name'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Mobile Number</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_phone'] ?>" />
+                                                                <input type="text" id="control-label bolder bl" name="phoneno" placeholder="" value="<?php echo $row['st_phone'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">Email-Id</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_email'] ?>" />
+                                                                <input type="text" id="control-label bolder b" name="emailid" placeholder="" value="<?php echo $row['st_email'] ?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Current Cgpa</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_cgpa'] ?>" />
+                                                                <input type="text" id="control-label bolder blu" name="cgpa" placeholder="" value="<?php echo $row['st_cgpa'] ?>" />
                                                             </div>
                                                         </div>
 

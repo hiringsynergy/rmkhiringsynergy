@@ -151,7 +151,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
     $logo_tmp_name=$_FILES['logo']['tmp_name'];
     $value=explode(".",$logo_name);
     $exten=end($value);
-    echo "Exten: ".$exten;
+   
     $new_logo_name=time()."_".$company_name."_"."logo".".".$exten;
     move_uploaded_file($logo_tmp_name,"../../logos/".$new_logo_name);
 
@@ -770,7 +770,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
 										
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" name="company_name" placeholder="Enter company name..." class="form-control violet" />
+												<input id="tag1" type="text" name="company_name" placeholder="Enter company name..." class="form-control violet" />
 												<div class="space-4"></div>
 											</div>
 										
@@ -782,7 +782,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
 										<div class="row">
 											<div class="col-sm-8 col-md-7">
-												<input id="tags" type="text" placeholder="Enter company website..." name="company_website" class="form-control" />
+												<input id="tag2" type="text" placeholder="Enter company website..." name="company_website" class="form-control" />
 												<div class="space-4"></div>
 											</div>
 										</div>
@@ -897,7 +897,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
                             <div class="space-6"></div>
                             <div class="  align-center ">
-                                <button class="btn btn-success" type="submit" value="create" name="create">
+                                <button class="btn btn-success" id="bootbox-confirm" type="submit" value="create" name="create">
                                     <i class="ace-icon fa fa-check bigger-110"></i>
                                     Create
                                 </button>
@@ -963,6 +963,14 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/wizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery-additional-methods.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+
+
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -1800,63 +1808,88 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
         }
 
 
-                $('#validate-form').validate({
-                    errorElement: 'div',
-                    errorClass: 'help-block',
-                    focusInvalid: true,
-                    ignore: "",
-                    rules: {
+				
+				
+				$('#bootbox-confirm').click(function(event){
+                    var bla = $('#tag1').val();
+					var blb = $('#tag2').val();
+            var hidden_input =
+                $('<input type="hidden" name="description" />')
+                    .appendTo('#validate-form');
 
-                        company_name: {
-                            required: true
-                        },
-                        company_website: {
-                            required: true
+            var blc = $('#editor1').val();
+          // var blc=hidden_input.val( html_content );
+					if(bla==''&&blb=='')
+					{
+					
+		                bootbox.dialog({
+		                    message: "Please fill in the details",
+		                    buttons: {
+		                        "success" : {
+		                            "label" : "OK",
+		                            "className" : "btn-sm btn-primary"
+		                        }
+		                    }
+
+		                } );
+		                event.preventDefault();
+		                event.stopPropagation();
+					}
+					else if(bla==''){
+						
+					
+                bootbox.dialog({
+                    message: "Please enter the company name",
+                    buttons: {
+                        "success" : {
+                            "label" : "OK",
+                            "className" : "btn-sm btn-primary"
                         }
-
-                    },
-
-                    messages: {
-                        company_name: {
-                            required: "Please provide a Company name."
-
-                        },
-                        company_website: {
-                            required: "Please provide Company Website."
-
-                        }
-                    },
-
-
-                    highlight: function (e) {
-                        $(e).closest('.hello').removeClass('has-info').addClass('has-error');
-                    },
-
-                    success: function (e) {
-                        $(e).closest('.hello').removeClass('has-error');//.addClass('has-info');
-                        $(e).remove();
                     }
 
-//                    errorPlacement: function (error, element) {
-//                        if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-//                            var controls = element.closest('div[class*="col-"]');
-//                            if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-//                            else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-//                        }
-//                        else if(element.is('.select2')) {
-//                            error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-//                        }
-//                        else if(element.is('.chosen-select')) {
-//                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-//                        }
-//                        else error.insertAfter(element.parent());
-//                    },
+                } );
+                event.preventDefault();
+                event.stopPropagation();
+			}
+			
+			else if(blb=='')
+			{
+					
+                bootbox.dialog({
+                    message: "please enter the company website",
+                    buttons: {
+                        "success" : {
+                            "label" : "OK",
+                            "className" : "btn-sm btn-primary"
+                        }
+                    }
 
-//                    submitHandler: function (form) {
-//                    },
-//                    invalidHandler: function (form) {
-//                    }
-                });
+                } );
+                event.preventDefault();
+                event.stopPropagation();
+			}
+			else if(blc==''){
+				
+			
+        bootbox.dialog({
+            message: "Please enter the description",
+            buttons: {
+                "success" : {
+                    "label" : "OK",
+                    "className" : "btn-sm btn-primary"
+                }
+            }
+
+        } );
+        event.preventDefault();
+        event.stopPropagation();
+	}
+			else{
+				
+				
+			}
+               
+			});
 
 
     });

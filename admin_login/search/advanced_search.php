@@ -88,8 +88,7 @@ function updateSlider(){
 		<link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
-		<link rel="stylesheet" href="assets/js/date-time/moment.min.js" />
-		<link rel="stylesheet" href="assets/js/date-time/bootstrap-datetimepicker.min.js" />
+
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="../assets/css/chosen.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
@@ -97,6 +96,7 @@ function updateSlider(){
     <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
 
 
 
@@ -1258,6 +1258,14 @@ function updateSlider(){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/wizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery-additional-methods.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+
+
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -1285,6 +1293,83 @@ function updateSlider(){
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {
+
+
+
+        $('#bootbox-confirm').click(function(event) {
+
+
+
+            var bla = $('#tag1').val();
+            var blb = $('#tag2').val();
+
+
+
+
+
+
+            if (blb == null && bla=='') {
+
+
+
+                bootbox.dialog({
+                    message: "Please enter the mandatory values",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+          else if (blb == null) {
+
+
+
+                bootbox.dialog({
+                    message: "Please Select Branch",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+           else if (bla=='') {
+
+
+
+                bootbox.dialog({
+                    message: "Please select Year of Graduation",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+
+
+        });
+
+
+
+
+
         $('#id-disable-check').on('click', function() {
             var inp = $('#form-input-readonly').get(0);
             if(inp.hasAttribute('disabled')) {
@@ -1833,37 +1918,6 @@ function updateSlider(){
             $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
         });
 
-        $('#bootbox-confirm').click(function(event) {
-            var bla = $('#tag1').val();
-            var blb = $('#tag2').val();
-            var hidden_input =
-                $('<input type="hidden" name="description" />')
-                    .appendTo('#validate-form');
-
-            // var blc = $('#editor1').val();
-            // var blc=hidden_input.val( html_content );
-            if (bla == ''||blb == '') {
-
-                bootbox.dialog({
-                    message: "Please enter the mandatory values",
-                    buttons: {
-                        "success": {
-                            "label": "OK",
-                            "className": "btn-sm btn-primary"
-                        }
-                    }
-
-                });
-                event.preventDefault();
-                event.stopPropagation();
-
-            }
-
-            else
-            {
-
-            }
-        });
 
 
     });

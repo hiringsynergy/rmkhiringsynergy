@@ -49,8 +49,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             location.href = "reports.php";
 
         }
+
         function myfuncjobs() {
-            location.href = "../jobs/jobs_panel.php";
+            location.href = "../jobs/view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -73,6 +74,13 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
         }
 
+
+
+
+
+
+
+        //alert(myselect.options[myselect.selectedIndex].value);
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages':['corechart']});
 
@@ -128,31 +136,36 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
+
+
+
+
             ?>
+
 
 
             // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Students_type');
             data.addColumn('number', 'Students_nos');
-            data.addRows(
+
+            data.addRows([
 
                 ['Accepted', <?php echo $accepted ?>],
                 ['Not Accepted', <?php echo $eligible ?>]
-            );
+            ]);
 
             // Set chart options
             var options = {
                 'title': 'COMPANY - <?php echo $row['company'] ?>  \n\n JOB ' + '     ' + '- <?php echo $row['job_title'] ?> \n\n ELIGIBLE - <?php echo $total ?>  ',
-                //'width':1000,
-                is3D: true,
-                //'height':500
+//                'width':500,
+                is3D: true
+//                'height':500
             };
 
             // Instantiate and draw our chart, passing in some options.
             var chart<?php echo $row['job_id'] ?> = new google.visualization.PieChart(document.getElementById('chart_div<?php echo $row['job_id'] ?>'));
             chart<?php echo $row['job_id'] ?>.draw(data, options);
-
 
             <?php }
 
@@ -161,6 +174,10 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
             ?>
         }
+
+
+
+
 
 
 
@@ -352,8 +369,6 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
 
-                <span class="btn btn-info"></span>
-
                 <span class="btn btn-warning"></span>
 
                 <span class="btn btn-danger"></span>
@@ -364,7 +379,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                    <span class="menu-text"> Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -374,66 +389,36 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                 <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
-							Your Profile
+							Profile
 							</span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li class="">
                 <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li>
-                <a href="#" class="dropdown-toggle">
+                <a href="../jobs/view_jobs.php" >
                     <i class="menu-icon fa fa-briefcase"></i>
                     <span class="menu-text"> Jobs </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../jobs/view_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View all Jobs
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../jobs/jobs_panel.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Jobs Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                </ul>
 
             </li>
 
 
             <li class="active">
-                <a href="reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -447,70 +432,25 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
+                <a href="../company/view_companies.php" >
+
                     <i class="menu-icon fa fa-laptop"></i>
                     <span class="menu-text"> Companies </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-
-                    <li class="">
-                        <a href="../company/view_companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View Companies
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../company/companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Company Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                </ul>
             </li>
+
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-tag"></i>
-                    <span class="menu-text"> More Pages </span>
-
-                    <b class="arrow fa fa-angle-down"></b>
+                <a href="../../coordinator_login/search/advanced_search.php">
+                    <i class="menu-icon fa fa-search"></i>
+                    Advanced Search
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../search/advanced_search.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Advanced Search
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../email.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Email
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-
-        </ul><!-- /.nav-list -->
+            </li><!-- /.nav-list -->
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

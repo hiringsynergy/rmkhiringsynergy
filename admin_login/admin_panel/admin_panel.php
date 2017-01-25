@@ -328,65 +328,166 @@ if(isset($_POST['update_submit'])) {
             <ul class="nav ace-nav">
                 <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+                        <?php
+
+
+                        include "../connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
                     <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                         <li class="dropdown-header">
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
+                            <?php echo $no_notification ?> Notifications
                         </li>
+
 
                         <li class="dropdown-content">
+
+
                             <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
+                                <?php
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
+
+                                include "../connect.php";
+                                $query_table = "SELECT * FROM table_map";
+                                $result_table = mysqli_query($connect, $query_table);
+
+                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                    $tname = $row['table_name'];
+                                    $query_year = "SELECT * from $tname";
+                                    $result_year = mysqli_query($connect, $query_year);
+
+                                    $no_notification=mysqli_num_rows($result_year);
+
+
+                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                            ?>
+
+                                            <li>
+                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                    <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+
+
+                         if($row1['st_changephone'] != NULL) {
+
+
+
+                             $content.= " Phone No : ";
+                             $content.= $row1['st_phone'];
+
+                             $content.= "to : ";
+                             $content.= $row1['st_changephone'] ;
+                         }
+
+
+
+
+                         echo substr($content, 0,25)."......";
+
+
+                         ?>
+
+
+                         </p>
+				</span>
+
+
+                                                    </div>
+                                                </a>
+                                            </li>
+
+
+
+
+                                            <?php
+                                        }
+
+
+                                    }
+
+
+                                }
+
+
+                                ?>
+
+
+
+
                             </ul>
                         </li>
-
                         <li class="dropdown-footer">
-                            <a href="#">
+                            <a href="../approve.php">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -857,25 +958,90 @@ if(isset($_POST['update_submit'])) {
                                     <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </th>
+<!--                                            <th class="center">-->
+<!--                                                <label class="pos-rel">-->
+<!--                                                    <input type="checkbox" class="ace" />-->
+<!--                                                    <span class="lbl"></span>-->
+<!--                                                </label>-->
+<!--                                            </th>-->
+
+
                                             <th>Roll No</th>
-                                            <th>Name</th>
-
-
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name (Mandatory)</th>
+                                            <th>Full Name</th>
+                                            <th>Gender (Male/Female)</th>
+                                            <th>Father Name</th>
+                                            <th>Father Occupation</th>
+                                            <th>Mother Name</th>
+                                            <th>Mother Occupation</th>
                                             <th>
-                                                <i class="ace-icon fa fa-clock-o bigger-110  "></i>
-                                                Email
+                                                <i class="ace-icon fa fa-clock-o bigger-110  "></i>Email ID
                                             </th>
-                                            <th class=" ">Phone</th>
+                                            <th>Mobile Number (10 digits)</th>
+                                            <th>Date of Birth (DD-MM-YYYY)</th>
+                                            <th>Nationality</th>
+                                            <th>Caste</th>
+                                            <th>College Name</th>
+                                            <th>University</th>
+                                            <th>10th %</th>
+                                            <th>Board of Study</th>
+                                            <th>Medium (Tamil/English/Telugu/Others)</th>
+                                            <th>10th - Year of Passing</th>
+                                            <th>12th %</th>
+                                            <th>Board of Study</th>
+                                            <th>Medium (Tamil/English/Telugu/Others)</th>
+                                            <th>12th - Year of Passing</th>
+                                            <th>Diploma  %</th>
+                                            <th>Diploma - Year of Passing</th>
+                                            <th>Currently Pursuing (UG/PG)</th>
+                                            <th>UG Degree</th>
+                                            <th>UG Specialization</th>
+                                            <th>1st Sem</th>
+                                            <th>2nd Sem</th>
+                                            <th>3rd Sem</th>
+                                            <th>4th Sem</th>
+                                            <th>5th Sem</th>
+                                            <th>6th Sem</th>
+                                            <th>7th Sem</th>
+                                            <th>8th Sem</th>
+                                            <th>UG Degree % or CGPA (uptolast semester for which results announced)</th>
+                                            <th>UG - Year of Passing</th>
+                                            <th>PG Degree</th>
+                                            <th>PG Specialization</th>
+                                            <th>1st Sem</th>
+                                            <th>2nd Sem</th>
+                                            <th>3rd Sem</th>
+                                            <th>4th Sem</th>
+                                            <th>PG Degree % or CGPA (upto last semester for which results announced)</th>
+                                            <th>PG - Year of Passing</th>
+                                            <th>Day Scholar/ Hosteler</th>
+                                            <th>No History of Arreas</th>
+                                            <th>Current Degree. No of Standing Arrears</th>
+                                            <th>Home Town</th>
+                                            <th>Permanent Address (Line 1)</th>
+                                            <th>Permanent Address (Line 2)</th>
+                                            <th>Permanent City</th>
+                                            <th>State</th>
+                                            <th>Postal code</th>
+                                            <th>Contact Number ( Landline)</th>
+                                            <th>If any Skill Certifications Obtained Name the Skill</th>
+                                            <th>Duration of the course</th>
+                                            <th>Certification Vendor/Authority/Agency Name</th>
+                                            <th>CoE Certification</th>
+                                            <th>Gap in studies</th>
+                                            <th>Gap in studies Reason</th>
+                                            <th>English Percentage</th>
+                                            <th>Quantitative  Percentage</th>
+                                            <th>Logical Percentage</th>
+                                            <th>Overall Average</th>
+                                            <th>Percentage</th>
+                                            <th>Candidate ID</th>
+                                            <th>Signature</th>
+                                            <th>Placement Status</th>
 
 
-                                            <th>CGPA</th>
-                                            <th>Year of Graduation</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -892,22 +1058,90 @@ if(isset($_POST['update_submit'])) {
 
                                         while($row=mysqli_fetch_assoc($result)){
                                             $roll=$row['st_roll'];
+                                            $first_name=$row['st_firstname'];
+                                            $middle_name=$row['st_middlename'];
+                                            $last_name=$row['st_lastname'];
                                             $name=$row['st_name'];
+                                            $gender=$row['st_gender'];
+                                            $father_name=$row['st_fathername'];
+                                            $father_occupation=$row['st_fatheroccupation'];
+                                            $mother_name=$row['st_mothername'];
+                                            $mother_occupation=$row['st_motheroccupation'];
                                             $email=$row['st_email'];
                                             $phone=$row['st_phone'];
+                                            $dob=$row['st_dob'];
+                                            $nationality=$row['st_nationality'];
+                                            $caste=$row['st_caste'];
+                                            $college_name=$row['st_collegename'];
+                                            $university=$row['st_university'];
+                                            $_10percentage=$row['st_10thpercentage'];
+                                            $_10boardofstudy=$row['st_10thboardofstudy'];
+                                            $_10medium=$row['st_10thmedium'];
+                                            $_10yearofpassing=$row['st_10thyearofpassing'];
+                                            $_12percentage=$row['st_12thpercentage'];
+                                            $_12boardofstudy=$row['st_12thboardofstudy'];
+                                            $_12medium=$row['st_12thmedium'];
+                                            $_12yearofpassing=$row['st_12thyearofpassing'];
+                                            $dippercentage=$row['st_dippercentage'];
+                                            $dipyearofpassing=$row['st_dipyearofpassing'];
+                                            $current=$row['st_currentlypursuing'];
+                                            $ugdeg=$row['st_ugdegree'];
+                                            $ugspecial=$row['st_ugspecialization'];
+                                            $ug1sem=$row['st_1stsem'];
+                                            $ug2sem=$row['st_2ndsem'];
+                                            $ug3sem=$row['st_3rdsem'];
+                                            $ug4sem=$row['st_4thsem'];
+                                            $ug5sem=$row['st_5thsem'];
+                                            $ug6sem=$row['st_6thsem'];
+                                            $ug7sem=$row['st_7thsem'];
+                                            $ug8sem=$row['st_8thsem'];
                                             $cgpa=$row['st_cgpa'];
-                                            $graduation=$row['st_ugyearofpassing'];
+                                            $ugyearofpassing=$row['st_ugyearofpassing'];
+                                            $pgdeg=$row['st_pgdegree'];
+                                            $pgspecial=$row['st_pgspecialization'];
+                                            $pg1sem=$row['st_pg1stsem'];
+                                            $pg2sem=$row['st_pg2ndsem'];
+                                            $pg3sem=$row['st_pg3rdsem'];
+                                            $pg4sem=$row['st_pg4thsem'];
+                                            $pgcgpa=$row['st_pgcgpa'];
+                                            $pgyearofpassing=$row['st_pgyearofpassing'];
+                                            $dayhostel=$row['st_dayorhostel'];
+                                            $historyofarrears=$row['st_historyofarrears'];
+                                            $standingarrears=$row['st_standingarrears'];
+                                            $hometown=$row['st_hometown'];
+                                            $address1=$row['st_address1'];
+                                            $address2=$row['st_address2'];
+                                            $city=$row['st_city'];
+                                            $state=$row['st_state'];
+                                            $postal_code=$row['st_posatlcode'];
+                                            $landline=$row['st_landline'];
+                                            $skill=$row['st_skillcertification'];
+                                            $duration=$row['st_duration'];
+                                            $vendor=$row['st_vendor'];
+                                            $coecertification=$row['st_coecertification'];
+                                            $gap=$row['st_gapinstudies'];
+                                            $reason=$row['st_reason'];
+                                            $english=$row['st_english'];
+                                            $quantitative=$row['st_quantitative'];
+                                            $logical=$row['st_logical'];
+                                            $overall=$row['st_overall'];
+                                            $percentage=$row['st_percentage'];
+                                            $candidate=$row['st_candidateid'];
+                                            $signature=$row['st_signature'];
+                                            $placement_status=$row['st_placementstatus'];
+
+
 
                                             ?>
 
 
                                             <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
+<!--                                                <td class="center">-->
+<!--                                                    <label class="pos-rel">-->
+<!--                                                        <input type="checkbox" class="ace" />-->
+<!--                                                        <span class="lbl"></span>-->
+<!--                                                    </label>-->
+<!--                                                </td>-->
 
                                                 <td>
 
@@ -915,18 +1149,48 @@ if(isset($_POST['update_submit'])) {
 
                                                 </td>
                                                 <td>
-                                                    <?php echo $name ?>
+                                                    <?php echo $first_name ?>
                                                 </td>
-                                                <td class=" "><?php echo $email?></td>
-                                                <td><?php echo $phone?></td>
+                                                <td class=" "><?php echo $middle_name ?></td>
 
+                                                <td><?php echo $last_name  ?></td>
+                                                <td><?php echo $name  ?></td>
+                                                <td><?php echo  $gender ?></td>
+                                                <td><?php echo $father_name ?></td>
+                                                <td><?php echo $father_occupation ?></td>
+                                                <td><?php echo $mother_name ?></td>
+                                                <td><?php echo $mother_occupation ?></td>
+                                                <td><?php echo $email ?></td>
+                                                <td><?php echo $phone ?></td>
+                                                <td><?php echo $dob ?></td>
+                                                <td><?php echo $nationality ?></td>
+                                                <td><?php echo $caste ?></td>
+                                                <td><?php echo $college_name ?></td>
+                                                <td><?php echo $university ?></td>
+                                                <td><?php echo $_10percentage ?></td>
+                                                <td><?php echo $_10boardofstudy ?></td>
+                                                <td><?php echo $_10medium ?></td>
+                                                <td><?php echo $_10yearofpassing ?></td>
+                                                <td><?php echo $_12percentage ?></td>
+                                                <td><?php echo $_12boardofstudy ?></td>
+                                                <td><?php echo $_12medium ?></td>
+                                                <td><?php echo $_12yearofpassing ?></td>
+                                                <td><?php echo $dippercentage ?></td>
+                                                <td><?php echo $dipyearofpassing ?></td>
+                                                <td><?php echo $current ?></td>
+                                                <td><?php echo $ugdeg ?></td>
+                                                <td><?php echo $ugspecial ?></td>
+                                                <td><?php echo $ug1sem ?></td>
+                                                <td><?php echo $ug2sem ?></td>
+                                                <td><?php echo $ug3sem ?></td>
+                                                <td><?php echo $ug4sem ?></td>
+                                                <td><?php echo $ug5sem ?></td>
+                                                <td><?php echo $ug6sem ?></td>
+                                                <td><?php echo $ug7sem ?></td>
+                                                <td><?php echo $ug8sem ?></td>
                                                 <?php
 
-
-
-
                                                 if($cgpa>8){
-
 
 
                                                     ?>
@@ -935,17 +1199,9 @@ if(isset($_POST['update_submit'])) {
                                                     </td>
                                                     <?php
 
-
-
                                                 }
 
-
-
-
-
                                                 else{
-
-
 
                                                     ?>
                                                     <td class=" ">
@@ -953,24 +1209,44 @@ if(isset($_POST['update_submit'])) {
                                                     </td>
                                                     <?php
 
-
-
                                                 }
 
                                                 ?>
 
+                                                <td><?php echo $ugyearofpassing ?></td>
+                                                <td><?php echo $pgdeg ?></td>
+                                                <td><?php echo $pgspecial ?></td>
+                                                <td><?php echo $pg1sem ?></td>
+                                                <td><?php echo $pg2sem ?></td>
+                                                <td><?php echo $pg3sem ?></td>
+                                                <td><?php echo $pg4sem ?></td>
+                                                <td><?php echo $pgcgpa ?></td>
+                                                <td><?php echo $pgyearofpassing ?></td>
+                                                <td><?php echo $dayhostel ?></td>
+                                                <td><?php echo $historyofarrears ?></td>
+                                                <td><?php echo $standingarrears ?></td>
+                                                <td><?php echo $hometown ?></td>
+                                                <td><?php echo $address1 ?></td>
+                                                <td><?php echo $address2 ?></td>
+                                                <td><?php echo $city ?></td>
+                                                <td><?php echo $state ?></td>
+                                                <td><?php echo $postal_code ?></td>
+                                                <td><?php echo $landline ?></td>
+                                                <td><?php echo $skill ?></td>
+                                                <td><?php echo $duration ?></td>
+                                                <td><?php echo $vendor ?></td>
+                                                <td><?php echo $coecertification ?></td>
+                                                <td><?php echo $gap ?></td>
+                                                <td><?php echo $reason ?></td>
+                                                <td><?php echo $english ?></td>
+                                                <td><?php echo $quantitative ?></td>
+                                                <td><?php echo $logical ?></td>
+                                                <td><?php echo $overall ?></td>
+                                                <td><?php echo $percentage ?></td>
+                                                <td><?php echo $candidate ?></td>
+                                                <td><?php echo $signature ?></td>
+                                                <td><?php echo $placement_status ?></td>
 
-
-
-
-
-
-
-
-
-
-                                                <td class=" ">
-                                                    <span class="label label-sm label-warning"><?php echo $graduation ?></span>
 
 
                                                 <td>
@@ -1223,8 +1499,19 @@ if(isset($_POST['update_submit'])) {
                 .DataTable( {
                     bAutoWidth: false,
                     "aoColumns": [
-                        { "bSortable": false },
-                        null, null,null, null, null,null,
+
+
+
+                        null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null ,null,
+                        null, null,null, null, null, null, null, null, null, null,
+                        null, null,null, null, null, null, null, null, null, null,
+                        null, null,null, null, null, null, null, null, null, null,
+                        null, null,null, null, null, null, null, null, null, null,
+                        null, null,null, null, null, null, null, null, null, null,
+                        null,null
+
+
                         { "bSortable": false }
                     ],
                     "aaSorting": [],
@@ -1237,7 +1524,7 @@ if(isset($_POST['update_submit'])) {
 
                     //,
                     //"sScrollY": "200px",
-                    "bPaginate": false,
+                    //"bPaginate": false,
 
                     "sScrollX": "100%"
                     //"sScrollXInner": "120%",

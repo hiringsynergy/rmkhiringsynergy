@@ -222,7 +222,16 @@ if(isset($_GET['delete']))
 
 		<!-- page specific plugin styles -->
 
-		<link rel="stylesheet" href="assets/css/chosen.min.css" />
+        <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+        <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+        <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
+
+        <link rel="stylesheet" href="assets/css/chosen.min.css" />
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -324,65 +333,166 @@ if(isset($_GET['delete']))
 					<ul class="nav ace-nav" style="">
 						                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+                        <?php
+
+
+                        include "connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
+                                            <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                                <li class="dropdown-header">
+                                                    <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                                    <?php echo $no_notification ?> Notifications
+                                                </li>
 
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
+                                                <li class="dropdown-content">
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                                    <ul class="dropdown-menu dropdown-navbar navbar-pink">
 
+                                                        <?php
+
+
+
+                                                        include "connect.php";
+                                                        $query_table = "SELECT * FROM table_map";
+                                                        $result_table = mysqli_query($connect, $query_table);
+
+                                                        while ($row = mysqli_fetch_assoc($result_table)) {
+                                                            $tname = $row['table_name'];
+                                                            $query_year = "SELECT * from $tname";
+                                                            $result_year = mysqli_query($connect, $query_year);
+
+                                                            $no_notification=mysqli_num_rows($result_year);
+
+
+                                                            while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                                if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                                    ?>
+
+                                                                    <li>
+                                                                        <a href="approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                                            <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+
+
+                         if($row1['st_changephone'] != NULL) {
+
+
+
+                             $content.= " Phone No : ";
+                             $content.= $row1['st_phone'];
+
+                             $content.= "to : ";
+                             $content.= $row1['st_changephone'] ;
+                         }
+
+
+
+
+                         echo substr($content, 0,25)."......";
+
+
+                         ?>
+
+
+                         </p>
+				</span>
+
+
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+
+
+
+
+                                                                    <?php
+                                                                }
+
+
+                                                            }
+
+
+                                                        }
+
+
+                                                        ?>
+
+
+
+
+                                                    </ul>
+                                                </li>
                         <li class="dropdown-footer">
-                            <a href="#">
+                            <a href="approve.php">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -787,7 +897,7 @@ if(isset($_GET['delete']))
                                                                 <div class="form-group">
                                                                     <h5><label class="col-xs-12 control-label orange bolder" for="form-field-1">Year of Graduation</label></h5>
                                                                     <div class="col-xs-12 col-md-7">
-                                                                        <input type="text" align="centre" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
+                                                                        <input type="text" align="centre" name="tablename" id="create-textbox" placeholder="Year of Graduation" class="col-xs-10 " />
 
                                                                     </div>
                                                                 </div>
@@ -803,7 +913,7 @@ if(isset($_GET['delete']))
 
 
                                                     <div>
-                                                        <button type="submit" name="create" class="btn btn-block btn-warning">
+                                                        <button type="submit" id="bootbox-create" name="create" class="btn btn-block btn-warning">
                                                             <span>Create</span>
                                                         </button>
                                                     </div>
@@ -829,7 +939,7 @@ if(isset($_GET['delete']))
                                                             <div class="form-group">
 										<h5><label class="col-xs-12 control-label blue bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control" name="year"  id="form-field-select-3" data-placeholder="Select a Year...">
+												<select class="col-xs-7 chosen-select form-control" name="year"  id="update-textbox" data-placeholder="Select a Year...">
 												<option value=""></option>
                                                     <?php
 
@@ -863,7 +973,7 @@ if(isset($_GET['delete']))
 
 
                                                 <div>
-                                                    <button type="submit" name="update" class="btn btn-block btn-primary">
+                                                    <button type="submit" id="bootbox-update" name="update" class="btn btn-block btn-primary">
                                                         <span>Update</span>
                                                     </button>
                                                 </div>
@@ -892,7 +1002,7 @@ if(isset($_GET['delete']))
                                                             <div class="form-group">
 										<h5><label class="col-xs-12 control-label green bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control" name="insert_year" id="form-field-select-3" data-placeholder="Select a Year...">
+												<select class="col-xs-7 chosen-select form-control" name="insert_year" id="insert-textbox" data-placeholder="Select a Year...">
 												<option value=""></option>
 
                                                     <?php
@@ -924,7 +1034,7 @@ if(isset($_GET['delete']))
                                                 <div class="space-16"></div>
 
                                                 <div>
-                                                    <button type="submit" name="insert" value="insert" class="btn btn-block btn-success">
+                                                    <button type="submit" id="bootbox-insert" name="insert" value="insert" class="btn btn-block btn-success">
                                                         <span>Insert</span>
                                                     </button>
                                                 </div>
@@ -949,7 +1059,7 @@ if(isset($_GET['delete']))
                                                             <div class="form-group">
 										<h5><label class="col-xs-12 control-label red bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-												<select class="col-xs-7 chosen-select form-control" name="tablename" id="form-field-select-3" data-placeholder="Select a Year...">
+												<select class="col-xs-7 chosen-select form-control" name="tablename" id="delete-textbox" data-placeholder="Select a Year...">
 												<option value=""></option>
                                                     <?php
 
@@ -981,7 +1091,7 @@ if(isset($_GET['delete']))
                                                 <div class="space-16"> </div>
                                                 <div class="space-16"></div>
                                                 <div>
-                                                    <button type="submit" href="index.php" name="delete" class="btn btn-block btn-danger">
+                                                    <button type="submit" href="index.php" id="bootbox-delete" name="delete" class="btn btn-block btn-danger">
                                                         <span>Delete</span>
                                                     </button>
                                                 </div>
@@ -1030,7 +1140,32 @@ if(isset($_GET['delete']))
 
 		<!-- <![endif]-->
 
-		<!--[if IE]>
+    <script src="assets/js/jquery-ui.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/chosen.jquery.min.js"></script>
+    <script src="assets/js/spinbox.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/bootstrap-timepicker.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.min.js"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="assets/js/bootstrap-colorpicker.min.js"></script>
+    <script src="assets/js/jquery.knob.min.js"></script>
+    <script src="assets/js/autosize.min.js"></script>
+    <script src="assets/js/jquery.inputlimiter.min.js"></script>
+    <script src="assets/js/jquery.maskedinput.min.js"></script>
+    <script src="assets/js/bootstrap-tag.min.js"></script>
+    <script src="assets/js/jquery-ui.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/markdown.min.js"></script>
+    <script src="assets/js/bootstrap-markdown.min.js"></script>
+    <script src="assets/js/jquery.hotkeys.index.min.js"></script>
+    <script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="assets/js/bootbox.js"></script>
+
+
+
+    <!--[if IE]>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 		<script type="text/javascript">
@@ -1039,6 +1174,15 @@ if(isset($_GET['delete']))
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
+    <script src="assets/js/wizard.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/jquery-additional-methods.min.js"></script>
+    <script src="assets/js/bootbox.js"></script>
+    <script src="assets/js/jquery.maskedinput.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+
+
+    <!-- page specific plugin styles -->
 
 
 		<!--[if lte IE 8]>
@@ -1131,16 +1275,204 @@ if(isset($_GET['delete']))
          */
 
 
-$('[data-rel=tooltip]').tooltip({container:'body'});
-        $('[data-rel=popover]').popover({container:'body'});
+                $('[data-rel=tooltip]').tooltip({container:'body'});
+                    $('[data-rel=popover]').popover({container:'body'});
 
-        autosize($('textarea[class*=autosize]'));
+                    autosize($('textarea[class*=autosize]'))
+
+
+
+
+            $('#bootbox-create').click(function(event){
+
+
+
+                var bla = $('#create-textbox').val();
+                <?php
+
+                include "connect.php";
+                $query1_insert="SELECT * FROM table_map";
+                $result1_insert=mysqli_query($connect, $query1_insert);
+                while ($row=mysqli_fetch_assoc($result1_insert)){
+
+
+
+
+                ?>
+
+
+
+                var temp=<?php echo $row['table_value'] ?>;
+                if(bla==temp)
+                {
+                    bootbox.dialog({
+                        message: "The year already exists",
+                        buttons: {
+                            "success": {
+                                "label": "OK",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                }
+                <?php } ?>
+                else if(bla=='') {
+
+                    bootbox.dialog({
+                        message: "Please enter the year of graduation",
+                        buttons: {
+                            "success": {
+                                "label": "OK",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                    else  if(bla.length!=4) {
+
+                    bootbox.dialog({
+                        message: "Please enter the correct year of graduation",
+                        buttons: {
+                            "success": {
+                                "label": "OK",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                else  if(!($.isNumeric(bla))) {
+
+                    bootbox.dialog({
+                        message: "Years must be numerical",
+                        buttons: {
+                            "success": {
+                                "label": "OK",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+
+
+
+                    else
+                {
+
+
+                }
+            });
+
+
+
+            $('#bootbox-update').click(function(event){
+
+
+
+                var blb = $('#update-textbox').val();
+                if(blb=='')
+                {
+
+                    bootbox.dialog({
+                        message: "Please select the year of graduation",
+                        buttons: {
+                            "success" : {
+                                "label" : "OK",
+                                "className" : "btn-sm btn-primary"
+                            }
+                        }
+
+                    } );
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                else
+                {
+
+
+                }
+            });
+
+
+            $('#bootbox-insert').click(function(event){
+
+
+
+                var blc = $('#insert-textbox').val();
+                if(blc=='')
+                {
+
+                    bootbox.dialog({
+                        message: "Please select the year of graduation",
+                        buttons: {
+                            "success" : {
+                                "label" : "OK",
+                                "className" : "btn-sm btn-primary"
+                            }
+                        }
+
+                    } );
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                else
+                {
+
+
+                }
+            });
+
+
+            $('#bootbox-delete').click(function(event){
+
+
+
+                var bld = $('#delete-textbox').val();
+                if(bld=='')
+                {
+
+                    bootbox.dialog({
+                        message: "Please select the year of graduation",
+                        buttons: {
+                            "success" : {
+                                "label" : "OK",
+                                "className" : "btn-sm btn-primary"
+                            }
+                        }
+
+                    } );
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                else
+                {
+
+
+                }
+            });
+
+
 
 
 
 
 
     });
+
 </script>
 
 

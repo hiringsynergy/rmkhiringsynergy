@@ -3211,6 +3211,24 @@ if(isset($_GET['roll']))
 
                                 }
 
+
+                                else if (bla.length!=12) {
+
+                                    bootbox.dialog({
+                                        message: "Please enter a valid register number",
+                                        buttons: {
+                                            "success": {
+                                                "label": "OK",
+                                                "className": "btn-sm btn-primary"
+                                            }
+                                        }
+
+                                    });
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                }
+
                                 else
                                 {
 

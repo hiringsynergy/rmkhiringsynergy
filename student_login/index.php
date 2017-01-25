@@ -443,8 +443,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     date_default_timezone_set('Asia/Kolkata');
 
                                     $previous=null;
+                                    $student_branch=$_SESSION['student_branch'];
+                                    $year_of_graduation=$_SESSION['year_of_graduation'];
 
-                                    $query="SELECT * FROM jobs ORDER  BY job_id DESC";
+                                    // echo "branch".$student_branch;
+
+                                    $query="SELECT * FROM jobs WHERE job_branch LIKE '%".$student_branch."%'  and year_of_graduation='$year_of_graduation' ORDER BY job_id DESC ";
                                     $result=mysqli_query($connect, $query);
                                     while($row=mysqli_fetch_assoc($result)){
 

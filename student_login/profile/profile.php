@@ -221,7 +221,7 @@ if(isset($_FILES['image'])){
         move_uploaded_file($file_tmp,"../images/".$newfilename);
     $student_table=$_SESSION['table_name'];
 
-    $query="UPDATE $student_table SET  st_pic='{$newfilename}' WHERE st_roll='{$name}'";
+    $query="UPDATE ".$student_table." SET  st_pic='{$newfilename}' WHERE st_roll='{$name}'";
 
     $result=mysqli_query($connect, $query);
     if(!$connect){

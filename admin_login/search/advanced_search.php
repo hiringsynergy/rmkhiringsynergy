@@ -740,7 +740,7 @@ function updateSlider(){
 									<div class="col-xs-6">
 										<h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-                                                <select class="chosen-select form-control" id="form-field-select-3"  name="year" data-placeholder="Select Year of Graduation">
+                                                <select class="chosen-select form-control" id="tag1"  name="year" data-placeholder="Select Year of Graduation">
 
 
                                                     <option value=""></option>
@@ -823,7 +823,7 @@ function updateSlider(){
                                                                 if (preg_match('/rmd_database/',$database)) {
                                                               ?>
 
-                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="tag2" data-placeholder="Choose a Branch...">
                                                                     <option value="all">All</option>
                                                                     <option value="cse">Computer science and Engineering</option>
                                                                     <option value="eee">Electrical and Electronic Engineering</option>
@@ -1145,7 +1145,7 @@ function updateSlider(){
 		                            <div class="row">
 												<div class="col-xs-12 ">
 													<div class="form-actions center">
-															<button  type="submit" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
+															<button  type="submit" id="bootbox-confirm" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
 																Filter
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>
@@ -1832,6 +1832,39 @@ function updateSlider(){
             $('.limiterBox,.autosizejs').remove();
             $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
         });
+
+        $('#bootbox-confirm').click(function(event) {
+            var bla = $('#tag1').val();
+            var blb = $('#tag2').val();
+            var hidden_input =
+                $('<input type="hidden" name="description" />')
+                    .appendTo('#validate-form');
+
+            // var blc = $('#editor1').val();
+            // var blc=hidden_input.val( html_content );
+            if (bla == ''||blb == '') {
+
+                bootbox.dialog({
+                    message: "Please enter the mandatory values",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+
+            else
+            {
+
+            }
+        });
+
 
     });
 </script>

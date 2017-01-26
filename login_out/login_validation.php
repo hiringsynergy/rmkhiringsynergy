@@ -11,6 +11,7 @@ if(isset($_POST['login'])){
     $student_branch=null;
     $student_table=null;
     $admin_database=null;
+    $student_roll=null;
     $admin_name="initialize";
     $admin_password="initialize";
     $student_name="initialize";
@@ -176,7 +177,7 @@ if(isset($_POST['login'])){
     //student validation
 
 
-    else if($student_roll == $username && $student_password==$password){
+    else if($student_roll == $username && password_verify($password, $student_password)){
 
 
 
@@ -203,9 +204,9 @@ if(isset($_POST['login'])){
     }
 
 
-    else{
-        header("Location: ../login.html");
-    }
+//    else{
+//        header("Location: ../login.html");
+//    }
 
 
 

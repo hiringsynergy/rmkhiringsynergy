@@ -23,7 +23,10 @@ if(isset($_GET['id'])){
 
     $student_table=$_SESSION['table_name'];
 
-    $query="UPDATE $student_table SET st_pass='{$pass}' WHERE st_roll='{$user}'";
+    $pass=mysqli_real_escape_string($connect, $pass);
+    $secured_pass=password_hash($pass, PASSWORD_BCRYPT  ,array("cost"=>14));
+
+    $query="UPDATE $student_table SET st_pass='{$secured_pass}' WHERE st_roll='{$user}'";
 
     $result=mysqli_query($connect, $query);
 
@@ -462,6 +465,7 @@ if(isset($_GET['id'])){
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                        <input id="process" type="hidden" name="process" >
 
 
 
@@ -931,10 +935,30 @@ if(isset($_GET['id'])){
             $('#proceed').click(function(event){
 
 
+                var retrive=null;
 
 
                     var value3 = $('#form_proceed').val();
-                    if(value3== "<?php  echo $pass ?>"){
+
+                    alert("value "+value3);
+
+
+                    $.post('process.php',{pass: value3},function(data) {
+
+
+                        $('#process').val(data);
+
+
+
+
+
+                    });
+
+                    retrive=$('#process').val();
+                    alert("retrive "+retrive);
+
+
+                    if(value3== retrive){
 
 
 

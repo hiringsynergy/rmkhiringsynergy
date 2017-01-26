@@ -865,7 +865,11 @@ if(isset($_GET['roll']))
 
                             ?>
 
+<<<<<<< HEAD
                             <input type="text" name="roll" id="tag1" value="<?php echo $_GET['roll'] ?>">
+=======
+                            <input type="text" name="roll" value="<?php echo $_GET['roll'] ?>">
+>>>>>>> origin/master
 
 
                             <?php
@@ -876,10 +880,17 @@ if(isset($_GET['roll']))
                             ?>
 
 
+<<<<<<< HEAD
                             <input type="text" name="roll" id="tag1">
 
                         <?php  } ?>
                         <button type="submit"  id="bootbox-confirm"  class="btn btn-success ">search</button>
+=======
+                            <input type="text" name="roll">
+
+                        <?php  } ?>
+                        <button type="submit"  class="btn btn-success ">search</button>
+>>>>>>> origin/master
                     </form>
 
 

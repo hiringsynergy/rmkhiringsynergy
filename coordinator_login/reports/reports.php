@@ -189,6 +189,16 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
     <!-- page specific plugin styles -->
 
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
+
     <!-- text fonts -->
     <link rel="stylesheet" href="../assets/css/fonts.googleapis.com.css" />
 
@@ -634,7 +644,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <script src="../assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 <script src="../assets/js/bootstrap.min.js"></script>
 
@@ -650,6 +660,27 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 <script src="../assets/js/jquery.flot.min.js"></script>
 <script src="../assets/js/jquery.flot.pie.min.js"></script>
 <script src="../assets/js/jquery.flot.resize.min.js"></script>
+
+<!-- ace scripts -->
+<script src="../assets/js/ace-elements.min.js"></script>
+<script src="../assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script src="../assets/js/jquery-ui.custom.min.js"></script>
+<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="../assets/js/chosen.jquery.min.js"></script>
+<script src="../assets/js/spinbox.min.js"></script>
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/bootstrap-timepicker.min.js"></script>
+<script src="../assets/js/moment.min.js"></script>
+<script src="../assets/js/daterangepicker.min.js"></script>
+<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="../assets/js/jquery.knob.min.js"></script>
+<script src="../assets/js/autosize.min.js"></script>
+<script src="../assets/js/jquery.inputlimiter.min.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/bootstrap-tag.min.js"></script>
 
 <!-- ace scripts -->
 <script src="../assets/js/ace-elements.min.js"></script>
@@ -1091,6 +1122,5 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
     });
 </script>
-
 </body>
 </html>

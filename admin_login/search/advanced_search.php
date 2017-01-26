@@ -88,8 +88,7 @@ function updateSlider(){
 		<link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
-		<link rel="stylesheet" href="assets/js/date-time/moment.min.js" />
-		<link rel="stylesheet" href="assets/js/date-time/bootstrap-datetimepicker.min.js" />
+
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="../assets/css/chosen.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
@@ -97,6 +96,7 @@ function updateSlider(){
     <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
 
 
 
@@ -740,7 +740,7 @@ function updateSlider(){
 									<div class="col-xs-6">
 										<h5><label class="col-xs-12 control-label grey bolder" for="form-field-1">Year of Graduation</label></h5>
 											<div class="col-xs-12 col-md-7">
-                                                <select class="chosen-select form-control" id="form-field-select-3"  name="year" data-placeholder="Select Year of Graduation">
+                                                <select class="chosen-select form-control" id="tag1"  name="year" data-placeholder="Select Year of Graduation">
 
 
                                                     <option value=""></option>
@@ -823,7 +823,7 @@ function updateSlider(){
                                                                 if (preg_match('/rmd_database/',$database)) {
                                                               ?>
 
-                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="tag2" data-placeholder="Choose a Branch...">
                                                                     <option value="all">All</option>
                                                                     <option value="cse">Computer science and Engineering</option>
                                                                     <option value="eee">Electrical and Electronic Engineering</option>
@@ -1145,7 +1145,7 @@ function updateSlider(){
 		                            <div class="row">
 												<div class="col-xs-12 ">
 													<div class="form-actions center">
-															<button  type="submit" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
+															<button  type="submit" id="bootbox-confirm" name="filter"  value="filter" class="btn btn-default btn-round btn-success">
 																Filter
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>
@@ -1258,6 +1258,14 @@ function updateSlider(){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/wizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery-additional-methods.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+
+
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -1285,6 +1293,83 @@ function updateSlider(){
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {
+
+
+
+        $('#bootbox-confirm').click(function(event) {
+
+
+
+            var bla = $('#tag1').val();
+            var blb = $('#tag2').val();
+
+
+
+
+
+
+            if (blb == null && bla=='') {
+
+
+
+                bootbox.dialog({
+                    message: "Please enter the mandatory values",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+          else if (blb == null) {
+
+
+
+                bootbox.dialog({
+                    message: "Please Select Branch",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+           else if (bla=='') {
+
+
+
+                bootbox.dialog({
+                    message: "Please select Year of Graduation",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+
+
+        });
+
+
+
+
+
         $('#id-disable-check').on('click', function() {
             var inp = $('#form-input-readonly').get(0);
             if(inp.hasAttribute('disabled')) {
@@ -1832,6 +1917,8 @@ function updateSlider(){
             $('.limiterBox,.autosizejs').remove();
             $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
         });
+
+
 
     });
 </script>

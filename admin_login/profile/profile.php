@@ -265,6 +265,14 @@ st_candidateid='{$candidateid}',st_signature='{$signature}' WHERE st_roll='{$rol
 
     <!-- page specific plugin styles -->
 
+    <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="../assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+
     <link rel="stylesheet" href="../assets/css/colorbox.min.css" />
 
     <!-- text fonts -->
@@ -556,6 +564,7 @@ if(isset($_GET['roll']))
                                             <i class="ace-icon fa fa-exclamation-triangle"></i>
                                             <?php echo $no_notification ?> Notifications
                                         </li>
+<<<<<<< HEAD
 
 
                                         <li class="dropdown-content">
@@ -620,6 +629,72 @@ if(isset($_GET['roll']))
 
 
 
+=======
+
+
+                                        <li class="dropdown-content">
+
+
+                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
+
+                                                <?php
+
+
+
+                                                include "../connect.php";
+                                                $query_table = "SELECT * FROM table_map";
+                                                $result_table = mysqli_query($connect, $query_table);
+
+                                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                                    $tname = $row['table_name'];
+                                                    $query_year = "SELECT * from $tname";
+                                                    $result_year = mysqli_query($connect, $query_year);
+
+                                                    $no_notification=mysqli_num_rows($result_year);
+
+
+                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                            ?>
+
+                                                            <li>
+                                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                                    <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
 
                          if($row1['st_changephone'] != NULL) {
@@ -1046,8 +1121,8 @@ if(isset($_GET['roll']))
 
 
 
-                        <input type="text" name="roll">
-                        <button type="submit"  class="btn btn-success ">search</button>
+                        <input type="text" id="tag1" name="roll">
+                        <button type="submit" id="bootbox-confirm" class="btn btn-success ">search</button>
                     </form>
 
 
@@ -3387,6 +3462,57 @@ if(isset($_GET['roll']))
                                 } catch(e) {}
                                 $('[class*=select2]').remove();
                             });
+
+
+                            $('#bootbox-confirm').click(function(event) {
+                                var bla = $('#tag1').val();
+                                var hidden_input =
+                                    $('<input type="hidden" name="description" />')
+                                        .appendTo('#validate-form');
+
+                               // var blc = $('#editor1').val();
+                                // var blc=hidden_input.val( html_content );
+                                if (bla == '') {
+
+                                    bootbox.dialog({
+                                        message: "Please enter a search value",
+                                        buttons: {
+                                            "success": {
+                                                "label": "OK",
+                                                "className": "btn-sm btn-primary"
+                                            }
+                                        }
+
+                                    });
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                }
+
+
+                                else if (bla.length!=12) {
+
+                                    bootbox.dialog({
+                                        message: "Please enter a valid register number",
+                                        buttons: {
+                                            "success": {
+                                                "label": "OK",
+                                                "className": "btn-sm btn-primary"
+                                            }
+                                        }
+
+                                    });
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                }
+
+                                else
+                                {
+
+                                }
+                            });
+
                         });
                     </script>
 </body>

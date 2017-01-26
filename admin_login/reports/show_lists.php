@@ -234,6 +234,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
+<<<<<<< HEAD
                                     <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                                         <li class="dropdown-header">
                                             <i class="ace-icon fa fa-exclamation-triangle"></i>
@@ -270,6 +271,47 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                                                             ?>
 
+=======
+<<<<<<< HEAD
+
+=======
+                                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                        <li class="dropdown-header">
+                                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                            <?php echo $no_notification ?> Notifications
+                                        </li>
+
+
+                                        <li class="dropdown-content">
+
+
+                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
+
+                                                <?php
+
+
+
+                                                include "../connect.php";
+                                                $query_table = "SELECT * FROM table_map";
+                                                $result_table = mysqli_query($connect, $query_table);
+
+                                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                                    $tname = $row['table_name'];
+                                                    $query_year = "SELECT * from $tname";
+                                                    $result_year = mysqli_query($connect, $query_year);
+
+                                                    $no_notification=mysqli_num_rows($result_year);
+
+
+                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                            ?>
+
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                                                             <li>
                                                                 <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
                                                                     <div class="clearfix">
@@ -360,6 +402,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             </a>
                         </li>
                     </ul>
+>>>>>>> origin/master
                 </li>
 
 

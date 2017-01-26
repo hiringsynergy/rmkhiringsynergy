@@ -11,7 +11,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     header("Location: ../login.html");
 
 
+
 }
+
 
 
 
@@ -139,7 +141,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             width: 13px;
             height: 50px;
             padding: 20px;
-            margin:0px 240px;
+            margin: 0 240px;
 
             position: relative;
             top: -47px;
@@ -174,24 +176,27 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 
 
-if(isset($_GET['filter'])) {
+if(isset($_GET['filter'])){
 
 
+    include "../connect.php";
     $get_year= $_GET['year'];
     $get_cgpa= $_GET['ugcgpa'];
-    $get_12percentagte= $_GET['12percentage'];
-    $get_10percentage= $_GET['10percentage'];
+    $get_12thpercentage= $_GET['12percentage'];
+    $get_10thpercentage= $_GET['10percentage'];
+    $get_historyofarrears= $_GET['historyofarrears'];
+    $get_standingarrears= $_GET['standingarrears'];
 
-    $get_branch= $_GET['ugbranch'];
+    $temp_branch= $_SESSION['cood_branch'];
 
-    if(current($get_branch)=="all"){
+   /* if(current($get_branch)=="all"){
         $temp_branch="cse','it','eee','ece','eie";
     }
 
     else {
         $temp_branch=implode("','",$get_branch);
     }
-
+*/
 
 
     $get_standingarrears= $_GET['historyofarrears'];
@@ -201,6 +206,411 @@ if(isset($_GET['filter'])) {
 
 }
 
+if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
+
+
+    //get value from form
+    include "../connect.php";
+
+
+    $get_year= $_POST['get_year'];
+    $get_cgpa= $_POST['get_cgpa'];
+    $get_12thpercentage= $_POST['get_12thpercentage'];
+    $get_10thpercentage= $_POST['get_10thpercentage'];
+    $get_historyofarrears=$_POST['get_historyofarrears'];
+    $get_standingarrears=$_POST['get_standingarrears'];
+    $temp_branch=$_POST['temp_branch'];
+
+    $subject= $_POST['subject'];
+    $message=$_POST['message'];
+
+
+
+
+
+    //uploading file if exists
+    if(isset($_FILES['attachment'])){
+
+
+        $file_name = $_FILES['attachment']['name'];
+        $file_size = $_FILES['attachment']['size'];
+        $file_tmp = $_FILES['attachment']['tmp_name'];
+        $file_type = $_FILES['attachment']['type'];
+
+
+
+        $value = explode('.',$file_name);
+
+<<<<<<< HEAD
+        <div class="navbar-header pull-left">
+            <a href="search_action.php" class="navbar-brand">
+                <small>
+                    <i class=""></i>
+                    <?php
+=======
+
+
+
+        $file_ext=strtolower(end($value));
+
+        $newfilename = $file_name.'_'.time() . '.' . $file_ext;
+
+
+        move_uploaded_file($file_tmp,"files/".$newfilename);
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
+
+                    $database=$_SESSION['database_name'];
+                    if(preg_match('/rmd_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMD Engineering College  </label>
+
+<<<<<<< HEAD
+                        <?php
+                    }
+
+                    if(preg_match('/rmk_database/', $database)){
+                        ?>
+                        <img src="../images/rmk.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK Engineering College </label>
+=======
+
+    }
+
+
+
+
+
+
+
+
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmkcet_database/', $database)){
+                        ?>
+                        <img src="../images/rmkcet.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
+
+                        <?php
+                    }
+
+
+<<<<<<< HEAD
+=======
+
+    //sending mails
+
+    require "../email/PHPMailer/PHPMailerAutoload.php";
+
+    $mail=new PHPMailer();
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
+
+
+
+
+    set_time_limit(0);
+
+    //sending mail to selected students
+
+    $query_mail = "select * from students_".$get_year." where st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+
+    $result_mail = mysqli_query($connect, $query_mail);
+    while($row_mail=mysqli_fetch_assoc($result_mail)){
+
+
+
+
+        $to=$row_mail['st_email'];
+
+
+
+
+
+
+
+        $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+        $mail->addAddress($to, $to);     // Add a recipient
+
+        $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Reply');
+
+
+
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            $mail->addAttachment('files/'.$newfilename, $newfilename);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->isHTML(true);
+
+        $mail->Subject = $subject;
+        $mail->Body    = '<h3> '.$message.' </h3>';
+
+
+
+        if(!$mail->send()) {
+
+
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+        } else {
+
+            echo 'Message has been sent';
+
+        }
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            unlink("files/$newfilename");
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+    header("Location: advanced_search.php");
+
+}
+
+else if(isset($_POST['send_mail']) && isset($_POST['search'])){
+
+
+    $get_roll= $_POST['get_roll'];
+
+    $message=$_POST['message'];
+    $subject=$_POST['subject'];
+
+    $stud_roll= explode(', ', $get_roll);
+
+
+
+
+
+
+
+
+    //uploading file if exists
+    if(isset($_FILES['attachment'])){
+
+
+        $file_name = $_FILES['attachment']['name'];
+        $file_size = $_FILES['attachment']['size'];
+        $file_tmp = $_FILES['attachment']['tmp_name'];
+        $file_type = $_FILES['attachment']['type'];
+
+
+
+        $value = explode('.',$file_name);
+
+
+
+
+        $file_ext=strtolower(end($value));
+
+        $newfilename = $file_name.'_'.time() . '.' . $file_ext;
+
+
+        move_uploaded_file($file_tmp,"files/".$newfilename);
+
+
+
+    }
+
+
+
+
+
+
+    //sending mails
+
+    require "../email/PHPMailer/PHPMailerAutoload.php";
+
+    $mail=new PHPMailer();
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'dhoni.singh1703@gmail.com';                 // SMTP username
+    $mail->Password = 'akash170397';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;
+
+
+
+
+
+
+
+
+
+
+
+
+    include "../connect.php";
+
+    foreach ($stud_roll as $roll_no){
+
+
+
+
+
+        $roll_year=$roll_no[4].$roll_no[5];
+        $year=(int)$roll_year+4;
+
+        $query_get_tablename="SELECT * FROM table_map where table_short='$year'";
+        $result_get_tablename=mysqli_query($connect, $query_get_tablename);
+        $row_get_talbename=mysqli_fetch_assoc($result_get_tablename);
+
+        $students_table=$row_get_talbename['table_name'];
+
+
+        $query_fetch_values="SELECT * FROM ".$students_table." where st_roll='$roll_no'";
+        $result_fetch_values=mysqli_query($connect, $query_fetch_values);
+        $row_roll_mail=mysqli_fetch_assoc($result_fetch_values);
+
+
+
+
+        $to=$row_roll_mail['st_email'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->setFrom('dhoni.singh1703@gmail.com', 'RMD Placements');
+        $mail->addAddress($to, $to);     // Add a recipient
+
+        $mail->addReplyTo('dhoni.singh1703@gmail.com', 'Reply');
+
+
+
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            $mail->addAttachment('files/'.$newfilename, $newfilename);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $mail->isHTML(true);
+
+        $mail->Subject = $subject;
+        $mail->Body    = '<h3> '.$message.' </h3>';
+
+
+
+        if(!$mail->send()) {
+
+
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+        } else {
+
+            echo 'Message has been sent';
+
+        }
+
+
+        if(isset($_FILES['attachment'])){
+
+
+
+            unlink("files/$newfilename");
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    header("Location: advanced_search.php");
+
+
+
+}
 
 
 
@@ -258,6 +668,7 @@ if(isset($_GET['filter'])) {
                     }
 
 
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                     ?>
                 </small>
             </a>
@@ -272,9 +683,12 @@ if(isset($_GET['filter'])) {
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
                         $result=mysqli_query($connect,$query);
 
@@ -291,7 +705,11 @@ if(isset($_GET['filter'])) {
                             ?>
 
 
+<<<<<<< HEAD
                             <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
+=======
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Jason's Photo" />
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -326,9 +744,9 @@ if(isset($_GET['filter'])) {
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </div>
+
     </div><!-- /.navbar-container -->
 </div>
 
@@ -457,11 +875,14 @@ if(isset($_GET['filter'])) {
 
                 <b class="arrow"></b>
             </li>
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
         </ul><!-- /.nav-list -->
 
 
@@ -480,22 +901,15 @@ if(isset($_GET['filter'])) {
                     </li>
                     <li class="active">Filtered Results</li>
                 </ul><!-- /.breadcrumb -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                 <!-- /.nav-search -->
             </div>
 
             <div class="page-content">
-                <!-- /.ace-settings-container -->
 
-                <!--                <div class="page-header">-->
-                <!--                    <h1>-->
-                <!--                        Student Interaction-->
-                <!--                        <small>-->
-                <!--                            <i class="ace-icon fa fa-angle-double-right"></i>-->
-                <!--                            overview &amp; stats-->
-                <!--                        </small>-->
-                <!--                    </h1>-->
-                <!--                </div><!-- /.page-header -->
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -525,12 +939,7 @@ if(isset($_GET['filter'])) {
                                     <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-<!--                                            <th class="center">-->
-<!--                                                <label class="pos-rel">-->
-<!--                                                    <input type="checkbox" class="ace" />-->
-<!--                                                    <span class="lbl"></span>-->
-<!--                                                </label>-->
-<!--                                            </th>-->
+
                                             <th>Roll No</th>
                                             <th>First Name</th>
                                             <th>Middle Name</th>
@@ -540,7 +949,7 @@ if(isset($_GET['filter'])) {
                                             <th>Father Name</th>
                                             <th>Father Occupation</th>
                                             <th>Mother Name</th>
-                                            <th>Mother Name</th>
+                                            <th>Mother Occupation</th>
                                             <th>Email ID</th>
                                             <th>Mobile Number (10 digits)</th>
                                             <th>Date of Birth (DD-MM-YYYY)</th>
@@ -616,208 +1025,225 @@ if(isset($_GET['filter'])) {
 
                                         <?php
 
+
+
                                         include "../connect.php";
 
-                                        $query="select * from students_list where st_ugyearofpassing='$get_year' and st_ugspecialization in ('$temp_branch')";
-                                        $result=mysqli_query($connect,$query);
 
-                                        if(!$result){
-                                            die("".mysqli_error($connect));
-                                        }if(!$connect){
-                                            die("".mysqli_error($connect));
-                                        }
+                                        if(isset($_GET['search'])){
 
 
-                                        while($row=mysqli_fetch_assoc($result)){
-                                            $roll=$row['st_roll'];
-                                            $first_name=$row['st_firstname'];
-                                            $middle_name=$row['st_middlename'];
-                                            $last_name=$row['st_lastname'];
-                                            $name=$row['st_name'];
-                                            $gender=$row['st_gender'];
-                                            $father_name=$row['st_fathername'];
-                                            $father_occupation=$row['st_fatheroccupation'];
-                                            $mother_name=$row['st_mothername'];
-                                            $mother_occupation=$row['st_motheroccupation'];
-                                            $email=$row['st_email'];
-                                            $phone=$row['st_phone'];
-                                            $dob=$row['st_dob'];
-                                            $nationality=$row['st_nationality'];
-                                            $caste=$row['st_caste'];
-                                            $college_name=$row['st_collegename'];
-                                            $university=$row['st_university'];
-                                            $_10percentage=$row['st_10thpercentage'];
-                                            $_10boardofstudy=$row['st_10thboardofstudy'];
-                                            $_10medium=$row['st_10thmedium'];
-                                            $_10yearofpassing=$row['st_10thyearofpassing'];
-                                            $_12percentage=$row['st_12thpercentage'];
-                                            $_12boardofstudy=$row['st_12thboardofstudy'];
-                                            $_12medium=$row['st_12thmedium'];
-                                            $_12yearofpassing=$row['st_12thyearofpassing'];
-                                            $dippercentage=$row['st_dippercentage'];
-                                            $dipyearofpassing=$row['st_dipyearofpassing'];
-                                            $current=$row['st_currentlypursuing'];
-                                            $ugdeg=$row['st_ugdegree'];
-                                            $ugspecial=$row['st_ugspecialization'];
-                                            $ug1sem=$row['st_1stsem'];
-                                            $ug2sem=$row['st_2ndsem'];
-                                            $ug3sem=$row['st_3rdsem'];
-                                            $ug4sem=$row['st_4thsem'];
-                                            $ug5sem=$row['st_5thsem'];
-                                            $ug6sem=$row['st_6thsem'];
-                                            $ug7sem=$row['st_7thsem'];
-                                            $ug8sem=$row['st_8thsem'];
-                                            $cgpa=$row['st_cgpa'];
-                                            $ugyearofpassing=$row['st_ugyearofpassing'];
-                                            $pgdeg=$row['st_pgdegree'];
-                                            $pgspecial=$row['st_pgspecialization'];
-                                            $pg1sem=$row['st_pg1stsem'];
-                                            $pg2sem=$row['st_pg2ndsem'];
-                                            $pg3sem=$row['st_pg3rdsem'];
-                                            $pg4sem=$row['st_pg4thsem'];
-                                            $pgcgpa=$row['st_pgcgpa'];
-                                            $pgyearofpassing=$row['st_pgyearofpassing'];
-                                            $dayhostel=$row['st_dayorhostel'];
-                                            $historyofarrears=$row['st_historyofarrears'];
-                                            $standingarrears=$row['st_standingarrears'];
-                                            $hometown=$row['st_hometown'];
-                                            $address1=$row['st_address1'];
-                                            $address2=$row['st_address2'];
-                                            $city=$row['st_city'];
-                                            $state=$row['st_state'];
-                                            $postal_code=$row['st_posatlcode'];
-                                            $landline=$row['st_landline'];
-                                            $skill=$row['st_skillcertification'];
-                                            $duration=$row['st_duration'];
-                                            $vendor=$row['st_vendor'];
-                                            $coecertification=$row['st_coecertification'];
-                                            $gap=$row['st_gapinstudies'];
-                                            $reason=$row['st_reason'];
-                                            $english=$row['st_english'];
-                                            $quantitative=$row['st_quantitative'];
-                                            $logical=$row['st_logical'];
-                                            $overall=$row['st_overall'];
-                                            $percentage=$row['st_percentage'];
-                                            $candidate=$row['st_candidateid'];
-                                            $signature=$row['st_signature'];
-                                            $placement_status=$row['st_placementstatus'];
+                                            include "../connect.php";
+                                            $tags= $_GET['tags'];
+
+                                            $values= explode(', ', $tags);
 
 
 
-                                            ?>
+
+                                            foreach ($values as $temp){
+
+                                                $get_year=$temp[4].$temp[5];
+                                                $year=(int)$get_year+4;
 
 
-                                            <tr>
-<!--                                                <td class="center">-->
-<!--                                                    <label class="pos-rel">-->
-<!--                                                        <input type="checkbox" class="ace" />-->
-<!--                                                        <span class="lbl"></span>-->
-<!--                                                    </label>-->
-<!--                                                </td>-->
+                                                //echo $temp." ".$year;
 
-                                                <td>
+                                                $query_get_tablename="SELECT * FROM table_map where table_short='$year'";
+                                                $result_get_tablename=mysqli_query($connect, $query_get_tablename);
+                                                $row_get_talbename=mysqli_fetch_assoc($result_get_tablename);
 
-                                                    <?php echo $roll ?>
-
-                                                </td>
-                                                <td>
-                                                    <?php echo $first_name ?>
-                                                </td>
-                                                <td class="hidden-480"><?php echo $middle_name ?></td>
-
-                                                <td><?php echo $last_name  ?></td>
-                                                <td><?php echo $name  ?></td>
-                                                <td><?php echo  $gender ?></td>
-                                                <td><?php echo $father_name ?></td>
-                                                <td><?php echo $father_occupation ?></td>
-                                                <td><?php echo $mother_name ?></td>
-                                                <td><?php echo $mother_occupation ?></td>
-                                                <td><?php echo $email ?></td>
-                                                <td><?php echo $phone ?></td>
-                                                <td><?php echo $dob ?></td>
-                                                <td><?php echo $nationality ?></td>
-                                                <td><?php echo $caste ?></td>
-                                                <td><?php echo $college_name ?></td>
-                                                <td><?php echo $university ?></td>
-                                                <td><?php echo $_10percentage ?></td>
-                                                <td><?php echo $_10boardofstudy ?></td>
-                                                <td><?php echo $_10medium ?></td>
-                                                <td><?php echo $_10yearofpassing ?></td>
-                                                <td><?php echo $_12percentage ?></td>
-                                                <td><?php echo $_12boardofstudy ?></td>
-                                                <td><?php echo $_12medium ?></td>
-                                                <td><?php echo $_12yearofpassing ?></td>
-                                                <td><?php echo $dippercentage ?></td>
-                                                <td><?php echo $dipyearofpassing ?></td>
-                                                <td><?php echo $current ?></td>
-                                                <td><?php echo $ugdeg ?></td>
-                                                <td><?php echo $ugspecial ?></td>
-                                                <td><?php echo $ug1sem ?></td>
-                                                <td><?php echo $ug2sem ?></td>
-                                                <td><?php echo $ug3sem ?></td>
-                                                <td><?php echo $ug4sem ?></td>
-                                                <td><?php echo $ug5sem ?></td>
-                                                <td><?php echo $ug6sem ?></td>
-                                                <td><?php echo $ug7sem ?></td>
-                                                <td><?php echo $ug8sem ?></td>
-                                                <?php
-
-                                                if($cgpa>8){
+                                                $students_table=$row_get_talbename['table_name'];
+                                                $temp_branch=$_SESSION['cood_branch'];
 
 
-                                                    ?>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-sm label-success"><?php echo $cgpa ?></span>
-                                                    </td>
-                                                    <?php
+                                                $query_fetch_values="SELECT * FROM ".$students_table." where st_roll='$temp'  and st_ugspecialization='$temp_branch'";
+                                                $result_fetch_values=mysqli_query($connect, $query_fetch_values);
+                                                $row=mysqli_fetch_assoc($result_fetch_values);
 
-                                                }
+                                                $roll=$row['st_roll'];
+                                                $first_name=$row['st_firstname'];
+                                                $middle_name=$row['st_middlename'];
+                                                $last_name=$row['st_lastname'];
+                                                $name=$row['st_name'];
+                                                $gender=$row['st_gender'];
+                                                $father_name=$row['st_fathername'];
+                                                $father_occupation=$row['st_fatheroccupation'];
+                                                $mother_name=$row['st_mothername'];
+                                                $mother_occupation=$row['st_motheroccupation'];
+                                                $email=$row['st_email'];
+                                                $phone=$row['st_phone'];
+                                                $dob=$row['st_dob'];
+                                                $nationality=$row['st_nationality'];
+                                                $caste=$row['st_caste'];
+                                                $college_name=$row['st_collegename'];
+                                                $university=$row['st_university'];
+                                                $_10percentage=$row['st_10thpercentage'];
+                                                $_10boardofstudy=$row['st_10thboardofstudy'];
+                                                $_10medium=$row['st_10thmedium'];
+                                                $_10yearofpassing=$row['st_10thyearofpassing'];
+                                                $_12percentage=$row['st_12thpercentage'];
+                                                $_12boardofstudy=$row['st_12thboardofstudy'];
+                                                $_12medium=$row['st_12thmedium'];
+                                                $_12yearofpassing=$row['st_12thyearofpassing'];
+                                                $dippercentage=$row['st_dippercentage'];
+                                                $dipyearofpassing=$row['st_dipyearofpassing'];
+                                                $current=$row['st_currentlypursuing'];
+                                                $ugdeg=$row['st_ugdegree'];
+                                                $ugspecial=$row['st_ugspecialization'];
+                                                $ug1sem=$row['st_1stsem'];
+                                                $ug2sem=$row['st_2ndsem'];
+                                                $ug3sem=$row['st_3rdsem'];
+                                                $ug4sem=$row['st_4thsem'];
+                                                $ug5sem=$row['st_5thsem'];
+                                                $ug6sem=$row['st_6thsem'];
+                                                $ug7sem=$row['st_7thsem'];
+                                                $ug8sem=$row['st_8thsem'];
+                                                $cgpa=$row['st_cgpa'];
+                                                $ugyearofpassing=$row['st_ugyearofpassing'];
+                                                $pgdeg=$row['st_pgdegree'];
+                                                $pgspecial=$row['st_pgspecialization'];
+                                                $pg1sem=$row['st_pg1stsem'];
+                                                $pg2sem=$row['st_pg2ndsem'];
+                                                $pg3sem=$row['st_pg3rdsem'];
+                                                $pg4sem=$row['st_pg4thsem'];
+                                                $pgcgpa=$row['st_pgcgpa'];
+                                                $pgyearofpassing=$row['st_pgyearofpassing'];
+                                                $dayhostel=$row['st_dayorhostel'];
+                                                $historyofarrears=$row['st_historyofarrears'];
+                                                $standingarrears=$row['st_standingarrears'];
+                                                $hometown=$row['st_hometown'];
+                                                $address1=$row['st_address1'];
+                                                $address2=$row['st_address2'];
+                                                $city=$row['st_city'];
+                                                $state=$row['st_state'];
+                                                $postal_code=$row['st_posatlcode'];
+                                                $landline=$row['st_landline'];
+                                                $skill=$row['st_skillcertification'];
+                                                $duration=$row['st_duration'];
+                                                $vendor=$row['st_vendor'];
+                                                $coecertification=$row['st_coecertification'];
+                                                $gap=$row['st_gapinstudies'];
+                                                $reason=$row['st_reason'];
+                                                $english=$row['st_english'];
+                                                $quantitative=$row['st_quantitative'];
+                                                $logical=$row['st_logical'];
+                                                $overall=$row['st_overall'];
+                                                $percentage=$row['st_percentage'];
+                                                $candidate=$row['st_candidateid'];
+                                                $signature=$row['st_signature'];
+                                                $placement_status=$row['st_placementstatus'];
 
-                                                else{
 
-                                                    ?>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-sm label-important"><?php echo $cgpa ?></span>
-                                                    </td>
-                                                    <?php
-
-                                                }
 
                                                 ?>
 
-                                                <td><?php echo $ugyearofpassing ?></td>
-                                                <td><?php echo $pgdeg ?></td>
-                                                <td><?php echo $pgspecial ?></td>
-                                                <td><?php echo $pg1sem ?></td>
-                                                <td><?php echo $pg2sem ?></td>
-                                                <td><?php echo $pg3sem ?></td>
-                                                <td><?php echo $pg4sem ?></td>
-                                                <td><?php echo $pgcgpa ?></td>
-                                                <td><?php echo $pgyearofpassing ?></td>
-                                                <td><?php echo $dayhostel ?></td>
-                                                <td><?php echo $historyofarrears ?></td>
-                                                <td><?php echo $standingarrears ?></td>
-                                                <td><?php echo $hometown ?></td>
-                                                <td><?php echo $address1 ?></td>
-                                                <td><?php echo $address2 ?></td>
-                                                <td><?php echo $city ?></td>
-                                                <td><?php echo $state ?></td>
-                                                <td><?php echo $postal_code ?></td>
-                                                <td><?php echo $landline ?></td>
-                                                <td><?php echo $skill ?></td>
-                                                <td><?php echo $duration ?></td>
-                                                <td><?php echo $vendor ?></td>
-                                                <td><?php echo $coecertification ?></td>
-                                                <td><?php echo $gap ?></td>
-                                                <td><?php echo $reason ?></td>
-                                                <td><?php echo $english ?></td>
-                                                <td><?php echo $quantitative ?></td>
-                                                <td><?php echo $logical ?></td>
-                                                <td><?php echo $overall ?></td>
-                                                <td><?php echo $percentage ?></td>
-                                                <td><?php echo $candidate ?></td>
-                                                <td><?php echo $signature ?></td>
-                                                <td><?php echo $placement_status ?></td>
+
+                                                <tr>
+
+                                                    <td>
+
+                                                        <?php echo $roll ?>
+
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $first_name ?>
+                                                    </td>
+                                                    <td class=" "><?php echo $middle_name ?></td>
+
+                                                    <td><?php echo $last_name  ?></td>
+                                                    <td><?php echo $name  ?></td>
+                                                    <td><?php echo  $gender ?></td>
+                                                    <td><?php echo $father_name ?></td>
+                                                    <td><?php echo $father_occupation ?></td>
+                                                    <td><?php echo $mother_name ?></td>
+                                                    <td><?php echo $mother_occupation ?></td>
+                                                    <td><?php echo $email ?></td>
+                                                    <td><?php echo $phone ?></td>
+                                                    <td><?php echo $dob ?></td>
+                                                    <td><?php echo $nationality ?></td>
+                                                    <td><?php echo $caste ?></td>
+                                                    <td><?php echo $college_name ?></td>
+                                                    <td><?php echo $university ?></td>
+                                                    <td><?php echo $_10percentage ?></td>
+                                                    <td><?php echo $_10boardofstudy ?></td>
+                                                    <td><?php echo $_10medium ?></td>
+                                                    <td><?php echo $_10yearofpassing ?></td>
+                                                    <td><?php echo $_12percentage ?></td>
+                                                    <td><?php echo $_12boardofstudy ?></td>
+                                                    <td><?php echo $_12medium ?></td>
+                                                    <td><?php echo $_12yearofpassing ?></td>
+                                                    <td><?php echo $dippercentage ?></td>
+                                                    <td><?php echo $dipyearofpassing ?></td>
+                                                    <td><?php echo $current ?></td>
+                                                    <td><?php echo $ugdeg ?></td>
+                                                    <td><?php echo $ugspecial ?></td>
+                                                    <td><?php echo $ug1sem ?></td>
+                                                    <td><?php echo $ug2sem ?></td>
+                                                    <td><?php echo $ug3sem ?></td>
+                                                    <td><?php echo $ug4sem ?></td>
+                                                    <td><?php echo $ug5sem ?></td>
+                                                    <td><?php echo $ug6sem ?></td>
+                                                    <td><?php echo $ug7sem ?></td>
+                                                    <td><?php echo $ug8sem ?></td>
+                                                    <?php
+
+                                                    if($cgpa>8){
+
+
+                                                        ?>
+                                                        <td class=" ">
+                                                            <span class="label label-sm label-success"><?php echo $cgpa ?></span>
+                                                        </td>
+                                                        <?php
+
+                                                    }
+
+                                                    else{
+
+                                                        ?>
+                                                        <td class=" ">
+                                                            <span class="label label-sm label-important"><?php echo $cgpa ?></span>
+                                                        </td>
+                                                        <?php
+
+                                                    }
+
+                                                    ?>
+
+                                                    <td><?php echo $ugyearofpassing ?></td>
+                                                    <td><?php echo $pgdeg ?></td>
+                                                    <td><?php echo $pgspecial ?></td>
+                                                    <td><?php echo $pg1sem ?></td>
+                                                    <td><?php echo $pg2sem ?></td>
+                                                    <td><?php echo $pg3sem ?></td>
+                                                    <td><?php echo $pg4sem ?></td>
+                                                    <td><?php echo $pgcgpa ?></td>
+                                                    <td><?php echo $pgyearofpassing ?></td>
+                                                    <td><?php echo $dayhostel ?></td>
+                                                    <td><?php echo $historyofarrears ?></td>
+                                                    <td><?php echo $standingarrears ?></td>
+                                                    <td><?php echo $hometown ?></td>
+                                                    <td><?php echo $address1 ?></td>
+                                                    <td><?php echo $address2 ?></td>
+                                                    <td><?php echo $city ?></td>
+                                                    <td><?php echo $state ?></td>
+                                                    <td><?php echo $postal_code ?></td>
+                                                    <td><?php echo $landline ?></td>
+                                                    <td><?php echo $skill ?></td>
+                                                    <td><?php echo $duration ?></td>
+                                                    <td><?php echo $vendor ?></td>
+                                                    <td><?php echo $coecertification ?></td>
+                                                    <td><?php echo $gap ?></td>
+                                                    <td><?php echo $reason ?></td>
+                                                    <td><?php echo $english ?></td>
+                                                    <td><?php echo $quantitative ?></td>
+                                                    <td><?php echo $logical ?></td>
+                                                    <td><?php echo $overall ?></td>
+                                                    <td><?php echo $percentage ?></td>
+                                                    <td><?php echo $candidate ?></td>
+                                                    <td><?php echo $signature ?></td>
+                                                    <td><?php echo $placement_status ?></td>
 
 
 
@@ -830,26 +1256,234 @@ if(isset($_GET['filter'])) {
 
 
 
+                                                </tr>
 
 
 
+                                                <?php
+                                            }
 
-
-
-
-
-
-
-
-                                            </tr>
-
-
-
-                                            <?php
 
 
 
                                         }
+
+
+                                        else if(isset($_GET['filter'])) {
+
+
+                                            $get_year=$_GET['year'];
+
+                                            //st_ugyearofpassing='$get_year' and
+
+                                            $query = "select * from students_".$get_year." where st_ugspecialization in ('$temp_branch') and st_cgpa>='$get_cgpa' and st_12thpercentage>='$get_12thpercentage' and st_10thpercentage>='$get_10thpercentage' and st_historyofarrears<='$get_historyofarrears' and st_standingarrears<='$get_standingarrears'";
+
+                                            $result = mysqli_query($connect, $query);
+
+                                            if (!$result) {
+                                                die("" . mysqli_error($connect));
+                                            }
+                                            if (!$connect) {
+                                                die("" . mysqli_error($connect));
+                                            }
+
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $roll = $row['st_roll'];
+                                                $first_name = $row['st_firstname'];
+                                                $middle_name = $row['st_middlename'];
+                                                $last_name = $row['st_lastname'];
+                                                $name = $row['st_name'];
+                                                $gender = $row['st_gender'];
+                                                $father_name = $row['st_fathername'];
+                                                $father_occupation = $row['st_fatheroccupation'];
+                                                $mother_name = $row['st_mothername'];
+                                                $mother_occupation = $row['st_motheroccupation'];
+                                                $email = $row['st_email'];
+                                                $phone = $row['st_phone'];
+                                                $dob = $row['st_dob'];
+                                                $nationality = $row['st_nationality'];
+                                                $caste = $row['st_caste'];
+                                                $college_name = $row['st_collegename'];
+                                                $university = $row['st_university'];
+                                                $_10percentage = $row['st_10thpercentage'];
+                                                $_10boardofstudy = $row['st_10thboardofstudy'];
+                                                $_10medium = $row['st_10thmedium'];
+                                                $_10yearofpassing = $row['st_10thyearofpassing'];
+                                                $_12percentage = $row['st_12thpercentage'];
+                                                $_12boardofstudy = $row['st_12thboardofstudy'];
+                                                $_12medium = $row['st_12thmedium'];
+                                                $_12yearofpassing = $row['st_12thyearofpassing'];
+                                                $dippercentage = $row['st_dippercentage'];
+                                                $dipyearofpassing = $row['st_dipyearofpassing'];
+                                                $current = $row['st_currentlypursuing'];
+                                                $ugdeg = $row['st_ugdegree'];
+                                                $ugspecial = $row['st_ugspecialization'];
+                                                $ug1sem = $row['st_1stsem'];
+                                                $ug2sem = $row['st_2ndsem'];
+                                                $ug3sem = $row['st_3rdsem'];
+                                                $ug4sem = $row['st_4thsem'];
+                                                $ug5sem = $row['st_5thsem'];
+                                                $ug6sem = $row['st_6thsem'];
+                                                $ug7sem = $row['st_7thsem'];
+                                                $ug8sem = $row['st_8thsem'];
+                                                $cgpa = $row['st_cgpa'];
+                                                $ugyearofpassing = $row['st_ugyearofpassing'];
+                                                $pgdeg = $row['st_pgdegree'];
+                                                $pgspecial = $row['st_pgspecialization'];
+                                                $pg1sem = $row['st_pg1stsem'];
+                                                $pg2sem = $row['st_pg2ndsem'];
+                                                $pg3sem = $row['st_pg3rdsem'];
+                                                $pg4sem = $row['st_pg4thsem'];
+                                                $pgcgpa = $row['st_pgcgpa'];
+                                                $pgyearofpassing = $row['st_pgyearofpassing'];
+                                                $dayhostel = $row['st_dayorhostel'];
+                                                $historyofarrears = $row['st_historyofarrears'];
+                                                $standingarrears = $row['st_standingarrears'];
+                                                $hometown = $row['st_hometown'];
+                                                $address1 = $row['st_address1'];
+                                                $address2 = $row['st_address2'];
+                                                $city = $row['st_city'];
+                                                $state = $row['st_state'];
+                                                $postal_code = $row['st_posatlcode'];
+                                                $landline = $row['st_landline'];
+                                                $skill = $row['st_skillcertification'];
+                                                $duration = $row['st_duration'];
+                                                $vendor = $row['st_vendor'];
+                                                $coecertification = $row['st_coecertification'];
+                                                $gap = $row['st_gapinstudies'];
+                                                $reason = $row['st_reason'];
+                                                $english = $row['st_english'];
+                                                $quantitative = $row['st_quantitative'];
+                                                $logical = $row['st_logical'];
+                                                $overall = $row['st_overall'];
+                                                $percentage = $row['st_percentage'];
+                                                $candidate = $row['st_candidateid'];
+                                                $signature = $row['st_signature'];
+                                                $placement_status = $row['st_placementstatus'];
+
+
+                                                ?>
+
+
+                                                <tr>
+
+                                                    <td>
+
+                                                        <?php echo $roll ?>
+
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $first_name ?>
+                                                    </td>
+                                                    <td class=" "><?php echo $middle_name ?></td>
+
+                                                    <td><?php echo $last_name ?></td>
+                                                    <td><?php echo $name ?></td>
+                                                    <td><?php echo $gender ?></td>
+                                                    <td><?php echo $father_name ?></td>
+                                                    <td><?php echo $father_occupation ?></td>
+                                                    <td><?php echo $mother_name ?></td>
+                                                    <td><?php echo $mother_occupation ?></td>
+                                                    <td><?php echo $email ?></td>
+                                                    <td><?php echo $phone ?></td>
+                                                    <td><?php echo $dob ?></td>
+                                                    <td><?php echo $nationality ?></td>
+                                                    <td><?php echo $caste ?></td>
+                                                    <td><?php echo $college_name ?></td>
+                                                    <td><?php echo $university ?></td>
+                                                    <td><?php echo $_10percentage ?></td>
+                                                    <td><?php echo $_10boardofstudy ?></td>
+                                                    <td><?php echo $_10medium ?></td>
+                                                    <td><?php echo $_10yearofpassing ?></td>
+                                                    <td><?php echo $_12percentage ?></td>
+                                                    <td><?php echo $_12boardofstudy ?></td>
+                                                    <td><?php echo $_12medium ?></td>
+                                                    <td><?php echo $_12yearofpassing ?></td>
+                                                    <td><?php echo $dippercentage ?></td>
+                                                    <td><?php echo $dipyearofpassing ?></td>
+                                                    <td><?php echo $current ?></td>
+                                                    <td><?php echo $ugdeg ?></td>
+                                                    <td><?php echo $ugspecial ?></td>
+                                                    <td><?php echo $ug1sem ?></td>
+                                                    <td><?php echo $ug2sem ?></td>
+                                                    <td><?php echo $ug3sem ?></td>
+                                                    <td><?php echo $ug4sem ?></td>
+                                                    <td><?php echo $ug5sem ?></td>
+                                                    <td><?php echo $ug6sem ?></td>
+                                                    <td><?php echo $ug7sem ?></td>
+                                                    <td><?php echo $ug8sem ?></td>
+                                                    <?php
+
+                                                    if ($cgpa > 8) {
+
+
+                                                        ?>
+                                                        <td class=" ">
+                                                            <span class="label label-sm label-success"><?php echo $cgpa ?></span>
+                                                        </td>
+                                                        <?php
+
+                                                    } else {
+
+                                                        ?>
+                                                        <td class=" ">
+                                                            <span class="label label-sm label-important"><?php echo $cgpa ?></span>
+                                                        </td>
+                                                        <?php
+
+                                                    }
+
+                                                    ?>
+
+                                                    <td><?php echo $ugyearofpassing ?></td>
+                                                    <td><?php echo $pgdeg ?></td>
+                                                    <td><?php echo $pgspecial ?></td>
+                                                    <td><?php echo $pg1sem ?></td>
+                                                    <td><?php echo $pg2sem ?></td>
+                                                    <td><?php echo $pg3sem ?></td>
+                                                    <td><?php echo $pg4sem ?></td>
+                                                    <td><?php echo $pgcgpa ?></td>
+                                                    <td><?php echo $pgyearofpassing ?></td>
+                                                    <td><?php echo $dayhostel ?></td>
+                                                    <td><?php echo $historyofarrears ?></td>
+                                                    <td><?php echo $standingarrears ?></td>
+                                                    <td><?php echo $hometown ?></td>
+                                                    <td><?php echo $address1 ?></td>
+                                                    <td><?php echo $address2 ?></td>
+                                                    <td><?php echo $city ?></td>
+                                                    <td><?php echo $state ?></td>
+                                                    <td><?php echo $postal_code ?></td>
+                                                    <td><?php echo $landline ?></td>
+                                                    <td><?php echo $skill ?></td>
+                                                    <td><?php echo $duration ?></td>
+                                                    <td><?php echo $vendor ?></td>
+                                                    <td><?php echo $coecertification ?></td>
+                                                    <td><?php echo $gap ?></td>
+                                                    <td><?php echo $reason ?></td>
+                                                    <td><?php echo $english ?></td>
+                                                    <td><?php echo $quantitative ?></td>
+                                                    <td><?php echo $logical ?></td>
+                                                    <td><?php echo $overall ?></td>
+                                                    <td><?php echo $percentage ?></td>
+                                                    <td><?php echo $candidate ?></td>
+                                                    <td><?php echo $signature ?></td>
+                                                    <td><?php echo $placement_status ?></td>
+
+
+                                                </tr>
+
+
+                                                <?php
+                                            }
+
+
+                                        }
+
+
+
+
+
 
 
 
@@ -868,77 +1502,195 @@ if(isset($_GET['filter'])) {
                         </div>
 
 
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <div class="form-actions center">
+
+
+                                    <a href="#modal-form" role="button" class="btn btn-success" data-toggle="modal">SEND MAIL <i class="ace-icon fa fa-envelope icon-on-right bigger-130"></i></a>
+
+
+                                </div>
+                            </div>
+
+                            <div id="modal-form" class="modal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="search_action.php" method="post" enctype="multipart/form-data">
+
+                                            <div class="modal-body">
+
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12">
+
+                                                        <div class="space-4"></div>
+
+
+                                                        <?php   if(isset($_GET['filter'])){
+
+                                                            ?>
+
+                                                            <input type="hidden" value="<?php echo $get_year ?>" name="get_year">
+                                                            <input type="hidden" value="<?php echo $get_cgpa ?>" name="get_cgpa">
+                                                            <input type="hidden" value="<?php echo $get_12thpercentage ?>" name="get_12thpercentage">
+                                                            <input type="hidden" value="<?php echo $get_10thpercentage ?>" name="get_10thpercentage">
+                                                            <input type="hidden" value="<?php echo $get_historyofarrears ?>" name="get_historyofarrears">
+                                                            <input type="hidden" value="<?php echo $get_standingarrears ?>" name="get_standingarrears">
+                                                            <input type="hidden" value="<?php echo $temp_branch ?>" name="temp_branch">
+                                                            <input type="hidden" value="filter" name="filter">
 
 
 
-                        <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.page-content -->
-        </div>
-    </div><!-- /.main-content -->
 
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="footer-content">
+
+
+
+                                                            <?php
+
+
+                                                        }
+                                                        else if(isset($_GET['search'])){
+
+                                                            $tags= $_GET['tags'];
+                                                            ?>
+
+                                                            <input type="hidden" value="<?php echo $tags ?>" name="get_roll">
+
+                                                            <input type="hidden" value="search" name="search">
+
+
+
+
+
+
+
+                                                            <?php
+
+
+                                                        }
+
+                                                        ?>
+
+
+                                                        <div class="form-group">
+                                                            <label for="form-field-username">Subject</label>
+
+                                                            <div>
+                                                                <input type="text" name="subject" id="form-field-username" class="col-xs-8" placeholder="Enter Subject" value="" />
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="space-16"></div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="form-field-first">Message</label>
+
+                                                            <div>
+                                                                <textarea id="form-field-11" name="message" rows="6" cols="9"class="autosize-transition form-control"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="space-16"></div>
+
+
+                                                    <div class="col-xs-8 col-sm-12 ">
+
+                                                        <div class="space-16"></div>
+                                                        <label for="id-input-file-2">Attachment</label>
+
+
+
+                                                        <input type="file" id="id-input-file-2" name="attachment" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-16"></div>
+                                            <div class="modal-footer center">
+                                                <button class="btn btn-sm" data-dismiss="modal">
+                                                    <i class="ace-icon fa fa-times"></i>
+                                                    Cancel
+                                                </button>
+                                                <button name="send_mail" type="submit" class="btn btn-sm btn-primary">
+                                                    <i class="ace-icon fa fa-send"></i>
+                                                    SEND
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- PAGE CONTENT ENDS -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.page-content -->
+                </div>
+            </div><!-- /.main-content -->
+
+            <div class="footer">
+                <div class="footer-inner">
+                    <div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">RMK</span>
 							Group of Institutions
 						</span>
 
-                &nbsp; &nbsp;
+                        &nbsp; &nbsp;
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
-</div><!-- /.main-container -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+            </a>
+        </div><!-- /.main-container -->
 
-<!-- basic scripts -->
+        <!-- basic scripts -->
 
-<!--[if !IE]> -->
-<script src="../assets/js/jquery-2.1.4.min.js"></script>
+        <!--[if !IE]> -->
+        <script src="../assets/js/jquery-2.1.4.min.js"></script>
 
-<!-- <![endif]-->
+        <!-- <![endif]-->
 
-<!--[if IE]>
-<script src="../assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-<script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
-<script src="../assets/js/bootstrap.min.js"></script>
+        <!--[if IE]>
+        <script src="../assets/js/jquery-1.11.3.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+        </script>
+        <script src="../assets/js/bootstrap.min.js"></script>
 
-<!-- page specific plugin scripts -->
-<script src="../assets/js/jquery.dataTables.min.js"></script>
-<script src="../assets/js/jquery.dataTables.bootstrap.min.js"></script>
-<script src="../assets/js/dataTables.buttons.min.js"></script>
-<script src="../assets/js/buttons.flash.min.js"></script>
-<script src="../assets/js/buttons.html5.min.js"></script>
-<script src="../assets/js/buttons.print.min.js"></script>
-<script src="../assets/js/buttons.colVis.min.js"></script>
-<script src="../assets/js/dataTables.select.min.js"></script>
+        <!-- page specific plugin scripts -->
+        <script src="../assets/js/jquery.dataTables.min.js"></script>
+        <script src="../assets/js/jquery.dataTables.bootstrap.min.js"></script>
+        <script src="../assets/js/dataTables.buttons.min.js"></script>
+        <script src="../assets/js/buttons.flash.min.js"></script>
+        <script src="../assets/js/buttons.html5.min.js"></script>
+        <script src="../assets/js/buttons.print.min.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js"></script>
+        <script src="../assets/js/dataTables.select.min.js"></script>
 
 
+        <script src="../assets/js/bootbox.js"></script>
 
-<script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script src="../../vendors/jszip/dist/jszip.min.js"></script>
-<script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
-<script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
+        <script src="../assets/js/autosize.min.js"></script>
 
 
-
-
+        <script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="../../vendors/jszip/dist/jszip.min.js"></script>
+        <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
 
 
 
@@ -952,301 +1704,457 @@ if(isset($_GET['filter'])) {
 
 
 
-<!-- ace scripts -->
-<script src="../assets/js/ace-elements.min.js"></script>
-<script src="../assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
-<script type="text/javascript">
-
-
-    ;
 
 
 
 
+        <!-- ace scripts -->
+        <script src="../assets/js/ace-elements.min.js"></script>
+        <script src="../assets/js/ace.min.js"></script>
+
+        <!-- inline scripts related to this page -->
+        <script type="text/javascript">
 
 
-    jQuery(function($) {
-        //initiate dataTables plugin
-        var myTable =
-            $('#dynamic-table')
-            .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                .DataTable( {
-                    bAutoWidth: false,
-                    "aoColumns": [
-
-                        null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null ,null,
-                        null, null,null, null, null, null, null, null, null, null,
-                        null, null,null, null, null, null, null, null, null, null,
-                        null, null,null, null, null, null, null, null, null, null,
-                        null, null,null, null, null, null, null, null, null, null,
-                        null, null,null, null, null, null, null, null, null, null,
-                        null,null
+            ;
 
 
 
 
-                    ],
-                    "aaSorting": [],
+
+
+            jQuery(function($) {
+                //initiate dataTables plugin
+                var myTable =
+                    $('#dynamic-table')
+                        .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                        .DataTable( {
+                            bAutoWidth: false,
+                            "aoColumns": [
+
+                                null, null, null, null, null, null, null, null, null, null,
+                                null, null, null, null, null, null, null, null, null ,null,
+                                null, null,null, null, null, null, null, null, null, null,
+                                null, null,null, null, null, null, null, null, null, null,
+                                null, null,null, null, null, null, null, null, null, null,
+                                null, null,null, null, null, null, null, null, null, null,
+                                null, null,null, null, null, null, null, null, null, null,
+                                null,null
 
 
 
-                    //"bProcessing": true,
-                    //"bServerSide": true,
-                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
 
-                    //,
-                    //"sScrollY": "200px",
-                    //"bPaginate": false,
+                            ],
+                            "aaSorting": [],
 
-                   "sScrollX": "100px"
-                    //"sScrollXInner": "120%",
-                    //"bScrollCollapse": true
-                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-                    //"iDisplayLength": 50
+
+                            //"bProcessing": true,
+                            //"bServerSide": true,
+                            //"sAjaxSource": "http://127.0.0.1/table.php"	,
+
+                            //,
+                            //"sScrollY": "200px",
+                            //"bPaginate": false,
+
+                            "sScrollX": "100px"
+                            //"sScrollXInner": "120%",
+                            //"bScrollCollapse": true
+                            //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+                            //you may want to wrap the table inside a "div.dataTables_borderWrap" element
+
+                            //"iDisplayLength": 50
 
 //
 //                    select: {
 //                        style: 'multi'
 //                    }
-                } );
+                        } );
 
 
 
-        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+                $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
-        new $.fn.dataTable.Buttons( myTable, {
-            buttons: [
-                {
-                    "extend": "colvis",
-                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                    "className": "btn btn-white btn-primary btn-bold",
-                    columns: ':not(:first):not(:last)'
-                },
-                {
-                    "extend": "copy",
-                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                },
-                {
-                    "extend": "csv",
-                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
+                new $.fn.dataTable.Buttons( myTable, {
+                    buttons: [
+                        {
+                            "extend": "colvis",
+                            "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+                            "className": "btn btn-white btn-primary btn-bold",
+                            columns: ':not(:first):not(:last)'
+                        },
+                        {
+                            "extend": "copy",
+                            "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
+                        },
+                        {
+                            "extend": "csv",
+                            "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
 
 
-                },
+                        },
 //                {
 //                    extend: 'excelHtml5',
 //                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
 //                   "className": "btn btn-white btn-primary btn-bold"
 //
 //                },
-                {
-                    "extend": "excel",
-                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                },
+                        {
+                            "extend": "excel",
+                            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
+                        },
 
-                {
-                    "extend": "print",
-                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                    "className": "btn btn-white btn-primary btn-bold",
-                    autoPrint: false,
-                    message: 'This print was produced using the Print button for DataTables'
-                }
-            ]
-        } );
-        myTable.buttons().container().appendTo( $('.tableTools-container') );
-
-
-        $('#chk1').click(function(){
-            $("button").toggle(200, function(){
-                location.href="../admin_panel/admin_panel_woexport.php"
-            });
-        });
-
-        //style the message box
-        var defaultCopyAction = myTable.button(1).action();
-        myTable.button(1).action(function (e, dt, button, config) {
-            defaultCopyAction(e, dt, button, config);
-            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-        });
-
-
-        var defaultColvisAction = myTable.button(0).action();
-        myTable.button(0).action(function (e, dt, button, config) {
-
-            defaultColvisAction(e, dt, button, config);
-
-
-            if($('.dt-button-collection > .dropdown-menu').length == 0) {
-                $('.dt-button-collection')
-                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                    .find('a').attr('href', '#').wrap("<li />")
-            }
-            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-        });
-
-        ////
-
-        setTimeout(function() {
-            $($('.tableTools-container')).find('a.dt-button').each(function() {
-                var div = $(this).find(' > div').first();
-                if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
-                else $(this).tooltip({container: 'body', title: $(this).text()});
-            });
-        }, 500);
+                        {
+                            "extend": "print",
+                            "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+                            "className": "btn btn-white btn-primary btn-bold",
+                            autoPrint: false,
+                            message: 'This print was produced using the Print button for DataTables'
+                        }
+                    ]
+                } );
+                myTable.buttons().container().appendTo( $('.tableTools-container') );
 
 
 
-
-
-        myTable.on( 'select', function ( e, dt, type, index ) {
-            if ( type === 'row' ) {
-                $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
-            }
-        } );
-        myTable.on( 'deselect', function ( e, dt, type, index ) {
-            if ( type === 'row' ) {
-                $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
-            }
-        } );
-
-
-
-
-        /////////////////////////////////
-        //table checkboxes
-        $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-
-
-
-        //select/deselect all rows according to table header checkbox
-        $('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $('#dynamic-table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) myTable.row(row).select();
-                else  myTable.row(row).deselect();
-            });
-        });
-
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#dynamic-table').on('click', 'tr input[type=checkbox]' , function(){
-            var $row = $(this).closest('tr');
-            if(this.checked) $row.addClass("selected highlight");
-            else $row.removeClass("selected highlight");
-        });
-
-
-
-        $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
-        });
-
-
-
-        //And for the first simple table, which doesn't have TableTools or dataTables
-        //select/deselect all rows according to table header checkbox
-        var active_class = 'active';
-        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $(this).closest('table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
-                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
-            });
-        });
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
-            var $row = $(this).closest('tr');
-            if($row.is('.detail-row ')) return;
-            if(this.checked) $row.addClass(active_class);
-            else $row.removeClass(active_class);
-        });
-
-
-
-        /********************************/
-        //add tooltip for small view action buttons in dropdown menu
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-
-        //tooltip placement on right or left
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('table')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            //var w2 = $source.width();
-
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-
-
-
-
-        /***************/
-        $('.show-details-btn').on('click', function(e) {
-            e.preventDefault();
-            $(this).closest('tr').next().toggleClass('open');
-            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-        });
-        /***************/
-
-
-
-        $('#modal-form input[type=file]').ace_file_input({
-            style:'well',
-            btn_choose:'Drop files here or click to choose',
-            btn_change:null,
-            no_icon:'ace-icon fa fa-cloud-upload',
-            droppable:true,
-            thumbnail:'large'
-        });
-
-        //chosen plugin inside a modal will have a zero width because the select element is originally hidden
-        //and its width cannot be determined.
-        //so we set the width after modal is show
-        $('#modal-form').on('shown.bs.modal', function () {
-            if(!ace.vars['touch']) {
-                $(this).find('.chosen-container').each(function(){
-                    $(this).find('a:first-child').css('width' , '210px');
-                    $(this).find('.chosen-drop').css('width' , '210px');
-                    $(this).find('.chosen-search input').css('width' , '200px');
+                //style the message box
+                var defaultCopyAction = myTable.button(1).action();
+                myTable.button(1).action(function (e, dt, button, config) {
+                    defaultCopyAction(e, dt, button, config);
+                    $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
                 });
-            }
-        });
+
+
+                var defaultColvisAction = myTable.button(0).action();
+                myTable.button(0).action(function (e, dt, button, config) {
+
+                    defaultColvisAction(e, dt, button, config);
+
+
+                    if($('.dt-button-collection > .dropdown-menu').length == 0) {
+                        $('.dt-button-collection')
+                            .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+                            .find('a').attr('href', '#').wrap("<li />")
+                    }
+                    $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+                });
+
+                ////
+
+                setTimeout(function() {
+                    $($('.tableTools-container')).find('a.dt-button').each(function() {
+                        var div = $(this).find(' > div').first();
+                        if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+                        else $(this).tooltip({container: 'body', title: $(this).text()});
+                    });
+                }, 500);
 
 
 
-        /**
-         //add horizontal scrollbars to a simple table
-         $('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-         {
-           horizontal: true,
-           styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-           size: 2000,
-           mouseWheelLock: true
-         }
-         ).css('padding-top', '12px');
-         */
+                $(' #id-input-file-2').ace_file_input({
+                    no_file:'No File ...',
+                    btn_choose:'Choose',
+                    btn_change:'Change',
+                    droppable:false,
+                    onchange:null,
+                    thumbnail:false //| true | large
+                    //whitelist:'gif|png|jpg|jpeg'
+                    //blacklist:'exe|php'
+                    //onchange:''
+                    //
+                });
 
 
-    })
-</script>
+
+
+
+
+
+
+
+                $("#bootbox-regular").on(ace.click_event, function() {
+                    bootbox.prompt("What is your name?", function(result) {
+                        if (result === null) {
+
+                        } else {
+
+                        }
+                    });
+                });
+
+                $('#modal-form input[type=file]').ace_file_input({
+                    style:'well',
+                    btn_choose:'Drop files here or click to choose',
+                    btn_change:null,
+                    no_icon:'ace-icon fa fa-cloud-upload',
+                    droppable:true,
+                    thumbnail:'large'
+                })
+
+                //chosen plugin inside a modal will have a zero width because the select element is originally hidden
+                //and its width cannot be determined.
+                //so we set the width after modal is show
+                $('#modal-form').on('shown.bs.modal', function () {
+                    if(!ace.vars['touch']) {
+                        $(this).find('.chosen-container').each(function(){
+                            $(this).find('a:first-child').css('width' , '210px');
+                            $(this).find('.chosen-drop').css('width' , '210px');
+                            $(this).find('.chosen-search input').css('width' , '200px');
+                        });
+                    }
+                })
+                /**
+                 //or you can activate the chosen plugin after modal is shown
+                 //this way select element becomes visible with dimensions and chosen works as expected
+                 $('#modal-form').on('shown', function () {
+					$(this).find('.modal-chosen').chosen();
+				})
+                 */
+
+                $('[data-rel=tooltip]').tooltip({container:'body'});
+                $('[data-rel=popover]').popover({container:'body'});
+
+                autosize($('textarea[class*=autosize]'));
+
+                $('textarea.limited').inputlimiter({
+                    remText: '%n character%s remaining...',
+                    limitText: 'max allowed : %n.'
+                });
+
+
+                $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+
+                new $.fn.dataTable.Buttons( myTable, {
+                    buttons: [
+                        {
+                            "extend": "colvis",
+                            "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+                            "className": "btn btn-white btn-primary btn-bold",
+                            columns: ':not(:first):not(:last)'
+                        },
+                        {
+                            "extend": "copy",
+                            "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
+                        },
+                        {
+                            "extend": "csv",
+                            "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
+
+
+                        },
+//                {
+//                    extend: 'excelHtml5',
+//                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+//                   "className": "btn btn-white btn-primary btn-bold"
+//
+//                },
+                        {
+                            "extend": "excel",
+                            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+                            "className": "btn btn-white btn-primary btn-bold"
+                        },
+
+                        {
+                            "extend": "print",
+                            "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+                            "className": "btn btn-white btn-primary btn-bold",
+                            autoPrint: false,
+                            message: 'This print was produced using the Print button for DataTables'
+                        }
+                    ]
+                } );
+                myTable.buttons().container().appendTo( $('.tableTools-container') );
+
+
+                $('#chk1').click(function(){
+                    $("button").toggle(200, function(){
+                        location.href="../admin_panel/admin_panel_woexport.php"
+                    });
+                });
+
+                //style the message box
+                var defaultCopyAction = myTable.button(1).action();
+                myTable.button(1).action(function (e, dt, button, config) {
+                    defaultCopyAction(e, dt, button, config);
+                    $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+                });
+
+
+                var defaultColvisAction = myTable.button(0).action();
+                myTable.button(0).action(function (e, dt, button, config) {
+
+                    defaultColvisAction(e, dt, button, config);
+
+
+                    if($('.dt-button-collection > .dropdown-menu').length == 0) {
+                        $('.dt-button-collection')
+                            .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+                            .find('a').attr('href', '#').wrap("<li />")
+                    }
+                    $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+                });
+
+                ////
+
+                setTimeout(function() {
+                    $($('.tableTools-container')).find('a.dt-button').each(function() {
+                        var div = $(this).find(' > div').first();
+                        if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+                        else $(this).tooltip({container: 'body', title: $(this).text()});
+                    });
+                }, 500);
+
+
+
+
+
+                myTable.on( 'select', function ( e, dt, type, index ) {
+                    if ( type === 'row' ) {
+                        $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+                    }
+                } );
+                myTable.on( 'deselect', function ( e, dt, type, index ) {
+                    if ( type === 'row' ) {
+                        $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+                    }
+                } );
+
+
+
+
+                /////////////////////////////////
+                //table checkboxes
+                $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+
+
+
+                //select/deselect all rows according to table header checkbox
+                $('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+                    var th_checked = this.checked;//checkbox inside "TH" table header
+
+                    $('#dynamic-table').find('tbody > tr').each(function(){
+                        var row = this;
+                        if(th_checked) myTable.row(row).select();
+                        else  myTable.row(row).deselect();
+                    });
+                });
+
+
+                //select/deselect a row when the checkbox is checked/unchecked
+                $('#dynamic-table').on('click', 'tr input[type=checkbox]' , function(){
+                    var $row = $(this).closest('tr');
+                    if(this.checked) $row.addClass("selected highlight");
+                    else $row.removeClass("selected highlight");
+                });
+
+
+
+                $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+
+
+                //And for the first simple table, which doesn't have TableTools or dataTables
+                //select/deselect all rows according to table header checkbox
+                var active_class = 'active';
+                $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+                    var th_checked = this.checked;//checkbox inside "TH" table header
+
+                    $(this).closest('table').find('tbody > tr').each(function(){
+                        var row = this;
+                        if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                        else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+                    });
+                });
+
+                //select/deselect a row when the checkbox is checked/unchecked
+                $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
+                    var $row = $(this).closest('tr');
+                    if($row.is('.detail-row ')) return;
+                    if(this.checked) $row.addClass(active_class);
+                    else $row.removeClass(active_class);
+                });
+
+
+
+                /********************************/
+                //add tooltip for small view action buttons in dropdown menu
+                $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+                //tooltip placement on right or left
+                function tooltip_placement(context, source) {
+                    var $source = $(source);
+                    var $parent = $source.closest('table')
+                    var off1 = $parent.offset();
+                    var w1 = $parent.width();
+
+                    var off2 = $source.offset();
+                    //var w2 = $source.width();
+
+                    if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                    return 'left';
+                }
+
+
+
+
+                /***************/
+                $('.show-details-btn').on('click', function(e) {
+                    e.preventDefault();
+                    $(this).closest('tr').next().toggleClass('open');
+                    $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+                });
+                /***************/
+
+
+
+                $('#modal-form input[type=file]').ace_file_input({
+                    style:'well',
+                    btn_choose:'Drop files here or click to choose',
+                    btn_change:null,
+                    no_icon:'ace-icon fa fa-cloud-upload',
+                    droppable:true,
+                    thumbnail:'large'
+                });
+
+                //chosen plugin inside a modal will have a zero width because the select element is originally hidden
+                //and its width cannot be determined.
+                //so we set the width after modal is show
+                $('#modal-form').on('shown.bs.modal', function () {
+                    if(!ace.vars['touch']) {
+                        $(this).find('.chosen-container').each(function(){
+                            $(this).find('a:first-child').css('width' , '210px');
+                            $(this).find('.chosen-drop').css('width' , '210px');
+                            $(this).find('.chosen-search input').css('width' , '200px');
+                        });
+                    }
+                });
+
+
+
+                /**
+                 //add horizontal scrollbars to a simple table
+                 $('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
+                 {
+                   horizontal: true,
+                   styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
+                   size: 2000,
+                   mouseWheelLock: true
+                 }
+                 ).css('padding-top', '12px');
+                 */
+
+
+            })
+        </script>
 
 </body>
 </html>

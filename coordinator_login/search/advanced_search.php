@@ -19,6 +19,7 @@ ob_start();
     <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="../assets/jquery.mobile-1.4.4.css" />
     <link rel="stylesheet" href="../assets/jquery.mobile-1.4.4.min.css" />
@@ -36,6 +37,8 @@ ob_start();
     <link rel="stylesheet" href="../assets/jquery.mobile.theme-1.4.4.min.css" />
     <link rel="stylesheet" href="../assets/jquery-ui.css" />
 
+=======
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -100,8 +103,12 @@ function updateSlider(){
 		<link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
+<<<<<<< HEAD
 		<link rel="stylesheet" href="../assets/js/date-time/moment.min.js" />
 		<link rel="stylesheet" href="../assets/js/date-time/bootstrap-datetimepicker.min.js" />
+=======
+
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="../assets/css/chosen.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
@@ -140,9 +147,7 @@ function updateSlider(){
     <script src="../assets/js/respond.min.js"></script>
     <script src="../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../assets/js/jquery.mobile.custom.min.js"></script>
-    <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="../assets/jquery.mobile-1.4.4.js"></script>
-    <script src="../assets/jquery.mobile-1.4.4.min.js"></script>
+
     <![endif]-->
 </head>
 
@@ -378,7 +383,12 @@ function updateSlider(){
                 </a>
 
                 <b class="arrow"></b>
+<<<<<<< HEAD
             </li><!-- /.nav-list -->
+=======
+            </li>
+        </ul><!-- /.nav-list -->
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -507,7 +517,7 @@ function updateSlider(){
                                                                         <div class="step-content pos-rel">
 
 
-                                                                            <div class="row">
+                                                                            <div class="row hidden">
 
                                                                                 <div class="col-xs-8 col-sm-5">
 
@@ -1481,11 +1491,8 @@ function updateSlider(){
             )
 
             //programmatically add/remove a tag
-            var $tag_obj = $('#form-field-tags').data('tag');
-            $tag_obj.add('Programmatically Added');
 
-            var index = $tag_obj.inValues('some tag');
-            $tag_obj.remove(index);
+
         }
         catch(e) {
             //display a textarea for old IE, because it doesn't support this plugin or another one I tried!

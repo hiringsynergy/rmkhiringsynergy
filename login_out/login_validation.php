@@ -85,6 +85,7 @@ if(isset($_POST['login'])){
             $row_coordinator=mysqli_fetch_assoc($result_coordinator);
             $coordinator_name=$row_coordinator['username'];
             $coordinator_password=$row_coordinator['password'];
+            $coordinator_branch=$row_coordinator['cood_branch'];
         }
 
 
@@ -146,7 +147,7 @@ if(isset($_POST['login'])){
         $_SESSION['database_name']=$admin_database;
 
         $_SESSION['user']=$username;
-        $_SESSION['pass']=$password;
+
         header("Location: ../admin_login/index.php");
     }
 
@@ -162,7 +163,7 @@ if(isset($_POST['login'])){
        $_SESSION['database_name']=$admin_database;
 
         $_SESSION['user']=$username;
-        $_SESSION['pass']=$password;
+        $_SESSION['cood_branch']=$coordinator_branch;
 
 
 
@@ -184,7 +185,11 @@ if(isset($_POST['login'])){
 
 
         $_SESSION['user'] = $username;
+<<<<<<< HEAD
         $_SESSION['pass'] = $password;
+=======
+
+>>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
         $_SESSION['student_name']=$student_name;
 
         $_SESSION['student_roll']=$student_roll;

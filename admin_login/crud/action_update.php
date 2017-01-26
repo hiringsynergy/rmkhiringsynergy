@@ -342,9 +342,9 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
                         <?php
                        include "../connect.php";
-                        $name=$_SESSION['user'];
+                        $admin_name=$_SESSION['user'];
 
-                        $query="select * from login_admin where username='{$name}'";
+                        $query="select * from login_admin where username='{$admin_name}'";
 
 
 
@@ -785,61 +785,63 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                     $college_name= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(15, $row)->getValue());
                                     $university= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(16, $row)->getValue());
                                     $_10percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(17, $row)->getValue());
-                                    $_10boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(18, $row)->getValue());
-                                    $_10medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(19, $row)->getValue());
-                                    $_10yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(20, $row)->getValue());
-                                    $_12percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(21, $row)->getValue());
-                                    $_12boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(22, $row)->getValue());
-                                    $_12medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(23, $row)->getValue());
-                                    $_12yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(24, $row)->getValue());
-                                    $dippercentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(25, $row)->getValue());
-                                    $dipyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(26, $row)->getValue());
-                                    $current= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(27, $row)->getValue());
-                                    $ugdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(28, $row)->getValue());
-                                    $ugspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(29, $row)->getValue());
-                                    $ug1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(30, $row)->getValue());
-                                    $ug2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(31, $row)->getValue());
-                                    $ug3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(32, $row)->getValue());
-                                    $ug4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(33, $row)->getValue());
-                                    $ug5sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(34, $row)->getValue());
-                                    $ug6sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(35, $row)->getValue());
-                                    $ug7sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(36, $row)->getValue());
-                                    $ug8sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(37, $row)->getValue());
-                                    $cgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(38, $row)->getValue());
-                                    $ugyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(39, $row)->getValue());
-                                    $pgdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(40, $row)->getValue());
-                                    $pgspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(41, $row)->getValue());
-                                    $pg1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(42, $row)->getValue());
-                                    $pg2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(43, $row)->getValue());
-                                    $pg3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(44, $row)->getValue());
-                                    $pg4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(45, $row)->getValue());
-                                    $pgcgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(46, $row)->getValue());
-                                    $pgyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(47, $row)->getValue());
-                                    $dayhostel= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(48, $row)->getValue());
-                                    $historyofarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(49, $row)->getValue());
-                                    $standingarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(50, $row)->getValue());
-                                    $hometown= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(51, $row)->getValue());
-                                    $address1= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(52, $row)->getValue());
-                                    $address2= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(53, $row)->getValue());
-                                    $city= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(54, $row)->getValue());
-                                    $state= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(55, $row)->getValue());
-                                    $postal_code= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(56, $row)->getValue());
-                                    $landline= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(57, $row)->getValue());
-                                    $skill= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(58, $row)->getValue());
-                                    $duration= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(59, $row)->getValue());
-                                    $vendor= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(60, $row)->getValue());
-                                    $coecertification= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(61, $row)->getValue());
-                                    $gap= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(62, $row)->getValue());
-                                    $reason= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(63, $row)->getValue());
-                                    $english= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(64, $row)->getValue());
-                                    $quantitative= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(65, $row)->getValue());
-                                    $logical= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(67, $row)->getValue());
-                                    $overall= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(68, $row)->getValue());
-                                    $percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(69, $row)->getValue());
-                                    $candidate= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(70, $row)->getValue());
-                                    $signature= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(71, $row)->getValue());
-                                    $placement_status= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(72, $row)->getValue());
-
+                                    $_10institution= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(18, $row)->getValue());
+                                    $_10boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(19, $row)->getValue());
+                                    $_10medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(20, $row)->getValue());
+                                    $_10yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(21, $row)->getValue());
+                                    $_12percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(22, $row)->getValue());
+                                    $_12institution= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(23, $row)->getValue());
+                                    $_12boardofstudy= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(24, $row)->getValue());
+                                    $_12medium= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(25, $row)->getValue());
+                                    $_12yearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(26, $row)->getValue());
+                                    $dippercentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(27, $row)->getValue());
+                                    $dipyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(28, $row)->getValue());
+                                    $current= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(29, $row)->getValue());
+                                    $ugdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(30, $row)->getValue());
+                                    $ugspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(31, $row)->getValue());
+                                    $ug1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(32, $row)->getValue());
+                                    $ug2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(33, $row)->getValue());
+                                    $ug3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(34, $row)->getValue());
+                                    $ug4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(35, $row)->getValue());
+                                    $ug5sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(36, $row)->getValue());
+                                    $ug6sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(37, $row)->getValue());
+                                    $ug7sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(38, $row)->getValue());
+                                    $ug8sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(39, $row)->getValue());
+                                    $cgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(40, $row)->getValue());
+                                    $ugyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(41, $row)->getValue());
+                                    $pgdeg= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(42, $row)->getValue());
+                                    $pgspecial= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(43, $row)->getValue());
+                                    $pg1sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(44, $row)->getValue());
+                                    $pg2sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(45, $row)->getValue());
+                                    $pg3sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(46, $row)->getValue());
+                                    $pg4sem= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(47, $row)->getValue());
+                                    $pgcgpa= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(48, $row)->getValue());
+                                    $pgyearofpassing= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(49, $row)->getValue());
+                                    $ugcollegename= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(50, $row)->getValue());
+                                    $dayhostel= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(51, $row)->getValue());
+                                    $historyofarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(52, $row)->getValue());
+                                    $standingarrears= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(53, $row)->getValue());
+                                    $hometown= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(54, $row)->getValue());
+                                    $address1= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(55, $row)->getValue());
+                                    $address2= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(56, $row)->getValue());
+                                    $city= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(57, $row)->getValue());
+                                    $state= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(58, $row)->getValue());
+                                    $postal_code= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(59, $row)->getValue());
+                                    $landline= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(60, $row)->getValue());
+                                    $skill= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(61, $row)->getValue());
+                                    $duration= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(62, $row)->getValue());
+                                    $vendor= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(63, $row)->getValue());
+                                    $coecertification= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(64, $row)->getValue());
+                                    $gap= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(65, $row)->getValue());
+                                    $reason= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(66, $row)->getValue());
+                                    $english= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(67, $row)->getValue());
+                                    $quantitative= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(68, $row)->getValue());
+                                    $logical= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(69, $row)->getValue());
+                                    $overall= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(70, $row)->getValue());
+                                    $percentage= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(71, $row)->getValue());
+                                    $candidate= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(72, $row)->getValue());
+                                    $signature= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(73, $row)->getValue());
+                                    $placement_status= mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(74, $row)->getValue());
 
 
 
@@ -863,75 +865,78 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                                                 case 'rollno': {  $query_update.="st_roll='$roll'";  break;}
                                                 case 'first_name': {  $query_update.="st_firstname='$first_name'";  break;}
                                                 case 'mid_name': {  $query_update.="st_middlename='$middle_name'";  break;}
-			                                    case 'last_name': {  $query_update.="st_lastname='last_name'";  break;}
-                                                case 'full_name': {  $query_update.="full_name'";  break;}
-                                                case 'gender': {  $query_update.="st_gender='gender'";  break;}
-                                                case 'father_name': {  $query_update.="st_fathername='father_name'";  break;}
-                                                case 'father_occupation': {  $query_update.="st_fatheroccupation='father_occupation'";  break;}
-                                                case 'mother_name': {  $query_update.="st_mothername='mother_name'";  break;}
-                                                case 'mother_occupation': {  $query_update.="st_motheroccupation='mother_occupation'";  break;}
-                                                case 'email_id': {  $query_update.="st_email='email'";  break;}
-                                                case 'mobile_no': {  $query_update.="st_phone='phone'";  break;}
-                                                case 'dob': {  $query_update.="st_dob='dob'";  break;}
-                                                case 'nationality': {  $query_update.="st_nationality='nationality'";  break;}
-                                                case 'caste': {  $query_update.="st_caste='caste'";  break;}
-                                                case 'college_name': {  $query_update.="st_collegename='college_name'";  break;}
-                                                case 'university': {  $query_update.="st_university='university'";  break;}
-                                                case '10thpercent': {  $query_update.="st_10thpercentage='_10percentage'";  break;}
-                                                case '10thboard_of_study': {  $query_update.="st_10thboardofstudy='_10boardofstudy'";  break;}
-                                                case '10thmedium': {  $query_update.="st_10thmedium='_10medium'";  break;}
-                                                case '10th_yearofpassing': {  $query_update.="st_10thyearofpassing='_10yearofpassing'";  break;}
-                                                case '12thpercent': {  $query_update.="st_12thpercentage='_12percentage'";  break;}
-                                                case '12thboard_of_study': {  $query_update.="st_12thboardofstudy='_12boardofstudy'";  break;}
-                                                case '12thmedium': {  $query_update.="st_12thmedium='_12medium'";  break;}
-                                                case '12th_yearofpassing': {  $query_update.="st_12thyearofpassing='_12yearofpassing'";  break;}
-                                                case 'diploma_percent': {  $query_update.="st_dippercentage='dippercentage'";  break;}
-                                                case 'diploma_yearofpassing': {  $query_update.="st_dipyearofpassing='dipyearofpassing'";  break;}
-                                                case 'ug_pg': {  $query_update.="st_currentlypursuing='current'";  break;}
-                                                case 'ug_deg': {  $query_update.="st_ugdegree='ugdeg'";  break;}
-                                                case 'ug_dept': {  $query_update.="st_ugspecialization='ugspecial'";  break;}
-                                                case '1_sem': {  $query_update.="st_1stsem='ug1sem'";  break;}
-                                                case '2_sem': {  $query_update.="st_2ndsem='ug2sem'";  break;}
-                                                case '3_sem': {  $query_update.="st_3rdsem='ug3sem'";  break;}
-                                                case '4_sem': {  $query_update.="st_4thsem='ug4sem'";  break;}
-                                                case '5_sem': {  $query_update.="st_5thsem='ug5sem'";  break;}
-                                                case '6_sem': {  $query_update.="st_6thsem='ug6sem'";  break;}
-                                                case '7_sem': {  $query_update.="st_7thsem='ug7sem'";  break;}
-                                                case '8_sem': {  $query_update.="st_8thsem='ug8sem'";  break;}
-                                                case 'ug_cgpa': {  $query_update.="st_cgpa='cgpa'";  break;}
-                                                case 'ug_yearofpassing': {  $query_update.="st_ugyearofpassing='ugyearofpassing'";  break;}
-                                                case 'pg_deg': {  $query_update.="st_pgdegree='pgdeg'";  break;}
-                                                case 'pg_dept': {  $query_update.="st_pgspecialization='pgspecial'";  break;}
-                                                case 'pg_1_sem': {  $query_update.="st_pg1stsem='pg1sem'";  break;}
-                                                case 'pg_2_sem': {  $query_update.="st_pg2ndsem='pg2sem'";  break;}
-                                                case 'pg_3_sem': {  $query_update.="st_pg3rdsem='pg3sem'";  break;}
-                                                case 'pg_4_sem': {  $query_update.=" st_pg4thsem='pg4sem'";  break;}
-                                                case 'pg_cgpa': {  $query_update.="st_pgcgpa='pgcgpa'";  break;}
-                                                case 'pg_yearofpassing': {  $query_update.="st_pgyearofpassing='pgyearofpassing'";  break;}
-                                                case 'dayscholar_hosteler': {  $query_update.="st_dayorhostel='dayhostel'";  break;}
-                                                case 'history_of_arreas': {  $query_update.="st_historyofarrears='historyofarrears'";  break;}
-                                                case 'standing_arrears': {  $query_update.="st_standingarrears='standingarrears'";  break;}
-                                                case 'home_town': {  $query_update.="st_hometown='hometown'";  break;}
-                                                case 'permanent_address_1': {  $query_update.="st_address1='address1'";  break;}
-                                                case 'permanent_address_2': {  $query_update.="st_address2='address2'";  break;}
-                                                case 'permanent_city': {  $query_update.="st_city='city'";  break;}
-                                                case 'state': {  $query_update.="st_state='state'";  break;}
-                                                case 'postal_code': {  $query_update.="st_posatlcode='postal_code'";  break;}
-                                                case 'contact_no': {  $query_update.="st_landline='landline'";  break;}
-                                                case 'skills': {  $query_update.="st_skillcertification='skill'";  break;}
-                                                case 'duration_of_course': {  $query_update.="st_duration='duration'";  break;}
-                                                case 'certification': {  $query_update.="st_vendor='vendor'";  break;}
-                                                case 'coe_certification': {  $query_update.="st_coecertification='coecertification'";  break;}
-                                                case 'gap_in_studies': {  $query_update.="st_gapinstudies='gap'";  break;}
-                                                case 'gap_in_studies_reason': {  $query_update.="st_reason='reason'";  break;}
-                                                case 'eng_percent': {  $query_update.="st_english='english'";  break;}
-                                                case 'quants_percent': {  $query_update.="st_quantitative='quantitative'";  break;}
-                                                case 'logical_percent': {  $query_update.="st_logical='logical'";  break;}
-                                                case 'overall_average': {  $query_update.="st_overall='overall'";  break;}
-                                                case 'percent': {  $query_update.="st_percentage='percentage'";  break;}
-                                                case 'candidate_id': {  $query_update.="st_candidateid='candidate'";  break;}
-                                                case 'signature': {  $query_update.="st_signature='signature'";  break;}
-                                                case 'placement_status': {  $query_update.="st_placementstatus='placement_status'";  break;}
+			                                    case 'last_name': {  $query_update.="st_lastname='$last_name'";  break;}
+                                                case 'full_name': {  $query_update.="full_name='$name'";  break;}
+                                                case 'gender': {  $query_update.="st_gender='$gender'";  break;}
+                                                case 'father_name': {  $query_update.="st_fathername='$father_name'";  break;}
+                                                case 'father_occupation': {  $query_update.="st_fatheroccupation='$father_occupation'";  break;}
+                                                case 'mother_name': {  $query_update.="st_mothername='$mother_name'";  break;}
+                                                case 'mother_occupation': {  $query_update.="st_motheroccupation='$mother_occupation'";  break;}
+                                                case 'email_id': {  $query_update.="st_email='$email'";  break;}
+                                                case 'mobile_no': {  $query_update.="st_phone='$phone'";  break;}
+                                                case 'dob': {  $query_update.="st_dob='$dob'";  break;}
+                                                case 'nationality': {  $query_update.="st_nationality='$nationality'";  break;}
+                                                case 'caste': {  $query_update.="st_caste='$caste'";  break;}
+                                                case 'college_name': {  $query_update.="st_collegename='$college_name'";  break;}
+                                                case 'university': {  $query_update.="st_university='$university'";  break;}
+                                                case '10thpercent': {  $query_update.="st_10thpercentage='$_10percentage'";  break;}
+                                                case '10thinstitution': {  $query_update.="st_10thpercentage='$_10institution'";  break;}
+                                                case '10thboard_of_study': {  $query_update.="st_10thboardofstudy='$_10boardofstudy'";  break;}
+                                                case '10thmedium': {  $query_update.="st_10thmedium='$_10medium'";  break;}
+                                                case '10th_yearofpassing': {  $query_update.="st_10thyearofpassing='$_10yearofpassing'";  break;}
+                                                case '12thpercent': {  $query_update.="st_12thpercentage='$_12percentage'";  break;}
+                                                case '12thinstitution': {  $query_update.="st_12thpercentage='$_12institution'";  break;}
+                                                case '12thboard_of_study': {  $query_update.="st_12thboardofstudy='$_12boardofstudy'";  break;}
+                                                case '12thmedium': {  $query_update.="st_12thmedium='$_12medium'";  break;}
+                                                case '12th_yearofpassing': {  $query_update.="st_12thyearofpassing='$_12yearofpassing'";  break;}
+                                                case 'diploma_percent': {  $query_update.="st_dippercentage='$dippercentage'";  break;}
+                                                case 'diploma_yearofpassing': {  $query_update.="st_dipyearofpassing='$dipyearofpassing'";  break;}
+                                                case 'ug_pg': {  $query_update.="st_currentlypursuing='$current'";  break;}
+                                                case 'ug_deg': {  $query_update.="st_ugdegree='$ugdeg'";  break;}
+                                                case 'ug_dept': {  $query_update.="st_ugspecialization='$ugspecial'";  break;}
+                                                case '1_sem': {  $query_update.="st_1stsem='$ug1sem'";  break;}
+                                                case '2_sem': {  $query_update.="st_2ndsem='$ug2sem'";  break;}
+                                                case '3_sem': {  $query_update.="st_3rdsem='$ug3sem'";  break;}
+                                                case '4_sem': {  $query_update.="st_4thsem='$ug4sem'";  break;}
+                                                case '5_sem': {  $query_update.="st_5thsem='$ug5sem'";  break;}
+                                                case '6_sem': {  $query_update.="st_6thsem='$ug6sem'";  break;}
+                                                case '7_sem': {  $query_update.="st_7thsem='$ug7sem'";  break;}
+                                                case '8_sem': {  $query_update.="st_8thsem='$ug8sem'";  break;}
+                                                case 'ug_cgpa': {  $query_update.="st_cgpa='$cgpa'";  break;}
+                                                case 'ug_yearofpassing': {  $query_update.="st_ugyearofpassing='$ugyearofpassing'";  break;}
+                                                case 'pg_deg': {  $query_update.="st_pgdegree='$pgdeg'";  break;}
+                                                case 'pg_dept': {  $query_update.="st_pgspecialization='$pgspecial'";  break;}
+                                                case 'pg_1_sem': {  $query_update.="st_pg1stsem='$pg1sem'";  break;}
+                                                case 'pg_2_sem': {  $query_update.="st_pg2ndsem='$pg2sem'";  break;}
+                                                case 'pg_3_sem': {  $query_update.="st_pg3rdsem='$pg3sem'";  break;}
+                                                case 'pg_4_sem': {  $query_update.=" st_pg4thsem='$pg4sem'";  break;}
+                                                case 'pg_cgpa': {  $query_update.="st_pgcgpa='$pgcgpa'";  break;}
+                                                case 'pg_yearofpassing': {  $query_update.="st_pgyearofpassing='$pgyearofpassing'";  break;}
+                                                case 'pg_ugcollegename': {  $query_update.="st_ugcollegename='$ugcollegename'";  break;}
+                                                case 'dayscholar_hosteler': {  $query_update.="st_dayorhostel='$dayhostel'";  break;}
+                                                case 'history_of_arreas': {  $query_update.="st_historyofarrears='$historyofarrears'";  break;}
+                                                case 'standing_arrears': {  $query_update.="st_standingarrears='$standingarrears'";  break;}
+                                                case 'home_town': {  $query_update.="st_hometown='$hometown'";  break;}
+                                                case 'permanent_address_1': {  $query_update.="st_address1='$address1'";  break;}
+                                                case 'permanent_address_2': {  $query_update.="st_address2='$address2'";  break;}
+                                                case 'permanent_city': {  $query_update.="st_city='$city'";  break;}
+                                                case 'state': {  $query_update.="st_state='$state'";  break;}
+                                                case 'postal_code': {  $query_update.="st_posatlcode='$postal_code'";  break;}
+                                                case 'contact_no': {  $query_update.="st_landline='$landline'";  break;}
+                                                case 'skills': {  $query_update.="st_skillcertification='$skill'";  break;}
+                                                case 'duration_of_course': {  $query_update.="st_duration='$duration'";  break;}
+                                                case 'certification': {  $query_update.="st_vendor='$vendor'";  break;}
+                                                case 'coe_certification': {  $query_update.="st_coecertification='$coecertification'";  break;}
+                                                case 'gap_in_studies': {  $query_update.="st_gapinstudies='$gap'";  break;}
+                                                case 'gap_in_studies_reason': {  $query_update.="st_reason='$reason'";  break;}
+                                                case 'eng_percent': {  $query_update.="st_english='$english'";  break;}
+                                                case 'quants_percent': {  $query_update.="st_quantitative='$quantitative'";  break;}
+                                                case 'logical_percent': {  $query_update.="st_logical='$logical'";  break;}
+                                                case 'overall_average': {  $query_update.="st_overall='$overall'";  break;}
+                                                case 'percent': {  $query_update.="st_percentage='$percentage'";  break;}
+                                                case 'candidate_id': {  $query_update.="st_candidateid='$candidate'";  break;}
+                                                case 'signature': {  $query_update.="st_signature='$signature'";  break;}
+                                                case 'placement_status': {  $query_update.="st_placementstatus='$placement_status'";  break;}
                                                 //code to be written -- duplicate the cases for different coulumns in database
 
 

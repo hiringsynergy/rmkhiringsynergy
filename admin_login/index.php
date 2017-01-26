@@ -38,7 +38,7 @@ $tablename=$_GET['tablename'];
   st_10thmedium varchar(255)  ,
   st_10thyearofpassing year(4)  ,
   st_12thpercentage varchar(255)  ,
-  st_10thinstitution varchar(255),
+  st_12thinstitution varchar(255),
   st_12thboardofstudy varchar(255)  ,
   st_12thmedium varchar(255)  ,
   st_12thyearofpassing year(4)  ,

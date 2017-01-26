@@ -1186,11 +1186,11 @@ function updateSlider(){
 
 														<h5 class="red bolder smaller">Register No:</h5>
 											<div class="">
-												<input type="text" name="tags" id="form-field-tags"  placeholder="Enter Register No ..." />
+												<input type="text" name="tags" id="tag4"  placeholder="Enter Register No ..." />
 											</div>
                                                                         <div class="space-16"></div>
 
-												<button  type="submit" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
+												<button  type="submit" id="bootbox-search" name="search"  value="filter" class="btn btn-default btn-round btn-danger">
 																Search
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
 															</button>
@@ -1293,23 +1293,53 @@ function updateSlider(){
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {
+        $('#bootbox-search').click(function(event) {
+
+
+
+            var blc = $('#tag3').val();
+
+
+
+
+
+
+
+            if (blc == '') {
+
+
+
+                bootbox.dialog({
+                    message: "Please enter the search value",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+            else
+            {
+
+            }
+        });
+
 
 
 
         $('#bootbox-confirm').click(function(event) {
 
 
-
             var bla = $('#tag1').val();
             var blb = $('#tag2').val();
 
 
-
-
-
-
-            if (blb == null && bla=='') {
-
+            if (blb == null && bla == '') {
 
 
                 bootbox.dialog({
@@ -1326,8 +1356,7 @@ function updateSlider(){
                 event.stopPropagation();
 
             }
-          else if (blb == null) {
-
+            else if (blb == null) {
 
 
                 bootbox.dialog({
@@ -1344,8 +1373,7 @@ function updateSlider(){
                 event.stopPropagation();
 
             }
-           else if (bla=='') {
-
+            else if (bla == '') {
 
 
                 bootbox.dialog({
@@ -1362,9 +1390,10 @@ function updateSlider(){
                 event.stopPropagation();
 
             }
-
-
         });
+
+
+
 
 
 

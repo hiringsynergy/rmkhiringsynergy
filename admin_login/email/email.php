@@ -934,7 +934,7 @@ ob_start();
 
                             <div class="col-sm-9">
 												<span class="input-icon">
-													<input type="email"  name="recipient" size="35"  id="form-field-recipient"  placeholder="user@gmail.com" />
+													<input type="email"  name="recipient" size="35"  id="tag3"  placeholder="user@gmail.com" />
 													<i class="ace-icon fa fa-user"></i>
 												</span>
                             </div>
@@ -996,7 +996,7 @@ ob_start();
 
                         <div class="align-center">
                                             <span class="inline btn-send-message">
-                                                <button type="submit" name="send" class="btn btn-sm btn-primary border btn-bold btn-round">
+                                                <button type="submit" id="bootbox-search" name="send" class="btn btn-sm btn-primary border btn-bold btn-round">
                                                     <span class="bigger-120">Send</span>
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                                                 </button>
@@ -1142,6 +1142,42 @@ ob_start();
                     $(this).closest('.file-input-container').hide(300, function(){ $(this).remove() });
                 });
             });
+        $('#bootbox-search').click(function(event) {
+
+
+
+            var blc = $('#tag3').val();
+
+
+
+
+
+
+
+            if (blc == '') {
+
+
+
+                bootbox.dialog({
+                    message: "Please enter the recipient's address",
+                    buttons: {
+                        "success": {
+                            "label": "OK",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+
+                });
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+            else
+            {
+
+            }
+        });
+
 
     });
 </script>

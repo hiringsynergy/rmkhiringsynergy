@@ -4,156 +4,6 @@
 session_start();
 ob_start();
 
-if(isset($_GET['create'])){
-
-
-    $tablename=$_GET['tablename'];
-
-
-    include "connect.php";
-
-
-
-    $query="CREATE TABLE students_".$tablename."  (
-    st_roll varchar(12) NOT NULL,
-  st_firstname char(255)  ,
-  st_middlename char(255)  ,
-  st_lastname char(255)  ,
-  st_name char(255)  ,
-  st_gender char(255)  ,
-  st_fathername char(255)  ,
-  st_fatheroccupation char(255)  ,
-  st_mothername char(255)  ,
-  st_motheroccupation char(255)  ,
-  st_email char(255) NOT NULL,
-  st_phone char(15) NOT NULL,
-  st_dob date  ,
-  st_nationality char(255)  ,
-  st_caste char(255)  ,
-  st_collegename char(255)  ,
-  st_university char(255)  ,
-  st_10thpercentage varchar(255)  ,
-  st_10thboardofstudy char(255)  ,
-  st_10thmedium char(255)  ,
-  st_10thyearofpassing year(4)  ,
-  st_12thpercentage varchar(255)  ,
-  st_12thboardofstudy char(255)  ,
-  st_12thmedium char(255)  ,
-  st_12thyearofpassing year(4)  ,
-  st_dippercentage varchar(255)  ,
-  st_dipyearofpassing year(4)  ,
-  st_currentlypursuing char(255)  ,
-  st_ugdegree char(255)  ,
-  st_ugspecialization char(255)  ,
-  st_1stsem varchar(255)  ,
-  st_2ndsem varchar(255)  ,
-  st_3rdsem varchar(255)  ,
-  st_4thsem varchar(255)  ,
-  st_5thsem varchar(255)  ,
-  st_6thsem varchar(255)  ,
-  st_7thsem varchar(255)  ,
-  st_8thsem varchar(255)  ,
-  st_cgpa varchar(255)  ,
-  st_ugyearofpassing year(4)  ,
-  st_pgdegree char(255)  ,
-  st_pgspecialization char(255)  ,
-  st_pg1stsem varchar(255)  ,
-  st_pg2ndsem varchar(255)  ,
-  st_pg3rdsem varchar(255)  ,
-  st_pg4thsem varchar(255)  ,
-  st_pgcgpa varchar(255)  ,
-  st_pgyearofpassing year(4)  ,
-  st_dayorhostel char(255)  ,
-  st_historyofarrears char(255)  ,
-  st_standingarrears char(255)  ,
-  st_hometown char(255)  ,
-  st_address1 char(255)  ,
-  st_address2 char(255)  ,
-  st_city char(255)  ,
-  st_state char(255)  ,
-  st_posatlcode char(255)  ,
-  st_landline char(255)  ,
-  st_skillcertification char(255)  ,
-  st_duration char(255)  ,
-  st_vendor char(255)  ,
-  st_coecertification char(255)  ,
-  st_gapinstudies char(255)  ,
-  st_reason char(255)  ,
-  st_english char(255)  ,
-  st_quantitative char(255)  ,
-  st_logical char(255)  ,
-  st_overall char(255)  ,
-  st_percentage varchar(255)  ,
-  st_candidateid char(255)  ,
-  st_signature char(255)  ,
-  st_placementstatus char(255)  ,
-  st_pass char(255)  ,
-  st_pic char(255)
- 
- 
-)ENGINE=MyISAM DEFAULT CHARSET=latin1";
-
-    $query_alter="ALTER TABLE students_".$tablename."
-    ENGINE=InnoDB
-    ROW_FORMAT=COMPRESSED 
-    KEY_BLOCK_SIZE=9000s";
-    mysqli_query($connect, $query_alter);
-
-    $result=mysqli_query($connect,$query);
-
-
-    if(!$result) {
-
-        die(" " . mysqli_error($connect));
-
-
-    }
-
-
-
-    $table_name="students_".$tablename;
-    $short_name=$tablename[2].$tablename[3];
-    $short_name+=0;
-
-
-    $query2="INSERT  INTO table_map VALUES ('$table_name','{$tablename}',$short_name)";
-    $result2=mysqli_query($connect, $query2);
-
-
-
-
-    header("Location: index.php");
-
-}
-
-if(isset($_GET['delete']))
-
-{
-
-    $tab_name=$_GET['tablename'];
-
-
-    include "connect.php";
-
-    $query_jobs="DELETE FROM jobs WHERE year_of_graduation={$tab_name}";
-    $result_jobs=mysqli_query($connect, $query_jobs);
-
-
-
-    $query="DROP TABLE students_".$tab_name." ";
-    $result=mysqli_query($connect, $query);
-
-    $query2="DELETE FROM table_map WHERE table_value=$tab_name";
-    $result2=mysqli_query($connect, $query2);
-
-
-
-    header("Location: index.php");
-
-
-}
-
-
 ?>
 
 
@@ -189,7 +39,7 @@ if(isset($_GET['delete']))
 
             }
             function myfuncjobs() {
-                location.href = "jobs/jobs_panel.php";
+                location.href = "jobs/view_jobs.php";
 
             }
             function myfuncsettings() {
@@ -313,188 +163,7 @@ if(isset($_GET['delete']))
 
 				<div class="navbar-buttons navbar-header  pull-right"  role="navigation">
 					<ul class="nav ace-nav" style="">
-                        <li class="purple dropdown-modal">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-
-
-
-                                <?php
-
-
-                                include "connect.php";
-                                $query_table = "SELECT * FROM table_map";
-                                $result_table = mysqli_query($connect, $query_table);
-
-                                $no_notification=0;
-                                while ($row = mysqli_fetch_assoc($result_table)) {
-                                    $tname = $row['table_name'];
-                                    $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
-                                    $result_year = mysqli_query($connect, $query_year);
-
-                                    $no_notification  = $no_notification + mysqli_num_rows($result_year);
-
-
-                                }
-
-
-
-                                ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-
-                                <span class="badge badge-important"><?php echo $no_notification ?></span>
-                            </a>
-
-                            <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                                <li class="dropdown-header">
-                                    <i class="ace-icon fa fa-exclamation-triangle"></i>
-
-
-
-
-                                    <?php echo $no_notification ?> Notifications
-                                </li>
-
-
-                                <li class="dropdown-content">
-
-
-                                    <ul class="dropdown-menu dropdown-navbar navbar-pink">
-
-                                        <?php
-
-
-
-                                        include "connect.php";
-                                        $query_table = "SELECT * FROM table_map";
-                                        $result_table = mysqli_query($connect, $query_table);
-
-                                        while ($row = mysqli_fetch_assoc($result_table)) {
-                                            $tname = $row['table_name'];
-                                            $query_year = "SELECT * from $tname";
-                                            $result_year = mysqli_query($connect, $query_year);
-
-                                            $no_notification=mysqli_num_rows($result_year);
-
-
-                                            while ($row1 = mysqli_fetch_assoc($result_year)) {
-
-
-                                                if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
-
-
-                                                    ?>
-
-                                                    <li>
-                                                        <a href="Approve/approve.php?roll=<?php  echo $row1['st_roll']; ?>">
-                                                            <div class="clearfix">
-
-		             <span class="pull-left">
-			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-                         <?php  $content= $row1['st_roll'] ;
-                         $content.= "," ;
-                         $content.= $row1['st_name'];
-
-                         $content.= " has  requested for the change of";
-
-                         if ($row1['st_changemail'] != NULL) {
-                             $content.= " Email id : ";
-                             $content.=$row1['st_email'];
-
-                             $content.="to : ";
-                             $content.=$row1['st_changemail'];
-
-
-
-                         }
-
-                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
-
-
-                             $content.= " and  ";
-
-                         }
-
-
-
-
-
-
-                         if($row1['st_changephone'] != NULL) {
-
-
-
-                             $content.= " Phone No : ";
-                             $content.= $row1['st_phone'];
-
-                             $content.= "to : ";
-                             $content.= $row1['st_changephone'] ;
-                         }
-
-
-
-
-                         echo substr($content, 0,25)."......";
-
-
-                         ?>
-
-
-                         </p>
-				</span>
-
-
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-
-
-
-                                                    <?php
-                                                }
-
-
-                                            }
-
-
-                                        }
-
-
-                                        ?>
-
-
-
-
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-footer">
-                                    <a href="Approve/approve.php">
-                                        See all notifications
-                                        <i class="ace-icon fa fa-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-						<li class="light-blue dropdown-modal">
+                        <li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
                                 <?php
@@ -611,7 +280,7 @@ if(isset($_GET['delete']))
 						<a href="profile/profile.php" >
 							<i class="menu-icon fa fa-user"></i>
 							<span class="menu-text">
-							Your Profile
+							Profile
 							</span>
                         </a>
 
@@ -627,45 +296,14 @@ if(isset($_GET['delete']))
 						<b class="arrow"></b>
                     </li>
 
-                    <li class="">
-                        <a href="approve/approve.php">
-                            <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Approve </span>
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
 					<li>
-						<a href="#" class="dropdown-toggle">
+						<a href="jobs/view_jobs.php" >
 							<i class="menu-icon fa fa-briefcase"></i>
 							<span class="menu-text"> Jobs </span>
 
-							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
 						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="jobs/view_jobs.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									View all Jobs
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="jobs/jobs_panel.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Jobs Panel
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-						</ul>
 
 					</li>
 
@@ -685,65 +323,28 @@ if(isset($_GET['delete']))
 
 
 					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-laptop"></i>
+						<a href="company/view_companies.php" >
+
+                            <i class="menu-icon fa fa-laptop"></i>
 							<span class="menu-text"> Companies </span>
 
-							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-                            <li class="">
-								<a href="company/view_companies.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									View Companies
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-                            <li class="">
-                                <a href="company/companies.php">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Company Panel
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
+                        <b class="arrow"></b>
 					</li>
 
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-tag"></i>
-							<span class="menu-text"> More Pages </span>
 
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
+                    <li class="">
+                        <a href="../coordinator_login/search/advanced_search.php">
+                            <i class="menu-icon fa fa-search"></i>
+                            Advanced Search
+                        </a>
 
-						<b class="arrow"></b>
+                        <b class="arrow"></b>
+                    </li>
 
-						<ul class="submenu">
-							<li class="">
-								<a href="../coordinator_login/search/advanced_search.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Advanced Search
-								</a>
 
-								<b class="arrow"></b>
-							</li>
-                            <li class="">
-								<a href="email.php">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Email
-								</a>
 
-								<b class="arrow"></b>
-							</li>
-                        </ul>
-					</li>
 
 
 				</ul><!-- /.nav-list -->
@@ -759,271 +360,560 @@ if(isset($_GET['delete']))
                         <ul class="breadcrumb">
                             <li>
                                 <i class="ace-icon fa fa-home home-icon"></i>
-                                <a href="../index.html">Home</a>
+                                <a href="index.php">Home</a>
                             </li>
-                            <li class="active">Dashboard</li>
+                            <li class="hidden">Dashboard</li>
                         </ul><!-- /.breadcrumb -->
                         <!-- /.nav-search -->
                     </div>
-
                     <div class="page-content">
                         <!-- /.ace-settings-container -->
-
                         <div class="page-header">
                             <h1>
                                 Dashboard
-
                             </h1>
                         </div><!-- /.page-header -->
-
                         <div class="row">
+
+                            <!-- PAGE CONTENT BEGINS -->
                             <div class="col-xs-12">
-                                <!-- PAGE CONTENT BEGINS -->
-                                <div class="alert alert-block alert-success">
-                                    <button type="button" class="close" data-dismiss="alert">
-                                        <i class="ace-icon fa fa-times"></i>
-                                    </button>
 
-                                    <i class="ace-icon fa fa-check green"></i>
-
-                                    Welcome to
-                                    <strong class="green">
-                                        RMK HIRING SYNERGY
-
-                                    </strong>,
-
-                                    RMK group of Institutions
-                                </div>
-                                <div class="row">
+                                <div id="timeline-1">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
 
 
 
+                                            <?php
+
+                                            include "connect.php";
 
 
-                                    <div class="col-xs-6 pricing-box">
-                                        <form action="index.php" method="get">
+                                            date_default_timezone_set('Asia/Kolkata');
+
+                                            $previous=null;
+
+                                            $query="SELECT * FROM jobs ORDER  BY job_id DESC";
+                                            $result=mysqli_query($connect, $query);
+                                            while($row=mysqli_fetch_assoc($result)){
 
 
-                                            <div class="widget-box widget-color-orange" id="shadow">
-                                                <div class="widget-header">
-                                                    <h5 class="widget-title bigger white">Create New Student Table</h5>
-                                                </div>
 
-                                                <div class="widget-body">
-                                                    <div class="widget-main">
-                                                        <ul class="list-unstyled spaced2">
-                                                            <li class="red bigger-120">
-                                                                <div class="form-group">
-                                                                    <h5><label class="col-xs-12 control-label orange bolder" for="form-field-1">Year of Graduation</label></h5>
-                                                                    <div class="col-xs-12 col-md-7">
-                                                                        <input type="text" align="centre" name="tablename" id="form-field-1" placeholder="Year of Graduation" class="col-xs-10 " />
+                                                $time=$row['job_id'];
 
-                                                                    </div>
+                                                $time_now=time();
+
+
+                                                $date=date("M d, Y",$time);
+
+
+                                                //calculating no. of days
+
+                                                $date_now=date("Y-m-d",$time_now);
+                                                $date_job_posted=date("Y-m-d",$time);
+
+                                                $dateTime1=date_create($date_now);
+                                                $dateTime2=date_create($date_job_posted);
+
+                                                $date_diffe_job_posted=date_diff($dateTime1,$dateTime2);
+
+                                                $no_of_days=$date_diffe_job_posted->format('%a');
+
+
+
+                                                $get_time=date("G:i",$time);
+
+                                                $diff=$time_now-$time;
+
+
+
+                                                if($no_of_days==0){
+
+                                                    //today
+
+
+
+
+
+                                                    ?>
+
+                                                    <div class="timeline-container">
+
+                                                        <?php  if($previous!= 'today')   {    ?>
+                                                            <div class="timeline-label">
+													<span class="label label-primary arrowed-in-right label-lg">
+														<b>Today</b>
+													</span>
+                                                            </div>
+
+
+                                                        <?php }     ?>
+                                                        <div class="timeline-items">
+                                                            <div class="timeline-item clearfix">
+                                                                <div class="timeline-info">
+
+
+                                                                    <?php
+
+                                                                    $database=$_SESSION['database_name'];
+
+                                                                    if(preg_match('/rmd_database/', $database)) {
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmd.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmk_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmk.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmkcet_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmkcet.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+
+
+
+                                                                    ?>
+
+
+
+                                                                    <span class="label label-info label-sm"><?php echo $get_time ?></span>
                                                                 </div>
-
-                                                            </li>
-
-                                                        </ul><hr/>
-                                                    </div>
-
-
-                                                    <div class="space-16"> </div>
-                                                    <div class="space-16"></div>
+                                                                <div class="widget-box transparent">
+                                                                    <div class="widget-header widget-header-small">
+                                                                        <h5 class="widget-title smaller">
+                                                                            <a href="#" class="blue">
+                                                                                <?php
 
 
-                                                    <div>
-                                                        <button type="submit" name="create" class="btn btn-block btn-warning">
-                                                            <span>Create</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                                                                $database=$_SESSION['database_name'];
+                                                                                if(preg_match('/rmd_database/', $database)){
+                                                                                    ?>
 
-                                    <div class="col-xs-6 pricing-box">
-                                        <form action="crud/action_update.php">
+                                                                                    <label style="font-size: large;">RMD Engineering College  </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmk_database/', $database)){
+                                                                                    ?>
 
+                                                                                    <label style="font-size: large;">RMK Engineering College </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmkcet_database/', $database)){
+                                                                                    ?>
 
-                                            <div class="widget-box widget-color-blue" id="shadow">
-                                                <div class="widget-header">
-                                                    <h5 class="widget-title bigger white">Update Student Table</h5>
-                                                </div>
-
-                                                <div class="widget-body">
-                                                    <div class="widget-main">
-                                                        <ul class="list-unstyled spaced2">
-                                                            <li class="red bigger-120">
-                                                                <div class="form-group">
-                                                                    <h5><label class="col-xs-12 control-label blue bolder" for="form-field-1">Year of Graduation</label></h5>
-                                                                    <div class="col-xs-12 col-md-7">
-                                                                        <select class="col-xs-7 chosen-select form-control" name="year"  id="form-field-select-3" data-placeholder="Select a Year...">
-                                                                            <option value=""></option>
-                                                                            <?php
-
-                                                                            include "connect.php";
-                                                                            $query_insert="SELECT * FROM table_map";
-                                                                            $result_insert=mysqli_query($connect, $query_insert);
-                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
-
-
-
-
+                                                                                    <label style="font-size: large;">RMK College of Engineering and Technology </label>
+                                                                                    <?php
+                                                                                }
                                                                                 ?>
 
 
 
-                                                                                <option value="<?php echo $row['table_name']  ?>"><?php echo $row['table_value'] ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
 
+
+                                                                            </a>
+                                                                            <span class="grey">Posted a New Job</span>
+                                                                        </h5>
+                                                                        <span class="widget-toolbar no-border">
+																	<i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                                                            <?php echo $get_time ?>
+																</span>
+                                                                        <span class="widget-toolbar">
+
+																	<a href="#" data-action="collapse">
+																		<i class="ace-icon fa fa-chevron-up"></i>
+																	</a>
+																</span>
+                                                                    </div>
+                                                                    <div class="widget-main">
+                                                                        Hi, <?php echo $_SESSION['student_name']; ?>,
+                                                                        a new job
+                                                                        <span class="red" style="font-size: 17px;"> <?php echo $row['job_title']  ?> </span> from company
+                                                                        <span class="green" style="font-size: 17px;"><?php echo $row['company']    ?> </span>
+                                                                        has been posted!
+                                                                        <div class="space-6"></div>
+                                                                        <div class="widget-toolbox clearfix">
+
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                            </div>
 
-                                                            </li>
 
-                                                        </ul><hr/>
+
+                                                        </div>
                                                     </div>
 
 
-                                                    <div class="space-16"> </div>
-                                                    <div class="space-16"></div>
-
-
-                                                    <div>
-                                                        <button type="submit" name="update" class="btn btn-block btn-primary">
-                                                            <span>Update</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-
-                                <div class="space-16"> </div>
-
-                                <div class="row">
-
-                                    <div class="col-xs-6 pricing-box">
-                                        <form action="crud/action_insert.php" method="get">
-                                            <div class="widget-box widget-color-green" id="shadow">
-                                                <div class="widget-header">
-                                                    <h5 class="widget-title bigger white">Insert Into Student Table</h5>
-                                                </div>
-
-                                                <div class="widget-body">
-                                                    <div class="widget-main">
-                                                        <ul class="list-unstyled spaced2">
-                                                            <li class="red bigger-120">
-                                                                <div class="form-group">
-                                                                    <h5><label class="col-xs-12 control-label green bolder" for="form-field-1">Year of Graduation</label></h5>
-                                                                    <div class="col-xs-12 col-md-7">
-                                                                        <select class="col-xs-7 chosen-select form-control" name="insert_year" id="form-field-select-3" data-placeholder="Select a Year...">
-                                                                            <option value=""></option>
-
-                                                                            <?php
-
-                                                                            include "connect.php";
-                                                                            $query_insert="SELECT * FROM table_map";
-                                                                            $result_insert=mysqli_query($connect, $query_insert);
-                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
 
 
 
 
+
+
+
+                                                    <?php
+
+                                                    $previous='today';
+
+
+                                                }
+                                                else if($no_of_days==1){
+
+
+
+                                                    //yesterday
+
+                                                    ?>
+
+
+                                                    <div class="timeline-container">
+
+
+
+                                                        <?php   if($previous !='yesterday') {     ?>
+
+                                                            <div class="timeline-label">
+													<span class="label label-success arrowed-in-right label-lg">
+														<b>Yesterday</b>
+													</span>
+                                                            </div>
+
+                                                        <?php  } ?>
+                                                        <div class="timeline-items">
+                                                            <div class="timeline-item clearfix">
+                                                                <div class="timeline-info">
+
+
+                                                                    <?php
+
+                                                                    $database=$_SESSION['database_name'];
+
+                                                                    if(preg_match('/rmd_database/', $database)) {
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmd.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmk_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmk.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmkcet_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmkcet.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+
+
+
+                                                                    ?>
+
+
+
+                                                                    <span class="label label-info label-sm"><?php echo $get_time ?></span>
+                                                                </div>
+                                                                <div class="widget-box transparent">
+                                                                    <div class="widget-header widget-header-small">
+                                                                        <h5 class="widget-title smaller">
+                                                                            <a href="#" class="blue">
+                                                                                <?php
+
+
+                                                                                $database=$_SESSION['database_name'];
+                                                                                if(preg_match('/rmd_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMD Engineering College  </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmk_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMK Engineering College </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmkcet_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMK College of Engineering and Technology </label>
+                                                                                    <?php
+                                                                                }
                                                                                 ?>
 
 
 
-                                                                                <option value="<?php echo $row['table_value']  ?>"><?php echo $row['table_value'] ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
 
+
+                                                                            </a>
+                                                                            <span class="grey">Posted a Job</span>
+                                                                        </h5>
+                                                                        <span class="widget-toolbar no-border">
+																	<i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                                                            <?php echo $get_time ?>
+																</span>
+                                                                        <span class="widget-toolbar">
+
+																	<a href="#" data-action="collapse">
+																		<i class="ace-icon fa fa-chevron-up"></i>
+																	</a>
+																</span>
+                                                                    </div>
+                                                                    <div class="widget-main">
+                                                                        Hi, <?php echo $_SESSION['student_name']; ?>,
+                                                                        a new job
+                                                                        <span class="red" style="font-size: 17px;"> <?php echo $row['job_title']  ?> </span> from company
+                                                                        <span class="green" style="font-size: 17px;"><?php echo $row['company']    ?> </span>
+                                                                        has been posted!
+                                                                        <div class="space-6"></div>
+                                                                        <div class="widget-toolbox clearfix">
+
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                            </div>
 
-                                                            </li>
 
-                                                        </ul><hr/>
+
+                                                        </div>
                                                     </div>
-                                                    <div class="space-16"> </div>
-                                                    <div class="space-16"></div>
-
-                                                    <div>
-                                                        <button type="submit" name="insert" value="insert" class="btn btn-block btn-success">
-                                                            <span>Insert</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-xs-6 pricing-box">
-                                        <div class="widget-box widget-color-red" id="shadow">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger white">Delete Student Table</h5>
-                                            </div>
-                                            <form action="index.php" method="get"  >
-
-                                                <div class="widget-body">
-
-                                                    <div class="widget-main">
-
-                                                        <ul class="list-unstyled spaced2">
-                                                            <li class="red bigger-120">
-                                                                <div class="form-group">
-                                                                    <h5><label class="col-xs-12 control-label red bolder" for="form-field-1">Year of Graduation</label></h5>
-                                                                    <div class="col-xs-12 col-md-7">
-                                                                        <select class="col-xs-7 chosen-select form-control" name="tablename" id="form-field-select-3" data-placeholder="Select a Year...">
-                                                                            <option value=""></option>
-                                                                            <?php
-
-                                                                            include "connect.php";
-                                                                            $query_insert="SELECT * FROM table_map";
-                                                                            $result_insert=mysqli_query($connect, $query_insert);
-                                                                            while ($row=mysqli_fetch_assoc($result_insert)){
 
 
 
 
+                                                    <?php
+
+
+
+
+                                                    $previous='yesterday';
+
+                                                }
+                                                else{
+
+                                                    //other day
+
+
+                                                    ?>
+
+
+
+
+                                                    <div class="timeline-container">
+
+                                                        <?php   if($previous!= $date) {   ?>
+                                                            <div class="timeline-label">
+													<span class="label label-warning arrowed-in-right label-lg">
+														<b><?php echo $date ?></b>
+													</span>
+                                                            </div>
+
+                                                        <?php } ?>
+                                                        <div class="timeline-items">
+                                                            <div class="timeline-item clearfix">
+                                                                <div class="timeline-info">
+
+
+                                                                    <?php
+
+                                                                    $database=$_SESSION['database_name'];
+
+                                                                    if(preg_match('/rmd_database/', $database)) {
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmd.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmk_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmk.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+                                                                    if(preg_match('/rmkcet_database/', $database)){
+
+                                                                        ?>
+
+
+                                                                        <img src="images/rmkcet.jpg" >
+
+                                                                        <?php
+
+                                                                    }
+
+
+
+                                                                    ?>
+
+
+
+                                                                    <span class="label label-info label-sm"><?php echo $get_time ?></span>
+                                                                </div>
+                                                                <div class="widget-box transparent">
+                                                                    <div class="widget-header widget-header-small">
+                                                                        <h5 class="widget-title smaller">
+                                                                            <a href="#" class="blue">
+                                                                                <?php
+
+
+                                                                                $database=$_SESSION['database_name'];
+                                                                                if(preg_match('/rmd_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMD Engineering College  </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmk_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMK Engineering College </label>
+                                                                                    <?php
+                                                                                }
+                                                                                if(preg_match('/rmkcet_database/', $database)){
+                                                                                    ?>
+
+                                                                                    <label style="font-size: large;">RMK College of Engineering and Technology </label>
+                                                                                    <?php
+                                                                                }
                                                                                 ?>
 
 
 
-                                                                                <option value="<?php echo $row['table_value']  ?>"><?php echo $row['table_value'] ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
 
+
+                                                                            </a>
+                                                                            <span class="grey">Posted a Job</span>
+                                                                        </h5>
+                                                                        <span class="widget-toolbar no-border">
+																	<i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                                                            <?php echo $get_time ?>
+																</span>
+                                                                        <span class="widget-toolbar">
+
+																	<a href="#" data-action="collapse">
+																		<i class="ace-icon fa fa-chevron-up"></i>
+																	</a>
+																</span>
+                                                                    </div>
+                                                                    <div class="widget-body">
+                                                                        <div class="widget-main">
+                                                                            Hi, <?php echo $_SESSION['student_name']; ?>,
+                                                                            a new job
+                                                                            <span class="red" style="font-size: 17px;"> <?php echo $row['job_title']  ?> </span> from company
+                                                                            <span class="green" style="font-size: 17px;"><?php echo $row['company']    ?> </span>
+                                                                            has been posted!
+                                                                            <div class="space-6"></div>
+                                                                            <div class="widget-toolbox clearfix">
+
+
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-
-                                                            </li>
-
-                                                        </ul><hr/>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
-                                                    <div class="space-16"> </div>
-                                                    <div class="space-16"></div>
-                                                    <div>
-                                                        <button type="submit" href="index.php" name="delete" class="btn btn-block btn-danger">
-                                                            <span>Delete</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+
+
+                                                    <?php
+
+
+
+
+                                                    $previous=$date;
+                                                }
+
+
+
+
+
+
+
+                                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-
-
 
                                 <!-- PAGE CONTENT ENDS -->
                             </div><!-- /.col -->

@@ -46,15 +46,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "../reports/reports.php";
 
         }
-        function myfuncadmin() {
-            location.href = "../admin_panel/admin_panel_woexport.php";
 
-        }
         function myfuncjobs() {
-            location.href = "../jobs/jobs_panel.php";
+            location.href = "../jobs/view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -230,384 +227,43 @@ if(isset($_GET['filter'])) {
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="../index.php" class="navbar-brand">
+            <a href="search_action.php" class="navbar-brand">
                 <small>
                     <i class=""></i>
-                    <img src="../images/logos/rmklogo.JPG" style="height: 25px;">
-                    RMK Group of Institutions
+                    <?php
+
+                    $database=$_SESSION['database_name'];
+                    if(preg_match('/rmd_database/', $database)){
+                        ?>
+                        <img src="../images/rmd.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMD Engineering College  </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmk_database/', $database)){
+                        ?>
+                        <img src="../images/rmk.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK Engineering College </label>
+
+                        <?php
+                    }
+
+                    if(preg_match('/rmkcet_database/', $database)){
+                        ?>
+                        <img src="../images/rmkcet.jpg" style="height: 25px;">
+                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
+
+                        <?php
+                    }
+
+
+                    ?>
                 </small>
             </a>
         </div>
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-
-
-
-                        <?php
-
-
-                        include "../connect.php";
-                        $query_table = "SELECT * FROM table_map";
-                        $result_table = mysqli_query($connect, $query_table);
-
-                        $no_notification=0;
-                        while ($row = mysqli_fetch_assoc($result_table)) {
-                            $tname = $row['table_name'];
-                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
-                            $result_year = mysqli_query($connect, $query_year);
-
-                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
-
-
-                        }
-
-
-
-                        ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-
-                        <span class="badge badge-important"><?php echo $no_notification ?></span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-
-
-
-
-                            <?php echo $no_notification ?> Notifications
-                        </li>
-
-
-                        <li class="dropdown-content">
-
-
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-
-                                <?php
-
-
-
-                                include "../connect.php";
-                                $query_table = "SELECT * FROM table_map";
-                                $result_table = mysqli_query($connect, $query_table);
-
-                                while ($row = mysqli_fetch_assoc($result_table)) {
-                                    $tname = $row['table_name'];
-                                    $query_year = "SELECT * from $tname";
-                                    $result_year = mysqli_query($connect, $query_year);
-
-                                    $no_notification=mysqli_num_rows($result_year);
-
-
-                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
-
-
-                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
-
-
-                                            ?>
-
-                                            <li>
-                                                <a href="../Approve/approve.php?roll=<?php  echo $row1['st_roll']; ?>">
-                                                    <div class="clearfix">
-
-		             <span class="pull-left">
-			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-                         <?php  $content= $row1['st_roll'] ;
-                         $content.= "," ;
-                         $content.= $row1['st_name'];
-
-                         $content.= " has  requested for the change of";
-
-                         if ($row1['st_changemail'] != NULL) {
-                             $content.= " Email id : ";
-                             $content.=$row1['st_email'];
-
-                             $content.="to : ";
-                             $content.=$row1['st_changemail'];
-
-
-
-                         }
-
-                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
-
-
-                             $content.= " and  ";
-
-                         }
-
-
-
-
-
-
-                         if($row1['st_changephone'] != NULL) {
-
-
-
-                             $content.= " Phone No : ";
-                             $content.= $row1['st_phone'];
-
-                             $content.= "to : ";
-                             $content.= $row1['st_changephone'] ;
-                         }
-
-
-
-
-                         echo substr($content, 0,25)."......";
-
-
-                         ?>
-
-
-                         </p>
-				</span>
-
-
-                                                    </div>
-                                                </a>
-                                            </li>
-
-
-
-
-                                            <?php
-                                        }
-
-
-                                    }
-
-
-                                }
-
-
-                                ?>
-
-
-
-
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="../Approve/approve.php">
-                                See all notifications
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="green dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="../assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="../inbox.php">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
@@ -615,7 +271,10 @@ if(isset($_GET['filter'])) {
                         include "../connect.php";
                         $name=$_SESSION['user'];
 
-                        $query="select * from login_admin where username='{$name}'";
+                        $query="select * from login_coordinator where username='{$name}'";
+
+
+
 
                         $result=mysqli_query($connect,$query);
 
@@ -632,11 +291,11 @@ if(isset($_GET['filter'])) {
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
-									Admin
+									Coordinator
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -644,7 +303,7 @@ if(isset($_GET['filter'])) {
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
@@ -695,9 +354,7 @@ if(isset($_GET['filter'])) {
                 </button>
 
 
-                <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
-                    <i class="ace-icon fa fa-pencil"></i>
-                </button>
+
 
                 <button class="btn btn-warning"  onclick="myfuncjobs()" id="myButton3">
                     <i class="ace-icon fa fa-users"></i>
@@ -715,7 +372,7 @@ if(isset($_GET['filter'])) {
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
 
-                <span class="btn btn-info"></span>
+
 
                 <span class="btn btn-warning"></span>
 
@@ -728,7 +385,7 @@ if(isset($_GET['filter'])) {
             <li class="">
                 <a href="../index.php">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                    <span class="menu-text"> Dashboard</span>
                 </a>
 
                 <b class="arrow"></b>
@@ -738,102 +395,36 @@ if(isset($_GET['filter'])) {
                 <a href="../profile/profile.php" >
                     <i class="menu-icon fa fa-user"></i>
                     <span class="menu-text">
-							Your Profile
+							Profile
 							</span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
 
             <li class="">
                 <a href="../settings.php" >
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Settings </span>
-
-
                 </a>
 
                 <b class="arrow"></b>
-
-
             </li>
-
-            <li class="">
-                <a href="../admin_panel/admin_panel_woexport.php" >
-                    <i class="menu-icon fa fa-pencil-square-o"></i>
-                    <span class="menu-text"> Admin Panel </span>
-
-
-                </a>
-
-                <b class="arrow"></b>
-
-
-            </li>
-
-            <li class="">
-                <a href="../Approve/approve.php">
-                    <i class="menu-icon fa fa-list-alt"></i>
-                    <span class="menu-text"> Approve </span>
-                </a>
-
-                <b class="arrow"></b>
-
-
-            </li>
-
-
-
 
             <li>
-                <a href="#" class="dropdown-toggle">
+                <a href="../jobs/view_jobs.php" >
                     <i class="menu-icon fa fa-briefcase"></i>
                     <span class="menu-text"> Jobs </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../jobs/view_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View all Jobs
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../jobs/post_jobs.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Post Job
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../jobs/jobs_panel.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Jobs Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                </ul>
 
             </li>
 
 
             <li class="">
-                <a href="../reports.php">
+                <a href="../reports/reports.php">
 
                     <i class="menu-icon fa fa-bar-chart"></i>
 
@@ -847,90 +438,28 @@ if(isset($_GET['filter'])) {
 
 
             <li class="">
-                <a href="#" class="dropdown-toggle">
+                <a href="../company/view_companies.php" >
+
                     <i class="menu-icon fa fa-laptop"></i>
                     <span class="menu-text"> Companies </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="../company/create_company.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Create Company
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../company/view_companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            View Companies
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../company/companies.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Company Panel
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                </ul>
             </li>
 
-            <li class="active open">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-tag"></i>
-                    <span class="menu-text"> More Pages </span>
 
-                    <b class="arrow fa fa-angle-down"></b>
+            <li class="active">
+                <a href="../../coordinator_login/search/advanced_search.php">
+                    <i class="menu-icon fa fa-search"></i>
+                    Advanced Search
                 </a>
 
                 <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="active">
-                        <a href="advanced_search.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Advanced Search
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="../email.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Email
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="../inbox.php">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Inbox
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-
-
-
-
-                </ul>
             </li>
+
+
+
 
 
         </ul><!-- /.nav-list -->
@@ -952,14 +481,7 @@ if(isset($_GET['filter'])) {
                     <li class="active">Filtered Results</li>
                 </ul><!-- /.breadcrumb -->
 
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-                    </form>
-                </div><!-- /.nav-search -->
+                <!-- /.nav-search -->
             </div>
 
             <div class="page-content">

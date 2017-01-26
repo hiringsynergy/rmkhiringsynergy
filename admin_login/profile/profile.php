@@ -13,6 +13,200 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
 
 }
 
+
+if (isset($_GET['profile'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+    $univregno = $_GET['univregno'];
+    $fullname = $_GET['fullname'];
+    $phoneno = $_GET['phoneno'];
+    $emailid = $_GET['emailid'];
+    $cgpa = $_GET['cgpa'];
+    $collegename = $_GET['collegename'];
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+    $query_change_profile = "UPDATE $tname SET  st_name='{$fullname}',st_phone='{$phoneno}',st_email='{$emailid}',st_cgpa='{$cgpa}',st_collegename='{$collegename}' WHERE st_roll='{$rollno}'";
+    $result_change_profile = mysqli_query($connect, $query_change_profile);
+
+        if (!$result_change_profile) {
+
+            die("" . mysqli_error($connect));
+        }
+
+
+
+
+
+    header("Location: profile.php");
+
+}
+
+
+if (isset($_GET['personaldetails'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+
+
+    $firstname = $_GET['firstname'];
+    $middlename = $_GET['middlename'];
+    $lastname = $_GET['lastname'];
+    $gender = $_GET['gender'];
+    $fathername = $_GET['fathername'];
+    $fatheroccupation = $_GET['fatheroccupation'];
+    $mothername = $_GET['mothername'];
+    $motheroccupation = $_GET['motheroccupation'];
+    $dob = $_GET['dob'];
+    $nationality = $_GET['nationality'];
+    $caste = $_GET['caste'];
+    $hometown = $_GET['hometown'];
+    $premanaddress1 = $_GET['premanaddress1'];
+    $premanaddress2 = $_GET['premanaddress2'];
+    $city = $_GET['city'];
+    $state = $_GET['state'];
+    $pincode  = $_GET['pincode'];
+    $landline = $_GET['landline'];
+
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+
+    $query_change_personaldetails = "UPDATE $tname SET  st_firstname='{$firstname}',st_middlename='{$middlename}',st_lastname='{$lastname}',st_gender='{$gender}',st_fathername='{$fathername}',
+st_fatheroccupation='{$fatheroccupation}',st_mothername='{$mothername}',st_motheroccupation='{$motheroccupation}',st_dob='{$dob}',st_nationality='{$nationality}',
+st_caste='{$caste}',st_hometown='{$hometown}',st_address1='{$premanaddress1}',st_address2='{$premanaddress2}',st_city='{$city}',
+st_state='{$state}',st_posatlcode='{$pincode}',st_landline='{$landline}' WHERE st_roll='{$rollno}'";
+    $result_change_personaldetails = mysqli_query($connect, $query_change_personaldetails);
+
+    if (!$result_change_personaldetails) {
+
+        die("" . mysqli_error($connect));
+    }
+
+
+
+
+
+    header("Location: profile.php");
+
+
+
+}
+
+
+
+
+if (isset($_GET['academicdetails'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+
+
+    $firstname = $_GET['firstname'];
+    $middlename = $_GET['middlename'];
+    $lastname = $_GET['lastname'];
+    $gender = $_GET['gender'];
+    $fathername = $_GET['fathername'];
+    $fatheroccupation = $_GET['fatheroccupation'];
+    $mothername = $_GET['mothername'];
+    $motheroccupation = $_GET['motheroccupation'];
+    $dob = $_GET['dob'];
+    $nationality = $_GET['nationality'];
+    $caste = $_GET['caste'];
+    $hometown = $_GET['hometown'];
+    $premanaddress1 = $_GET['premanaddress1'];
+    $premanaddress2 = $_GET['premanaddress2'];
+    $city = $_GET['city'];
+    $state = $_GET['state'];
+    $pincode  = $_GET['pincode'];
+    $landline = $_GET['landline'];
+
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+
+    $query_change_personaldetails = "UPDATE $tname SET  st_firstname='{$firstname}',st_middlename='{$middlename}',st_lastname='{$lastname}',st_gender='{$gender}',st_fathername='{$fathername}',
+st_fatheroccupation='{$fatheroccupation}',st_mothername='{$mothername}',st_motheroccupation='{$motheroccupation}',st_dob='{$dob}',st_nationality='{$nationality}',
+st_caste='{$caste}',st_hometown='{$hometown}',st_address1='{$premanaddress1}',st_address2='{$premanaddress2}',st_city='{$city}',
+st_state='{$state}',st_posatlcode='{$pincode}',st_landline='{$landline}' WHERE st_roll='{$rollno}'";
+    $result_change_personaldetails = mysqli_query($connect, $query_change_personaldetails);
+
+    if (!$result_change_personaldetails) {
+
+        die("" . mysqli_error($connect));
+    }
+
+
+
+
+
+    header("Location: profile.php");
+
+
+
+}
+
+
+
+
+if (isset($_GET['amcatscore'])) {
+
+    include "../connect.php";
+
+    $rollno = $_GET['rollno'];
+    $tname = $_GET['tname'];
+
+
+    $engpercent = $_GET['engpercent'];
+    $quantpercent = $_GET['quantpercent'];
+    $logicalpercent = $_GET['logicalpercent'];
+    $overallpercent = $_GET['overallpercent'];
+    $percent = $_GET['percent'];
+    $candidateid = $_GET['candidateid'];
+    $signature = $_GET['signature'];
+
+    $select = "SELECT * from $tname where st_roll='{$rollno}'";
+    $select_result = mysqli_query($connect, $select);
+    $row = mysqli_fetch_assoc($select_result);
+
+
+
+    $query_change_amcatscore = "UPDATE $tname SET  st_english='{$engpercent}',st_quantitative='{$quantpercent}',st_logical='{$logicalpercent}',st_overall='{$overallpercent}',st_percentage='{$percent}',
+st_candidateid='{$candidateid}',st_signature='{$signature}' WHERE st_roll='{$rollno}'";
+    $result_change_amcatscore = mysqli_query($connect, $query_change_amcatscore);
+
+    if (!$result_change_amcatscore) {
+
+        die("" . mysqli_error($connect));
+    }
+
+
+
+
+
+    header("Location: profile.php");
+
+
+
+}
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -165,7 +359,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
         }
         #shadow{
 
-            width: 700px;
+            width: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -318,65 +512,166 @@ if(isset($_GET['roll']))
             <ul class="nav ace-nav">
                                 <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+                        <?php
+
+
+                        include "../connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
+                                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                        <li class="dropdown-header">
+                                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                            <?php echo $no_notification ?> Notifications
+                                        </li>
 
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
+                                        <li class="dropdown-content">
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
 
+                                                <?php
+
+
+
+                                                include "../connect.php";
+                                                $query_table = "SELECT * FROM table_map";
+                                                $result_table = mysqli_query($connect, $query_table);
+
+                                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                                    $tname = $row['table_name'];
+                                                    $query_year = "SELECT * from $tname";
+                                                    $result_year = mysqli_query($connect, $query_year);
+
+                                                    $no_notification=mysqli_num_rows($result_year);
+
+
+                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                            ?>
+
+                                                            <li>
+                                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                                    <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+
+
+                         if($row1['st_changephone'] != NULL) {
+
+
+
+                             $content.= " Phone No : ";
+                             $content.= $row1['st_phone'];
+
+                             $content.= "to : ";
+                             $content.= $row1['st_changephone'] ;
+                         }
+
+
+
+
+                         echo substr($content, 0,25)."......";
+
+
+                         ?>
+
+
+                         </p>
+				</span>
+
+
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+
+
+
+
+                                                            <?php
+                                                        }
+
+
+                                                    }
+
+
+                                                }
+
+
+                                                ?>
+
+
+
+
+                                            </ul>
+                                        </li>
                         <li class="dropdown-footer">
-                            <a href="#">
+                            <a href="../approve.php">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -890,7 +1185,7 @@ if(isset($_GET['roll']))
                                     <div class="space-10"></div>
 
 
-                                    <div class="col-xs-12 col-sm-12 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-blue" id="shadow">
                                             <div class="widget-header">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 20px;" >Profile</h5>
@@ -959,7 +1254,7 @@ if(isset($_GET['roll']))
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
-                                                            <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  ">  <b>Collge Name</b> </div>
+                                                            <div class="profile-info-name align-left" style="background: #C5EFF7; color: #1F3A93;  ">  <b>College Name</b> </div>
 
                                                             <div class="profile-info-value testblue1">
                                                                 <div class=" " id="gen"><?php  echo $row['st_collegename']  ?></div>
@@ -999,7 +1294,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-orange" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 20px;" >Personal Details</h5>
@@ -1192,7 +1487,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-green2" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title " style="color: white; font-weight: bold; font-size: 18px;" >Acadamic Qualification</h5>
@@ -1559,7 +1854,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-blue2" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;">Skill Set</h5>
@@ -1639,7 +1934,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12  col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-purple" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;">AMCAT Score</h5>
@@ -1675,8 +1970,6 @@ if(isset($_GET['roll']))
                                                             <div class="profile-info-name align-left " style="background:#DCC6E0; color:#663399" > <b>Quantitative Percentage</b> </div>
 
                                                             <div class="profile-info-value testpurple">
-
-
                                                                 <span class="editable " id="city"><?php  echo $row['st_quantitative']  ?></span>
                                                             </div>
                                                         </div>
@@ -1742,7 +2035,7 @@ if(isset($_GET['roll']))
 
 
 
-                                    <div class="col-xs-12 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
+                                    <div class="col-xs-12 col-sm-9 col-lg-offset-4 widget-container-col" id="widget-container-col-1">
                                         <div class="widget-box widget-color-red" id="shadow">
                                             <div class="widget-header ">
                                                 <h5 class="widget-title" style="color: white; font-weight: bold; font-size: 18px;"><?php  echo $row['st_placementstatus']  ?></h5>
@@ -1842,6 +2135,7 @@ if(isset($_GET['roll']))
                                 <div id="modal-form3" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
+			<form class="modal-content" action="profile.php" method="get" enctype="multipart/form-data">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="blue bigger">Edit the following form fields</h4>
@@ -1862,7 +2156,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-c3">Institution</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-c3" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-c3" name="10thschoolname" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1870,7 +2164,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-yop3">Medium</label>
-                                                                <select disabled class="form-control" id="form-field-q1">
+                                                                <select name="10thmedium" class="form-control" id="form-field-q1">
                                                                     <option value="eng">English</option>
                                                                     <option value="tam">Tamil</option>
                                                                 </select>
@@ -1881,7 +2175,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-yop3">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop3" placeholder="" value="<?php echo $row['st_10thyearofpassing']?>" />
+                                                                    <input type="text" id="form-field-yop3" placeholder="" name="10thyearofpass" value="<?php echo $row['st_10thyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1890,7 +2184,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p3">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p3" placeholder="" value="<?php echo $row['st_10thpercentage']?>" />
+                                                                    <input type="text" id="form-field-p3" placeholder="" name="10thpercent" value="<?php echo $row['st_10thpercentage']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1906,7 +2200,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-c2">Institution</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-c2" placeholder="" value="" />
+                                                                    <input type="text" id="form-field-c2" placeholder="" name="12thschoolname" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1914,7 +2208,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-yop3">Medium</label>
-                                                                <select disabled class="form-control" id="form-field-q1">
+                                                                <select name="12thmedium" class="form-control" id="form-field-q1">
                                                                     <option value="eng">English</option>
                                                                     <option value="tam">Tamil</option>
                                                                 </select>
@@ -1925,7 +2219,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-yop2">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop2" placeholder="" value="<?php echo $row['st_12thyearofpassing']?>" />
+                                                                    <input type="text" id="form-field-yop2" placeholder="" name="12thyearofpass" value="<?php echo $row['st_12thyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1934,7 +2228,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_12thpercentage']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="12thpercent" value="<?php echo $row['st_12thpercentage']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1948,7 +2242,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-q1">Qualification</label>
-                                                                <select disabled class="form-control" id="form-field-q1">
+                                                                <select name="ugqualification" class="form-control" id="form-field-q1">
                                                                     <option value="be">B.E</option>
                                                                     <option value="bt">B.Tech</option>
                                                                 </select>
@@ -1960,7 +2254,8 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-b1">Branch</label>
-                                                                <select disabled class="form-control" id="form-field-b1">
+                                                                <select name="ugbranch" class="form-control" id="form-field-b1">
+					<option></option>
                                                                     <option value="cse">Computer Science Engineering</option>
                                                                     <option value="it">Information Technology</option>
                                                                     <option value="mech">Mechanical Engineering</option>
@@ -1977,7 +2272,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-c1">Institution</label>
 
-                                                                <select disabled class="form-control" id="form-field-c1">
+                                                                <select name="ugclgname" class="form-control" id="form-field-c1">
                                                                     <option value="rmk">RMK Engineering College</option>
                                                                     <option value="rmd">RMD Engineering COllege</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
@@ -1989,7 +2284,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-yop1">Year of Passing</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-yop1" placeholder="" value="<?php echo $row['st_ugyearofpassing']?>" />
+                                                                    <input type="text" id="form-field-yop1" placeholder="" name="ugyearofpass" value="<?php echo $row['st_ugyearofpassing']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1998,7 +2293,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p1">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p1" placeholder="" value="<?php echo $row['st_cgpa']?>" />
+                                                                    <input type="text" id="form-field-p1" placeholder="" name="ugcgpa" value="<?php echo $row['st_cgpa']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2007,7 +2302,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">First Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_1stsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="1sem" value="<?php echo $row['st_1stsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2016,7 +2311,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Second Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_2ndsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="2sem" value="<?php echo $row['st_2ndsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2025,7 +2320,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Third Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_3rdsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="3sem"  value="<?php echo $row['st_3rdsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2034,7 +2329,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Fourth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_4thsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="4sem" value="<?php echo $row['st_4thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2043,7 +2338,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Fifth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_5thsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="5sem" value="<?php echo $row['st_5thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2052,7 +2347,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Sixth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_6thsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="6sem" value="<?php echo $row['st_6thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2061,7 +2356,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Seventh Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_7thsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="7sem" value="<?php echo $row['st_7thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2070,7 +2365,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Eigth Semester</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_8thsem']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="8sem" value="<?php echo $row['st_8thsem']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2079,7 +2374,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Standing Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_standingarrears']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="standarrears" value="<?php echo $row['st_standingarrears']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2088,7 +2383,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">History of Arrear</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-p2" placeholder="" value="<?php echo $row['st_historyofarrears']?>" />
+                                                                    <input type="text" id="form-field-p2" placeholder="" name="historyofarrears" value="<?php echo $row['st_historyofarrears']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2102,7 +2397,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-q1">Qualification</label>
-                                                                <select disabled class="form-control" id="form-field-q1">
+                                                                <select name="pgqualification" class="form-control" id="form-field-q1">
                                                                     <option value="me">M.E</option>
                                                                     <option value="mba">MBA</option>
                                                                 </select>
@@ -2112,7 +2407,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label  for="form-field-b1">Branch</label>
-                                                                <select disabled class="form-control" id="form-field-b1">
+                                                                <select name="pgbranch" class="form-control" id="form-field-b1">
                                                                     <option value="cse">Computer Science Engineering</option>
                                                                     <option value="it">Information Technology</option>
                                                                     <option value="mech">Mechanical Engineering</option>
@@ -2127,7 +2422,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-c1">Institution</label>
 
-                                                                <select disabled class="form-control" id="form-field-c1">
+                                                                <select name="pgclgname" class="form-control" id="form-field-c1">
                                                                     <option value="rmk">RMD Engineering College</option>
                                                                     <option value="rmd">RMK Engineering COllege</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
@@ -2139,7 +2434,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-yop1">Year of Passing</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-yop1" placeholder="" value="" />
+                                                                    <input name="pgyearofpass" type="text" id="form-field-yop1" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2148,7 +2443,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p1">Percentage/CGPA</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p1" placeholder="" value="" />
+                                                                    <input name="pgpercent" type="text" id="form-field-p1" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2157,7 +2452,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">First Semester</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pgsem1" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2166,7 +2461,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label disabled for="form-field-p2">Second Semester</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pgsem2" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2175,7 +2470,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Third Semester</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pgsem3" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2184,7 +2479,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Fourth Semester</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pgsem4" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2193,7 +2488,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">Standing Arrear</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pgstandarrears" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2202,7 +2497,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-p2">History of Arrear</label>
                                                                 <div>
-                                                                    <input disabled type="text" id="form-field-p2" placeholder="" value="" />
+                                                                    <input name="pghistoryofarrears" type="text" id="form-field-p2" placeholder="" value="" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2216,16 +2511,18 @@ if(isset($_GET['roll']))
                                             </div>
 
                                             <div class="modal-footer">
+                                                                <input type="hidden" name="rollno" value="<?php echo $row['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname" value="<?php echo $row_short['table_name']; ?>"/>
                                                 <button class="btn btn-sm" data-dismiss="modal">
                                                     <i class="ace-icon fa fa-times"></i>
                                                     Cancel
                                                 </button>
 
-                                                <button class="btn btn-sm btn-primary">
+                                                <button class="btn btn-sm btn-primary" name="academicdetails">
                                                     <i class="ace-icon fa fa-check"></i>
                                                     Save
                                                 </button>
-                                            </div>
+                                            </div></form>
                                         </div>
                                     </div>
                                 </div>
@@ -2233,6 +2530,7 @@ if(isset($_GET['roll']))
                                 <div id="modal-form2" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
+			<form class="modal-content" action="profile.php" method="get" enctype="multipart/form-data">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="blue bigger">Edit the following form fields</h4>
@@ -2244,7 +2542,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="form-field-fn">First Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fn" placeholder="" value="<?php echo $row['st_firstname'] ?>"/>
+                                                                <input type="text" id="form-field-fn" placeholder="" name="firstname" value="<?php echo $row['st_firstname'] ?>"/>
 
                                                             </div>
                                                         </div>
@@ -2252,7 +2550,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="form-field-fn">Middle Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fn" placeholder="" value="<?php echo $row['st_middlename']?>" />
+                                                                <input type="text" id="form-field-fn" placeholder="" name="middlename" value="<?php echo $row['st_middlename']?>" />
                                                             </div>
                                                         </div>
 
@@ -2261,14 +2559,14 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="form-field-ln">Last Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-ln" placeholder="" value="<?php echo $row['st_lastname']?>" />
+                                                                <input type="text" id="form-field-ln" placeholder="" name="lastname" value="<?php echo $row['st_lastname']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-gendre">Gender</label>
-                                                                <select disabled class="form-control" id="form-field-gendre">
+                                                                <select class="form-control" name="gender" id="form-field-gendre">
                                                                     <option value="m"><?php echo $row['st_gender']?></option>
                                                                     <option value="f">Female</option>
                                                                 </select>
@@ -2280,35 +2578,35 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Father Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_fathername']?>" />
+                                                                <input type="text" id="form-field-fan" placeholder="" name="fathername" value="<?php echo $row['st_fathername']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Father Occupation</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_fatheroccupation']?>" />
+                                                                <input type="text" id="form-field-fan" placeholder="" name="fatheroccupation" value="<?php echo $row['st_fatheroccupation']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Mother Name</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_mothername']?>" />
+                                                                <input type="text" id="form-field-fan" placeholder="" name="mothername" value="<?php echo $row['st_mothername']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-fan">Mother Occupation</label>
                                                             <div>
-                                                                <input type="text" id="form-field-fan" placeholder="" value="<?php echo $row['st_motheroccupation']?>" />
+                                                                <input type="text" id="form-field-fan" placeholder="" name="motheroccupation" value="<?php echo $row['st_motheroccupation']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="id-date-picker-1">Date of birth</label>
                                                             <div>
-                                                                <input class="form-group" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" value="<?php echo $row['st_dob']?>" />
+                                                                <input class="form-group" id="id-date-picker-1" type="text" name="dob" data-date-format="dd-mm-yyyy" value="<?php echo $row['st_dob']?>" />
                                                                 <span class="form-group">
                                                     <i class="fa fa-calendar bigger-110"></i>
                                                 </span>
@@ -2316,18 +2614,16 @@ if(isset($_GET['roll']))
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <div>
                                                                 <label for="form-field-na">Nationality</label>
-                                                                <select class="form-control" id="form-field-na">
-                                                                    <option value="i"><?php echo $row['st_nationality']?></option>
-                                                                </select>
+                                                            <div>
+                                                                <input type="text" id="form-field-fan" placeholder="" name="nationality" value="<?php echo $row['st_nationality']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-caste">Caste</label>
-                                                                <select class="form-control" id="form-field-caste" value="<?php echo $row['st_caste']?>">
+                                                                <select class="form-control" id="form-field-caste" name="caste" value="<?php echo $row['st_caste']?>">
                                                                     <option value="bc">BC</option>
                                                                     <option value="mbc">MBC</option>
                                                                     <option value="obc">OBC</option>
@@ -2342,14 +2638,21 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="form-field-ht">Home Town</label>
                                                             <div>
-                                                                <input type="text" id="form-field-ht" placeholder="" value="<?php echo $row['st_hometown']?>" />
+                                                                <input type="text" id="form-field-ht" placeholder="" name="hometown" value="<?php echo $row['st_hometown']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="form-field-addr">Permanent Address</label>
+                                                            <label for="form-field-addr">Permanent Address(Line 1)</label>
                                                             <div>
-                                                                <input type="text" id="form-field-addr" placeholder="" value="<?php echo $row['st_address1']?> <?php echo $row['st_address2']?>   " />
+                                                                <input type="text" id="form-field-addr" placeholder="" name="premanaddress1" value="<?php echo $row['st_address1']?>" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="form-field-addr">Permanent Address(Line 2)</label>
+                                                            <div>
+                                                                <input type="text" id="form-field-addr" placeholder="" name="premanaddress2" value="<?php echo $row['st_address2']?>" />
                                                             </div>
                                                         </div>
 
@@ -2357,7 +2660,7 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-city">City</label>
                                                                 <div>
-                                                                    <input type="text" id="form-field-city" placeholder="" value="<?php echo $row['st_city']?>" />
+                                                                    <input type="text" id="form-field-city" placeholder="" name="city" value="<?php echo $row['st_city']?>" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2365,7 +2668,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <div>
                                                                 <label for="form-field-state">State</label>
-                                                                <select class="form-control" id="form-field-state">
+                                                                <select class="form-control" name="state" value="<?php echo $row['st_state']?>" id="form-field-state">
                                                                     <option value="t">Tamil Nadu</option>
                                                                     <option value="a">Andhra Pradesh</option>
                                                                     <option value="k">Kerala</option>
@@ -2386,14 +2689,14 @@ if(isset($_GET['roll']))
                                                             <label for="form-field-pc">Pin Code</label>
 
                                                             <div>
-                                                                <input type="text" id="form-field-pc" placeholder="" value="<?php echo $row['st_posatlcode']?>" />
+                                                                <input type="text" id="form-field-pc" placeholder="" name="pincode" value="<?php echo $row['st_posatlcode']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="form-field-l">Landline Number</label>
                                                             <div>
-                                                                <input type="text" id="form-field-l" placeholder="" value="<?php echo $row['st_landline']?>" />
+                                                                <input type="text" id="form-field-l" placeholder="" name="landline" value="<?php echo $row['st_landline']?>" />
                                                             </div>
                                                         </div>
 
@@ -2403,22 +2706,25 @@ if(isset($_GET['roll']))
                                             </div>
 
                                             <div class="modal-footer">
+                                                                <input type="hidden" name="rollno" value="<?php echo $row['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname" value="<?php echo $row_short['table_name']; ?>"/>
                                                 <button class="btn btn-sm" data-dismiss="modal">
                                                     <i class="ace-icon fa fa-times"></i>
                                                     Cancel
                                                 </button>
 
-                                                <button class="btn btn-sm btn-primary">
+                                                <button class="btn btn-sm btn-primary" name="personaldetails">
                                                     <i class="ace-icon fa fa-check"></i>
                                                     Save
                                                 </button>
-                                            </div>
+                                            </div></form>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="modal-form1" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
+				<form class="modal-content" action="profile.php" method="get" enctype="multipart/form-data">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="blue bigger">Edit the following form fields</h4>
@@ -2430,7 +2736,7 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="control-label bolder blue">University Register Number</label>
                                                             <div>
-                                                                <input type="text" disabled id="control-label bolder blue" placeholder="" value="<?php echo $row['st_roll'] ?>" />
+                                                                <input type="text" disabled id="control-label bolder blue" placeholder="" name="univregno" value="<?php echo $row['st_roll'] ?>" />
                                                             </div>
                                                         </div>
 
@@ -2466,9 +2772,9 @@ if(isset($_GET['roll']))
                                                             <div>
                                                                 <label for="form-field-c1">College Name</label>
 
-                                                                <select disabled class="form-control" id="form-field-c1">
-                                                                    <option value="rmk"><?php echo $row['st_collegename'] ?></option>
-                                                                    <option value="rmd">RMD Engineering COllege</option>
+                                                                <select class="form-control" name="collegename" id="form-field-c1" value="<?php echo $row['st_collegename'] ?>">
+                                                                    <option value="rmk">RMK Engineering College</option>
+                                                                    <option value="rmd">RMD Engineering College</option>
                                                                     <option value="rmkcet">RMK College of Engineering and Technology</option>
                                                                 </select>
                                                             </div>
@@ -2485,16 +2791,19 @@ if(isset($_GET['roll']))
                                             </div>
 
                                             <div class="modal-footer">
+                                                                <input type="hidden" name="rollno" value="<?php echo $row['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname" value="<?php echo $row_short['table_name']; ?>"/>
+
                                                 <button class="btn btn-sm" data-dismiss="modal">
                                                     <i class="ace-icon fa fa-times"></i>
                                                     Cancel
                                                 </button>
 
-                                                <button class="btn btn-sm btn-primary">
+                                                <button class="btn btn-sm btn-primary" name="profile">
                                                     <i class="ace-icon fa fa-check"></i>
                                                     Save
                                                 </button>
-                                            </div>
+                                            </div></form>
                                         </div>
                                     </div>
                                 </div>
@@ -2502,6 +2811,7 @@ if(isset($_GET['roll']))
                                 <div id="modal-form5" class="modal" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
+			<form class="modal-content" action="profile.php" method="get" enctype="multipart/form-data">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="blue bigger">Edit the following form fields</h4>
@@ -2513,49 +2823,49 @@ if(isset($_GET['roll']))
                                                         <div class="form-group">
                                                             <label for="control-label bolder blue">English Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blue" placeholder="" value="<?php echo $row['st_english']?>" />
+                                                                <input type="text" name="engpercent" id="control-label bolder blue" placeholder="" value="<?php echo $row['st_english']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="control-label bolder blu">Quantitaive Percentage</label>
+                                                            <label for="control-label bolder blu">Quantitative Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_quantitative']?>" />
+                                                                <input type="text" name="quantpercent" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_quantitative']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder bl">Logical Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_logical']?>" />
+                                                                <input type="text" name="logicalpercent" id="control-label bolder bl" placeholder="" value="<?php echo $row['st_logical']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder b">Overall Average</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder b" placeholder="" value="<?php echo $row['st_overall']?>" />
+                                                                <input type="text" name="overallpercent" id="control-label bolder b" placeholder="" value="<?php echo $row['st_overall']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Percentage</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_percentage']?>" />
+                                                                <input type="text" name="percent" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_percentage']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Candidate ID</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_candidateid']?>" />
+                                                                <input type="text" name="candidateid" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_candidateid']?>" />
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="control-label bolder blu">Signature</label>
                                                             <div>
-                                                                <input type="text" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_signature']?>" />
+                                                                <input type="text" name="signature" id="control-label bolder blu" placeholder="" value="<?php echo $row['st_signature']?>" />
                                                             </div>
                                                         </div>
 
@@ -2565,16 +2875,18 @@ if(isset($_GET['roll']))
                                             </div>
 
                                             <div class="modal-footer">
+                                                                <input type="hidden" name="rollno" value="<?php echo $row['st_roll'] ?>"/>
+                                                                <input type="hidden" name="tname" value="<?php echo $row_short['table_name']; ?>"/>
                                                 <button class="btn btn-sm" data-dismiss="modal">
                                                     <i class="ace-icon fa fa-times"></i>
                                                     Cancel
                                                 </button>
 
-                                                <button class="btn btn-sm btn-primary">
+                                                <button class="btn btn-sm btn-primary" name="amcatscore">
                                                     <i class="ace-icon fa fa-check"></i>
                                                     Save
                                                 </button>
-                                            </div>
+                                            </div></form>
                                         </div>
                                     </div>
                                 </div>

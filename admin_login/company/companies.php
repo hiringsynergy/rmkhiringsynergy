@@ -222,65 +222,166 @@ die(" " . mysqli_error($connect));
             <ul class="nav ace-nav">
                                 <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+
+
+                        <?php
+
+
+                        include "../connect.php";
+                        $query_table = "SELECT * FROM table_map";
+                        $result_table = mysqli_query($connect, $query_table);
+
+                        $no_notification=0;
+                        while ($row = mysqli_fetch_assoc($result_table)) {
+                            $tname = $row['table_name'];
+                            $query_year = "SELECT * from $tname WHERE NOT  st_changephone='' OR NOT st_changemail=''";
+                            $result_year = mysqli_query($connect, $query_year);
+
+                            $no_notification  = $no_notification + mysqli_num_rows($result_year);
+
+
+                        }
+
+
+
+                        ?>
+
+
+
+
+
+
+
+
+
+
+
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
+                                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                        <li class="dropdown-header">
+                                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                            <?php echo $no_notification ?> Notifications
+                                        </li>
 
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
+                                        <li class="dropdown-content">
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
 
+                                                <?php
+
+
+
+                                                include "../connect.php";
+                                                $query_table = "SELECT * FROM table_map";
+                                                $result_table = mysqli_query($connect, $query_table);
+
+                                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                                    $tname = $row['table_name'];
+                                                    $query_year = "SELECT * from $tname";
+                                                    $result_year = mysqli_query($connect, $query_year);
+
+                                                    $no_notification=mysqli_num_rows($result_year);
+
+
+                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+
+
+                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+
+
+                                                            ?>
+
+                                                            <li>
+                                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                                    <div class="clearfix">
+
+		             <span class="pull-left">
+			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                         <?php  $content= $row1['st_roll'] ;
+                         $content.= "," ;
+                         $content.= $row1['st_name'];
+
+                         $content.= " has  requested for the change of";
+
+                         if ($row1['st_changemail'] != NULL) {
+                             $content.= " Email id : ";
+                             $content.=$row1['st_email'];
+
+                             $content.="to : ";
+                             $content.=$row1['st_changemail'];
+
+
+
+                         }
+
+                         if($row1['st_changephone'] != NULL && $row1['st_changemail'] != NULL ){
+
+
+                             $content.= " and  ";
+
+                         }
+
+
+
+
+
+
+                         if($row1['st_changephone'] != NULL) {
+
+
+
+                             $content.= " Phone No : ";
+                             $content.= $row1['st_phone'];
+
+                             $content.= "to : ";
+                             $content.= $row1['st_changephone'] ;
+                         }
+
+
+
+
+                         echo substr($content, 0,25)."......";
+
+
+                         ?>
+
+
+                         </p>
+				</span>
+
+
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+
+
+
+
+                                                            <?php
+                                                        }
+
+
+                                                    }
+
+
+                                                }
+
+
+                                                ?>
+
+
+
+
+                                            </ul>
+                                        </li>
                         <li class="dropdown-footer">
-                            <a href="#">
+                            <a href="../approve.php">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
@@ -808,113 +909,7 @@ die(" " . mysqli_error($connect));
                             </div>
                         </div>
 
-                        <div id="modal-form"  class="modal" tabindex="-1">
-                            <!--                            <div class="modal-dialog">-->
-                            <!--                                <div class="modal-content">-->
-                            <!--                                    <div class="modal-header">-->
-                            <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-                            <!--                                        <h4 class="blue bigger">Please fill the following form fields</h4>-->
-                            <!--                                    </div>-->
-                            <!---->
-                            <!--                                    <div class="modal-body">-->
-                            <!--                                        <div class="row">-->
-                            <!--                                            <div class="col-xs-12 col-sm-5">-->
-                            <!--                                                <div class="space"></div>-->
-                            <!---->
-                            <!--                                                <input type="file" />-->
-                            <!--                                            </div>-->
-                            <!---->
-                            <!--                                            <div class="col-xs-12 col-sm-7">-->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="form-field-select-3">Company</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <select class="chosen-select" data-placeholder="Choose a Country...">-->
-                            <!--                                                            <option value="">Choose-company</option>-->
-                            <!--                                                            <option value="AL">Alabama</option>-->
-                            <!--                                                            <option value="AK">Alaska</option>-->
-                            <!--                                                            <option value="AZ">Arizona</option>-->
-                            <!--                                                            <option value="AR">Arkansas</option>-->
-                            <!--                                                            <option value="CA">California</option>-->
-                            <!---->
-                            <!--                                                        </select>-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!---->
-                            <!--                                                <div class="space-4"></div>-->
-                            <!---->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="job-title">Job Title</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <input type="text" id="job-title"  name="title" value="--><?php //echo $row['job_title']  ?><!--" />-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div><div class="space-4"></div>-->
-                            <!--                                                <div>-->
-                            <!--                                                    <input type="hidden" id="job-id"  name="id" value="--><?php //echo $row['job_id']  ?><!--" />-->
-                            <!--                                                </div>-->
-                            <!---->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="campus-date">CampusDate</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <input type="text" id="campus-date"  value="--><?php //echo $row['campus_date']  ?><!--" />-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div><div class="space-4"></div>-->
-                            <!---->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="salary">Salary</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <input type="text" id="salary"  value="--><?php //echo $row['salary']  ?><!--" />-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!---->
-                            <!--                                                <div class="space-4"></div>-->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="venue">Venue</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <input type="text" id="venue" value="--><?php //echo $row['venue']  ?><!--" />-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!---->
-                            <!--                                                <div class="space-4"></div>-->
-                            <!--                                                <div class="form-group">-->
-                            <!--                                                    <label for="apply-before">Apply Before</label>-->
-                            <!---->
-                            <!--                                                    <div>-->
-                            <!--                                                        <input type="text" id="apply-before" placeholder="Username" value="--><?php //echo $row['apply_before']  ?><!--" />-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!---->
-                            <!--                                                <div class="space-4"></div>-->
-                            <!---->
-                            <!---->
-                            <!--                                            </div>-->
-                            <!--                                        </div>-->
-                            <!--                                    </div>-->
-                            <!---->
-                            <!--                                    <div class="modal-footer">-->
-                            <!---->
-                            <!--                                        <form action="../jobs/jobs_panel.php" method="post">-->
-                            <!--                                            <button class="btn btn-sm" type="submit">-->
-                            <!--                                                <i class="ace-icon fa fa-times"></i>-->
-                            <!--                                                Cancel-->
-                            <!--                                            </button>-->
-                            <!--                                            <button class="btn btn-sm btn-primary" name="submit" type="submit">-->
-                            <!--                                                <i class="ace-icon fa fa-check"></i>-->
-                            <!--                                                Save-->
-                            <!--                                            </button>-->
-                            <!---->
-                            <!---->
-                            <!--                                        </form>-->
-                            <!---->
-                            <!---->
-                            <!--                                    </div>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                        </div>
+
 
 
 

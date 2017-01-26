@@ -394,12 +394,8 @@ ob_start();
 
                                             $previous=null;
 
-<<<<<<< HEAD
-                                            $query="SELECT * FROM jobs ORDER  BY job_id DESC";
-=======
                                             $branch=$_SESSION['cood_branch'];
                                             $query="SELECT * FROM jobs WHERE job_branch LIKE '%$branch%'  ORDER  BY job_id DESC";
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                                             $result=mysqli_query($connect, $query);
                                             while($row=mysqli_fetch_assoc($result)){
 

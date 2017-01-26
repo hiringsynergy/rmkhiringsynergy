@@ -19,26 +19,6 @@ ob_start();
     <link rel="stylesheet" href="../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css" />
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.external-png-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.external-png-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.icons-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.icons-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.inline-png-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.inline-png-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.inline-svg-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.inline-svg-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.structure-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.structure-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.theme-1.4.4.css" />
-    <link rel="stylesheet" href="../assets/jquery.mobile.theme-1.4.4.min.css" />
-    <link rel="stylesheet" href="../assets/jquery-ui.css" />
-
-=======
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -103,12 +83,7 @@ function updateSlider(){
 		<link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
-<<<<<<< HEAD
-		<link rel="stylesheet" href="../assets/js/date-time/moment.min.js" />
-		<link rel="stylesheet" href="../assets/js/date-time/bootstrap-datetimepicker.min.js" />
-=======
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
     <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="../assets/css/chosen.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
@@ -383,12 +358,8 @@ function updateSlider(){
                 </a>
 
                 <b class="arrow"></b>
-<<<<<<< HEAD
-            </li><!-- /.nav-list -->
-=======
             </li>
         </ul><!-- /.nav-list -->
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

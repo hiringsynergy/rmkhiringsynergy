@@ -66,64 +66,64 @@ if(isset($_POST['login'])){
 
 
 
-        // admin login
+    // admin login
 
-        $query_admin="SELECT * FROM login_admin WHERE username='{$username}'";
-        $result_admin=mysqli_query($connect, $query_admin);
-        if(!$result_admin==null){
-            $row_admin=mysqli_fetch_assoc($result_admin);
-            $admin_name=$row_admin['username'];
-            $admin_password=$row_admin['password'];
-        }
-
-
-        //coordinator login
-
-        $query_coordinator="SELECT * FROM login_coordinator WHERE username='{$username}'";
-        $result_coordinator=mysqli_query($connect, $query_coordinator);
-        if(!$result_coordinator==null){
-            $row_coordinator=mysqli_fetch_assoc($result_coordinator);
-            $coordinator_name=$row_coordinator['username'];
-            $coordinator_password=$row_coordinator['password'];
-            $coordinator_branch=$row_coordinator['cood_branch'];
-        }
+    $query_admin="SELECT * FROM login_admin WHERE username='{$username}'";
+    $result_admin=mysqli_query($connect, $query_admin);
+    if(!$result_admin==null){
+        $row_admin=mysqli_fetch_assoc($result_admin);
+        $admin_name=$row_admin['username'];
+        $admin_password=$row_admin['password'];
+    }
 
 
+    //coordinator login
+
+    $query_coordinator="SELECT * FROM login_coordinator WHERE username='{$username}'";
+    $result_coordinator=mysqli_query($connect, $query_coordinator);
+    if(!$result_coordinator==null){
+        $row_coordinator=mysqli_fetch_assoc($result_coordinator);
+        $coordinator_name=$row_coordinator['username'];
+        $coordinator_password=$row_coordinator['password'];
+        $coordinator_branch=$row_coordinator['cood_branch'];
+    }
 
 
 
-        //student login
-
-        $isstudent=$username[4].$username[5];
-        $isstudent+=4;
-
-        $query_short="SELECT * FROM table_map WHERE table_short='{$isstudent}'";
-        $result_short=mysqli_query($connect, $query_short);
 
 
-        if(!$result_short==null){
+    //student login
 
-            $row_short=mysqli_fetch_assoc($result_short);
-            $student_table=$row_short['table_name'];
-            $query_student="SELECT * FROM $student_table WHERE st_roll='{$username}'";
-            $result_student=mysqli_query($connect, $query_student);
+    $isstudent=$username[4].$username[5];
+    $isstudent+=4;
 
-
-            if(!$result_student==null){
-                $row_student=mysqli_fetch_assoc($result_student);
-
-                $student_roll=$row_student['st_roll'];
-                $student_name=$row_student['st_name'];
-                $student_password=$row_student['st_pass'];
-                $student_branch=$row_student['st_ugspecialization'];
+    $query_short="SELECT * FROM table_map WHERE table_short='{$isstudent}'";
+    $result_short=mysqli_query($connect, $query_short);
 
 
-            }
+    if(!$result_short==null){
+
+        $row_short=mysqli_fetch_assoc($result_short);
+        $student_table=$row_short['table_name'];
+        $query_student="SELECT * FROM $student_table WHERE st_roll='{$username}'";
+        $result_student=mysqli_query($connect, $query_student);
 
 
+        if(!$result_student==null){
+            $row_student=mysqli_fetch_assoc($result_student);
+
+            $student_roll=$row_student['st_roll'];
+            $student_name=$row_student['st_name'];
+            $student_password=$row_student['st_pass'];
+            $student_branch=$row_student['st_ugspecialization'];
 
 
         }
+
+
+
+
+    }
 
 
 
@@ -156,11 +156,11 @@ if(isset($_POST['login'])){
 
     //coordinator validation
 
-   else if($coordinator_name == $username && $coordinator_password == $password){
+    else if($coordinator_name == $username && $coordinator_password == $password){
 
 
 
-       $_SESSION['database_name']=$admin_database;
+        $_SESSION['database_name']=$admin_database;
 
         $_SESSION['user']=$username;
         $_SESSION['cood_branch']=$coordinator_branch;
@@ -185,11 +185,7 @@ if(isset($_POST['login'])){
 
 
         $_SESSION['user'] = $username;
-<<<<<<< HEAD
-        $_SESSION['pass'] = $password;
-=======
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
         $_SESSION['student_name']=$student_name;
 
         $_SESSION['student_roll']=$student_roll;

@@ -5,13 +5,6 @@ ob_start();
 
 ?>
 
-<?php
-
-
-
-?>
-
-
 
 
 <!DOCTYPE html>

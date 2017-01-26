@@ -1297,7 +1297,7 @@ function updateSlider(){
 
 
 
-            var blc = $('#tag3').val();
+            var blc = $('#tag4').val();
 
 
 

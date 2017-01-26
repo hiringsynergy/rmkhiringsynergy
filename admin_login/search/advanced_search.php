@@ -1186,7 +1186,7 @@ function updateSlider(){
 
 														<h5 class="red bolder smaller">Register No:</h5>
 											<div class="">
-												<input type="text" name="tags" id="tag4"  placeholder="Enter Register No ..." />
+												<input type="text" name="tags" id="form-field-tags"  placeholder="Enter Register No ..." />
 											</div>
                                                                         <div class="space-16"></div>
 
@@ -1297,7 +1297,7 @@ function updateSlider(){
 
 
 
-            var blc = $('#tag4').val();
+            var blc = $('#form-field-tags').val();
 
 
 

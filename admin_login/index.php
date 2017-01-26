@@ -213,11 +213,13 @@ if(isset($_GET['delete']))
 		</script>
 
         <style>
-        #shadow{
 
-            width: auto;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
+            #shadow{
+
+                width: auto;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+            }
 
         </style>
 
@@ -535,7 +537,7 @@ if(isset($_GET['delete']))
                                     ?>
 
 
-                                    <img class="nav-user-photo" src="images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                                    <img class="nav-user-photo" src="images/<?php echo $row['admin_pic']; ?>" alt="Photo" />
                                 <?php } ?>
                                 <span class="user-info">
 									<small>Welcome,</small>

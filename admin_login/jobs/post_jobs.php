@@ -378,7 +378,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
 
                             <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>"
-                                 alt="Jason's Photo"/>
+                                 alt="Photo"/>
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -390,7 +390,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>

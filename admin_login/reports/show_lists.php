@@ -46,11 +46,11 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "reports.php";
 
         }
         function myfuncadmin() {
-            location.href = "admin_panel.php";
+            location.href = "../admin_panel/admin_panel.php";
 
         }
         function myfuncjobs() {
@@ -390,7 +390,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Photo" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -402,7 +402,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>

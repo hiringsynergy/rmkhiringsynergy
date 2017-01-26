@@ -428,7 +428,34 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
+                        <?php
+                        include "../connect.php";
+                        $name=$_SESSION['user'];
 
+                        $query="select * from login_admin where username='{$name}'";
+
+
+
+
+
+                        $result=mysqli_query($connect,$query);
+
+                        if(!$result){
+
+
+
+                            mysqli_error($connect);
+                        }
+
+                        while($row=mysqli_fetch_assoc($result)){
+
+
+
+                            ?>
+
+
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Photo" />
+                        <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
 									Admin
@@ -439,7 +466,7 @@ if(isset($_POST['create']) && isset($_FILES['logo'])){
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>

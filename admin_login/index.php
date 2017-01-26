@@ -224,15 +224,6 @@ if(isset($_GET['delete']))
 
 		<!-- page specific plugin styles -->
 
-<<<<<<< HEAD
-        <link rel="stylesheet" href="../assets/css/jquery-ui.custom.min.css" />
-        <link rel="stylesheet" href="../assets/css/chosen.min.css" />
-        <link rel="stylesheet" href="../assets/css/bootstrap-datepicker3.min.css" />
-        <link rel="stylesheet" href="../assets/css/bootstrap-timepicker.min.css" />
-        <link rel="stylesheet" href="../assets/css/daterangepicker.min.css" />
-        <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css" />
-        <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css" />
-=======
         <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
         <link rel="stylesheet" href="assets/css/chosen.min.css" />
         <link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css" />
@@ -240,7 +231,6 @@ if(isset($_GET['delete']))
         <link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
         <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
         <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
 
         <link rel="stylesheet" href="assets/css/chosen.min.css" />

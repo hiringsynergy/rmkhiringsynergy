@@ -51,9 +51,12 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
             location.href = "../reports/reports.php";
 
         }
+        function myfuncadmin() {
+            location.href = "../admin_panel/admin_panel_woexport.php";
 
+        }
         function myfuncjobs() {
-            location.href = "../jobs/view_jobs.php";
+            location.href = "../jobs/jobs_panel.php";
 
         }
         function myfuncsettings() {
@@ -241,13 +244,6 @@ if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
 
         $value = explode('.',$file_name);
 
-<<<<<<< HEAD
-        <div class="navbar-header pull-left">
-            <a href="search_action.php" class="navbar-brand">
-                <small>
-                    <i class=""></i>
-                    <?php
-=======
 
 
 
@@ -257,23 +253,8 @@ if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
 
 
         move_uploaded_file($file_tmp,"files/".$newfilename);
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
-                    $database=$_SESSION['database_name'];
-                    if(preg_match('/rmd_database/', $database)){
-                        ?>
-                        <img src="../images/rmd.jpg" style="height: 25px;">
-                        <label style="font-size: large;">RMD Engineering College  </label>
 
-<<<<<<< HEAD
-                        <?php
-                    }
-
-                    if(preg_match('/rmk_database/', $database)){
-                        ?>
-                        <img src="../images/rmk.jpg" style="height: 25px;">
-                        <label style="font-size: large;">RMK Engineering College </label>
-=======
 
     }
 
@@ -284,22 +265,11 @@ if(isset($_POST['send_mail']) && isset($_POST['filter']) ){
 
 
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
-
-                        <?php
-                    }
-
-                    if(preg_match('/rmkcet_database/', $database)){
-                        ?>
-                        <img src="../images/rmkcet.jpg" style="height: 25px;">
-                        <label style="font-size: large;">RMK College of Engineering and Technology </label>
-
-                        <?php
-                    }
 
 
-<<<<<<< HEAD
-=======
+
+
+
 
     //sending mails
 
@@ -668,7 +638,6 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
                     }
 
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                     ?>
                 </small>
             </a>
@@ -683,12 +652,6 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
                         $name=$_SESSION['user'];
 
                         $query="select * from login_coordinator where username='{$name}'";
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
 
                         $result=mysqli_query($connect,$query);
 
@@ -705,11 +668,7 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
                             ?>
 
 
-<<<<<<< HEAD
-                            <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Pic" />
-=======
                             <img class="nav-user-photo" src="../images/<?php echo $row['coordinator_pic']; ?>" alt="Jason's Photo" />
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -772,7 +731,9 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
                 </button>
 
 
-
+                <button class="btn btn-info"  onclick="myfuncadmin()" id="myButton2">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
 
                 <button class="btn btn-warning"  onclick="myfuncjobs()" id="myButton3">
                     <i class="ace-icon fa fa-users"></i>
@@ -790,7 +751,7 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
             <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
                 <span class="btn btn-success"></span>
 
-
+                <span class="btn btn-info"></span>
 
                 <span class="btn btn-warning"></span>
 
@@ -875,14 +836,6 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
 
                 <b class="arrow"></b>
             </li>
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
         </ul><!-- /.nav-list -->
 
 
@@ -901,10 +854,6 @@ else if(isset($_POST['send_mail']) && isset($_POST['search'])){
                     </li>
                     <li class="active">Filtered Results</li>
                 </ul><!-- /.breadcrumb -->
-<<<<<<< HEAD
-
-=======
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
                 <!-- /.nav-search -->
             </div>
 

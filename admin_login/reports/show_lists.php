@@ -193,7 +193,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                                <li class="purple dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
 
@@ -234,87 +234,45 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         <span class="badge badge-important"><?php echo $no_notification ?></span>
                     </a>
 
-<<<<<<< HEAD
-                                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                                        <li class="dropdown-header">
-                                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                                            <?php echo $no_notification ?> Notifications
-                                        </li>
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                        <li class="dropdown-header">
+                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            <?php echo $no_notification ?> Notifications
+                        </li>
 
 
-                                        <li class="dropdown-content">
+                        <li class="dropdown-content">
 
 
-                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
+                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
 
-                                                <?php
-
-
-
-                                                include "../connect.php";
-                                                $query_table = "SELECT * FROM table_map";
-                                                $result_table = mysqli_query($connect, $query_table);
-
-                                                while ($row = mysqli_fetch_assoc($result_table)) {
-                                                    $tname = $row['table_name'];
-                                                    $query_year = "SELECT * from $tname";
-                                                    $result_year = mysqli_query($connect, $query_year);
-
-                                                    $no_notification=mysqli_num_rows($result_year);
-
-
-                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
-
-
-                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
-
-
-                                                            ?>
-
-=======
-<<<<<<< HEAD
-
-=======
-                                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                                        <li class="dropdown-header">
-                                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                                            <?php echo $no_notification ?> Notifications
-                                        </li>
-
-
-                                        <li class="dropdown-content">
-
-
-                                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-
-                                                <?php
+                                <?php
 
 
 
-                                                include "../connect.php";
-                                                $query_table = "SELECT * FROM table_map";
-                                                $result_table = mysqli_query($connect, $query_table);
+                                include "../connect.php";
+                                $query_table = "SELECT * FROM table_map";
+                                $result_table = mysqli_query($connect, $query_table);
 
-                                                while ($row = mysqli_fetch_assoc($result_table)) {
-                                                    $tname = $row['table_name'];
-                                                    $query_year = "SELECT * from $tname";
-                                                    $result_year = mysqli_query($connect, $query_year);
+                                while ($row = mysqli_fetch_assoc($result_table)) {
+                                    $tname = $row['table_name'];
+                                    $query_year = "SELECT * from $tname";
+                                    $result_year = mysqli_query($connect, $query_year);
 
-                                                    $no_notification=mysqli_num_rows($result_year);
-
-
-                                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
+                                    $no_notification=mysqli_num_rows($result_year);
 
 
-                                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
+                                    while ($row1 = mysqli_fetch_assoc($result_year)) {
 
 
-                                                            ?>
+                                        if ($row1['st_changemail'] != NULL || $row1['st_changephone']!= NULL) {
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
-                                                            <li>
-                                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
-                                                                    <div class="clearfix">
+
+                                            ?>
+
+                                            <li>
+                                                <a href="../approve.php?roll=<?php  echo $row1['st_roll']; ?>">
+                                                    <div class="clearfix">
 
 		             <span class="pull-left">
 			               <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
@@ -371,30 +329,30 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 				</span>
 
 
-                                                                    </div>
-                                                                </a>
-                                                            </li>
+                                                    </div>
+                                                </a>
+                                            </li>
 
 
 
 
-                                                            <?php
-                                                        }
+                                            <?php
+                                        }
 
 
-                                                    }
+                                    }
 
 
-                                                }
+                                }
 
 
-                                                ?>
+                                ?>
 
 
 
 
-                                            </ul>
-                                        </li>
+                            </ul>
+                        </li>
                         <li class="dropdown-footer">
                             <a href="../approve.php">
                                 See all notifications
@@ -402,9 +360,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                             </a>
                         </li>
                     </ul>
->>>>>>> origin/master
                 </li>
-
 
 
                 <li class="light-blue dropdown-modal">
@@ -412,27 +368,29 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                         <?php
                         include "../connect.php";
-                        $name = $_SESSION['user'];
+                        $name=$_SESSION['user'];
 
-                        $query = "select * from login_admin where username='{$name}'";
+                        $query="select * from login_admin where username='{$name}'";
 
 
-                        $result = mysqli_query($connect, $query);
 
-                        if (!$result) {
+
+                        $result=mysqli_query($connect,$query);
+
+                        if(!$result){
 
 
                             mysqli_error($connect);
                         }
 
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        while($row=mysqli_fetch_assoc($result)){
+
 
 
                             ?>
 
 
-                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>"
-                                 alt="Jason's Photo"/>
+                            <img class="nav-user-photo" src="../images/<?php echo $row['admin_pic']; ?>" alt="Jason's Photo" />
                         <?php } ?>
                         <span class="user-info">
 									<small>Welcome,</small>
@@ -460,18 +418,15 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
                         <li class="divider"></li>
 
                         <li>
-                            <a href="../../login_out/login_validation.php">
+                            <a href="../../login_out/logout.php">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
                         </li>
                     </ul>
                 </li>
-
-
             </ul>
-        </div>
-    </div><!-- /.navbar-container -->
+        </div>    </div><!-- /.navbar-container -->
 </div>
 
 <div class="main-container ace-save-state" id="main-container">

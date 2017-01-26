@@ -187,10 +187,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
                 </ul>
             </li>
-<<<<<<< HEAD
-=======
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
             <li class="green dropdown-modal">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
@@ -288,10 +285,7 @@ if(! isset($_SESSION['user']) && $_SESSION['user']==null){
                     </li>
                 </ul>
             </li>
-<<<<<<< HEAD
-=======
 
->>>>>>> 2e873a79a15f0b3f5241501c082bd645c5a75bf1
             <li class="light-blue dropdown-modal">
                 <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                     <?php

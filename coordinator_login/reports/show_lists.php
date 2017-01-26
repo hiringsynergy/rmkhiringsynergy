@@ -46,11 +46,11 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
     <!--button-navigation-->
     <script type="text/javascript">
         function myfuncreport() {
-            location.href = "../reports.php";
+            location.href = "reports.php";
 
         }
         function myfuncjobs() {
-            location.href = "../jobs/jobs_panel.php";
+            location.href = "../jobs/view_jobs.php";
 
         }
         function myfuncsettings() {
@@ -232,7 +232,7 @@ if (!isset($_SESSION['user']) && $_SESSION['user'] == null) {
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="../settings.php">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>

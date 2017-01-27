@@ -939,7 +939,7 @@ if(isset($_GET['filter_job'])){
                                                                 <h5><label class="control-label bolder orange"for="form-field-select-4">Select Branch</label></h5>
 
                                                                 <div >
-                                                                    <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="form-field-select-4" data-placeholder="Choose a Branch...">
+                                                                    <select multiple="" name="ugbranch[]" class="chosen-select  form-control" id="tag1" data-placeholder="Choose a Branch...">
                                                                         <option value="all">All</option>
                                                                         <option value="cse">Computer science and Engineering</option>
                                                                         <option value="eee">Electrical and Electronic Engineering</option>
@@ -1063,7 +1063,7 @@ if(isset($_GET['filter_job'])){
                             </div>
                             <div class="space-16"></div>
                             <div class="center ">
-                                <button name="filter_job" type="submit" class="btn btn-lg btn-success">
+                                <button name="filter_job" id="bootbox-confirm" type="submit" class="btn btn-lg btn-success">
                                     <i class="ace-icon fa fa-check"></i>
                                     Filter
                                 </button>
@@ -1120,6 +1120,12 @@ if(isset($_GET['filter_job'])){
 <script src="../assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
+<script src="../assets/js/wizard.min.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/jquery-additional-methods.min.js"></script>
+<script src="../assets/js/bootbox.js"></script>
+<script src="../assets/js/jquery.maskedinput.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
 
 <!--[if lte IE 8]>
 <script src="../assets/js/excanvas.min.js"></script>
@@ -1693,6 +1699,35 @@ if(isset($_GET['filter_job'])){
 
             $('.limiterBox,.autosizejs').remove();
             $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
+        });
+
+        $('#bootbox-confirm').click(function(event){
+            var bla = $('#tag1').val();
+//            var blb = $('#tag2').val();
+//            var hidden_input =
+//                $('<input type="hidden" name="description" />')
+//                    .appendTo('#validate-form');
+//
+//            var blc = $('#editor1').val();
+//            // var blc=hidden_input.val( html_content );
+            if(bla==null)
+            {
+
+                bootbox.dialog({
+                    message: "Please select the department",
+                    buttons: {
+                        "success" : {
+                            "label" : "OK",
+                            "className" : "btn-sm btn-primary"
+                        }
+                    }
+
+                } );
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+
         });
 
     });

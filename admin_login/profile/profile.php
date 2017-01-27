@@ -1633,7 +1633,7 @@ if(isset($_GET['roll']))
                                                             <div class="profile-info-name align-left " style="background:#C8F7C5 ;color:#1E824C;"> <b>Institution</b> </div>
 
                                                             <div class="profile-info-value testgreen">
-                                                                <span class="editable " id="inst1"><?php  echo $row['st_collegename']  ?></span>
+                                                                <span class="editable " id="inst1"><?php  echo $row['st_ugcollegename']  ?></span>
                                                             </div>
                                                         </div>
 
